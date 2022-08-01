@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153058631108",
+    "project_id": "petilla-app",
+    "storage_bucket": "petilla-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153058631108:android:47a752fea3dbce00631891",
+        "android_client_info": {
+          "package_name": "com.example.petilla_app_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153058631108-t5u85nklkhhup0kaeadfmmlmtviemqol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTM0jQyQhx31Rg0obAtS3mufuLQSEhwzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153058631108-t5u85nklkhhup0kaeadfmmlmtviemqol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
