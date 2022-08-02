@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petilla_app_project/service/models/pet_model.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
 
 class LargePetWidget extends StatefulWidget {
   const LargePetWidget({Key? key, required this.petModel}) : super(key: key);

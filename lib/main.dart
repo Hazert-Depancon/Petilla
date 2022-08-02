@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:petilla_app_project/theme/light_theme.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/main_view/add_view/add_view.dart';
 import 'package:petilla_app_project/view/main_view/chat_view.dart';
 import 'package:petilla_app_project/view/main_view/favorites_view.dart';
 import 'package:petilla_app_project/view/main_view/home_view.dart';
 import 'package:petilla_app_project/view/main_view/profile_view.dart';
+import 'package:petilla_app_project/view/theme/light_theme.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

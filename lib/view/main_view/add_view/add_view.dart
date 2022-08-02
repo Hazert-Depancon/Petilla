@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_icon_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 import 'package:petilla_app_project/view/main_view/add_view/add_view_two.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_icon_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
 import 'package:petilla_app_project/view/widgets/button.dart';
 import 'package:petilla_app_project/view/widgets/textfields/main_textfield.dart';
 
@@ -36,7 +36,7 @@ class _AddViewState extends State<AddView> {
           child: Padding(
             padding: ProjectPaddings.horizontalMainPadding,
             child: SizedBox(
-              height: Get.height * 0.8,
+              height: Get.height,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -50,6 +50,7 @@ class _AddViewState extends State<AddView> {
                   _radioListTile(2, _ThisPageTexts.paid),
                   const Spacer(),
                   Align(child: _nextButton()),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),

@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:petilla_app_project/service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/service/models/jsons/city_model.dart';
 import 'package:petilla_app_project/service/models/pet_model.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/view/main_view/add_view/city/ilce_select_view.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/view/widgets/button.dart';
 import 'package:petilla_app_project/view/widgets/textfields/main_textfield.dart';
 
@@ -155,7 +155,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         padding: ProjectPaddings.horizontalMainPadding,
         child: SingleChildScrollView(
           child: SizedBox(
-            height: Get.height * 0.8,
+            height: Get.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -286,19 +286,17 @@ class _AddViewTwoState extends State<AddViewTwo> {
     return Align(
       child: Button(
         onPressed: () {
-          final pet = PetModel(
+          CrudService().createPet(PetModel(
             sex: selectedValue1 ?? "Erkek",
             name: widget.name,
             description: widget.description,
             imagePath: "assets/images/rifki.jpg",
             ageRange: selectedValue2 ?? "0 - 3 Ay",
-            location: "$_secilenIl $_secilenIlce",
+            location: _secilenIl,
             petBreed: "Buldog",
-            price: widget.radioValue == 1 ? "Sahiplendir" : _priceController.text,
+            price: widget.radioValue == 1 ? "Sahiplen" : _priceController.text,
             petType: selectedValue ?? "Köpek",
-          );
-
-          CrudService().createPet(pet);
+          ));
         },
         text: "Evcil Hayvan Ekle",
         width: ProjectButtonSizes.mainButtonWidth,

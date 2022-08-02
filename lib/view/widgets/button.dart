@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
 
 class Button extends StatelessWidget {
   const Button({Key? key, required this.onPressed, this.width, this.height, this.text}) : super(key: key);

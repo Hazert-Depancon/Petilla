@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
 
 class IlSecimiSayfasi extends StatefulWidget {
   final List ilIsimleri;

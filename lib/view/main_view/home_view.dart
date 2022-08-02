@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/service/models/pet_model.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
+import 'package:petilla_app_project/view/theme/strings/project_lottie_urls.dart';
 import 'package:petilla_app_project/view/widgets/pet_widgets/normal_pet_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -16,16 +15,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Widget buildPet(PetModel pet) => NormalPetWidget(
-        name: pet.name,
-        ageRange: pet.ageRange,
-        breed: pet.petBreed,
-        imagePath: pet.imagePath,
-        description: pet.description,
-        location: pet.location,
-        price: pet.price,
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,26 +29,35 @@ class _HomeViewState extends State<HomeView> {
               searchTextField(),
               const SizedBox(height: 16),
               Expanded(
-                child: StreamBuilder<List<PetModel>>(
-                    stream: readPets(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
-                      } else if (snapshot.hasData) {
-                        final pets = snapshot.data!;
-                        return GridView(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.95,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 16,
-                          ),
-                          children: pets.map(buildPet).toList(),
-                        );
-                      }
-                      return Lottie.network(ProjectLottieUrls.loadingLottie);
-                    }),
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection('pets').snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return GridView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        gridDelegate: _myGridDelegate(),
+                        itemBuilder: (context, index) {
+                          final DocumentSnapshot document = snapshot.data!.docs[index];
+                          return NormalPetWidget(
+                            // sex: document["sex"],
+                            sex: "Erkek",
+                            petType: document["petType"],
+                            name: document["name"],
+                            ageRange: document["ageRange"],
+                            petBreed: document["petBreed"],
+                            imagePath: document["imagePath"],
+                            description: document["description"],
+                            location: document["location"],
+                            price: document["price"],
+                          );
+                        },
+                      );
+                    }
+                    return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+                  },
+                ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -67,31 +65,21 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  GridView _myPetGridView() {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.95,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 16,
-      ),
-      itemBuilder: (context, index) {
-        return const NormalPetWidget(
-          ageRange: "ageRange",
-          breed: "Kedi",
-          description: "Kedi",
-          imagePath: "assets/images/rifki.jpg",
-          location: "İstanbul",
-          name: "Kedi",
-          price: "0",
-        );
-      },
+  SliverGridDelegateWithFixedCrossAxisCount _myGridDelegate() {
+    return const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      childAspectRatio: 0.8,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 16,
     );
   }
 
-  Stream<List<PetModel>> readPets() => FirebaseFirestore.instance.collection("pets").snapshots().map(
-        (snapshot) => snapshot.docs.map((doc) => PetModel.fromJson(doc.data())).toList(),
-      );
+  // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+  //   crossAxisCount: 2,
+  //   childAspectRatio: 0.95,
+  //   crossAxisSpacing: 12,
+  //   mainAxisSpacing: 16,
+  // ),
 
   Container searchTextField() {
     return Container(

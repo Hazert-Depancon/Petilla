@@ -1,30 +1,36 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_card_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_icon_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_card_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_icon_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_radius.dart';
 import 'package:petilla_app_project/view/widgets/fav_button.dart';
 
 class NormalPetWidget extends StatefulWidget {
   const NormalPetWidget({
     Key? key,
+    required this.sex,
     required this.name,
     required this.ageRange,
-    required this.breed,
+    required this.petBreed,
     required this.imagePath,
     required this.description,
     required this.location,
     required this.price,
+    required this.petType,
   }) : super(key: key);
 
   final String name;
-  final String ageRange;
-  final String breed;
-  final String imagePath;
   final String description;
+  final String imagePath;
+  final String ageRange;
   final String location;
+  final String petBreed;
+  final String petType;
   final String price;
+  final String sex;
 
   @override
   State<NormalPetWidget> createState() => _NormalPetWidgetState();
@@ -73,7 +79,8 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      _isSahiplen ? "Sahiplen" : "${price}TL",
+                      // _isSahiplen ? "Sahiplen" : "${price}TL",
+                      "Sahiplen",
                       style: _isSahiplen ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade) : subtitle2,
                     ),
                     const SizedBox(height: 4),

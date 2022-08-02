@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/service/models/pet_model.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/view/widgets/pet_widgets/large_pet_widget.dart';
 
 class FavoritesView extends StatefulWidget {

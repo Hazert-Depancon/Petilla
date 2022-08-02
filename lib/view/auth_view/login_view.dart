@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_card_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/view/auth_view/register_view.dart';
+import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_card_sizes.dart';
+import 'package:petilla_app_project/view/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/view/theme/strings/project_lottie_urls.dart';
 import 'package:petilla_app_project/view/widgets/button.dart';
-
-import '../../theme/strings/project_lottie_urls.dart';
-import '../widgets/textfields/auth_textfield.dart';
+import 'package:petilla_app_project/view/widgets/textfields/auth_textfield.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
