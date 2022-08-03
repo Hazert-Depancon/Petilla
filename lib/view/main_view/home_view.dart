@@ -22,64 +22,69 @@ class _HomeViewState extends State<HomeView> {
         title: const Text(_ThisPageTexts.homePage),
       ),
       body: Center(
-        child: Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: Column(
-            children: [
-              searchTextField(),
-              const SizedBox(height: 16),
-              Expanded(
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('pets').snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return GridView.builder(
-                        itemCount: snapshot.data!.docs.length,
-                        gridDelegate: _myGridDelegate(),
-                        itemBuilder: (context, index) {
-                          final DocumentSnapshot document = snapshot.data!.docs[index];
-                          return NormalPetWidget(
-                            // sex: document["sex"],
-                            sex: "Erkek",
-                            petType: document["petType"],
-                            name: document["name"],
-                            ageRange: document["ageRange"],
-                            petBreed: document["petBreed"],
-                            imagePath: document["imagePath"],
-                            description: document["description"],
-                            location: document["location"],
-                            price: document["price"],
-                          );
-                        },
-                      );
-                    }
-                    return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
-                  },
-                ),
+        child: Column(
+          children: [
+            Padding(
+              padding: ProjectPaddings.horizontalMainPadding,
+              child: searchTextField(),
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('pets').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return _gridView(snapshot);
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+                  }
+
+                  return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+                },
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  GridView _gridView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return GridView.builder(
+      padding: ProjectPaddings.horizontalMainPadding,
+      itemCount: snapshot.data!.docs.length,
+      gridDelegate: _myGridDelegate(),
+      itemBuilder: (context, index) {
+        final DocumentSnapshot document = snapshot.data!.docs[index];
+        return _petWidget(document);
+      },
+    );
+  }
+
+  NormalPetWidget _petWidget(DocumentSnapshot<Object?> document) {
+    return NormalPetWidget(
+      sex: document["sex"],
+      petType: document["petType"],
+      name: document["name"],
+      ageRange: document["ageRange"],
+      petBreed: document["petBreed"],
+      imagePath: document["imagePath"],
+      description: document["description"],
+      city: document["city"],
+      ilce: document["ilce"],
+      price: document["price"],
     );
   }
 
   SliverGridDelegateWithFixedCrossAxisCount _myGridDelegate() {
     return const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
-      childAspectRatio: 0.8,
+      mainAxisExtent: 200,
       crossAxisSpacing: 12,
       mainAxisSpacing: 16,
     );
   }
-
-  // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-  //   crossAxisCount: 2,
-  //   childAspectRatio: 0.95,
-  //   crossAxisSpacing: 12,
-  //   mainAxisSpacing: 16,
-  // ),
 
   Container searchTextField() {
     return Container(

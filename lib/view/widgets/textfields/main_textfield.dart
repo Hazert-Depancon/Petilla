@@ -12,6 +12,8 @@ class MainTextField extends StatefulWidget {
     this.maxLines,
     this.minLines,
     this.suffix,
+    this.maxLength,
+    this.isNext,
   }) : super(key: key);
 
   final String? hintText;
@@ -21,6 +23,8 @@ class MainTextField extends StatefulWidget {
   final int? maxLines;
   final int? minLines;
   final String? suffix;
+  final int? maxLength;
+  final bool? isNext;
 
   @override
   State<MainTextField> createState() => _MainTextFieldState();
@@ -34,6 +38,8 @@ class _MainTextFieldState extends State<MainTextField> {
       minLines: widget.minLines,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
+      maxLength: widget.maxLength,
+      textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
       decoration: InputDecoration(
         filled: true,
         fillColor: LightThemeColors.snowbank,

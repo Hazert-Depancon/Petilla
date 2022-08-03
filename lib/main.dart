@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:petilla_app_project/view/main_view/add_view/add_view.dart';
 import 'package:petilla_app_project/view/main_view/chat_view.dart';
 import 'package:petilla_app_project/view/main_view/favorites_view.dart';
@@ -38,7 +39,7 @@ class _PetillaState extends State<Petilla> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Petilla',
       theme: LightTheme().theme,

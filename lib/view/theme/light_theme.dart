@@ -48,6 +48,13 @@ class LightTheme {
       textTheme: const TextTheme(
         button: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
         bodyText1: TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
+        subtitle2: TextStyle(fontSize: 16),
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: LightThemeColors.miamiMarmalade,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        highlightElevation: 0,
       ),
     );
   }

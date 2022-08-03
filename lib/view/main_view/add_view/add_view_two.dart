@@ -155,7 +155,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         padding: ProjectPaddings.horizontalMainPadding,
         child: SingleChildScrollView(
           child: SizedBox(
-            height: Get.height,
+            height: Get.height < 700 ? Get.height * 1.2 : Get.height * 0.8,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -173,7 +173,6 @@ class _AddViewTwoState extends State<AddViewTwo> {
                 widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
                 const Spacer(),
                 _submitButton(),
-                const SizedBox(height: 24),
               ],
             ),
           ),
@@ -285,24 +284,28 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Align _submitButton() {
     return Align(
       child: Button(
-        onPressed: () {
-          CrudService().createPet(PetModel(
-            sex: selectedValue1 ?? "Erkek",
-            name: widget.name,
-            description: widget.description,
-            imagePath: "assets/images/rifki.jpg",
-            ageRange: selectedValue2 ?? "0 - 3 Ay",
-            location: _secilenIl,
-            petBreed: "Buldog",
-            price: widget.radioValue == 1 ? "Sahiplen" : _priceController.text,
-            petType: selectedValue ?? "Köpek",
-          ));
-        },
+        onPressed: _onSubmitButton,
         text: "Evcil Hayvan Ekle",
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
       ),
     );
+  }
+
+  void _onSubmitButton() {
+    CrudService().createPet(PetModel(
+      sex: selectedValue1 ?? "Erkek",
+      name: widget.name,
+      description: widget.description,
+      imagePath: "assets/images/rifki.jpg",
+      // imagePath: widget.mediaUrl,
+      ageRange: selectedValue2 ?? "0 - 3 Ay",
+      city: _secilenIl,
+      ilce: _secilenIlce,
+      petBreed: "Buldog",
+      price: widget.radioValue == 1 ? "0" : _priceController.text,
+      petType: selectedValue ?? "Köpek",
+    ));
   }
 }
 

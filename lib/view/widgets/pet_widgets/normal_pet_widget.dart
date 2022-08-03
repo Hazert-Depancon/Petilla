@@ -1,6 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/view/other_view/detail_view.dart';
 import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/theme/sizes/project_card_sizes.dart';
 import 'package:petilla_app_project/view/theme/sizes/project_icon_sizes.dart';
@@ -17,16 +18,18 @@ class NormalPetWidget extends StatefulWidget {
     required this.petBreed,
     required this.imagePath,
     required this.description,
-    required this.location,
+    required this.city,
     required this.price,
     required this.petType,
+    required this.ilce,
   }) : super(key: key);
 
   final String name;
   final String description;
   final String imagePath;
   final String ageRange;
-  final String location;
+  final String city;
+  final String ilce;
   final String petBreed;
   final String petType;
   final String price;
@@ -39,59 +42,91 @@ class NormalPetWidget extends StatefulWidget {
 class _NormalPetWidgetState extends State<NormalPetWidget> {
   late String name;
   late String price;
-  late String location;
+  late String city;
   late String imagePath;
+  late bool _isSahiplen;
 
   @override
   void initState() {
     super.initState();
     name = widget.name;
-    price = widget.price.toString();
-    location = widget.location;
-    price == 0 ? _isSahiplen = true : _isSahiplen = false;
+    price = widget.price;
+    city = widget.city;
+    price == "0" ? _isSahiplen = true : _isSahiplen = false;
     imagePath = widget.imagePath;
   }
-
-  late bool _isSahiplen = false;
 
   @override
   Widget build(BuildContext context) {
     final subtitle2 = Theme.of(context).textTheme.subtitle2;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: LightThemeColors.white,
-        borderRadius: ProjectRadius.allRadius,
-      ),
-      child: Padding(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            _imageContainer(),
-            const SizedBox(height: 8),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _nameText(subtitle2?.copyWith(fontSize: 16)),
-                const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      // _isSahiplen ? "Sahiplen" : "${price}TL",
-                      "Sahiplen",
-                      style: _isSahiplen ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade) : subtitle2,
-                    ),
-                    const SizedBox(height: 4),
-                    _location(),
-                  ],
-                ),
-              ],
+    return InkWell(
+      borderRadius: ProjectRadius.allRadius,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailView(
+              name: widget.name,
+              description: widget.description,
+              imagePath: widget.imagePath,
+              ageRange: widget.ageRange,
+              city: widget.city,
+              ilce: widget.ilce,
+              petBreed: widget.petBreed,
+              petType: widget.petType,
+              price: widget.price,
+              sex: widget.sex,
             ),
-          ],
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: LightThemeColors.white,
+          borderRadius: ProjectRadius.allRadius,
+        ),
+        child: Padding(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: Column(
+            children: [
+              const SizedBox(height: 8),
+              _imageContainer(),
+              const SizedBox(height: 8),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 45,
+                    child: _nameText(
+                      subtitle2?.copyWith(fontSize: 16, overflow: TextOverflow.ellipsis),
+                    ),
+                  ),
+                  const Spacer(flex: 10),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Expanded(
+                      flex: 45,
+                      child: _priceText(subtitle2),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              _location(),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Text _priceText(TextStyle? subtitle2) {
+    return Text(
+      _isSahiplen ? "Sahiplen" : "${price}TL",
+      style: _isSahiplen
+          ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis)
+          : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),
     );
   }
 
@@ -102,7 +137,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _placeIcon(),
-        Text(location),
+        Text(city, overflow: TextOverflow.clip),
       ],
     );
   }

@@ -3,7 +3,8 @@ class PetModel {
   final String description;
   final String imagePath;
   final String ageRange;
-  final String location;
+  final String city;
+  final String ilce;
   final String petBreed;
   final String petType;
   final String price;
@@ -11,12 +12,13 @@ class PetModel {
   String id;
 
   PetModel({
+    required this.ilce,
     required this.sex,
     required this.name,
     required this.description,
     required this.imagePath,
     required this.ageRange,
-    required this.location,
+    required this.city,
     required this.petBreed,
     required this.price,
     required this.petType,

@@ -1,5 +1,11 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/view/main_view/add_view/add_view_two.dart';
 import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/theme/sizes/project_button_sizes.dart';
@@ -24,33 +30,49 @@ class _AddViewState extends State<AddView> {
 
   Object? val = -1;
 
+  late File yuklenecekDosya;
+  late String indirmeBaglantisi = "";
+
+  kameradanYukle() async {
+    var alinanDosya = await ImagePicker().pickImage(source: ImageSource.gallery);
+    setState(() {
+      yuklenecekDosya = File(alinanDosya!.path);
+    });
+
+    Reference referansYol =
+        FirebaseStorage.instance.ref().child("pet_images").child(_nameController.text).child("image.png");
+    UploadTask yuklemeGorevi = referansYol.putFile(yuklenecekDosya);
+    String url = await (await yuklemeGorevi).ref.getDownloadURL();
+    setState(() {
+      indirmeBaglantisi = url;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Evcil Hayvan Ekle 1/2"),
       ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
           child: Padding(
             padding: ProjectPaddings.horizontalMainPadding,
             child: SizedBox(
-              height: Get.height,
+              height: Get.height < 700 ? Get.height * 1.2 : Get.height * 0.8,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _addPhotoContainer(),
+                  indirmeBaglantisi == "" ? _addPhotoContainer() : _photoContainer(),
                   const SizedBox(height: 24),
                   _petNameTextField(),
                   const SizedBox(height: 24),
                   _petDescriptionTextField(),
-                  const SizedBox(height: 24),
                   _radioListTile(1, _ThisPageTexts.adopt),
                   _radioListTile(2, _ThisPageTexts.paid),
                   const Spacer(),
                   Align(child: _nextButton()),
-                  const SizedBox(height: 24),
                 ],
               ),
             ),
@@ -60,14 +82,61 @@ class _AddViewState extends State<AddView> {
     );
   }
 
+  Container _photoContainer() {
+    return Container(
+      height: 175,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: ProjectRadius.mainAllRadius,
+        color: LightThemeColors.miamiMarmalade,
+        image: DecorationImage(
+          image: NetworkImage(indirmeBaglantisi),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: IconButton(
+          icon: const Icon(
+            Icons.add_photo_alternate_outlined,
+          ),
+          onPressed: () => kameradanYukle(),
+        ),
+      ),
+    );
+  }
+
+  MainTextField _petNameTextField() {
+    return _petTextField(
+      controller: _nameController,
+      isNext: true,
+      hintText: _ThisPageTexts.name,
+      keyboardType: TextInputType.name,
+      prefixIcon: const Icon(Icons.person_outline),
+      maxLength: 10,
+    );
+  }
+
+  MainTextField _petDescriptionTextField() {
+    return _petTextField(
+      controller: _descriptionController,
+      hintText: _ThisPageTexts.description,
+      isNext: false,
+      maxLength: 175,
+      minLines: 1,
+      maxLines: 5,
+      prefixIcon: const Icon(Icons.description),
+    );
+  }
+
   // Add a photo container
   InkWell _addPhotoContainer() {
     return InkWell(
       borderRadius: ProjectRadius.mainAllRadius,
-      onTap: () {},
+      onTap: kameradanYukle,
       child: Container(
-        height: 200,
-        width: Get.width * 0.9,
+        height: 175,
+        width: double.infinity,
         decoration: BoxDecoration(
           color: LightThemeColors.snowbank,
           borderRadius: ProjectRadius.mainAllRadius,
@@ -80,25 +149,26 @@ class _AddViewState extends State<AddView> {
     );
   }
 
-  // Pet name text field
-  MainTextField _petNameTextField() {
-    return MainTextField(
-      controller: _nameController,
-      hintText: _ThisPageTexts.name,
-      keyboardType: TextInputType.name,
-      prefixIcon: const Icon(Icons.person_outline),
-    );
-  }
-
   // Pet description text field
-  MainTextField _petDescriptionTextField() {
+  MainTextField _petTextField({
+    TextEditingController? controller,
+    bool? isNext,
+    int? minLines,
+    int? maxLength,
+    int? maxLines,
+    String? hintText,
+    TextInputType? keyboardType,
+    Icon? prefixIcon,
+  }) {
     return MainTextField(
-      controller: _descriptionController,
-      minLines: 1,
-      maxLines: 5,
-      hintText: _ThisPageTexts.description,
-      keyboardType: TextInputType.name,
-      prefixIcon: const Icon(Icons.description),
+      controller: controller,
+      isNext: isNext,
+      minLines: minLines,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      hintText: hintText,
+      keyboardType: keyboardType,
+      prefixIcon: prefixIcon,
     );
   }
 
@@ -123,23 +193,25 @@ class _AddViewState extends State<AddView> {
   // Next button
   Button _nextButton() {
     return Button(
-      onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AddViewTwo(
-                name: _nameController.text,
-                description: _descriptionController.text,
-                radioValue: val as int,
-              ),
-            ),
-          );
-        }
-      },
+      onPressed: _onNextButton,
       text: _ThisPageTexts.next,
       height: ProjectButtonSizes.mainButtonHeight,
       width: ProjectButtonSizes.mainButtonWidth,
     );
+  }
+
+  void _onNextButton() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => AddViewTwo(
+            name: _nameController.text,
+            description: _descriptionController.text,
+            radioValue: val as int,
+          ),
+        ),
+      );
+    }
   }
 }
 
