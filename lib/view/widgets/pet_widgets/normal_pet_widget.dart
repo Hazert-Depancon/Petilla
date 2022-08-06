@@ -159,12 +159,23 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
         borderRadius: ProjectRadius.allRadius,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(imagePath),
+          image: NetworkImage(imagePath),
         ),
       ),
-      child: const Align(
+      child: Align(
         alignment: Alignment.topRight,
-        child: FavButton(),
+        child: FavButton(
+          ageRange: widget.ageRange,
+          city: widget.city,
+          ilce: widget.ilce,
+          petBreed: widget.petBreed,
+          petType: widget.petType,
+          price: widget.price,
+          description: widget.description,
+          name: widget.name,
+          imagePath: widget.imagePath,
+          sex: widget.sex,
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/view/auth_view/register_view.dart';
 import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
@@ -39,10 +38,9 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: Form(
         key: _formKey,
-        child: SingleChildScrollView(
-          child: Center(
-            child: SizedBox(
-              height: Get.height * 0.9,
+        child: ListView(
+          children: [
+            Center(
               child: Padding(
                 padding: ProjectPaddings.horizontalLargePadding,
                 child: Column(
@@ -56,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(height: 24),
                     _passwordTextField(),
                     _forgotPassword(),
-                    const Spacer(),
+                    const SizedBox(height: 24),
                     _loginButton(context),
                     const SizedBox(height: 24),
                     _dontHaveAnAccount(context),
@@ -65,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

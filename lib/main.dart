@@ -1,26 +1,47 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:petilla_app_project/view/main_view/add_view/add_view.dart';
-import 'package:petilla_app_project/view/main_view/chat_view.dart';
+import 'package:petilla_app_project/view/main_view/chats/chat_view.dart';
 import 'package:petilla_app_project/view/main_view/favorites_view.dart';
 import 'package:petilla_app_project/view/main_view/home_view.dart';
 import 'package:petilla_app_project/view/main_view/profile_view.dart';
+import 'package:petilla_app_project/view/onboarding/onboarding_one.dart';
 import 'package:petilla_app_project/view/theme/light_theme.dart';
 import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
   await Firebase.initializeApp();
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  runApp(const Petilla());
+
+  final prefs = await SharedPreferences.getInstance();
+  final showHome = prefs.getBool('showHome') ?? false;
+
+  runApp(
+    DevicePreview(
+      builder: (context) => Petilla(showHome: showHome),
+      enabled: true,
+      tools: const [
+        ...DevicePreview.defaultTools,
+      ],
+    ),
+
+    // Petilla(showHome: showHome),
+  );
 }
 
 class Petilla extends StatefulWidget {
-  const Petilla({Key? key}) : super(key: key);
+  const Petilla({Key? key, required this.showHome}) : super(key: key);
+  final bool showHome;
 
   @override
   State<Petilla> createState() => _PetillaState();
@@ -43,10 +64,13 @@ class _PetillaState extends State<Petilla> {
       debugShowCheckedModeBanner: false,
       title: 'Petilla',
       theme: LightTheme().theme,
-      home: Scaffold(
-        body: pages[_selectedIndex],
-        bottomNavigationBar: _bottomNavigationBar(),
-      ),
+      // home: const Onboarding(),
+      home: widget.showHome
+          ? Scaffold(
+              body: pages[_selectedIndex],
+              bottomNavigationBar: _bottomNavigationBar(),
+            )
+          : const Onboarding(),
     );
   }
 

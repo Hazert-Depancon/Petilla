@@ -1,4 +1,6 @@
-class PetModel {
+import 'package:hive/hive.dart';
+
+class PetModel extends HiveObject {
   final String name;
   final String description;
   final String imagePath;
@@ -9,9 +11,10 @@ class PetModel {
   final String petType;
   final String price;
   final String sex;
-  String id;
+  bool isFav;
 
   PetModel({
+    this.isFav = false,
     required this.ilce,
     required this.sex,
     required this.name,
@@ -22,6 +25,5 @@ class PetModel {
     required this.petBreed,
     required this.price,
     required this.petType,
-    this.id = "",
   });
 }

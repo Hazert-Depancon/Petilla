@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/view/widgets/chat_widgets/user_chat.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({Key? key}) : super(key: key);
@@ -12,8 +13,9 @@ class _ChatViewState extends State<ChatView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("data"),
+        title: const Text("Mesajlar"),
       ),
+      body: const UserChat(),
     );
   }
 }

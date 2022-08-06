@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  GridView _gridView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+  GridView _gridView(snapshot) {
     return GridView.builder(
       padding: ProjectPaddings.horizontalMainPadding,
       itemCount: snapshot.data!.docs.length,

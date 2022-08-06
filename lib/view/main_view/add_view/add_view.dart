@@ -1,7 +1,5 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'dart:io';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,81 +27,106 @@ class _AddViewState extends State<AddView> {
   final TextEditingController _descriptionController = TextEditingController();
 
   Object? val = -1;
+  String imageUrl = "";
 
-  late File yuklenecekDosya;
-  late String indirmeBaglantisi = "";
+  void pickImage() async {
+    final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-  kameradanYukle() async {
-    var alinanDosya = await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      yuklenecekDosya = File(alinanDosya!.path);
-    });
+    if (image == null) {
+      return;
+    } else {
+      Reference ref = FirebaseStorage.instance.ref("pets").child(image.name);
 
-    Reference referansYol =
-        FirebaseStorage.instance.ref().child("pet_images").child(_nameController.text).child("image.png");
-    UploadTask yuklemeGorevi = referansYol.putFile(yuklenecekDosya);
-    String url = await (await yuklemeGorevi).ref.getDownloadURL();
-    setState(() {
-      indirmeBaglantisi = url;
-    });
+      await ref.putFile(File(image.path));
+      ref.getDownloadURL().then((value) {
+        setState(() {
+          imageUrl = value;
+        });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var adoptRadioListTile = _radioListTile(1, _ThisPageTexts.adopt, context);
+    var paidRadioListTile = _radioListTile(2, _ThisPageTexts.paid, context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Evcil Hayvan Ekle 1/2"),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
+      body: Form(
+        key: _formKey,
+        child: SizedBox(
+          height: Get.height,
+          child: ListView(
             padding: ProjectPaddings.horizontalMainPadding,
-            child: SizedBox(
-              height: Get.height < 700 ? Get.height * 1.2 : Get.height * 0.8,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  indirmeBaglantisi == "" ? _addPhotoContainer() : _photoContainer(),
-                  const SizedBox(height: 24),
-                  _petNameTextField(),
-                  const SizedBox(height: 24),
-                  _petDescriptionTextField(),
-                  _radioListTile(1, _ThisPageTexts.adopt),
-                  _radioListTile(2, _ThisPageTexts.paid),
-                  const Spacer(),
-                  Align(child: _nextButton()),
-                ],
+            children: [
+              imageUrl == "" ? _addPhotoContainer(context) : _photoContainer(context),
+              const SizedBox(height: 24),
+              _petNameTextField(),
+              const SizedBox(height: 24),
+              _petDescriptionTextField(),
+              adoptRadioListTile,
+              paidRadioListTile,
+              const Spacer(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: _nextButton(context),
               ),
-            ),
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Container _photoContainer() {
-    return Container(
-      height: 175,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: ProjectRadius.mainAllRadius,
-        color: LightThemeColors.miamiMarmalade,
-        image: DecorationImage(
-          image: NetworkImage(indirmeBaglantisi),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: IconButton(
-          icon: const Icon(
-            Icons.add_photo_alternate_outlined,
+  InkWell _photoContainer(context) {
+    return InkWell(
+      onTap: () {
+        _bottomSheet(context);
+      },
+      child: Container(
+        height: 175,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: ProjectRadius.mainAllRadius,
+          color: LightThemeColors.miamiMarmalade,
+          image: DecorationImage(
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.cover,
           ),
-          onPressed: () => kameradanYukle(),
         ),
       ),
     );
+  }
+
+  Future<dynamic> _bottomSheet(context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return SafeArea(
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading: const Icon(Icons.photo_library),
+                    title: const Text('Galeri'),
+                    onTap: () {
+                      pickImage();
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: const Icon(Icons.photo_camera),
+                  title: const Text('Kamera'),
+                  onTap: () {
+                    // imgFromCamera();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   MainTextField _petNameTextField() {
@@ -130,10 +153,12 @@ class _AddViewState extends State<AddView> {
   }
 
   // Add a photo container
-  InkWell _addPhotoContainer() {
+  InkWell _addPhotoContainer(context) {
     return InkWell(
       borderRadius: ProjectRadius.mainAllRadius,
-      onTap: kameradanYukle,
+      onTap: () {
+        _bottomSheet(context);
+      },
       child: Container(
         height: 175,
         width: double.infinity,
@@ -173,7 +198,7 @@ class _AddViewState extends State<AddView> {
   }
 
   // Radio list tile
-  RadioListTile _radioListTile(int radioNumber, String title) {
+  RadioListTile _radioListTile(int radioNumber, String title, context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
         borderRadius: ProjectRadius.buttonAllRadius,
@@ -191,16 +216,29 @@ class _AddViewState extends State<AddView> {
   }
 
   // Next button
-  Button _nextButton() {
+  Button _nextButton(context) {
     return Button(
-      onPressed: _onNextButton,
+      onPressed: () {
+        _onNextButton(context);
+      },
       text: _ThisPageTexts.next,
       height: ProjectButtonSizes.mainButtonHeight,
       width: ProjectButtonSizes.mainButtonWidth,
     );
   }
 
-  void _onNextButton() {
+  _onNextButton(context) {
+    if (imageUrl == "") {
+      return AwesomeDialog(
+        context: context,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Hata',
+        desc: 'Fotoğraf yüklenmedi',
+        btnCancelOnPress: () {},
+        btnCancelText: "Tamam",
+      ).show();
+    }
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -208,6 +246,7 @@ class _AddViewState extends State<AddView> {
             name: _nameController.text,
             description: _descriptionController.text,
             radioValue: val as int,
+            image: imageUrl,
           ),
         ),
       );

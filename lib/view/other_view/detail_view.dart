@@ -73,6 +73,7 @@ class _DetailViewState extends State<DetailView> {
           _litTile(context, "Cins:", widget.petBreed),
           _litTile(context, "Cinsiyet:", widget.sex),
           _litTile(context, "Konum:", "${widget.city} " " ${widget.ilce}"),
+          const SizedBox(height: 120),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -113,14 +114,24 @@ class _DetailViewState extends State<DetailView> {
         borderRadius: ProjectRadius.mainAllRadius,
         color: LightThemeColors.miamiMarmalade,
         image: DecorationImage(
-          image: AssetImage(widget.imagePath),
+          image: NetworkImage(widget.imagePath),
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         alignment: Alignment.topRight,
         child: FavButton(
           iconSize: 32,
+          ageRange: widget.ageRange,
+          city: widget.city,
+          ilce: widget.ilce,
+          petBreed: widget.petBreed,
+          petType: widget.petType,
+          price: widget.price,
+          description: widget.description,
+          name: widget.name,
+          imagePath: widget.imagePath,
+          sex: widget.sex,
         ),
       ),
     );

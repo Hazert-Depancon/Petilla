@@ -21,22 +21,33 @@ dependencies:
   firebase_auth: ^3.5.0
   firebase_storage: ^10.3.4
 
+  #Database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
   #Animation
   lottie: ^1.3.0
+  awesome_dialog: ^2.2.1
 
   #Icons
   cupertino_icons: ^1.0.2
-
-  #Utility
-  dropdown_button2: ^1.6.3
   font_awesome_flutter: ^10.1.0
+
+  # Local Database
+  shared_preferences: ^2.0.15
+
+  # Utility
+  dropdown_button2: ^1.6.3
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  path: ^1.8.1
+  device_preview: ^1.1.0
+  flutter_svg: ^1.1.3
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
     
   flutter_lints: ^2.0.0
 
@@ -46,6 +57,7 @@ flutter:
   assets:
     - assets/images/
     - assets/jsons/
+    - assets/svg/
 
   # example:
   # fonts:

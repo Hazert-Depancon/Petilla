@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:petilla_app_project/service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/service/models/jsons/city_model.dart';
 import 'package:petilla_app_project/service/models/pet_model.dart';
@@ -22,10 +21,12 @@ class AddViewTwo extends StatefulWidget {
     required this.name,
     required this.description,
     required this.radioValue,
+    required this.image,
   }) : super(key: key);
 
   final String name;
   final String description;
+  final String image;
   final int radioValue;
 
   @override
@@ -152,29 +153,26 @@ class _AddViewTwoState extends State<AddViewTwo> {
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
       body: Padding(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: Get.height < 700 ? Get.height * 1.2 : Get.height * 0.8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 24),
-                citySelect(),
-                const SizedBox(height: 24),
-                districtSelect(),
-                const SizedBox(height: 24),
-                _petsDropDown(),
-                const SizedBox(height: 24),
-                _sexDropDown(),
-                const SizedBox(height: 24),
-                _ageRangeDropDown(),
-                const SizedBox(height: 24),
-                widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
-                const Spacer(),
-                _submitButton(),
-              ],
-            ),
+        padding: const EdgeInsets.all(0.0),
+        child: Expanded(
+          child: ListView(
+            padding: ProjectPaddings.horizontalMainPadding,
+            children: [
+              const SizedBox(height: 24),
+              citySelect(),
+              const SizedBox(height: 24),
+              districtSelect(),
+              const SizedBox(height: 24),
+              _petsDropDown(),
+              const SizedBox(height: 24),
+              _sexDropDown(),
+              const SizedBox(height: 24),
+              _ageRangeDropDown(),
+              const SizedBox(height: 24),
+              widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
+              const Spacer(),
+              _submitButton(),
+            ],
           ),
         ),
       ),
@@ -189,6 +187,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         hintText: "Ücret",
         minLines: 1,
         maxLines: 1,
+        maxLength: 10,
         prefixIcon: const Icon(Icons.attach_money_rounded),
         keyboardType: TextInputType.number,
         suffix: "TL",
@@ -292,20 +291,22 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  void _onSubmitButton() {
-    CrudService().createPet(PetModel(
-      sex: selectedValue1 ?? "Erkek",
-      name: widget.name,
-      description: widget.description,
-      imagePath: "assets/images/rifki.jpg",
-      // imagePath: widget.mediaUrl,
-      ageRange: selectedValue2 ?? "0 - 3 Ay",
-      city: _secilenIl,
-      ilce: _secilenIlce,
-      petBreed: "Buldog",
-      price: widget.radioValue == 1 ? "0" : _priceController.text,
-      petType: selectedValue ?? "Köpek",
-    ));
+  void _onSubmitButton() async {
+    CrudService().createPet(
+      PetModel(
+        sex: selectedValue1 ?? "Erkek",
+        name: widget.name,
+        description: widget.description,
+        imagePath: widget.image,
+        // imagePath: "assets/images/rifki.jpg",
+        ageRange: selectedValue2 ?? "0 - 3 Ay",
+        city: _secilenIl,
+        ilce: _secilenIlce,
+        petBreed: "Buldog",
+        price: widget.radioValue == 1 ? "0" : _priceController.text,
+        petType: selectedValue ?? "Köpek",
+      ),
+    );
   }
 }
 
