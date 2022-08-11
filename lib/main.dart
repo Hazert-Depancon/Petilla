@@ -1,22 +1,21 @@
-import 'package:device_preview/device_preview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:petilla_app_project/view/main_view/add_view/add_view.dart';
-import 'package:petilla_app_project/view/main_view/chats/chat_view.dart';
-import 'package:petilla_app_project/view/main_view/favorites_view.dart';
-import 'package:petilla_app_project/view/main_view/home_view.dart';
-import 'package:petilla_app_project/view/main_view/profile_view.dart';
-import 'package:petilla_app_project/view/onboarding/onboarding_one.dart';
-import 'package:petilla_app_project/view/theme/light_theme.dart';
-import 'package:petilla_app_project/view/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/main_petilla/view/auth_view/login_view.dart';
+import 'package:petilla_app_project/main_petilla/view/main_view/add_view/add_view.dart';
+import 'package:petilla_app_project/main_petilla/view/main_view/chats/chat_select_view.dart';
+import 'package:petilla_app_project/main_petilla/view/main_view/favorites_view.dart';
+import 'package:petilla_app_project/main_petilla/view/main_view/home_view.dart';
+import 'package:petilla_app_project/main_petilla/view/onboarding/onboarding_one.dart';
+import 'package:petilla_app_project/theme/light_theme.dart';
+import 'package:petilla_app_project/select_app_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
+  // Initialize FirebaseW
   await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -27,15 +26,14 @@ Future<void> main() async {
   final showHome = prefs.getBool('showHome') ?? false;
 
   runApp(
-    DevicePreview(
-      builder: (context) => Petilla(showHome: showHome),
-      enabled: true,
-      tools: const [
-        ...DevicePreview.defaultTools,
-      ],
-    ),
+    // DevicePreview(
+    //   builder: (context) => Petilla(showHome: showHome),
+    //   enabled: true,
+    //   tools: const [
+    //     ...DevicePreview.defaultTools,
+    //   ],
 
-    // Petilla(showHome: showHome),
+    Petilla(showHome: showHome),
   );
 }
 
@@ -48,52 +46,25 @@ class Petilla extends StatefulWidget {
 }
 
 class _PetillaState extends State<Petilla> {
-  int _selectedIndex = 0;
-
   final List<Widget> pages = [
     const HomeView(),
     const FavoritesView(),
     const AddView(),
-    const ChatView(),
-    const ProfileView(),
+    const ChatSelectView(),
+    // const ProfileView(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Petilla',
       theme: LightTheme().theme,
-      // home: const Onboarding(),
       home: widget.showHome
-          ? Scaffold(
-              body: pages[_selectedIndex],
-              bottomNavigationBar: _bottomNavigationBar(),
-            )
+          ? FirebaseAuth.instance.currentUser != null
+              ? const SelectAppView()
+              : const LoginView()
           : const Onboarding(),
-    );
-  }
-
-  BottomNavigationBar _bottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _selectedIndex,
-      onTap: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      showUnselectedLabels: false,
-      showSelectedLabels: false,
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: LightThemeColors.miamiMarmalade,
-      elevation: 0,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-        BottomNavigationBarItem(icon: Icon(Icons.add_circle), label: "Add"),
-        BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
-        BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
-      ],
     );
   }
 }
