@@ -2,14 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:petilla_app_project/main_petilla/view/auth_view/login_view.dart';
-import 'package:petilla_app_project/main_petilla/view/main_view/add_view/add_view.dart';
-import 'package:petilla_app_project/main_petilla/view/main_view/chats/chat_select_view.dart';
-import 'package:petilla_app_project/main_petilla/view/main_view/favorites_view.dart';
-import 'package:petilla_app_project/main_petilla/view/main_view/home_view.dart';
-import 'package:petilla_app_project/main_petilla/view/onboarding/onboarding_one.dart';
+import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding_one.dart';
 import 'package:petilla_app_project/theme/light_theme.dart';
-import 'package:petilla_app_project/select_app_view.dart';
+import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -32,6 +28,7 @@ Future<void> main() async {
     //   tools: const [
     //     ...DevicePreview.defaultTools,
     //   ],
+    // ),
 
     Petilla(showHome: showHome),
   );
@@ -46,14 +43,6 @@ class Petilla extends StatefulWidget {
 }
 
 class _PetillaState extends State<Petilla> {
-  final List<Widget> pages = [
-    const HomeView(),
-    const FavoritesView(),
-    const AddView(),
-    const ChatSelectView(),
-    // const ProfileView(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
