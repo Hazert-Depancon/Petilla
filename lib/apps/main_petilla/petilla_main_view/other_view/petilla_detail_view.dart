@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
 import 'package:petilla_app_project/general/general_widgets/fav_button.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
@@ -7,34 +8,9 @@ import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
 class DetailView extends StatefulWidget {
-  const DetailView({
-    Key? key,
-    required this.name,
-    required this.description,
-    required this.imagePath,
-    required this.ageRange,
-    required this.city,
-    required this.petBreed,
-    required this.petType,
-    required this.price,
-    required this.sex,
-    required this.ilce,
-    required this.friendUId,
-    required this.friendEmail,
-  }) : super(key: key);
+  const DetailView({Key? key, required this.petModel}) : super(key: key);
 
-  final String name;
-  final String description;
-  final String imagePath;
-  final String ageRange;
-  final String city;
-  final String ilce;
-  final String petBreed;
-  final String petType;
-  final String price;
-  final String sex;
-  final String friendUId;
-  final String friendEmail;
+  final PetModel petModel;
 
   @override
   State<DetailView> createState() => _DetailViewState();
@@ -47,8 +23,8 @@ class _DetailViewState extends State<DetailView> {
   @override
   void initState() {
     super.initState();
-    widget.price == "0" ? _isSahiplen = true : _isSahiplen = false;
-    widget.friendEmail == FirebaseAuth.instance.currentUser!.email ? isMe = true : isMe = false;
+    widget.petModel.price == "0" ? _isSahiplen = true : _isSahiplen = false;
+    widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? isMe = true : isMe = false;
   }
 
   @override
@@ -78,11 +54,11 @@ class _DetailViewState extends State<DetailView> {
           const SizedBox(height: 24),
           _descriptionText(context),
           const SizedBox(height: 16),
-          _litTile(context, "Yaş:", widget.ageRange),
-          _litTile(context, "Tür:", widget.petType),
+          _litTile(context, "Yaş:", widget.petModel.ageRange),
+          _litTile(context, "Tür:", widget.petModel.petType),
           // _litTile(context, "Cins:", widget.petBreed),
-          _litTile(context, "Cinsiyet:", widget.sex),
-          _litTile(context, "Konum:", "${widget.city} " " ${widget.ilce}"),
+          _litTile(context, "Cinsiyet:", widget.petModel.sex),
+          _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}"),
           const SizedBox(height: 120),
         ],
       ),
@@ -92,7 +68,7 @@ class _DetailViewState extends State<DetailView> {
 
   Text _emailText(BuildContext context) {
     return Text(
-      widget.friendEmail,
+      widget.petModel.currentEmail,
       style: Theme.of(context).textTheme.headline6,
     );
   }
@@ -110,8 +86,8 @@ class _DetailViewState extends State<DetailView> {
         builder: (context) => InChatView(
           currentUserEmail: FirebaseAuth.instance.currentUser!.email.toString(),
           currentUserId: FirebaseAuth.instance.currentUser!.uid,
-          friendUserId: widget.friendUId,
-          friendUserEmail: widget.friendEmail,
+          friendUserId: widget.petModel.currentUid,
+          friendUserEmail: widget.petModel.currentEmail,
         ),
       ),
     );
@@ -125,11 +101,12 @@ class _DetailViewState extends State<DetailView> {
     );
   }
 
-  Text _descriptionText(BuildContext context) => Text(widget.description, style: Theme.of(context).textTheme.subtitle1);
+  Text _descriptionText(BuildContext context) =>
+      Text(widget.petModel.description, style: Theme.of(context).textTheme.subtitle1);
 
   Text _priceText(TextStyle? headline4) {
     return Text(
-      _isSahiplen ? "Sahiplen" : "${widget.price}TL",
+      _isSahiplen ? "Sahiplen" : "${widget.petModel.price}TL",
       style: _isSahiplen
           ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
           : headline4?.copyWith(fontSize: 24),
@@ -137,7 +114,7 @@ class _DetailViewState extends State<DetailView> {
   }
 
   Text _nameText(TextStyle? headline4) => Text(
-        widget.name,
+        widget.petModel.name,
         style: headline4?.copyWith(fontSize: 24, fontWeight: FontWeight.w500),
       );
 
@@ -148,7 +125,7 @@ class _DetailViewState extends State<DetailView> {
         borderRadius: ProjectRadius.mainAllRadius,
         color: LightThemeColors.miamiMarmalade,
         image: DecorationImage(
-          image: NetworkImage(widget.imagePath),
+          image: NetworkImage(widget.petModel.imagePath),
           fit: BoxFit.cover,
         ),
       ),
@@ -160,20 +137,6 @@ class _DetailViewState extends State<DetailView> {
   }
 
   FavButton _favButton() {
-    return FavButton(
-      iconSize: 32,
-      ageRange: widget.ageRange,
-      city: widget.city,
-      ilce: widget.ilce,
-      petBreed: widget.petBreed,
-      petType: widget.petType,
-      price: widget.price,
-      description: widget.description,
-      friendEmail: widget.friendEmail,
-      friendUId: widget.friendUId,
-      name: widget.name,
-      sex: widget.sex,
-      imagePath: widget.ilce,
-    );
+    return const FavButton(iconSize: 32);
   }
 }

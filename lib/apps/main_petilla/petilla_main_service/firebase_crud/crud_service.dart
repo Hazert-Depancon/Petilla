@@ -6,7 +6,6 @@ class CrudService {
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     return db.collection('pets').add({
-      "isFav": pet.isFav,
       "name": pet.name,
       "description": pet.description,
       "imagePath": pet.imagePath,

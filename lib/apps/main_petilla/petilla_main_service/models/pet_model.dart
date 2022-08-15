@@ -11,10 +11,8 @@ class PetModel {
   final String sex;
   final String currentEmail;
   final String currentUid;
-  bool isFav;
 
   PetModel({
-    required this.isFav,
     required this.currentUid,
     required this.currentEmail,
     required this.ilce,

@@ -460,7 +460,6 @@ class _AddViewTwoState extends State<AddViewTwo> {
   void _onSubmitButton() async {
     CrudService().createPet(
       PetModel(
-        isFav: false,
         currentUid: FirebaseAuth.instance.currentUser!.uid,
         currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
         sex: selectedValue1 ?? "Erkek",

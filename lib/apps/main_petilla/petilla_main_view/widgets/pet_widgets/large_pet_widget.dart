@@ -1,38 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
 import 'package:petilla_app_project/general/general_widgets/fav_button.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
 class LargePetWidget extends StatefulWidget {
-  const LargePetWidget({
-    Key? key,
-    required this.sex,
-    required this.name,
-    required this.ageRange,
-    required this.petBreed,
-    required this.imagePath,
-    required this.description,
-    required this.city,
-    required this.price,
-    required this.petType,
-    required this.ilce,
-    required this.friendUId,
-    required this.friendEmail,
-  }) : super(key: key);
+  const LargePetWidget({Key? key, required this.petModel}) : super(key: key);
 
-  final String name;
-  final String description;
-  final String imagePath;
-  final String ageRange;
-  final String city;
-  final String ilce;
-  final String petBreed;
-  final String petType;
-  final String price;
-  final String sex;
-  final String friendUId;
-  final String friendEmail;
+  final PetModel petModel;
 
   @override
   State<LargePetWidget> createState() => _LargePetWidgetState();
@@ -44,7 +20,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
   @override
   void initState() {
     super.initState();
-    widget.price == "0" ? _isSahiplen = true : _isSahiplen = false;
+    widget.petModel.price == "0" ? _isSahiplen = true : _isSahiplen = false;
   }
 
   @override
@@ -57,24 +33,30 @@ class _LargePetWidgetState extends State<LargePetWidget> {
             context,
             MaterialPageRoute(
               builder: (context) => DetailView(
-                friendEmail: widget.friendEmail,
-                friendUId: widget.friendUId,
-                name: widget.name,
-                description: widget.description,
-                imagePath: widget.imagePath,
-                ageRange: widget.ageRange,
-                city: widget.city,
-                ilce: widget.ilce,
-                petBreed: widget.petBreed,
-                petType: widget.petType,
-                price: widget.price,
-                sex: widget.sex,
+                petModel: _petModel(),
               ),
             ),
           );
         },
         child: _mainContainer(context),
       ),
+    );
+  }
+
+  PetModel _petModel() {
+    return PetModel(
+      currentUid: widget.petModel.currentUid,
+      currentEmail: widget.petModel.currentEmail,
+      ilce: widget.petModel.ilce,
+      sex: widget.petModel.sex,
+      name: widget.petModel.name,
+      description: widget.petModel.description,
+      imagePath: widget.petModel.imagePath,
+      ageRange: widget.petModel.ageRange,
+      city: widget.petModel.city,
+      petBreed: widget.petModel.petBreed,
+      price: widget.petModel.price,
+      petType: widget.petModel.petType,
     );
   }
 
@@ -123,28 +105,15 @@ class _LargePetWidgetState extends State<LargePetWidget> {
     );
   }
 
-  Text _nameText(BuildContext context) => Text(widget.name, style: Theme.of(context).textTheme.headline6);
+  Text _nameText(BuildContext context) => Text(widget.petModel.name, style: Theme.of(context).textTheme.headline6);
 
   FavButton _favButton() {
-    return FavButton(
-      ageRange: widget.ageRange,
-      city: widget.city,
-      ilce: widget.ilce,
-      petBreed: widget.petBreed,
-      petType: widget.petType,
-      price: widget.price,
-      description: widget.description,
-      friendEmail: widget.friendEmail,
-      friendUId: widget.friendUId,
-      name: widget.name,
-      sex: widget.sex,
-      imagePath: widget.ilce,
-    );
+    return const FavButton();
   }
 
   Text _paidText(BuildContext context) {
     return Text(
-      _isSahiplen ? "Sahiplen" : "${widget.price} TL",
+      _isSahiplen ? "Sahiplen" : "${widget.petModel.price} TL",
       style: _isSahiplen
           ? Theme.of(context).textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade)
           : Theme.of(context).textTheme.subtitle2,
@@ -155,7 +124,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
     return SizedBox(
       width: double.infinity,
       child: Text(
-        widget.description,
+        widget.petModel.description,
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.subtitle1?.copyWith(color: Colors.grey[600]),
@@ -172,7 +141,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
         borderRadius: ProjectRadius.allRadius,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(widget.imagePath),
+          image: NetworkImage(widget.petModel.imagePath),
         ),
       ),
     );
@@ -183,7 +152,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _placeIcon(),
-        Text(widget.city, overflow: TextOverflow.clip, style: Theme.of(context).textTheme.subtitle1),
+        Text(widget.petModel.city, overflow: TextOverflow.clip, style: Theme.of(context).textTheme.subtitle1),
       ],
     );
   }

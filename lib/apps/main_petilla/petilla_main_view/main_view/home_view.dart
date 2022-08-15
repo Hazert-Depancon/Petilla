@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/widgets/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
@@ -63,19 +64,24 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 
   NormalPetWidget _petWidget(DocumentSnapshot<Object?> document) {
     return NormalPetWidget(
-      isFav: document["isFav"],
-      friendEmail: document['currentEmail'],
-      friendUId: document['currentUid'],
-      sex: document["sex"],
-      petType: document["petType"],
-      name: document["name"],
-      ageRange: document["ageRange"],
-      petBreed: document["petBreed"],
-      imagePath: document["imagePath"],
-      description: document["description"],
-      city: document["city"],
+      petModel: _petModel(document),
+    );
+  }
+
+  PetModel _petModel(DocumentSnapshot<Object?> document) {
+    return PetModel(
+      currentUid: document["currentUid"],
+      currentEmail: document["currentEmail"],
       ilce: document["ilce"],
+      sex: document["sex"],
+      name: document["name"],
+      description: document["description"],
+      imagePath: document["imagePath"],
+      ageRange: document["ageRange"],
+      city: document["city"],
+      petBreed: document["petBreed"],
       price: document["price"],
+      petType: document["petType"],
     );
   }
 
