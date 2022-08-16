@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_one.dart';
 import 'package:petilla_app_project/theme/light_theme.dart';
@@ -10,8 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
-  // Initialize FirebaseW
+  // Initialize Firebase
   await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
