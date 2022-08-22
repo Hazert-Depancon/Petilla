@@ -85,8 +85,7 @@ class _InChatViewState extends State<InChatView> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                _textField(widget.currentUserId, widget.friendUserId, controller),
-                const SizedBox(width: 16),
+                Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
               ],
             ),
           ),

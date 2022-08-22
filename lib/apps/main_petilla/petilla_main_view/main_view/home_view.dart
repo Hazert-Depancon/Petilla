@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/widgets/pet_widgets/normal_pet_widget.dart';
+import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
@@ -16,11 +18,29 @@ class PetillaHomeView extends StatefulWidget {
 }
 
 class _PetillaHomeViewState extends State<PetillaHomeView> {
+  String search = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(_ThisPageTexts.homePage),
+        automaticallyImplyLeading: false,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context, MaterialPageRoute(builder: (context) => const SelectAppView()), (route) => false);
+            },
+            child: SvgPicture.asset(
+              "assets/svg/home_outline.svg",
+              color: LightThemeColors.miamiMarmalade,
+              height: 32,
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
+        foregroundColor: LightThemeColors.miamiMarmalade,
       ),
       body: Center(
         child: Column(
@@ -29,7 +49,6 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
               padding: ProjectPaddings.horizontalMainPadding,
               child: searchTextField(),
             ),
-            const SizedBox(height: 16),
             const SizedBox(height: 16),
             StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance.collection('pets').snapshots(),
@@ -50,16 +69,30 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
     );
   }
 
-  GridView _gridView(snapshot) {
-    return GridView.builder(
-      padding: ProjectPaddings.horizontalMainPadding,
-      itemCount: snapshot.data!.docs.length,
-      gridDelegate: _myGridDelegate(),
-      itemBuilder: (context, index) {
-        final DocumentSnapshot document = snapshot.data!.docs[index];
-        return _petWidget(document);
-      },
-    );
+  _gridView(snapshot) {
+    return search == ""
+        ? GridView.builder(
+            padding: ProjectPaddings.horizontalMainPadding,
+            itemCount: snapshot.data!.docs.length,
+            gridDelegate: _myGridDelegate(),
+            itemBuilder: (context, index) {
+              final DocumentSnapshot document = snapshot.data!.docs[index];
+              return _petWidget(document);
+            },
+          )
+        : GridView.builder(
+            padding: ProjectPaddings.horizontalMainPadding,
+            itemCount: snapshot.data!.docs.length,
+            gridDelegate: _myGridDelegate(),
+            itemBuilder: (context, index) {
+              final document = snapshot.data!.docs[index];
+              if (document["petType"].toString().toLowerCase().contains(search.toLowerCase()) ||
+                  document["name"].toString().toLowerCase().contains(search.toLowerCase())) {
+                return _petWidget(document);
+              }
+              return Container();
+            },
+          );
   }
 
   NormalPetWidget _petWidget(DocumentSnapshot<Object?> document) {
@@ -100,8 +133,13 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
         color: LightThemeColors.snowbank,
         borderRadius: ProjectRadius.mainAllRadius,
       ),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        onChanged: (val) {
+          setState(() {
+            search = val;
+          });
+        },
+        decoration: const InputDecoration(
           hintText: _ThisPageTexts.search,
           prefixIcon: Icon(Icons.search),
         ),

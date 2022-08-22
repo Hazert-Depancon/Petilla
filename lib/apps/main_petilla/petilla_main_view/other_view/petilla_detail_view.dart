@@ -42,14 +42,12 @@ class _DetailViewState extends State<DetailView> {
           const SizedBox(height: 16),
           _imageContainer(),
           const SizedBox(height: 12),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _nameText(headline4),
-                _priceText(headline4),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _nameText(headline4),
+              _priceText(headline4),
+            ],
           ),
           const SizedBox(height: 24),
           _descriptionText(context),

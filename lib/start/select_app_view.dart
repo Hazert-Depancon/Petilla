@@ -6,7 +6,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/admob/banner_ad_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
-import 'package:petilla_app_project/apps/pet_media/main_pet_media.dart';
 import 'package:petilla_app_project/general/general_view/profile_view.dart';
 import 'package:petilla_app_project/general/general_widgets/select_app_widget.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
@@ -23,7 +22,11 @@ class _SelectAppViewState extends State<SelectAppView> {
   @override
   void initState() {
     super.initState();
-    BannerAd(
+    initBannerAd();
+  }
+
+  void initBannerAd() {
+    _ad = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       size: AdSize.banner,
       request: const AdRequest(),
@@ -34,19 +37,16 @@ class _SelectAppViewState extends State<SelectAppView> {
           });
         },
         onAdFailedToLoad: (ad, error) {
-          // Releases an ad resource when it fails to load
           ad.dispose();
-          print('Ad load failed (code=${error.code} message=${error.message})');
         },
       ),
-    ).load();
+    );
+    _ad!.load();
   }
 
   @override
   void dispose() {
-    // TODO: Dispose a BannerAd object
     _ad?.dispose();
-
     super.dispose();
   }
 
@@ -63,8 +63,6 @@ class _SelectAppViewState extends State<SelectAppView> {
         child: ListView(
           children: [
             const SizedBox(height: 24),
-
-            // _adsWidget(),
             Padding(
               padding: ProjectPaddings.horizontalMainPadding,
               child: StaggeredGrid.count(
@@ -82,34 +80,20 @@ class _SelectAppViewState extends State<SelectAppView> {
                     mainAxisCellCount: 1.5,
                     child: _selectPetform(),
                   ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 2,
-                    child: _selectPetmedia(),
-                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: _ad != null
-          ? Container(
-              width: double.infinity,
-              height: 55,
-              alignment: Alignment.center,
-              child: AdWidget(ad: _ad!),
-            )
-          : null,
-    );
-  }
-
-  SelectAppWidget _selectPetmedia() {
-    return const SelectAppWidget(
-      isBig: true,
-      title: 'Petmedia',
-      imagePath: "assets/images/social_pet.png",
-      onTap: MainPetMedia(),
+      // bottomNavigationBar: _ad != null
+      //     ? Container(
+      //         width: double.infinity,
+      //         height: 55,
+      //         alignment: Alignment.center,
+      //         child: AdWidget(ad: _ad!),
+      //       )
+      //     : null,
     );
   }
 
@@ -129,35 +113,6 @@ class _SelectAppViewState extends State<SelectAppView> {
       onTap: MainPetilla(),
     );
   }
-
-  // _adsWidget() {
-  //   return const AdsWidget(
-  //     images: [
-  //       // Reklamları buraya ekle
-  //       'assets/images/REKLAM.png',
-  //       "assets/images/reklam1.png",
-  //       "assets/images/petform.png",
-  //     ],
-  //     titles: [
-  //       // Sıra sıra başlıkları buraya ekle
-  //       "Reklam 1",
-  //       "Reklam 2",
-  //       "Reklam 3",
-  //     ],
-  //     descriptions: [
-  //       // Sıra sıra açıklamaları buraya ekle
-  //       "Reklam 1 açıklaması",
-  //       "Reklam 2 açıklaması",
-  //       "Reklam 3 açıklaması",
-  //     ],
-  //     urls: [
-  //       // Sıra sıra urlleri buraya ekle
-  //       "https://pub.dev/packages/url_launcher",
-  //       "https://pub.dev/packages/url_launcher",
-  //       "https://pub.dev/packages/url_launcher",
-  //     ],
-  //   );
-  // }
 
   GestureDetector _profileAction(BuildContext context) {
     return GestureDetector(

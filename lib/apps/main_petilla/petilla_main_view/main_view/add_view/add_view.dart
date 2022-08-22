@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,6 +10,7 @@ import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/theme/sizes/project_icon_sizes.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
+import 'package:quickalert/quickalert.dart';
 
 class AddView extends StatefulWidget {
   const AddView({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _AddViewState extends State<AddView> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  Object? val = -1;
+  Object? val = 1;
   String imageUrl = "";
 
   void pickImageGallery() async {
@@ -65,9 +65,9 @@ class _AddViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     var adoptRadioListTile = _radioListTile(1, _ThisPageTexts.adopt, context);
-    var paidRadioListTile = _radioListTile(2, _ThisPageTexts.paid, context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text("Evcil Hayvan Ekle 1/2"),
       ),
       body: Form(
@@ -85,7 +85,6 @@ class _AddViewState extends State<AddView> {
                   const SizedBox(height: 24),
                   _petDescriptionTextField(),
                   adoptRadioListTile,
-                  paidRadioListTile,
                   const Spacer(),
                   Align(
                     child: _nextButton(context),
@@ -225,6 +224,7 @@ class _AddViewState extends State<AddView> {
       contentPadding: EdgeInsets.zero,
       groupValue: val,
       value: radioNumber,
+      selected: val == radioNumber,
       onChanged: (value) {
         setState(() {
           val = value;
@@ -248,15 +248,12 @@ class _AddViewState extends State<AddView> {
 
   _onNextButton(context) {
     if (imageUrl == "") {
-      return AwesomeDialog(
+      return QuickAlert.show(
         context: context,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
-        title: 'Hata',
-        desc: 'Fotoğraf yüklenmedi',
-        btnCancelOnPress: () {},
-        btnCancelText: "Tamam",
-      ).show();
+        type: QuickAlertType.error,
+        title: "Hata",
+        text: "Lütfen tüm alanları doldurunuz.",
+      );
     }
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
@@ -277,6 +274,5 @@ class _ThisPageTexts {
   static const String name = "İsim";
   static const String description = "Açıklama";
   static const String adopt = "Sahiplendir";
-  static const String paid = "Ücretli";
   static const String next = "Sonraki";
 }

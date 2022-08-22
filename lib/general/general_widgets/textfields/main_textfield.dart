@@ -15,6 +15,7 @@ class MainTextField extends StatefulWidget {
     this.maxLength,
     this.isNext,
     this.enabled,
+    this.suffixIcon,
   }) : super(key: key);
 
   final String? hintText;
@@ -27,6 +28,7 @@ class MainTextField extends StatefulWidget {
   final int? maxLength;
   final bool? isNext;
   final bool? enabled;
+  final Icon? suffixIcon;
 
   @override
   State<MainTextField> createState() => _MainTextFieldState();
@@ -53,6 +55,7 @@ class _MainTextFieldState extends State<MainTextField> {
         hintText: widget.hintText,
         prefixIcon: widget.prefixIcon,
         suffixText: widget.suffix,
+        suffixIcon: widget.suffixIcon,
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {

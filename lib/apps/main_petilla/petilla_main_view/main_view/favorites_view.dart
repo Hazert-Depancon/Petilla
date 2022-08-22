@@ -15,6 +15,7 @@ class _FavoritesViewState extends State<FavoritesView> {
       backgroundColor: LightThemeColors.scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: LightThemeColors.scaffoldBackgroundColor,
+        automaticallyImplyLeading: false,
         title: const Text(_ThisPageTexts.title),
       ),
       // body: StreamBuilder<QuerySnapshot>(

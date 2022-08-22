@@ -110,7 +110,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               );
         } else {
-          AuthService().errorBox(context, "Bu alan boş bıra");
+          return;
         }
       },
       width: ProjectButtonSizes.mainButtonWidth,

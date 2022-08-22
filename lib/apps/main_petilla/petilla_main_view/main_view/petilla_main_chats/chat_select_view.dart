@@ -30,6 +30,10 @@ class _ChatSelectViewState extends State<ChatSelectView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Mesajlar"),
+        automaticallyImplyLeading: false,
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection("users")
@@ -48,8 +52,9 @@ class _ChatSelectViewState extends State<ChatSelectView> {
                   ],
                 ),
               );
-            } else {
-              ListView.builder(
+            } else if (snapshot.data!.docs.isNotEmpty) {
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   return UserChat(
                     name: snapshot.data!.docs[index]["email"],

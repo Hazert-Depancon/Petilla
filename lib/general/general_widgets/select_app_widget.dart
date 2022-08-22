@@ -16,7 +16,7 @@ class SelectAppWidget extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(24),
       onTap: () {
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => onTap), (route) => false);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => onTap));
       },
       child: Container(
         width: Get.width * 0.4,

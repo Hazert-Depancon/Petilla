@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 var loginUser = FirebaseAuth.instance.currentUser;
 
@@ -36,6 +38,7 @@ class _DogGroupChatState extends State<DogGroupChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: LightThemeColors.miamiMarmalade,
         title: const Text('Köpek Grubu'),
       ),
       body: Column(
@@ -61,7 +64,7 @@ class _DogGroupChatState extends State<DogGroupChat> {
     if (msg.text.isNotEmpty) {
       _firestore.collection("messages").doc("dog_chat").collection("dog_messages").doc().set({
         "msg": msg.text.trim(),
-        "user": loginUser!.email.toString(),
+        "user": loginUser!.email,
         "time": DateTime.now(),
       });
       msg.clear();
@@ -127,13 +130,15 @@ class ShowMessages extends StatelessWidget {
                     child: Text(querySnapshot["user"]),
                   ),
                   SingleMessage(
-                      message: querySnapshot["msg"], isMe: querySnapshot["user"] == loginUser!.email.toString()),
+                    message: querySnapshot["msg"],
+                    isMe: querySnapshot["user"] == loginUser!.email.toString(),
+                  ),
                 ],
               );
             },
           );
         }
-        return const CircularProgressIndicator();
+        return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
       },
     );
   }
