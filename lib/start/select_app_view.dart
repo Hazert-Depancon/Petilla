@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:petilla_app_project/admob/banner_ad_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/general/general_view/profile_view.dart';
@@ -18,38 +16,6 @@ class SelectAppView extends StatefulWidget {
 }
 
 class _SelectAppViewState extends State<SelectAppView> {
-  BannerAd? _ad;
-  @override
-  void initState() {
-    super.initState();
-    initBannerAd();
-  }
-
-  void initBannerAd() {
-    _ad = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _ad = ad as BannerAd;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-        },
-      ),
-    );
-    _ad!.load();
-  }
-
-  @override
-  void dispose() {
-    _ad?.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

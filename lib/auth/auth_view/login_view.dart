@@ -40,32 +40,34 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: Form(
         key: _formKey,
-        child: Center(
-          child: ListView(
-            padding: ProjectPaddings.horizontalLargePadding,
-            children: [
-              Column(
-                children: [
-                  Lottie.network(
-                    ProjectLottieUrls.loginLottie,
-                    height: ProjectCardSizes.bigLottieHeight,
-                    width: ProjectCardSizes.bigLottieWidth,
-                  ),
-                  _mailTextField(),
-                  const SizedBox(height: 24),
-                  _passwordTextField(),
-                  _forgotPassword(),
-                  const SizedBox(height: 24),
-                  _loginButton(context),
-                  const SizedBox(height: 24),
-                  _dontHaveAnAccount(context),
-                  _registerButton(),
-                ],
-              ),
-            ],
-          ),
+        child: ListView(
+          padding: ProjectPaddings.horizontalLargePadding,
+          children: [
+            Column(
+              children: [
+                _lottie(),
+                _mailTextField(),
+                const SizedBox(height: 24),
+                _passwordTextField(),
+                _forgotPassword(),
+                const SizedBox(height: 24),
+                _loginButton(context),
+                const SizedBox(height: 24),
+                _dontHaveAnAccount(context),
+                _registerButton(),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  LottieBuilder _lottie() {
+    return Lottie.network(
+      ProjectLottieUrls.loginLottie,
+      width: ProjectCardSizes.bigLottieWidth,
+      height: ProjectCardSizes.bigLottieHeight,
     );
   }
 
@@ -97,29 +99,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Button _loginButton(BuildContext context) {
-    return Button(
-      onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
-                () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Petilla(showHome: true),
-                  ),
-                ),
-              );
-        } else {
-          return;
-        }
-      },
-      width: ProjectButtonSizes.mainButtonWidth,
-      height: ProjectButtonSizes.mainButtonHeight,
-      text: _ThisPageTexts.title,
-    );
-  }
-
-  Text _dontHaveAnAccount(BuildContext context) {
+  Text _dontHaveAnAccount(context) {
     return Text(
       _ThisPageTexts.dontHaveAccount,
       style: Theme.of(context).textTheme.titleMedium,
@@ -144,6 +124,30 @@ class _LoginViewState extends State<LoginView> {
       onPressed: () {},
       child: const Text(_ThisPageTexts.forgotPasswordText),
     );
+  }
+
+  Button _loginButton(BuildContext context) {
+    return Button(
+      onPressed: _onLoginButton,
+      width: ProjectButtonSizes.mainButtonWidth,
+      height: ProjectButtonSizes.mainButtonHeight,
+      text: _ThisPageTexts.title,
+    );
+  }
+
+  void _onLoginButton() {
+    if (_formKey.currentState!.validate()) {
+      AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
+        () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Petilla(showHome: true),
+            ),
+          );
+        },
+      );
+    }
   }
 }
 

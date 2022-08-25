@@ -35,28 +35,29 @@ class _AuthTextFieldState extends State<AuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: LightThemeColors.summerDay,
-        borderRadius: ProjectRadius.mainAllRadius,
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        keyboardType: widget.keyboardType,
-        obscureText: _obscureText!,
-        textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.isPassword ? _visibilityIcon() : null,
+    return TextFormField(
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      obscureText: _obscureText!,
+      textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
+      textAlign: TextAlign.start,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: LightThemeColors.summerDay,
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIcon,
+        suffixIcon: widget.isPassword ? _visibilityIcon() : null,
+        border: OutlineInputBorder(
+          borderRadius: ProjectRadius.mainAllRadius,
+          borderSide: BorderSide.none,
         ),
-        validator: (value) {
-          if (value == null && value!.isEmpty) {
-            return "Please enter a value";
-          }
-          return null;
-        },
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Bu alan boş bırakılamaz.';
+        }
+        return null;
+      },
     );
   }
 

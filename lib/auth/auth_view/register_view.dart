@@ -35,34 +35,34 @@ class _RegisterViewState extends State<RegisterView> {
       body: Form(
         key: _formKey,
         child: ListView(
+          padding: ProjectPaddings.horizontalLargePadding,
           children: [
-            Center(
-              child: Padding(
-                padding: ProjectPaddings.horizontalLargePadding,
-                child: Column(
-                  children: [
-                    Lottie.network(
-                      ProjectLottieUrls.registerLottie,
-                      width: ProjectCardSizes.bigLottieWidth,
-                      height: ProjectCardSizes.bigLottieHeight,
-                    ),
-                    _nameTextField(),
-                    const SizedBox(height: 24),
-                    _emailTextField(),
-                    const SizedBox(height: 24),
-                    _passwordTextField(),
-                    const SizedBox(height: 24),
-                    _registerButton(),
-                    const SizedBox(height: 24),
-                    _alreadyHaveAnAccount(),
-                    _logInButton(context),
-                  ],
-                ),
-              ),
+            Column(
+              children: [
+                _lottie(),
+                _nameTextField(),
+                const SizedBox(height: 24),
+                _emailTextField(),
+                const SizedBox(height: 24),
+                _passwordTextField(),
+                const SizedBox(height: 24),
+                _registerButton(),
+                const SizedBox(height: 24),
+                _alreadyHaveAnAccount(),
+                _logInButton(context),
+              ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  LottieBuilder _lottie() {
+    return Lottie.network(
+      ProjectLottieUrls.registerLottie,
+      width: ProjectCardSizes.bigLottieWidth,
+      height: ProjectCardSizes.bigLottieHeight,
     );
   }
 
@@ -101,23 +101,26 @@ class _RegisterViewState extends State<RegisterView> {
 
   Button _registerButton() {
     return Button(
-      onPressed: () {
-        AuthService()
-            .register(
-                _emailController.text.trim(), _passwordController.text.trim(), _nameController.text.trim(), context)
-            .whenComplete(
-              () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Petilla(showHome: true),
-                ),
-              ),
-            );
-      },
+      onPressed: _onRegister,
       width: ProjectButtonSizes.mainButtonWidth,
       height: ProjectButtonSizes.mainButtonHeight,
       text: _ThisPageTexts.title,
     );
+  }
+
+  void _onRegister() {
+    if (_formKey.currentState!.validate()) {
+      AuthService()
+          .register(_emailController.text.trim(), _passwordController.text.trim(), _nameController.text.trim(), context)
+          .whenComplete(
+            () => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Petilla(showHome: true),
+              ),
+            ),
+          );
+    }
   }
 
   Text _alreadyHaveAnAccount() {

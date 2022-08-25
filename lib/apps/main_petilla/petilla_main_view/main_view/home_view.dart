@@ -85,7 +85,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
             itemCount: snapshot.data!.docs.length,
             gridDelegate: _myGridDelegate(),
             itemBuilder: (context, index) {
-              final document = snapshot.data!.docs[index];
+              final DocumentSnapshot document = snapshot.data!.docs[index];
               if (document["petType"].toString().toLowerCase().contains(search.toLowerCase()) ||
                   document["name"].toString().toLowerCase().contains(search.toLowerCase())) {
                 return _petWidget(document);
