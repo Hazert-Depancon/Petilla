@@ -72,27 +72,20 @@ class _AddViewState extends State<AddView> {
       ),
       body: Form(
         key: _formKey,
-        child: Padding(
+        child: ListView(
           padding: ProjectPaddings.horizontalMainPadding,
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Column(
-                children: [
-                  imageUrl == "" ? _addPhotoContainer(context) : _photoContainer(context),
-                  const SizedBox(height: 24),
-                  _petNameTextField(),
-                  const SizedBox(height: 24),
-                  _petDescriptionTextField(),
-                  adoptRadioListTile,
-                  const Spacer(),
-                  Align(
-                    child: _nextButton(context),
-                  ),
-                ],
-              ),
+          children: [
+            imageUrl == "" ? _addPhotoContainer(context) : _photoContainer(context),
+            const SizedBox(height: 24),
+            _petNameTextField(),
+            const SizedBox(height: 24),
+            _petDescriptionTextField(),
+            adoptRadioListTile,
+            const SizedBox(height: 24),
+            Align(
+              child: _nextButton(context),
             ),
-          ),
+          ],
         ),
       ),
     );

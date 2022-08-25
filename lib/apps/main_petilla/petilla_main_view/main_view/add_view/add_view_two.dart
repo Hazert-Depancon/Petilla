@@ -153,29 +153,23 @@ class _AddViewTwoState extends State<AddViewTwo> {
         title: const Text("Evcil Hayvan Ekle 2/2"),
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(0.0),
-        child: Expanded(
-          child: ListView(
-            padding: ProjectPaddings.horizontalMainPadding,
-            children: [
-              const SizedBox(height: 24),
-              citySelect(),
-              const SizedBox(height: 24),
-              districtSelect(),
-              const SizedBox(height: 24),
-              _petType(),
-              const SizedBox(height: 24),
-              sexDropDown(),
-              const SizedBox(height: 24),
-              ageRangeDropDown(),
-              const SizedBox(height: 24),
-              widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
-              const Spacer(),
-              _submitButton(),
-            ],
-          ),
-        ),
+      body: ListView(
+        padding: ProjectPaddings.horizontalMainPadding,
+        children: [
+          const SizedBox(height: 24),
+          citySelect(),
+          const SizedBox(height: 24),
+          districtSelect(),
+          const SizedBox(height: 24),
+          _petType(),
+          const SizedBox(height: 24),
+          sexDropDown(),
+          const SizedBox(height: 24),
+          ageRangeDropDown(),
+          const SizedBox(height: 24),
+          widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
+          _submitButton(),
+        ],
       ),
     );
   }
