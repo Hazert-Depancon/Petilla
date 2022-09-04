@@ -6,6 +6,7 @@ import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/general/general_view/profile_view.dart';
 import 'package:petilla_app_project/general/general_widgets/select_app_widget.dart';
+import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 
 class SelectAppView extends StatefulWidget {
@@ -20,6 +21,8 @@ class _SelectAppViewState extends State<SelectAppView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Petilla"),
+        centerTitle: true,
         actions: [
           _profileAction(context),
           const SizedBox(width: 12),
@@ -85,7 +88,7 @@ class _SelectAppViewState extends State<SelectAppView> {
       onTap: () {
         _callProfileView(context);
       },
-      child: const Icon(Icons.person_outline),
+      child: const Icon(Icons.person_outline, color: LightThemeColors.miamiMarmalade),
     );
   }
 

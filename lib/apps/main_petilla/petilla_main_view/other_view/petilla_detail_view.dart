@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/general/general_widgets/fav_button.dart';
 import 'package:petilla_app_project/theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
@@ -52,17 +51,25 @@ class _DetailViewState extends State<DetailView> {
           const SizedBox(height: 24),
           _descriptionText(context),
           const SizedBox(height: 16),
-          _litTile(context, "Yaş:", widget.petModel.ageRange),
-          _litTile(context, "Tür:", widget.petModel.petType),
-          // _litTile(context, "Cins:", widget.petBreed),
-          _litTile(context, "Cinsiyet:", widget.petModel.sex),
-          _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}"),
+          _ageListTile(context),
+          _typeListTile(context),
+          _genderListTile(context),
+          _locationListTile(context),
           const SizedBox(height: 120),
         ],
       ),
       floatingActionButton: isMe ? null : _chatFabButton(),
     );
   }
+
+  ListTile _locationListTile(BuildContext context) =>
+      _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}");
+
+  ListTile _genderListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.gender);
+
+  ListTile _typeListTile(BuildContext context) => _litTile(context, "Tür:", widget.petModel.petType);
+
+  ListTile _ageListTile(BuildContext context) => _litTile(context, "Yaş:", widget.petModel.ageRange);
 
   Text _emailText(BuildContext context) {
     return Text(
@@ -99,8 +106,9 @@ class _DetailViewState extends State<DetailView> {
     );
   }
 
-  Text _descriptionText(BuildContext context) =>
-      Text(widget.petModel.description, style: Theme.of(context).textTheme.subtitle1);
+  Text _descriptionText(BuildContext context) {
+    return Text(widget.petModel.description, style: Theme.of(context).textTheme.subtitle1);
+  }
 
   Text _priceText(TextStyle? headline4) {
     return Text(
@@ -127,14 +135,14 @@ class _DetailViewState extends State<DetailView> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        alignment: Alignment.topRight,
-        child: _favButton(),
-      ),
+      // child: Align(
+      //   alignment: Alignment.topRight,
+      //   child: _favButton(),
+      // ),
     );
   }
 
-  FavButton _favButton() {
-    return const FavButton(iconSize: 32);
-  }
+  // FavButton _favButton() {
+  //   return const FavButton(iconSize: 32);
+  // }
 }

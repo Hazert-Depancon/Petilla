@@ -8,7 +8,7 @@ class PetModel {
   final String petBreed;
   final String petType;
   final String price;
-  final String sex;
+  final String gender;
   final String currentEmail;
   final String currentUid;
 
@@ -16,7 +16,7 @@ class PetModel {
     required this.currentUid,
     required this.currentEmail,
     required this.ilce,
-    required this.sex,
+    required this.gender,
     required this.name,
     required this.description,
     required this.imagePath,

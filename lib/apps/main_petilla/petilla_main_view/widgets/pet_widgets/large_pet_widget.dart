@@ -48,7 +48,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
       currentUid: widget.petModel.currentUid,
       currentEmail: widget.petModel.currentEmail,
       ilce: widget.petModel.ilce,
-      sex: widget.petModel.sex,
+      gender: widget.petModel.gender,
       name: widget.petModel.name,
       description: widget.petModel.description,
       imagePath: widget.petModel.imagePath,

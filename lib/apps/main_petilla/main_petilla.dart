@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/declaration_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/favorites_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
@@ -20,6 +21,7 @@ class _MainPetillaState extends State<MainPetilla> {
     const FavoritesView(),
     const AddView(),
     const ChatSelectView(),
+    const DeclarationView(),
   ];
 
   @override
@@ -40,27 +42,55 @@ class _MainPetillaState extends State<MainPetilla> {
         });
       },
       items: [
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            _selectedIndex == 0 ? "assets/svg/home.svg" : "assets/svg/home_outline.svg",
-            color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : Colors.grey,
-            height: 25,
-          ),
-          label: "Home",
-        ),
-        BottomNavigationBarItem(
-          icon: _selectedIndex == 1 ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
-          label: "Favorites",
-        ),
-        BottomNavigationBarItem(
-          icon: _selectedIndex == 2 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
-          label: "Add",
-        ),
-        BottomNavigationBarItem(
-          icon: _selectedIndex == 3 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
-          label: "Chats",
-        ),
+        _homeBottomNavigation(),
+        _favoritesBottomNavigation(),
+        _addBottomNavigation(),
+        _chatsBottomNavigation(),
+        _declarationBottomNavigation(),
       ],
+    );
+  }
+
+  BottomNavigationBarItem _declarationBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _selectedIndex == 4 ? const Icon(Icons.border_all) : const Icon(Icons.border_all_outlined),
+      label: "İlanlarım",
+    );
+  }
+
+  BottomNavigationBarItem _chatsBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _selectedIndex == 3 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
+      label: "Mesajlarım",
+    );
+  }
+
+  BottomNavigationBarItem _addBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _selectedIndex == 2 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
+      label: "Evcil Hayvan Ekle",
+    );
+  }
+
+  BottomNavigationBarItem _favoritesBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _selectedIndex == 1 ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
+      label: "Favorilerim",
+    );
+  }
+
+  BottomNavigationBarItem _homeBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _homeIcon(),
+      label: "Anasayfa",
+    );
+  }
+
+  SvgPicture _homeIcon() {
+    return SvgPicture.asset(
+      _selectedIndex == 0 ? "assets/svg/home.svg" : "assets/svg/home_outline.svg",
+      color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : Colors.grey,
+      height: 25,
     );
   }
 }
