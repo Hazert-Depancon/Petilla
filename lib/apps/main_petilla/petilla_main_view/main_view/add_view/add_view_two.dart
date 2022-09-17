@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, must_be_immutable
 
 import 'dart:convert';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -114,7 +113,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
     }
   }
 
-  final List<String> pets = [
+  final pets = [
     'Köpek',
     'Kedi',
     'Balık',
@@ -135,27 +134,16 @@ class _AddViewTwoState extends State<AddViewTwo> {
     "3 Yıldan Fazla",
   ];
 
-  String? _petSelectedValue;
-  String? _genderSelectedValue;
-  String? _ageRangeSelectedValue;
+  String? petSelectedValue;
+  String? genderSelectedValue;
+  String? ageRangeSelectedValue;
 
-  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _illeriGetir().then((value) => _ilIsimleriniGetir());
-    print(_petSelectedValue);
-    print(_genderSelectedValue);
-    print(_ageRangeSelectedValue);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print(_petSelectedValue);
-    print(_genderSelectedValue);
-    print(_ageRangeSelectedValue);
   }
 
   @override
@@ -173,32 +161,91 @@ class _AddViewTwoState extends State<AddViewTwo> {
           const SizedBox(height: 24),
           districtSelect(),
           const SizedBox(height: 24),
-          _DropDown(selectedValue: _petSelectedValue, list: pets, hint: "Evcil Hayvan Türü"),
+          DropdownButtonFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+              ),
+            ),
+            hint: const Text("Evcil Hayvan Türü"),
+            value: petSelectedValue,
+            items: pets
+                .map(
+                  (item) => DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  ),
+                )
+                .toList(),
+            onChanged: (val) {
+              setState(() {
+                petSelectedValue = val as String?;
+              });
+            },
+          ),
           const SizedBox(height: 24),
-          _DropDown(selectedValue: _genderSelectedValue, list: gender, hint: "Evcil Hayvan Cinsiyeti"),
+          DropdownButtonFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+              ),
+            ),
+            hint: const Text("Evcil Hayvan Cinsiyeti"),
+            value: genderSelectedValue,
+            items: gender
+                .map(
+                  (item) => DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  ),
+                )
+                .toList(),
+            onChanged: (val) {
+              setState(() {
+                genderSelectedValue = val as String?;
+              });
+            },
+          ),
           const SizedBox(height: 24),
-          _DropDown(selectedValue: _ageRangeSelectedValue, list: ageRange, hint: "Evcil Hayvan Yaş Aralığı"),
+          DropdownButtonFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+              ),
+            ),
+            hint: const Text("Evcil Hayvan Yaş Aralığı"),
+            value: ageRangeSelectedValue,
+            items: ageRange
+                .map(
+                  (item) => DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  ),
+                )
+                .toList(),
+            onChanged: (val) {
+              setState(() {
+                ageRangeSelectedValue = val as String?;
+              });
+            },
+          ),
           const SizedBox(height: 24),
-          widget.radioValue == 1 ? const SizedBox() : _priceTextField(),
+          _textField(),
+          const SizedBox(height: 24),
+          widget.radioValue == 1 ? const SizedBox() : _textField(),
           _submitButton(),
         ],
       ),
     );
   }
 
-  SizedBox _priceTextField() {
-    return SizedBox(
-      width: 175,
-      child: MainTextField(
-        controller: _priceController,
-        hintText: "Ücret",
-        minLines: 1,
-        maxLines: 1,
-        maxLength: 10,
-        prefixIcon: const Icon(Icons.attach_money_rounded),
-        keyboardType: TextInputType.number,
-        suffix: "TL",
-      ),
+  _textField() {
+    return MainTextField(
+      controller: _typeController,
+      hintText: "Evcil Hayvan Irkı",
     );
   }
 
@@ -274,22 +321,22 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  void _onSubmitButton() {
+  _onSubmitButton() {
     CrudService()
         .createPet(
           PetModel(
             currentUid: FirebaseAuth.instance.currentUser!.uid,
             currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
-            gender: _genderSelectedValue!,
+            gender: genderSelectedValue ?? "Hata",
             name: widget.name,
             description: widget.description,
             imagePath: widget.image,
-            ageRange: _ageRangeSelectedValue!,
+            ageRange: ageRangeSelectedValue ?? "Hata",
             city: _secilenIl,
             ilce: _secilenIlce,
-            petBreed: "Buldog",
-            price: widget.radioValue == 1 ? "0" : _priceController.text,
-            petType: _petSelectedValue!,
+            petBreed: _typeController.text,
+            price: widget.radioValue == 1 ? "0" : _typeController.text,
+            petType: petSelectedValue ?? "Hata",
           ),
           context,
         )
@@ -301,86 +348,5 @@ class _AddViewTwoState extends State<AddViewTwo> {
             ),
           ),
         );
-  }
-}
-
-class _DropDown extends StatefulWidget {
-  _DropDown({Key? key, this.selectedValue, required this.list, required this.hint}) : super(key: key);
-
-  String? selectedValue;
-  final List list;
-  final String hint;
-
-  @override
-  State<_DropDown> createState() => __DropDownState();
-}
-
-class __DropDownState extends State<_DropDown> {
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonHideUnderline(
-      child: DropdownButton2(
-        isExpanded: true,
-        hint: Row(
-          children: [
-            // Hint
-            Expanded(
-              child: Text(
-                widget.hint,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-        // List
-        items: widget.list
-            .map((item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ))
-            .toList(),
-        value: widget.selectedValue,
-        // Selected value
-        onChanged: (value) {
-          setState(() {
-            widget.selectedValue = value as String;
-          });
-          print("${widget.hint}:${widget.selectedValue}");
-        },
-        icon: const Icon(
-          Icons.keyboard_arrow_down_rounded,
-          size: 24,
-        ),
-        iconSize: 14,
-        iconEnabledColor: Colors.white,
-        buttonHeight: 50,
-        buttonWidth: 175,
-        buttonPadding: const EdgeInsets.only(left: 14, right: 14),
-        buttonDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: LightThemeColors.burningOrange,
-        ),
-        itemHeight: 40,
-        itemPadding: const EdgeInsets.only(left: 14, right: 14),
-        dropdownMaxHeight: 200,
-        dropdownDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: LightThemeColors.burningOrange,
-        ),
-      ),
-    );
   }
 }

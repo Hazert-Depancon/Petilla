@@ -139,11 +139,12 @@ class _LoginViewState extends State<LoginView> {
     if (_formKey.currentState!.validate()) {
       AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
         () {
-          Navigator.pushReplacement(
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => const Petilla(showHome: true),
             ),
+            (route) => false,
           );
         },
       );

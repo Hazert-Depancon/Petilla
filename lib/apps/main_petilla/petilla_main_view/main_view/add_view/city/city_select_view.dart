@@ -20,11 +20,6 @@ class _IlSecimiSayfasiState extends State<IlSecimiSayfasi> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _searchTextField(),
-          ),
           Expanded(
             child: ListView.builder(
               itemCount: widget.ilIsimleri.length,
