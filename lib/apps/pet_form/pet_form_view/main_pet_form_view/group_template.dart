@@ -3,20 +3,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 var loginUser = FirebaseAuth.instance.currentUser;
 
-class DogGroupChat extends StatefulWidget {
-  const DogGroupChat({Key? key}) : super(key: key);
+class GroupChat extends StatefulWidget {
+  const GroupChat({Key? key, required this.pageTitle, required this.docId, required this.collectionId})
+      : super(key: key);
+
+  final String pageTitle;
+  final String docId;
+  final String collectionId;
 
   @override
-  State<DogGroupChat> createState() => _DogGroupChatState();
+  State<GroupChat> createState() => _GroupChatState();
 }
 
-class _DogGroupChatState extends State<DogGroupChat> {
+class _GroupChatState extends State<GroupChat> {
   final auth = FirebaseAuth.instance;
   TextEditingController msg = TextEditingController();
   final _firestore = FirebaseFirestore.instance;
@@ -38,14 +43,19 @@ class _DogGroupChatState extends State<DogGroupChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(widget.pageTitle),
         foregroundColor: LightThemeColors.miamiMarmalade,
-        title: const Text('Köpek Grubu'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Expanded(child: ShowMessages()),
+          Expanded(
+            child: ShowMessages(
+              collectionId: widget.collectionId,
+              docId: widget.docId,
+            ),
+          ),
           Padding(
             padding: ProjectPaddings.horizontalMainPadding,
             child: Row(
@@ -62,9 +72,9 @@ class _DogGroupChatState extends State<DogGroupChat> {
 
   void _onSendButton() {
     if (msg.text.isNotEmpty) {
-      _firestore.collection("messages").doc("dog_chat").collection("dog_messages").doc().set({
+      _firestore.collection("messages").doc(widget.docId).collection(widget.collectionId).doc().set({
         "msg": msg.text.trim(),
-        "user": loginUser!.email,
+        "user": loginUser!.email.toString(),
         "time": DateTime.now(),
       });
       msg.clear();
@@ -104,15 +114,17 @@ class _DogGroupChatState extends State<DogGroupChat> {
 }
 
 class ShowMessages extends StatelessWidget {
-  const ShowMessages({Key? key}) : super(key: key);
+  const ShowMessages({Key? key, required this.docId, required this.collectionId}) : super(key: key);
+  final String docId;
+  final String collectionId;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection("messages")
-          .doc("dog_chat")
-          .collection("dog_messages")
+          .doc(docId)
+          .collection(collectionId)
           .orderBy("time")
           .snapshots(),
       builder: (context, snapshot) {
@@ -130,9 +142,7 @@ class ShowMessages extends StatelessWidget {
                     child: Text(querySnapshot["user"]),
                   ),
                   SingleMessage(
-                    message: querySnapshot["msg"],
-                    isMe: querySnapshot["user"] == loginUser!.email.toString(),
-                  ),
+                      message: querySnapshot["msg"], isMe: querySnapshot["user"] == loginUser!.email.toString()),
                 ],
               );
             },

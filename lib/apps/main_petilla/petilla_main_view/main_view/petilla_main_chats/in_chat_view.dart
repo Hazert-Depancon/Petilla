@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class InChatView extends StatefulWidget {
   const InChatView({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
 class Button extends StatelessWidget {

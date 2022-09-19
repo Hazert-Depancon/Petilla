@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/general/general_widgets/ads/ads_detail_view.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class AdsWidget extends StatefulWidget {
   const AdsWidget(

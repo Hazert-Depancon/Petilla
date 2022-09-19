@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
@@ -34,38 +34,45 @@ class _DetailViewState extends State<DetailView> {
       appBar: AppBar(
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
-      body: ListView(
+      body: SingleChildScrollView(
         padding: ProjectPaddings.horizontalMainPadding,
-        children: [
-          _emailText(context),
-          const SizedBox(height: 16),
-          _imageContainer(),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _nameText(headline4),
-              _priceText(headline4),
-            ],
-          ),
-          const SizedBox(height: 24),
-          _descriptionText(context),
-          const SizedBox(height: 16),
-          _ageListTile(context),
-          _typeListTile(context),
-          _genderListTile(context),
-          _locationListTile(context),
-          const SizedBox(height: 120),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _emailText(context),
+            const SizedBox(height: 16),
+            _imageContainer(),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _nameText(headline4),
+                _priceText(headline4),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _descriptionText(context),
+            const SizedBox(height: 16),
+            _ageListTile(context),
+            _typeListTile(context),
+            _genderListTile(context),
+            _breedListTile(context),
+            _locationListTile(context),
+            const SizedBox(height: 120),
+          ],
+        ),
       ),
       floatingActionButton: isMe ? null : _chatFabButton(),
     );
   }
 
-  ListTile _locationListTile(BuildContext context) =>
-      _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}");
+  ListTile _locationListTile(BuildContext context) {
+    return _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}");
+  }
 
   ListTile _genderListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.gender);
+
+  ListTile _breedListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.petBreed);
 
   ListTile _typeListTile(BuildContext context) => _litTile(context, "Tür:", widget.petModel.petType);
 

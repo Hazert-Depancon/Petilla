@@ -1,9 +1,14 @@
-// ignore_for_file: library_private_types_in_public_api, must_be_immutable
+// ignore_for_file: library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/jsons/city_model.dart';
@@ -12,9 +17,10 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_vie
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
+import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 class AddViewTwo extends StatefulWidget {
   const AddViewTwo({
@@ -27,7 +33,7 @@ class AddViewTwo extends StatefulWidget {
 
   final String name;
   final String description;
-  final String image;
+  final XFile image;
   final int radioValue;
 
   @override
@@ -84,11 +90,8 @@ class _AddViewTwoState extends State<AddViewTwo> {
 
   Future<void> _ilSecmeSayfasinaGit() async {
     if (_yuklemeTamamlandiMi) {
-      _secilenIlIndexi = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
-        ),
+      _secilenIlIndexi = await Get.to(
+        IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
       );
 
       _ilSecilmisMi = true;
@@ -101,11 +104,8 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Future<void> _ilceSecmeSayfasinaGit() async {
     if (_ilSecilmisMi) {
       _secilenIlinIlceleriniGetir(_ilIsimleriListesi[_secilenIlIndexi]);
-      _secilenIlceIndexi = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
-        ),
+      _secilenIlceIndexi = await Get.to(
+        IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
       );
       _ilceSecilmisMi = true;
       _secilenIlce = _ilceIsimleriListesi[_secilenIlceIndexi];
@@ -146,6 +146,19 @@ class _AddViewTwoState extends State<AddViewTwo> {
     _illeriGetir().then((value) => _ilIsimleriniGetir());
   }
 
+  String? imageUrl;
+
+  addPhotoToStorage() async {
+    Reference ref = FirebaseStorage.instance.ref("pets").child(widget.image.name);
+
+    await ref.putFile(File(widget.image.path));
+    await ref.getDownloadURL().then((value) {
+      setState(() {
+        imageUrl = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,77 +174,11 @@ class _AddViewTwoState extends State<AddViewTwo> {
           const SizedBox(height: 24),
           districtSelect(),
           const SizedBox(height: 24),
-          DropdownButtonFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
-              ),
-            ),
-            hint: const Text("Evcil Hayvan Türü"),
-            value: petSelectedValue,
-            items: pets
-                .map(
-                  (item) => DropdownMenuItem(
-                    value: item,
-                    child: Text(item),
-                  ),
-                )
-                .toList(),
-            onChanged: (val) {
-              setState(() {
-                petSelectedValue = val as String?;
-              });
-            },
-          ),
+          _petTypeDropDown(),
           const SizedBox(height: 24),
-          DropdownButtonFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
-              ),
-            ),
-            hint: const Text("Evcil Hayvan Cinsiyeti"),
-            value: genderSelectedValue,
-            items: gender
-                .map(
-                  (item) => DropdownMenuItem(
-                    value: item,
-                    child: Text(item),
-                  ),
-                )
-                .toList(),
-            onChanged: (val) {
-              setState(() {
-                genderSelectedValue = val as String?;
-              });
-            },
-          ),
+          _petGenderDropDown(),
           const SizedBox(height: 24),
-          DropdownButtonFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
-              ),
-            ),
-            hint: const Text("Evcil Hayvan Yaş Aralığı"),
-            value: ageRangeSelectedValue,
-            items: ageRange
-                .map(
-                  (item) => DropdownMenuItem(
-                    value: item,
-                    child: Text(item),
-                  ),
-                )
-                .toList(),
-            onChanged: (val) {
-              setState(() {
-                ageRangeSelectedValue = val as String?;
-              });
-            },
-          ),
+          _petAgeRangeDropDown(),
           const SizedBox(height: 24),
           _textField(),
           const SizedBox(height: 24),
@@ -239,6 +186,84 @@ class _AddViewTwoState extends State<AddViewTwo> {
           _submitButton(),
         ],
       ),
+    );
+  }
+
+  DropdownButtonFormField<String> _petAgeRangeDropDown() {
+    return DropdownButtonFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+        ),
+      ),
+      hint: const Text("Evcil Hayvan Yaş Aralığı"),
+      value: ageRangeSelectedValue,
+      items: ageRange
+          .map(
+            (item) => DropdownMenuItem(
+              value: item,
+              child: Text(item),
+            ),
+          )
+          .toList(),
+      onChanged: (val) {
+        setState(() {
+          ageRangeSelectedValue = val;
+        });
+      },
+    );
+  }
+
+  DropdownButtonFormField<String> _petGenderDropDown() {
+    return DropdownButtonFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+        ),
+      ),
+      hint: const Text("Evcil Hayvan Cinsiyeti"),
+      value: genderSelectedValue,
+      items: gender
+          .map(
+            (item) => DropdownMenuItem(
+              value: item,
+              child: Text(item),
+            ),
+          )
+          .toList(),
+      onChanged: (val) {
+        setState(() {
+          genderSelectedValue = val;
+        });
+      },
+    );
+  }
+
+  DropdownButtonFormField<String> _petTypeDropDown() {
+    return DropdownButtonFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+        ),
+      ),
+      hint: const Text("Evcil Hayvan Türü"),
+      value: petSelectedValue,
+      items: pets
+          .map(
+            (item) => DropdownMenuItem(
+              value: item,
+              child: Text(item),
+            ),
+          )
+          .toList(),
+      onChanged: (val) {
+        setState(() {
+          petSelectedValue = val;
+        });
+      },
     );
   }
 
@@ -313,7 +338,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Align _submitButton() {
     return Align(
       child: Button(
-        onPressed: _onSubmitButton,
+        onPressed: _onSubmitButton(context),
         text: "Evcil Hayvan Ekle",
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
@@ -321,7 +346,21 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  _onSubmitButton() {
+  _onSubmitButton(context) async {
+    _showDialog(context) {
+      return showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return Center(
+            child: Lottie.network(ProjectLottieUrls.loadingLottie),
+          );
+        },
+      );
+    }
+
+    _showDialog(context);
+    await addPhotoToStorage();
     CrudService()
         .createPet(
           PetModel(
@@ -330,7 +369,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
             gender: genderSelectedValue ?? "Hata",
             name: widget.name,
             description: widget.description,
-            imagePath: widget.image,
+            imagePath: imageUrl.toString(),
             ageRange: ageRangeSelectedValue ?? "Hata",
             city: _secilenIl,
             ilce: _secilenIlce,
@@ -341,12 +380,8 @@ class _AddViewTwoState extends State<AddViewTwo> {
           context,
         )
         .whenComplete(
-          () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MainPetilla(),
-            ),
-          ),
+          () => Navigator.pushAndRemoveUntil(
+              context, MaterialPageRoute(builder: (context) => const MainPetilla()), (route) => false),
         );
   }
 }

@@ -1,11 +1,12 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/theme/light_theme_colors.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/theme/sizes/project_icon_sizes.dart';
 import 'package:petilla_app_project/theme/sizes/project_padding.dart';
@@ -26,38 +27,32 @@ class _AddViewState extends State<AddView> {
   final TextEditingController _descriptionController = TextEditingController();
 
   Object? val = 1;
-  String imageUrl = "";
+  XFile? image;
+
+  File? imageFile;
 
   void pickImageGallery() async {
-    final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final XFile? selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (image == null) {
+    if (selectedImage == null) {
       return;
     } else {
-      Reference ref = FirebaseStorage.instance.ref("pets").child(image.name);
-
-      await ref.putFile(File(image.path));
-      ref.getDownloadURL().then((value) {
-        setState(() {
-          imageUrl = value;
-        });
+      image = selectedImage;
+      setState(() {
+        imageFile = File(image!.path);
       });
     }
   }
 
   void pickImageCamera() async {
-    final XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    final XFile? selectedImage = await ImagePicker().pickImage(source: ImageSource.camera);
 
-    if (image == null) {
+    if (selectedImage == null) {
       return;
     } else {
-      Reference ref = FirebaseStorage.instance.ref("pets").child(image.name);
-
-      await ref.putFile(File(image.path));
-      ref.getDownloadURL().then((value) {
-        setState(() {
-          imageUrl = value;
-        });
+      image = selectedImage;
+      setState(() {
+        imageFile = File(image!.path);
       });
     }
   }
@@ -68,14 +63,14 @@ class _AddViewState extends State<AddView> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Evcil Hayvan Ekle 1/2"),
+        title: const Text(_ThisPageTexts.pageTitle),
       ),
       body: Form(
         key: _formKey,
         child: ListView(
           padding: ProjectPaddings.horizontalMainPadding,
           children: [
-            imageUrl == "" ? _addPhotoContainer(context) : _photoContainer(context),
+            imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
             const SizedBox(height: 24),
             _petNameTextField(),
             const SizedBox(height: 24),
@@ -103,7 +98,7 @@ class _AddViewState extends State<AddView> {
           borderRadius: ProjectRadius.mainAllRadius,
           color: LightThemeColors.miamiMarmalade,
           image: DecorationImage(
-            image: NetworkImage(imageUrl),
+            image: FileImage(imageFile!),
             fit: BoxFit.cover,
           ),
         ),
@@ -120,14 +115,14 @@ class _AddViewState extends State<AddView> {
             children: <Widget>[
               ListTile(
                   leading: const Icon(Icons.photo_library),
-                  title: const Text('Galeri'),
+                  title: const Text(_ThisPageTexts.gellery),
                   onTap: () {
                     pickImageGallery();
                     Navigator.of(context).pop();
                   }),
               ListTile(
                 leading: const Icon(Icons.photo_camera),
-                title: const Text('Kamera'),
+                title: const Text(_ThisPageTexts.camera),
                 onTap: () {
                   pickImageCamera();
                   Navigator.of(context).pop();
@@ -240,12 +235,12 @@ class _AddViewState extends State<AddView> {
   }
 
   _onNextButton(context) {
-    if (imageUrl == "") {
+    if (image == null) {
       return QuickAlert.show(
         context: context,
         type: QuickAlertType.error,
-        title: "Hata",
-        text: "Lütfen tüm alanları doldurunuz.",
+        title: _ThisPageTexts.error,
+        text: _ThisPageTexts.fillAllArea,
       );
     }
     if (_formKey.currentState!.validate()) {
@@ -255,7 +250,7 @@ class _AddViewState extends State<AddView> {
             name: _nameController.text,
             description: _descriptionController.text,
             radioValue: val as int,
-            image: imageUrl,
+            image: image!,
           ),
         ),
       );
@@ -268,4 +263,9 @@ class _ThisPageTexts {
   static const String description = "Açıklama";
   static const String adopt = "Sahiplendir";
   static const String next = "Sonraki";
+  static const String error = "HATA";
+  static const String fillAllArea = "Lütfen tüm alanları doldurunuz.";
+  static const String gellery = "Galeriden Seç";
+  static const String camera = "Kameradan Çek";
+  static const String pageTitle = "Evcil Hayvan Ekle 1/2";
 }

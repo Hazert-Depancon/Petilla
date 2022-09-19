@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_one.dart';
-import 'package:petilla_app_project/theme/light_theme.dart';
 import 'package:petilla_app_project/start/select_app_view.dart';
+import 'package:petilla_app_project/theme/light_theme/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -47,7 +48,7 @@ class Petilla extends StatefulWidget {
 class _PetillaState extends State<Petilla> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Petilla',
       theme: LightTheme().theme,

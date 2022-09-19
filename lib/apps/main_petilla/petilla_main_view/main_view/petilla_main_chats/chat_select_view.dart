@@ -34,48 +34,68 @@ class _ChatSelectViewState extends State<ChatSelectView> {
         title: const Text("Mesajlar"),
         automaticallyImplyLeading: false,
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection("users")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection("messages")
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!.docs.isEmpty) {
-              return Center(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 120),
-                    const Text("Henüz kimseyle mesajlaşmadınız", style: TextStyle(fontSize: 20)),
-                    Center(child: Lottie.network(ProjectLottieUrls.emptyLottie)),
-                  ],
-                ),
-              );
-            } else if (snapshot.data!.docs.isNotEmpty) {
-              return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  return UserChat(
-                    name: snapshot.data!.docs[index]["email"],
-                    onTap: () {
-                      callInChat(
-                        snapshot.data!.docs[index]["email"],
-                        snapshot.data!.docs[index]["uid"],
-                        FirebaseAuth.instance.currentUser!.email.toString(),
-                        FirebaseAuth.instance.currentUser!.uid,
-                      );
-                    },
-                  );
-                },
-              );
-            }
+      body: _customstreamBuilder(),
+    );
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> _customstreamBuilder() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("messages")
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data!.docs.isEmpty) {
+            return _notMessagesYetWidget();
+          } else if (snapshot.data!.docs.isNotEmpty) {
+            return _customListView(snapshot);
           }
-          if (snapshot.hasError) {
-            return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
-          }
-          return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
-        },
+        }
+        if (snapshot.hasError) {
+          return _errorWidget();
+        }
+        return _loadingWidget();
+      },
+    );
+  }
+
+  Center _loadingWidget() => Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+
+  Center _errorWidget() => Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+
+  ListView _customListView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        return UserChat(
+          name: snapshot.data!.docs[index]["email"],
+          onTap: () {
+            _callChat(snapshot, index);
+          },
+        );
+      },
+    );
+  }
+
+  void _callChat(snapshot, index) {
+    return callInChat(
+      snapshot.data!.docs[index]["email"],
+      snapshot.data!.docs[index]["uid"],
+      FirebaseAuth.instance.currentUser!.email.toString(),
+      FirebaseAuth.instance.currentUser!.uid,
+    );
+  }
+
+  Center _notMessagesYetWidget() {
+    return Center(
+      child: Column(
+        children: [
+          const SizedBox(height: 120),
+          const Text("Henüz kimseyle mesajlaşmadınız", style: TextStyle(fontSize: 20)),
+          Center(child: Lottie.network(ProjectLottieUrls.emptyLottie)),
+        ],
       ),
     );
   }
