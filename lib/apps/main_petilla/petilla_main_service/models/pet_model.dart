@@ -26,18 +26,4 @@ class PetModel {
     required this.price,
     required this.petType,
   });
-  Map<String, dynamic> toJson() => {
-        "currentUid": currentUid,
-        "currentEmail": currentEmail,
-        "ilce": ilce,
-        "gender": gender,
-        "name": name,
-        "description": description,
-        "imagePath": imagePath,
-        "ageRange": ageRange,
-        "city": city,
-        "petBreed": petBreed,
-        "price": price,
-        "petType": petType,
-      };
 }

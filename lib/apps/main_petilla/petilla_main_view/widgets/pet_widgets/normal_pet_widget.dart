@@ -51,14 +51,16 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _nameText(subtitle2),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      _priceText(subtitle2),
-                      const SizedBox(height: 4),
-                      _location(),
-                    ],
+                  Expanded(child: _nameText(subtitle2)),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        _priceText(subtitle2),
+                        const SizedBox(height: 4),
+                        _location(),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -84,7 +86,9 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _placeIcon(),
-        Text(widget.petModel.city, overflow: TextOverflow.clip),
+        Text(
+          widget.petModel.city,
+        ),
       ],
     );
   }
@@ -97,7 +101,11 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
     );
   }
 
-  Text _nameText(TextStyle? subtitle2) => Text(widget.petModel.name, style: subtitle2);
+  Text _nameText(TextStyle? subtitle2) => Text(
+        widget.petModel.name,
+        style: subtitle2,
+        overflow: TextOverflow.clip,
+      );
 
   Expanded _imageContainer() {
     return Expanded(

@@ -1,8 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
 class IlSecimiSayfasi extends StatefulWidget {
   final List ilIsimleri;
@@ -13,8 +11,6 @@ class IlSecimiSayfasi extends StatefulWidget {
 }
 
 class _IlSecimiSayfasiState extends State<IlSecimiSayfasi> {
-  final TextEditingController searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,22 +32,6 @@ class _IlSecimiSayfasiState extends State<IlSecimiSayfasi> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Container _searchTextField() {
-    return Container(
-      decoration: BoxDecoration(
-        color: LightThemeColors.snowbank,
-        borderRadius: ProjectRadius.mainAllRadius,
-      ),
-      child: TextField(
-        controller: searchController,
-        decoration: const InputDecoration(
-          hintText: "İl seçiniz",
-          prefixIcon: Icon(Icons.search),
-        ),
       ),
     );
   }

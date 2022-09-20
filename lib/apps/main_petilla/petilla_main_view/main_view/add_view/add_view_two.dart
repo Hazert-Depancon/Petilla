@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously
+// ignore_for_file: library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously, no_leading_underscores_for_local_identifiers
 
 import 'dart:convert';
 import 'dart:io';
@@ -149,13 +149,24 @@ class _AddViewTwoState extends State<AddViewTwo> {
   String? imageUrl;
 
   addPhotoToStorage() async {
+    _showDialog(context) {
+      return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return Center(
+            child: Lottie.network(ProjectLottieUrls.loadingLottie),
+          );
+        },
+      );
+    }
+
+    _showDialog(context);
     Reference ref = FirebaseStorage.instance.ref("pets").child(widget.image.name);
 
     await ref.putFile(File(widget.image.path));
     await ref.getDownloadURL().then((value) {
-      setState(() {
-        imageUrl = value;
-      });
+      imageUrl = value;
     });
   }
 
@@ -338,7 +349,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Align _submitButton() {
     return Align(
       child: Button(
-        onPressed: _onSubmitButton(context),
+        onPressed: _onSubmitButton,
         text: "Evcil Hayvan Ekle",
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
@@ -346,22 +357,9 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  _onSubmitButton(context) async {
-    _showDialog(context) {
-      return showDialog(
-        barrierDismissible: true,
-        context: context,
-        builder: (context) {
-          return Center(
-            child: Lottie.network(ProjectLottieUrls.loadingLottie),
-          );
-        },
-      );
-    }
-
-    _showDialog(context);
+  _onSubmitButton() async {
     await addPhotoToStorage();
-    CrudService()
+    await CrudService()
         .createPet(
           PetModel(
             currentUid: FirebaseAuth.instance.currentUser!.uid,
@@ -369,7 +367,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
             gender: genderSelectedValue ?? "Hata",
             name: widget.name,
             description: widget.description,
-            imagePath: imageUrl.toString(),
+            imagePath: imageUrl!,
             ageRange: ageRangeSelectedValue ?? "Hata",
             city: _secilenIl,
             ilce: _secilenIlce,
@@ -380,8 +378,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           context,
         )
         .whenComplete(
-          () => Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (context) => const MainPetilla()), (route) => false),
+          () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPetilla())),
         );
   }
 }

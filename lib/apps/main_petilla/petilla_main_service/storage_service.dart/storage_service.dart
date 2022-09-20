@@ -6,14 +6,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class StorageService {
-  addPhotoToStorage(XFile image) async {
-    String? imageDowlandURL;
+  addPhotoToStorage(XFile image, String imageURL) async {
     Reference ref = FirebaseStorage.instance.ref("pets").child(image.name);
 
     await ref.putFile(File(image.path));
-    ref.getDownloadURL().then((value) {
-      imageDowlandURL = value;
+    await ref.getDownloadURL().then((value) {
+      imageURL = value;
     });
-    return imageDowlandURL;
   }
 }

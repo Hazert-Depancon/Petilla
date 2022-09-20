@@ -72,7 +72,7 @@ class _DetailViewState extends State<DetailView> {
 
   ListTile _genderListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.gender);
 
-  ListTile _breedListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.petBreed);
+  ListTile _breedListTile(BuildContext context) => _litTile(context, "Irk:", widget.petModel.petBreed);
 
   ListTile _typeListTile(BuildContext context) => _litTile(context, "Tür:", widget.petModel.petType);
 

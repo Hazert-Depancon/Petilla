@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/declaration_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
@@ -18,10 +17,9 @@ class _MainPetillaState extends State<MainPetilla> {
   final List<Widget> pages = [
     const PetillaHomeView(),
     // const FavoritesView(),
-    const ChatSelectView(),
-    const DeclarationView(),
-
     const AddView(),
+    const ChatSelectView(),
+    // const DeclarationView(),
   ];
 
   @override
@@ -44,19 +42,19 @@ class _MainPetillaState extends State<MainPetilla> {
       items: [
         _homeBottomNavigation(),
         // _favoritesBottomNavigation(),
-        _chatsBottomNavigation(),
-        _declarationBottomNavigation(),
         _addBottomNavigation(),
+        _chatsBottomNavigation(),
+        // _declarationBottomNavigation(),
       ],
     );
   }
 
-  BottomNavigationBarItem _declarationBottomNavigation() {
-    return BottomNavigationBarItem(
-      icon: _selectedIndex == 4 ? const Icon(Icons.border_all) : const Icon(Icons.border_all_outlined),
-      label: "İlanlarım",
-    );
-  }
+  // BottomNavigationBarItem _declarationBottomNavigation() {
+  //   return BottomNavigationBarItem(
+  //     icon: _selectedIndex == 4 ? const Icon(Icons.border_all) : const Icon(Icons.border_all_outlined),
+  //     label: "İlanlarım",
+  //   );
+  // }
 
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
