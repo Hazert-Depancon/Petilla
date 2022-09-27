@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/widgets/chat_widgets/user_chat.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/chat_widgets/user_chat.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
 
 class ChatSelectView extends StatefulWidget {
   const ChatSelectView({Key? key}) : super(key: key);

@@ -4,13 +4,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_icon_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes/project_radius.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_icon_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 import 'package:quickalert/quickalert.dart';
 
 class AddView extends StatefulWidget {
@@ -32,12 +33,11 @@ class _AddViewState extends State<AddView> {
   File? imageFile;
 
   void pickImageGallery() async {
-    final XFile? selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (selectedImage == null) {
+    if (image == null) {
       return;
     } else {
-      image = selectedImage;
       setState(() {
         imageFile = File(image!.path);
       });
@@ -45,17 +45,17 @@ class _AddViewState extends State<AddView> {
   }
 
   void pickImageCamera() async {
-    final XFile? selectedImage = await ImagePicker().pickImage(source: ImageSource.camera);
-
-    if (selectedImage == null) {
+    image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) {
       return;
     } else {
-      image = selectedImage;
       setState(() {
         imageFile = File(image!.path);
       });
     }
   }
+
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +71,12 @@ class _AddViewState extends State<AddView> {
           padding: ProjectPaddings.horizontalMainPadding,
           children: [
             imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
-            const SizedBox(height: 24),
+            mainSizedBox,
             _petNameTextField(),
-            const SizedBox(height: 24),
+            mainSizedBox,
             _petDescriptionTextField(),
             adoptRadioListTile,
-            const SizedBox(height: 24),
+            mainSizedBox,
             Align(
               child: _nextButton(context),
             ),
@@ -113,26 +113,34 @@ class _AddViewState extends State<AddView> {
         return SafeArea(
           child: Wrap(
             children: <Widget>[
-              ListTile(
-                  leading: const Icon(Icons.photo_library),
-                  title: const Text(_ThisPageTexts.gellery),
-                  onTap: () {
-                    pickImageGallery();
-                    Navigator.of(context).pop();
-                  }),
-              ListTile(
-                leading: const Icon(Icons.photo_camera),
-                title: const Text(_ThisPageTexts.camera),
-                onTap: () {
-                  pickImageCamera();
-                  Navigator.of(context).pop();
-                },
-              ),
+              _pickGalleryButton(context),
+              _pickCameraButton(context),
             ],
           ),
         );
       },
     );
+  }
+
+  ListTile _pickCameraButton(BuildContext context) {
+    return ListTile(
+      leading: const Icon(Icons.photo_camera),
+      title: const Text(_ThisPageTexts.camera),
+      onTap: () {
+        pickImageCamera();
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  ListTile _pickGalleryButton(BuildContext context) {
+    return ListTile(
+        leading: const Icon(Icons.photo_library),
+        title: const Text(_ThisPageTexts.gellery),
+        onTap: () {
+          pickImageGallery();
+          Navigator.of(context).pop();
+        });
   }
 
   MainTextField _petNameTextField() {
@@ -244,17 +252,21 @@ class _AddViewState extends State<AddView> {
       );
     }
     if (_formKey.currentState!.validate()) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => AddViewTwo(
-            name: _nameController.text,
-            description: _descriptionController.text,
-            radioValue: val as int,
-            image: image!,
-          ),
-        ),
-      );
+      _callAddViewTwo(context);
     }
+  }
+
+  void _callAddViewTwo(context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddViewTwo(
+          name: _nameController.text,
+          description: _descriptionController.text,
+          radioValue: val as int,
+          image: image!,
+        ),
+      ),
+    );
   }
 }
 

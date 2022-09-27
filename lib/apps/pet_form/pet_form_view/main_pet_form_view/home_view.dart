@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/main_pet_form_view/group_template.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:quickalert/quickalert.dart';
@@ -25,11 +24,14 @@ class PetformHomeView extends StatelessWidget {
               color: Colors.black,
             ),
             onTap: () {
-              Get.to(
-                const GroupChat(
-                  collectionId: "general_messages",
-                  docId: "general_chat",
-                  pageTitle: "Genel Sohbet",
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupChat(
+                    collectionId: "general_messages",
+                    docId: "general_chat",
+                    pageTitle: "Genel Sohbet",
+                  ),
                 ),
               );
             },
@@ -38,11 +40,14 @@ class PetformHomeView extends StatelessWidget {
             title: const Text("Köpek"),
             leading: SvgPicture.asset("assets/svg/dog.svg", height: 36),
             onTap: () {
-              Get.to(
-                const GroupChat(
-                  collectionId: "dog_messages",
-                  docId: "dog_chat",
-                  pageTitle: "Köpek Sohbeti",
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupChat(
+                    collectionId: "dog_messages",
+                    docId: "dog_chat",
+                    pageTitle: "Köpek Sohbeti",
+                  ),
                 ),
               );
             },
@@ -51,11 +56,14 @@ class PetformHomeView extends StatelessWidget {
             title: const Text("Kedi"),
             leading: SvgPicture.asset("assets/svg/cat.svg", height: 32),
             onTap: () {
-              Get.to(
-                const GroupChat(
-                  collectionId: "cat_messages",
-                  docId: "dog_chat",
-                  pageTitle: "Kedi Sohbeti",
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupChat(
+                    collectionId: "cat_messages",
+                    docId: "dog_chat",
+                    pageTitle: "Kedi Sohbeti",
+                  ),
                 ),
               );
             },
@@ -64,11 +72,14 @@ class PetformHomeView extends StatelessWidget {
             title: const Text("Tavşan"),
             leading: SvgPicture.asset("assets/svg/rabbit.svg", height: 32),
             onTap: () {
-              Get.to(
-                const GroupChat(
-                  collectionId: "rabbit_messages",
-                  docId: "rabbit_chat",
-                  pageTitle: "Tavşan Sohbeti",
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupChat(
+                    collectionId: "rabbit_messages",
+                    docId: "rabbit_chat",
+                    pageTitle: "Tavşan Sohbeti",
+                  ),
                 ),
               );
             },
@@ -77,11 +88,14 @@ class PetformHomeView extends StatelessWidget {
             title: const Text("Balık"),
             leading: SvgPicture.asset("assets/svg/fish.svg", height: 32),
             onTap: () {
-              Get.to(
-                const GroupChat(
-                  collectionId: "balik_messages",
-                  docId: "balik_chat",
-                  pageTitle: "Balık Sohbeti",
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupChat(
+                    collectionId: "balik_messages",
+                    docId: "balik_chat",
+                    pageTitle: "Balık Sohbeti",
+                  ),
                 ),
               );
             },

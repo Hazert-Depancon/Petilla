@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

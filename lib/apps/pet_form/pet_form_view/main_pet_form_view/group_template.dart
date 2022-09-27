@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 var loginUser = FirebaseAuth.instance.currentUser;
 
@@ -39,6 +40,8 @@ class _GroupChatState extends State<GroupChat> {
     getCurrentUser();
   }
 
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +67,7 @@ class _GroupChatState extends State<GroupChat> {
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          mainSizedBox
         ],
       ),
     );

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/main.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_card_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -24,6 +25,8 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +44,13 @@ class _RegisterViewState extends State<RegisterView> {
               children: [
                 _lottie(),
                 _nameTextField(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _emailTextField(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _passwordTextField(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _registerButton(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _alreadyHaveAnAccount(),
                 _logInButton(context),
               ],
@@ -111,13 +114,19 @@ class _RegisterViewState extends State<RegisterView> {
   void _onRegister() {
     if (_formKey.currentState!.validate()) {
       AuthService()
-          .register(_emailController.text.trim(), _passwordController.text.trim(), _nameController.text.trim(), context)
+          .register(
+            _emailController.text.trim(),
+            _passwordController.text.trim(),
+            _nameController.text.trim(),
+            context,
+          )
           .whenComplete(
-            () => Navigator.pushReplacement(
+            () => Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => const Petilla(showHome: true),
               ),
+              (route) => false,
             ),
           );
     }

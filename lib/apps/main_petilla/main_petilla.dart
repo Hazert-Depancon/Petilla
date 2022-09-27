@@ -58,14 +58,14 @@ class _MainPetillaState extends State<MainPetilla> {
 
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 1 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
+      icon: _selectedIndex == 2 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
       label: "Mesajlarım",
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 3 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
+      icon: _selectedIndex == 1 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
       label: "Evcil Hayvan Ekle",
     );
   }

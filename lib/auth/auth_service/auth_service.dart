@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
 import 'package:quickalert/quickalert.dart';
 
 class AuthService {

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/main.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_card_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -31,6 +32,8 @@ class _LoginViewState extends State<LoginView> {
     _passwordController.dispose();
   }
 
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +50,12 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 _lottie(),
                 _mailTextField(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _passwordTextField(),
                 _forgotPassword(),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _loginButton(context),
-                const SizedBox(height: 24),
+                mainSizedBox,
                 _dontHaveAnAccount(context),
                 _registerButton(),
               ],
@@ -135,19 +138,16 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  void _onLoginButton() {
+  void _onLoginButton() async {
     if (_formKey.currentState!.validate()) {
-      AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
-        () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Petilla(showHome: true),
+      await AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Petilla(showHome: true),
+              ),
             ),
-            (route) => false,
           );
-        },
-      );
     }
   }
 }

@@ -1,26 +1,23 @@
-// ignore_for_file: library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously, no_leading_underscores_for_local_identifiers
+// ignore_for_file: library_private_types_in_public_api, avoid_print
 
 import 'dart:convert';
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/jsons/city_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
+import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 class AddViewTwo extends StatefulWidget {
   const AddViewTwo({
@@ -90,9 +87,11 @@ class _AddViewTwoState extends State<AddViewTwo> {
 
   Future<void> _ilSecmeSayfasinaGit() async {
     if (_yuklemeTamamlandiMi) {
-      _secilenIlIndexi = await Get.to(
-        IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
-      );
+      _secilenIlIndexi = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
+          ));
 
       _ilSecilmisMi = true;
       _secilenIl = _ilIsimleriListesi[_secilenIlIndexi];
@@ -104,9 +103,11 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Future<void> _ilceSecmeSayfasinaGit() async {
     if (_ilSecilmisMi) {
       _secilenIlinIlceleriniGetir(_ilIsimleriListesi[_secilenIlIndexi]);
-      _secilenIlceIndexi = await Get.to(
-        IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
-      );
+      _secilenIlceIndexi = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
+          ));
       _ilceSecilmisMi = true;
       _secilenIlce = _ilceIsimleriListesi[_secilenIlceIndexi];
       setState(() {});
@@ -146,29 +147,9 @@ class _AddViewTwoState extends State<AddViewTwo> {
     _illeriGetir().then((value) => _ilIsimleriniGetir());
   }
 
-  String? imageUrl;
+  String imageUrl = "";
 
-  addPhotoToStorage() async {
-    _showDialog(context) {
-      return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return Center(
-            child: Lottie.network(ProjectLottieUrls.loadingLottie),
-          );
-        },
-      );
-    }
-
-    _showDialog(context);
-    Reference ref = FirebaseStorage.instance.ref("pets").child(widget.image.name);
-
-    await ref.putFile(File(widget.image.path));
-    await ref.getDownloadURL().then((value) {
-      imageUrl = value;
-    });
-  }
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -180,21 +161,21 @@ class _AddViewTwoState extends State<AddViewTwo> {
       body: ListView(
         padding: ProjectPaddings.horizontalMainPadding,
         children: [
-          const SizedBox(height: 24),
+          mainSizedBox,
           citySelect(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           districtSelect(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           _petTypeDropDown(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           _petGenderDropDown(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           _petAgeRangeDropDown(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           _textField(),
-          const SizedBox(height: 24),
+          mainSizedBox,
           widget.radioValue == 1 ? const SizedBox() : _textField(),
-          _submitButton(),
+          _submitButton(context),
         ],
       ),
     );
@@ -346,10 +327,12 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  Align _submitButton() {
+  Align _submitButton(context) {
     return Align(
       child: Button(
-        onPressed: _onSubmitButton,
+        onPressed: () async {
+          _onSubmitButton(context);
+        },
         text: "Evcil Hayvan Ekle",
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
@@ -357,17 +340,19 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  _onSubmitButton() async {
-    await addPhotoToStorage();
-    await CrudService()
+  _onSubmitButton(context) async {
+    showDefaultLoadingDialog(false, context);
+    CrudService()
         .createPet(
+          widget.image,
+          imageUrl,
           PetModel(
             currentUid: FirebaseAuth.instance.currentUser!.uid,
             currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
             gender: genderSelectedValue ?? "Hata",
             name: widget.name,
             description: widget.description,
-            imagePath: imageUrl!,
+            imagePath: imageUrl,
             ageRange: ageRangeSelectedValue ?? "Hata",
             city: _secilenIl,
             ilce: _secilenIlce,
@@ -377,8 +362,12 @@ class _AddViewTwoState extends State<AddViewTwo> {
           ),
           context,
         )
-        .whenComplete(
-          () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPetilla())),
+        .then(
+          (value) => Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const MainPetilla()),
+            (route) => false,
+          ),
         );
   }
 }

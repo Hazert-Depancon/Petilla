@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/widgets/pet_widgets/normal_pet_widget.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
-import 'package:petilla_app_project/theme/strings/project_lottie_urls.dart';
 
 class PetillaHomeView extends StatefulWidget {
   const PetillaHomeView({Key? key}) : super(key: key);
@@ -20,30 +20,51 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: _backSelectApp(context),
         title: const Text(_ThisPageTexts.homePage),
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('pets').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return GridView.builder(
-              padding: ProjectPaddings.horizontalMainPadding,
-              itemCount: snapshot.data!.docs.length,
-              gridDelegate: _myGridDelegate(),
-              itemBuilder: (context, index) {
-                return _petWidget(snapshot.data!.docs[index]);
-              },
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
-          }
-
-          return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
-        },
-      ),
+      body: _streamBuilder(),
     );
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> _streamBuilder() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('pets').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return _gridview(snapshot);
+        }
+        if (snapshot.hasError) {
+          return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+        }
+
+        return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+      },
+    );
+  }
+
+  GridView _gridview(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return GridView.builder(
+      padding: ProjectPaddings.horizontalMainPadding,
+      itemCount: snapshot.data!.docs.length,
+      gridDelegate: _myGridDelegate(),
+      itemBuilder: (context, index) {
+        return _petWidget(snapshot.data!.docs[index]);
+      },
+    );
+  }
+
+  IconButton _backSelectApp(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const SelectAppView()),
+            (route) => false,
+          );
+        },
+        icon: const Icon(Icons.arrow_back));
   }
 
   NormalPetWidget _petWidget(document) {
@@ -77,24 +98,8 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
       mainAxisSpacing: 16,
     );
   }
-
-  searchTextField() {
-    return Container(
-      decoration: BoxDecoration(
-        color: LightThemeColors.snowbank,
-        borderRadius: ProjectRadius.mainAllRadius,
-      ),
-      child: const TextField(
-        decoration: InputDecoration(
-          hintText: _ThisPageTexts.search,
-          prefixIcon: Icon(Icons.search),
-        ),
-      ),
-    );
-  }
 }
 
 class _ThisPageTexts {
   static const String homePage = "Anasayfa";
-  static const String search = "Favori hayvanlarınızı arayın";
 }

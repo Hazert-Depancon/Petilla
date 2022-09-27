@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/theme/sizes/project_padding.dart';
-import 'package:petilla_app_project/theme/sizes/project_radius.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({Key? key, required this.petModel}) : super(key: key);
@@ -25,6 +26,8 @@ class _DetailViewState extends State<DetailView> {
     widget.petModel.price == "0" ? _isSahiplen = true : _isSahiplen = false;
     widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? isMe = true : isMe = false;
   }
+
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class _DetailViewState extends State<DetailView> {
                 _priceText(headline4),
               ],
             ),
-            const SizedBox(height: 24),
+            mainSizedBox,
             _descriptionText(context),
             const SizedBox(height: 16),
             _ageListTile(context),
@@ -142,14 +145,6 @@ class _DetailViewState extends State<DetailView> {
           fit: BoxFit.cover,
         ),
       ),
-      // child: Align(
-      //   alignment: Alignment.topRight,
-      //   child: _favButton(),
-      // ),
     );
   }
-
-  // FavButton _favButton() {
-  //   return const FavButton(iconSize: 32);
-  // }
 }

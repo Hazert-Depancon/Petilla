@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
+import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
@@ -42,6 +43,8 @@ class _InChatViewState extends State<InChatView> {
         .snapshots();
   }
 
+  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,35 +55,7 @@ class _InChatViewState extends State<InChatView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          StreamBuilder<QuerySnapshot>(
-            stream: firebaseStream,
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data.docs.isEmpty) {
-                  return const Center(
-                    child: Text("Say Hi!"),
-                  );
-                }
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: snapshot.data.docs.length,
-                    reverse: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      bool isMe = snapshot.data.docs[index]["senderId"] == widget.currentUserId;
-                      return SingleMessage(
-                        message: snapshot.data.docs[index]["message"],
-                        isMe: isMe,
-                      );
-                    },
-                  ),
-                );
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
+          CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -89,7 +64,7 @@ class _InChatViewState extends State<InChatView> {
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          mainSizedBox,
         ],
       ),
     );
@@ -127,6 +102,66 @@ class _InChatViewState extends State<InChatView> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomStreamBuilder extends StatelessWidget {
+  const CustomStreamBuilder({
+    Key? key,
+    required this.firebaseStream,
+    required this.widget,
+  }) : super(key: key);
+
+  final Stream<QuerySnapshot<Map<String, dynamic>>> firebaseStream;
+  final InChatView widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: firebaseStream,
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data.docs.isEmpty) {
+            return const Center(
+              child: Text("Say Hi!"),
+            );
+          }
+          return Expanded(
+            child: MyListView(widget: widget, snapshot: snapshot),
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+}
+
+class MyListView extends StatelessWidget {
+  const MyListView({
+    Key? key,
+    required this.widget,
+    required this.snapshot,
+  }) : super(key: key);
+
+  final InChatView widget;
+  final AsyncSnapshot snapshot;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: snapshot.data.docs.length,
+      reverse: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) {
+        bool isMe = snapshot.data.docs[index]["senderId"] == widget.currentUserId;
+        return SingleMessage(
+          message: snapshot.data.docs[index]["message"],
+          isMe: isMe,
+        );
+      },
     );
   }
 }
