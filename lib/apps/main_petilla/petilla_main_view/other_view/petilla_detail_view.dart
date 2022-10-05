@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
@@ -17,13 +18,13 @@ class DetailView extends StatefulWidget {
 }
 
 class _DetailViewState extends State<DetailView> {
-  late bool _isSahiplen;
+  late bool _isClaim;
   late bool isMe;
 
   @override
   void initState() {
     super.initState();
-    widget.petModel.price == "0" ? _isSahiplen = true : _isSahiplen = false;
+    widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
     widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? isMe = true : isMe = false;
   }
 
@@ -70,16 +71,16 @@ class _DetailViewState extends State<DetailView> {
   }
 
   ListTile _locationListTile(BuildContext context) {
-    return _litTile(context, "Konum:", "${widget.petModel.city} " " ${widget.petModel.ilce}");
+    return _litTile(context, "location".tr(), "${widget.petModel.city} " " ${widget.petModel.ilce}");
   }
 
-  ListTile _genderListTile(BuildContext context) => _litTile(context, "Cinsiyet:", widget.petModel.gender);
+  ListTile _genderListTile(BuildContext context) => _litTile(context, "gender".tr(), widget.petModel.gender);
 
-  ListTile _breedListTile(BuildContext context) => _litTile(context, "Irk:", widget.petModel.petBreed);
+  ListTile _breedListTile(BuildContext context) => _litTile(context, "race:".tr(), widget.petModel.petBreed);
 
-  ListTile _typeListTile(BuildContext context) => _litTile(context, "Tür:", widget.petModel.petType);
+  ListTile _typeListTile(BuildContext context) => _litTile(context, "type".tr(), widget.petModel.petType);
 
-  ListTile _ageListTile(BuildContext context) => _litTile(context, "Yaş:", widget.petModel.ageRange);
+  ListTile _ageListTile(BuildContext context) => _litTile(context, "age_range".tr(), widget.petModel.ageRange);
 
   Text _emailText(BuildContext context) {
     return Text(
@@ -122,8 +123,8 @@ class _DetailViewState extends State<DetailView> {
 
   Text _priceText(TextStyle? headline4) {
     return Text(
-      _isSahiplen ? "Sahiplen" : "${widget.petModel.price}TL",
-      style: _isSahiplen
+      _isClaim ? "claim".tr() : "${widget.petModel.price}TL",
+      style: _isClaim
           ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
           : headline4?.copyWith(fontSize: 24),
     );

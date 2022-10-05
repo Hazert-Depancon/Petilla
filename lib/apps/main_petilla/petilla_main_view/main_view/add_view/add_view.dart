@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
@@ -63,7 +64,7 @@ class _AddViewState extends State<AddView> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(_ThisPageTexts.pageTitle),
+        title: Text(_ThisPageTexts.pageTitle),
       ),
       body: Form(
         key: _formKey,
@@ -125,7 +126,7 @@ class _AddViewState extends State<AddView> {
   ListTile _pickCameraButton(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.photo_camera),
-      title: const Text(_ThisPageTexts.camera),
+      title: Text(_ThisPageTexts.camera),
       onTap: () {
         pickImageCamera();
         Navigator.of(context).pop();
@@ -136,7 +137,7 @@ class _AddViewState extends State<AddView> {
   ListTile _pickGalleryButton(BuildContext context) {
     return ListTile(
         leading: const Icon(Icons.photo_library),
-        title: const Text(_ThisPageTexts.gellery),
+        title: Text(_ThisPageTexts.gellery),
         onTap: () {
           pickImageGallery();
           Navigator.of(context).pop();
@@ -271,13 +272,13 @@ class _AddViewState extends State<AddView> {
 }
 
 class _ThisPageTexts {
-  static const String name = "İsim";
-  static const String description = "Açıklama";
-  static const String adopt = "Sahiplendir";
-  static const String next = "Sonraki";
-  static const String error = "HATA";
-  static const String fillAllArea = "Lütfen tüm alanları doldurunuz.";
-  static const String gellery = "Galeriden Seç";
-  static const String camera = "Kameradan Çek";
-  static const String pageTitle = "Evcil Hayvan Ekle 1/2";
+  static String name = "name".tr();
+  static String description = "description".tr();
+  static String adopt = "adopt".tr();
+  static String next = "next".tr();
+  static String error = "error".tr();
+  static String fillAllArea = "fill_all_area".tr();
+  static String gellery = "select_gallery".tr();
+  static String camera = "shoot_from_camera".tr();
+  static String pageTitle = "add_pet_two_in_one".tr();
 }

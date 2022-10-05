@@ -1,5 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
@@ -18,11 +19,11 @@ class NormalPetWidget extends StatefulWidget {
 }
 
 class _NormalPetWidgetState extends State<NormalPetWidget> {
-  late bool _isSahiplen;
+  late bool _isClaim;
   @override
   void initState() {
     super.initState();
-    widget.petModel.price == "0" ? _isSahiplen = true : _isSahiplen = false;
+    widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
   }
 
   @override
@@ -74,8 +75,8 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
 
   Text _priceText(TextStyle? subtitle2) {
     return Text(
-      _isSahiplen ? "Sahiplen" : "${widget.petModel.price}TL",
-      style: _isSahiplen
+      _isClaim ? "claim".tr() : "${widget.petModel.price}TL",
+      style: _isClaim
           ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis)
           : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),
     );

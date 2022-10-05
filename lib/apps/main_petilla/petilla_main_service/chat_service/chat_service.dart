@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:petilla_app_project/constant/strings/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 
 class ChatService {
   static final ChatService _compressUtils = ChatService._internal();
@@ -32,7 +32,6 @@ class ChatService {
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
         AppFirestoreFieldNames.messageField: message,
-        AppFirestoreFieldNames.typeField: "text",
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
         FirebaseFirestore.instance
@@ -57,7 +56,6 @@ class ChatService {
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
         AppFirestoreFieldNames.messageField: message,
-        AppFirestoreFieldNames.typeField: "text",
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
         FirebaseFirestore.instance

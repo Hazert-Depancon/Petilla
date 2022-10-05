@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
@@ -6,7 +7,7 @@ import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
-import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/main.dart';
@@ -32,7 +33,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(_ThisPageTexts.title),
+        title: Text(_ThisPageTexts.title),
         centerTitle: true,
       ),
       body: Form(
@@ -149,16 +150,16 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             (route) => false);
       },
-      child: const Text(_ThisPageTexts.logIn),
+      child: Text(_ThisPageTexts.logIn),
     );
   }
 }
 
 class _ThisPageTexts {
-  static const String title = "Kayıt Ol";
-  static const String nameHint = "Adınız";
-  static const String mailHint = "E-posta Adresiniz";
-  static const String passwordHint = "Şifreniz";
-  static const String alreadyHaveAnAccount = "Zaten hesabın var mı?";
-  static const String logIn = "Giriş Yap";
+  static String title = "register".tr();
+  static String nameHint = "name".tr();
+  static String mailHint = "mail".tr();
+  static String passwordHint = "password".tr();
+  static String alreadyHaveAnAccount = "already_have_an_account".tr();
+  static String logIn = "login".tr();
 }

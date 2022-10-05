@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, avoid_print
 
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -115,24 +116,24 @@ class _AddViewTwoState extends State<AddViewTwo> {
   }
 
   final pets = [
-    'Köpek',
-    'Kedi',
-    'Balık',
-    'Tavşan',
-    "Diğer",
+    "dog".tr(),
+    "cat".tr(),
+    "fish".tr(),
+    "rabbit".tr(),
+    "other".tr(),
   ];
 
   final List<String> gender = [
-    'Erkek',
-    'Dişi',
+    "male".tr(),
+    "female".tr(),
   ];
 
   final List<String> ageRange = [
-    "0 - 3 Ay",
-    "3 - 6 Ay",
-    "6 Ay - 1 Yıl",
-    "1 - 3 Yıl",
-    "3 Yıldan Fazla",
+    "zero_three_months".tr(),
+    "three_six_months".tr(),
+    "six_months_one_year".tr(),
+    "one_three_years".tr(),
+    "more_than_three_years".tr(),
   ];
 
   String? petSelectedValue;
@@ -155,7 +156,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Evcil Hayvan Ekle 2/2"),
+        title: Text("add_pet_two_for_two".tr()),
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
       body: ListView(
@@ -189,7 +190,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: const Text("Evcil Hayvan Yaş Aralığı"),
+      hint: Text("pet_age_range".tr()),
       value: ageRangeSelectedValue,
       items: ageRange
           .map(
@@ -215,7 +216,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: const Text("Evcil Hayvan Cinsiyeti"),
+      hint: Text("pet_gender".tr()),
       value: genderSelectedValue,
       items: gender
           .map(
@@ -241,7 +242,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: const Text("Evcil Hayvan Türü"),
+      hint: Text("pet_type".tr()),
       value: petSelectedValue,
       items: pets
           .map(
@@ -262,7 +263,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
   _textField() {
     return MainTextField(
       controller: _typeController,
-      hintText: "Evcil Hayvan Irkı",
+      hintText: "pet_race".tr(),
     );
   }
 
@@ -283,7 +284,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         },
         child: Center(
           child: Text(
-            _ilceSecilmisMi ? _secilenIlce : "İlçe Seçiniz",
+            _ilceSecilmisMi ? _secilenIlce : "select_district".tr(),
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -314,7 +315,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         },
         child: Center(
           child: Text(
-            _ilSecilmisMi ? _secilenIl : "İl Seçiniz",
+            _ilSecilmisMi ? _secilenIl : "city_select",
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -333,7 +334,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         onPressed: () async {
           _onSubmitButton(context);
         },
-        text: "Evcil Hayvan Ekle",
+        text: "add_a_pet".tr(),
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
       ),
@@ -349,16 +350,16 @@ class _AddViewTwoState extends State<AddViewTwo> {
           PetModel(
             currentUid: FirebaseAuth.instance.currentUser!.uid,
             currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
-            gender: genderSelectedValue ?? "Hata",
+            gender: genderSelectedValue ?? "error".tr(),
             name: widget.name,
             description: widget.description,
             imagePath: imageUrl,
-            ageRange: ageRangeSelectedValue ?? "Hata",
+            ageRange: ageRangeSelectedValue ?? "error".tr(),
             city: _secilenIl,
             ilce: _secilenIlce,
             petBreed: _typeController.text,
             price: widget.radioValue == 1 ? "0" : _typeController.text,
-            petType: petSelectedValue ?? "Hata",
+            petType: petSelectedValue ?? "error".tr(),
           ),
           context,
         )

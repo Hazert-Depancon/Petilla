@@ -3,12 +3,14 @@ import 'package:petilla_app_project/constant/sizes/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class Button extends StatelessWidget {
-  const Button({Key? key, required this.onPressed, this.width, this.height, this.text}) : super(key: key);
+  const Button({Key? key, required this.onPressed, this.width, this.height, this.text, this.noBorderRadius})
+      : super(key: key);
 
   final VoidCallback onPressed;
   final double? width;
   final double? height;
   final String? text;
+  final bool? noBorderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class Button extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: LightThemeColors.miamiMarmalade,
-          borderRadius: ProjectRadius.buttonAllRadius,
+          borderRadius: noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
         ),
         child: Center(
             child: Text(

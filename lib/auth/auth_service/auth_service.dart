@@ -1,11 +1,12 @@
 // ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
-import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:quickalert/quickalert.dart';
 
 class AuthService {
@@ -28,7 +29,7 @@ class AuthService {
     return QuickAlert.show(
       context: context,
       type: QuickAlertType.error,
-      title: "Hata",
+      title: "error".tr(),
       text: error,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
@@ -6,7 +7,7 @@ import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
-import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/main.dart';
@@ -38,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(_ThisPageTexts.title),
+        title: Text(_ThisPageTexts.title),
         centerTitle: true,
       ),
       body: Form(
@@ -52,7 +53,6 @@ class _LoginViewState extends State<LoginView> {
                 _mailTextField(),
                 mainSizedBox,
                 _passwordTextField(),
-                _forgotPassword(),
                 mainSizedBox,
                 _loginButton(context),
                 mainSizedBox,
@@ -118,14 +118,7 @@ class _LoginViewState extends State<LoginView> {
           (route) => false,
         );
       },
-      child: const Text(_ThisPageTexts.registerText),
-    );
-  }
-
-  TextButton _forgotPassword() {
-    return TextButton(
-      onPressed: () {},
-      child: const Text(_ThisPageTexts.forgotPasswordText),
+      child: Text(_ThisPageTexts.registerText),
     );
   }
 
@@ -153,10 +146,9 @@ class _LoginViewState extends State<LoginView> {
 }
 
 class _ThisPageTexts {
-  static const String title = "Giriş Yap";
-  static const String mailHintText = "E-posta";
-  static const String passwordHintText = "Şifre";
-  static const String forgotPasswordText = "Şifremi Unuttum";
-  static const String dontHaveAccount = "Hesabınız yok mu?";
-  static const String registerText = "Kayıt Ol";
+  static String title = "login".tr();
+  static String mailHintText = "mail".tr();
+  static String passwordHintText = "password".tr();
+  static String dontHaveAccount = "dont_have_account".tr();
+  static String registerText = "register".tr();
 }

@@ -1,9 +1,11 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/general/general_view/profile_view.dart';
@@ -58,14 +60,6 @@ class _SelectAppViewState extends State<SelectAppView> {
           ],
         ),
       ),
-      // bottomNavigationBar: _ad != null
-      //     ? Container(
-      //         width: double.infinity,
-      //         height: 55,
-      //         alignment: Alignment.center,
-      //         child: AdWidget(ad: _ad!),
-      //       )
-      //     : null,
     );
   }
 
@@ -78,11 +72,11 @@ class _SelectAppViewState extends State<SelectAppView> {
   }
 
   SelectAppWidget _selectPetilla() {
-    return const SelectAppWidget(
+    return SelectAppWidget(
       isBig: true,
-      title: 'Petilla',
+      title: "app_name".tr(),
       imagePath: "assets/images/petilla_image.png",
-      onTap: MainPetilla(),
+      onTap: const MainPetilla(),
     );
   }
 
@@ -91,7 +85,7 @@ class _SelectAppViewState extends State<SelectAppView> {
       onTap: () {
         _callProfileView(context);
       },
-      child: const Icon(Icons.person_outline, color: LightThemeColors.miamiMarmalade),
+      child: const Icon(AppIcons.personOutlineIcon, color: LightThemeColors.miamiMarmalade),
     );
   }
 

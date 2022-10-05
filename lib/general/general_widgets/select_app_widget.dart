@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class SelectAppWidget extends StatelessWidget {
@@ -19,7 +18,7 @@ class SelectAppWidget extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context) => onTap));
       },
       child: Container(
-        width: Get.width * 0.4,
+        width: MediaQuery.of(context).size.width * 0.4,
         height: isBig ? 220 : 105,
         decoration: BoxDecoration(
           border: Border.all(

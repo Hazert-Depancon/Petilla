@@ -1,27 +1,28 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
-import 'package:petilla_app_project/start/onboarding/onboarding_one.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding.dart';
 import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
 
-  // Initialize Firebase
+  await EasyLocalization.ensureInitialized();
+
   await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.dark,
   ));
 
   final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool('showHome') ?? false;
+  final showHome = prefs.getBool("showHome") ?? false;
 
   runApp(
     // DevicePreview(
@@ -32,7 +33,15 @@ Future<void> main() async {
     //   ],
     // ),
 
-    Petilla(showHome: showHome),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale("tr", "TR"),
+      ],
+      path: "assets/localization",
+      saveLocale: true,
+      fallbackLocale: const Locale("tr", "TR"),
+      child: Petilla(showHome: showHome),
+    ),
   );
 }
 
@@ -48,8 +57,11 @@ class _PetillaState extends State<Petilla> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
-      title: 'Petilla',
+      title: "app_name".tr(),
       theme: LightTheme().theme,
       home: widget.showHome
           ? FirebaseAuth.instance.currentUser != null

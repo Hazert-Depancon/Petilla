@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserChat extends StatelessWidget {
   const UserChat({Key? key, required this.onTap, required this.name}) : super(key: key);
@@ -12,7 +11,7 @@ class UserChat extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: Get.width,
+        width: MediaQuery.of(context).size.width,
         height: 100,
         color: Colors.white,
         child: Row(

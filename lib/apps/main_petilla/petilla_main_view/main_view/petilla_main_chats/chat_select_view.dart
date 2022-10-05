@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/chat_widgets/user_chat.dart';
-import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 
 class ChatSelectView extends StatefulWidget {
   const ChatSelectView({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _ChatSelectViewState extends State<ChatSelectView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mesajlar"),
+        title: Text("messages".tr()),
         automaticallyImplyLeading: false,
       ),
       body: _customstreamBuilder(),
@@ -93,7 +94,7 @@ class _ChatSelectViewState extends State<ChatSelectView> {
       child: Column(
         children: [
           const SizedBox(height: 120),
-          const Text("Henüz kimseyle mesajlaşmadınız", style: TextStyle(fontSize: 20)),
+          Text("no_messages_yet".tr(), style: const TextStyle(fontSize: 20)),
           Center(child: Lottie.network(ProjectLottieUrls.emptyLottie)),
         ],
       ),

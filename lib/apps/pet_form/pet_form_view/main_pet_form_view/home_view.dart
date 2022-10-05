@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/main_pet_form_view/group_template.dart';
@@ -11,13 +12,13 @@ class PetformHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bir grup seç'),
+        title: Text("select_a_group".tr()),
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
       body: Column(
         children: [
           ListTile(
-            title: const Text("Genel Sohbet"),
+            title: Text("general_chat".tr()),
             leading: const Icon(
               Icons.language,
               size: 32,
@@ -27,10 +28,10 @@ class PetformHomeView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupChat(
+                  builder: (context) => GroupChat(
                     collectionId: "general_messages",
                     docId: "general_chat",
-                    pageTitle: "Genel Sohbet",
+                    pageTitle: "general_chat".tr(),
                   ),
                 ),
               );
@@ -43,10 +44,10 @@ class PetformHomeView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupChat(
+                  builder: (context) => GroupChat(
                     collectionId: "dog_messages",
                     docId: "dog_chat",
-                    pageTitle: "Köpek Sohbeti",
+                    pageTitle: "dog_chat".tr(),
                   ),
                 ),
               );
@@ -59,10 +60,10 @@ class PetformHomeView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupChat(
+                  builder: (context) => GroupChat(
                     collectionId: "cat_messages",
                     docId: "dog_chat",
-                    pageTitle: "Kedi Sohbeti",
+                    pageTitle: "cat_chat".tr(),
                   ),
                 ),
               );
@@ -75,10 +76,10 @@ class PetformHomeView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupChat(
+                  builder: (context) => GroupChat(
                     collectionId: "rabbit_messages",
                     docId: "rabbit_chat",
-                    pageTitle: "Tavşan Sohbeti",
+                    pageTitle: "rabbit_chat".tr(),
                   ),
                 ),
               );
@@ -91,10 +92,10 @@ class PetformHomeView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GroupChat(
+                  builder: (context) => GroupChat(
                     collectionId: "balik_messages",
                     docId: "balik_chat",
-                    pageTitle: "Balık Sohbeti",
+                    pageTitle: "fish_chat".tr(),
                   ),
                 ),
               );
@@ -119,9 +120,9 @@ class PetformHomeView extends StatelessWidget {
     return QuickAlert.show(
       context: context,
       type: QuickAlertType.error,
-      title: 'Hata',
-      text: 'Henüz Grup Oluşturma Özelliği Aktif Değil',
-      confirmBtnText: 'Tamam',
+      title: "error".tr(),
+      text: "group_add_not_yet".tr(),
+      confirmBtnText: "ok".tr(),
       confirmBtnColor: Colors.red,
     );
   }

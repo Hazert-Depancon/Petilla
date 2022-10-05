@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
-import 'package:petilla_app_project/constant/strings/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
@@ -21,7 +22,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
     return Scaffold(
       appBar: AppBar(
         leading: _backSelectApp(context),
-        title: const Text(_ThisPageTexts.homePage),
+        title: Text(_ThisPageTexts.homePage),
         foregroundColor: LightThemeColors.miamiMarmalade,
       ),
       body: _streamBuilder(),
@@ -101,5 +102,5 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static const String homePage = "Anasayfa";
+  static String homePage = "home_page".tr();
 }

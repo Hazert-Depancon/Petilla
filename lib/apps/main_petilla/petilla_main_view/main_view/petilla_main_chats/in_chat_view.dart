@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
@@ -123,8 +124,8 @@ class CustomStreamBuilder extends StatelessWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.docs.isEmpty) {
-            return const Center(
-              child: Text("Say Hi!"),
+            return Center(
+              child: Text("say_hi".tr()),
             );
           }
           return Expanded(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
@@ -16,10 +17,8 @@ class _MainPetillaState extends State<MainPetilla> {
   int _selectedIndex = 0;
   final List<Widget> pages = [
     const PetillaHomeView(),
-    // const FavoritesView(),
     const AddView(),
     const ChatSelectView(),
-    // const DeclarationView(),
   ];
 
   @override
@@ -41,46 +40,30 @@ class _MainPetillaState extends State<MainPetilla> {
       },
       items: [
         _homeBottomNavigation(),
-        // _favoritesBottomNavigation(),
         _addBottomNavigation(),
         _chatsBottomNavigation(),
-        // _declarationBottomNavigation(),
       ],
     );
   }
 
-  // BottomNavigationBarItem _declarationBottomNavigation() {
-  //   return BottomNavigationBarItem(
-  //     icon: _selectedIndex == 4 ? const Icon(Icons.border_all) : const Icon(Icons.border_all_outlined),
-  //     label: "İlanlarım",
-  //   );
-  // }
-
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 2 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
-      label: "Mesajlarım",
+      label: "my_messages".tr(),
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 1 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
-      label: "Evcil Hayvan Ekle",
+      label: "add_a_pet".tr(),
     );
   }
-
-  // BottomNavigationBarItem _favoritesBottomNavigation() {
-  //   return BottomNavigationBarItem(
-  //     icon: _selectedIndex == 1 ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
-  //     label: "Favorilerim",
-  //   );
-  // }
 
   BottomNavigationBarItem _homeBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _homeIcon(),
-      label: "Anasayfa",
+      label: "home_page".tr(),
     );
   }
 
