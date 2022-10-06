@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/start/select_app_view.dart';
@@ -58,14 +59,15 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 
   IconButton _backSelectApp(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const SelectAppView()),
-            (route) => false,
-          );
-        },
-        icon: const Icon(Icons.arrow_back));
+      onPressed: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const SelectAppView()),
+          (route) => false,
+        );
+      },
+      icon: const Icon(AppIcons.arrowBackIcon),
+    );
   }
 
   NormalPetWidget _petWidget(document) {

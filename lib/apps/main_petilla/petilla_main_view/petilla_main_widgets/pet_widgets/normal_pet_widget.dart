@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/project_icon_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes/project_radius.dart';
@@ -96,7 +97,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
 
   Icon _placeIcon() {
     return const Icon(
-      Icons.location_on_outlined,
+      AppIcons.locationOnOtlinedIcon,
       size: ProjectIconSizes.smallIconSize,
       color: LightThemeColors.pastelStrawberry,
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
@@ -38,25 +39,23 @@ class _RegisterViewState extends State<RegisterView> {
       ),
       body: Form(
         key: _formKey,
-        child: ListView(
+        child: SingleChildScrollView(
           padding: ProjectPaddings.horizontalLargePadding,
-          children: [
-            Column(
-              children: [
-                _lottie(),
-                _nameTextField(),
-                mainSizedBox,
-                _emailTextField(),
-                mainSizedBox,
-                _passwordTextField(),
-                mainSizedBox,
-                _registerButton(),
-                mainSizedBox,
-                _alreadyHaveAnAccount(),
-                _logInButton(context),
-              ],
-            ),
-          ],
+          child: Column(
+            children: [
+              _lottie(),
+              _nameTextField(),
+              mainSizedBox,
+              _emailTextField(),
+              mainSizedBox,
+              _passwordTextField(),
+              mainSizedBox,
+              _registerButton(),
+              mainSizedBox,
+              _alreadyHaveAnAccount(),
+              _logInButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -77,7 +76,7 @@ class _RegisterViewState extends State<RegisterView> {
       hintText: _ThisPageTexts.passwordHint,
       isNext: false,
       keyboardType: TextInputType.visiblePassword,
-      prefixIcon: const Icon(Icons.lock_outline, color: LightThemeColors.cherrywoord),
+      prefixIcon: const Icon(AppIcons.lockOutlinedIcon, color: LightThemeColors.cherrywoord),
     );
   }
 
@@ -88,7 +87,7 @@ class _RegisterViewState extends State<RegisterView> {
       hintText: _ThisPageTexts.mailHint,
       isNext: true,
       keyboardType: TextInputType.emailAddress,
-      prefixIcon: const Icon(Icons.mail_outlined, color: LightThemeColors.cherrywoord),
+      prefixIcon: const Icon(AppIcons.emailOutlinedIcon, color: LightThemeColors.cherrywoord),
     );
   }
 
@@ -99,7 +98,7 @@ class _RegisterViewState extends State<RegisterView> {
       hintText: _ThisPageTexts.nameHint,
       isNext: true,
       keyboardType: TextInputType.name,
-      prefixIcon: const Icon(Icons.person, color: LightThemeColors.cherrywoord),
+      prefixIcon: const Icon(AppIcons.personOutlineIcon, color: LightThemeColors.cherrywoord),
     );
   }
 
@@ -121,8 +120,8 @@ class _RegisterViewState extends State<RegisterView> {
             _nameController.text.trim(),
             context,
           )
-          .whenComplete(
-            () => Navigator.pushAndRemoveUntil(
+          .then(
+            (value) => Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => const Petilla(showHome: true),

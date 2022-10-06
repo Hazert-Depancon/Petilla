@@ -13,7 +13,11 @@ class OnboardingOne extends StatelessWidget {
       padding: ProjectPaddings.horizontalLargePadding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [_svgPicOne(context), const SizedBox(height: 24), _textOne(context)],
+        children: [
+          _svgPicOne(context),
+          const SizedBox(height: 24),
+          _textOne(context),
+        ],
       ),
     );
   }

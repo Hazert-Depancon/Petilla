@@ -1,5 +1,7 @@
 {
     "app_name" : "Petilla",
+    "petform" : "Petform",
+    "profile" : "Profil",
     "my_messages" : "Mesajlarım",
     "add_a_pet" : "Evcil Hayvan Ekle",
     "home_page" : "Anasayfa",

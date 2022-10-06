@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
@@ -54,7 +56,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Bu alan boş bırakılamaz.';
+          return "fill_all_area".tr();
         }
         return null;
       },
@@ -64,7 +66,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
   IconButton _visibilityIcon() {
     return IconButton(
       icon: Icon(
-        _obscureText! ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+        _obscureText! ? AppIcons.visibilityOutlinedIcon : AppIcons.visibilityOffOutlinedIcon,
         color: LightThemeColors.cherrywoord,
       ),
       onPressed: () {

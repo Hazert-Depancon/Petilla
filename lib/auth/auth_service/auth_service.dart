@@ -4,26 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:quickalert/quickalert.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  _showDialog(context) {
-    return showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (context) {
-        return Center(
-          child: Lottie.network(ProjectLottieUrls.loadingLottie),
-        );
-      },
-    );
-  }
 
   _showAlertDialog(context, error) {
     return QuickAlert.show(
@@ -35,7 +22,7 @@ class AuthService {
   }
 
   Future<void> login(String email, String password, context) async {
-    _showDialog(context);
+    showDefaultLoadingDialog(false, context);
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
@@ -44,7 +31,7 @@ class AuthService {
   }
 
   Future register(String email, String password, String name, context) async {
-    _showDialog(context);
+    showDefaultLoadingDialog(false, context);
 
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -61,7 +48,7 @@ class AuthService {
   }
 
   Future logout(context) async {
-    _showDialog(context);
+    showDefaultLoadingDialog(false, context);
     try {
       await _auth.signOut().then(
             (value) => Navigator.pushAndRemoveUntil(

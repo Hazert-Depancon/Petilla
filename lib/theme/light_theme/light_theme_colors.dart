@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class LightThemeColors {
   static const Color miamiMarmalade = Color(0xffFA941E);
@@ -9,4 +9,7 @@ class LightThemeColors {
   static const Color cherrywoord = Color(0xff681818);
   static const Color white = Color(0xffffffff);
   static const Color burningOrange = Color(0xffff7429);
+  static const Color grey = Color(0xFF9E9E9E);
+  static const Color red = Colors.red;
+  static const Color black = Colors.black;
 }

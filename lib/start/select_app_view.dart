@@ -1,10 +1,9 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
+import 'package:petilla_app_project/constant/assets_build_constant/image_build_constant.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
@@ -20,62 +19,76 @@ class SelectAppView extends StatefulWidget {
 }
 
 class _SelectAppViewState extends State<SelectAppView> {
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+  final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Petilla"),
-        centerTitle: true,
-        actions: [
-          _profileAction(context),
-          const SizedBox(width: 12),
-        ],
-      ),
-      body: Center(
-        child: ListView(
-          children: [
-            mainSizedBox,
-            Padding(
-              padding: ProjectPaddings.horizontalMainPadding,
-              child: StaggeredGrid.count(
-                crossAxisCount: 4,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                children: [
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 2,
-                    child: _selectPetilla(),
-                  ),
-                  StaggeredGridTile.count(
-                    crossAxisCellCount: 2,
-                    mainAxisCellCount: 1.5,
-                    child: _selectPetform(),
-                  ),
-                ],
-              ),
-            ),
-          ],
+      appBar: _appBar(context),
+      body: _body(),
+    );
+  }
+
+  AppBar _appBar(BuildContext context) {
+    return AppBar(
+      title: Text(ThisPageTexts.title),
+      centerTitle: true,
+      actions: [
+        _profileAction(context),
+        const SizedBox(width: 12),
+      ],
+    );
+  }
+
+  ListView _body() {
+    return ListView(
+      children: [
+        mainSizedBox,
+        Padding(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: StaggeredGrid.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 12,
+            children: [
+              _selectPetillaGridTile(),
+              _selectPetformGridTile(),
+            ],
+          ),
         ),
-      ),
+      ],
+    );
+  }
+
+  StaggeredGridTile _selectPetformGridTile() {
+    return StaggeredGridTile.count(
+      crossAxisCellCount: 2,
+      mainAxisCellCount: 1.5,
+      child: _selectPetform(),
+    );
+  }
+
+  StaggeredGridTile _selectPetillaGridTile() {
+    return StaggeredGridTile.count(
+      crossAxisCellCount: 2,
+      mainAxisCellCount: 2,
+      child: _selectPetilla(),
     );
   }
 
   SelectAppWidget _selectPetform() {
-    return const SelectAppWidget(
-      title: 'Petform',
-      imagePath: "assets/images/petform.png",
-      onTap: MainPetForm(),
+    return SelectAppWidget(
+      title: "Petform",
+      imagePath: pngImageBuildConstant("petform"),
+      onTap: const MainPetForm(),
     );
   }
 
   SelectAppWidget _selectPetilla() {
     return SelectAppWidget(
       isBig: true,
-      title: "app_name".tr(),
-      imagePath: "assets/images/petilla_image.png",
+      title: ThisPageTexts.title,
+      imagePath: pngImageBuildConstant("petilla_image"),
       onTap: const MainPetilla(),
     );
   }
@@ -85,15 +98,19 @@ class _SelectAppViewState extends State<SelectAppView> {
       onTap: () {
         _callProfileView(context);
       },
-      child: const Icon(AppIcons.personOutlineIcon, color: LightThemeColors.miamiMarmalade),
+      child: const Icon(
+        AppIcons.personOutlineIcon,
+        color: LightThemeColors.miamiMarmalade,
+      ),
     );
   }
 
   void _callProfileView(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileView()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileView()));
   }
 }
 
 class ThisPageTexts {
-  static const String title = "Petilla";
+  static String title = "app_name".tr();
+  static String petformTitle = "petform".tr();
 }

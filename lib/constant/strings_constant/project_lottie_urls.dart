@@ -5,3 +5,6 @@ class ProjectLottieUrls {
   static const String loadingLottie = "https://assets8.lottiefiles.com/packages/lf20_lfbxwvzu.json";
   static const String emptyLottie = "https://assets8.lottiefiles.com/temp/lf20_Celp8h.json";
 }
+
+
+// constant klasörü devam

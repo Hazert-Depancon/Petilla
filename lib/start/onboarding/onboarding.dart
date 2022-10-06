@@ -100,11 +100,15 @@ class _OnboardingState extends State<Onboarding> {
   // Next button
   TextButton _nextButton() {
     return TextButton(
-      onPressed: () => controller.nextPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      ),
+      onPressed: _onNextButton,
       child: Text(_ThisPageTexts.continuePages),
+    );
+  }
+
+  void _onNextButton() {
+    controller.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 
@@ -120,7 +124,7 @@ class _OnboardingState extends State<Onboarding> {
 
   WormEffect _pageIndicatorEffect() {
     return const WormEffect(
-      dotColor: Colors.grey,
+      dotColor: LightThemeColors.grey,
       activeDotColor: LightThemeColors.miamiMarmalade,
       dotWidth: 15,
       dotHeight: 15,

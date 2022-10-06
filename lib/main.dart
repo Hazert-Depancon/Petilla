@@ -37,7 +37,7 @@ Future<void> main() async {
       supportedLocales: const [
         Locale("tr", "TR"),
       ],
-      path: "assets/localization",
+      path: "assets/jsons/localization",
       saveLocale: true,
       fallbackLocale: const Locale("tr", "TR"),
       child: Petilla(showHome: showHome),

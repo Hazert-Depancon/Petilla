@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_icon_sizes.dart';
@@ -125,7 +126,7 @@ class _AddViewState extends State<AddView> {
 
   ListTile _pickCameraButton(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.photo_camera),
+      leading: const Icon(AppIcons.photoCameraIcon),
       title: Text(_ThisPageTexts.camera),
       onTap: () {
         pickImageCamera();
@@ -136,7 +137,7 @@ class _AddViewState extends State<AddView> {
 
   ListTile _pickGalleryButton(BuildContext context) {
     return ListTile(
-        leading: const Icon(Icons.photo_library),
+        leading: const Icon(AppIcons.photoLibraryIcon),
         title: Text(_ThisPageTexts.gellery),
         onTap: () {
           pickImageGallery();
@@ -150,7 +151,7 @@ class _AddViewState extends State<AddView> {
       isNext: true,
       hintText: _ThisPageTexts.name,
       keyboardType: TextInputType.name,
-      prefixIcon: const Icon(Icons.person_outline),
+      prefixIcon: const Icon(AppIcons.personOutlineIcon),
       maxLength: 10,
     );
   }
@@ -163,7 +164,7 @@ class _AddViewState extends State<AddView> {
       maxLength: 175,
       minLines: 1,
       maxLines: 5,
-      prefixIcon: const Icon(Icons.description),
+      prefixIcon: const Icon(AppIcons.descriptionIcon),
     );
   }
 
@@ -182,7 +183,7 @@ class _AddViewState extends State<AddView> {
           borderRadius: ProjectRadius.mainAllRadius,
         ),
         child: const Icon(
-          Icons.add_photo_alternate_outlined,
+          AppIcons.addPhotoAlternateIcon,
           size: ProjectIconSizes.bigIconSize,
         ),
       ),

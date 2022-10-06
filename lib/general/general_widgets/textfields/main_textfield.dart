@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/constant/sizes/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
-class MainTextField extends StatefulWidget {
+class MainTextField extends StatelessWidget {
   const MainTextField({
     Key? key,
     this.hintText,
@@ -31,20 +32,15 @@ class MainTextField extends StatefulWidget {
   final Icon? suffixIcon;
 
   @override
-  State<MainTextField> createState() => _MainTextFieldState();
-}
-
-class _MainTextFieldState extends State<MainTextField> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enabled: widget.enabled,
-      maxLines: widget.maxLines,
-      minLines: widget.minLines,
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      maxLength: widget.maxLength,
-      textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
+      enabled: enabled,
+      maxLines: maxLines,
+      minLines: minLines,
+      controller: controller,
+      keyboardType: keyboardType,
+      maxLength: maxLength,
+      textInputAction: isNext == true ? TextInputAction.next : TextInputAction.done,
       decoration: InputDecoration(
         filled: true,
         fillColor: LightThemeColors.snowbank,
@@ -52,14 +48,14 @@ class _MainTextFieldState extends State<MainTextField> {
           borderRadius: ProjectRadius.allRadius,
           borderSide: BorderSide.none,
         ),
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon,
-        suffixText: widget.suffix,
-        suffixIcon: widget.suffixIcon,
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixText: suffix,
+        suffixIcon: suffixIcon,
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Bu alan boş bırakılamaz';
+          return "fill_all_area".tr();
         }
         return null;
       },

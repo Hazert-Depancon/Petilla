@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
@@ -108,7 +109,7 @@ class _GroupChatState extends State<GroupChat> {
           foregroundColor: LightThemeColors.white,
           child: IconButton(
             onPressed: _onSendButton,
-            icon: const Icon(Icons.send),
+            icon: const Icon(AppIcons.sendIcon),
           ),
         ),
       ),

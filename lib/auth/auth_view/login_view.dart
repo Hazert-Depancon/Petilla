@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
@@ -44,23 +45,25 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: Form(
         key: _formKey,
-        child: ListView(
+        child: SingleChildScrollView(
           padding: ProjectPaddings.horizontalLargePadding,
-          children: [
-            Column(
-              children: [
-                _lottie(),
-                _mailTextField(),
-                mainSizedBox,
-                _passwordTextField(),
-                mainSizedBox,
-                _loginButton(context),
-                mainSizedBox,
-                _dontHaveAnAccount(context),
-                _registerButton(),
-              ],
-            ),
-          ],
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  _lottie(),
+                  _mailTextField(),
+                  mainSizedBox,
+                  _passwordTextField(),
+                  mainSizedBox,
+                  _loginButton(context),
+                  mainSizedBox,
+                  _dontHaveAnAccount(context),
+                  _registerButton(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -81,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
       controller: _emailController,
       hintText: _ThisPageTexts.mailHintText,
       prefixIcon: const Icon(
-        Icons.mail_outlined,
+        AppIcons.emailOutlinedIcon,
         color: LightThemeColors.cherrywoord,
       ),
       keyboardType: TextInputType.emailAddress,
@@ -94,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
       controller: _passwordController,
       hintText: _ThisPageTexts.passwordHintText,
       prefixIcon: const Icon(
-        Icons.lock_outline,
+        AppIcons.lockOutlinedIcon,
         color: LightThemeColors.cherrywoord,
       ),
       keyboardType: TextInputType.visiblePassword,
@@ -133,8 +136,14 @@ class _LoginViewState extends State<LoginView> {
 
   void _onLoginButton() async {
     if (_formKey.currentState!.validate()) {
-      await AuthService().login(_emailController.text.trim(), _passwordController.text.trim(), context).whenComplete(
-            () => Navigator.push(
+      await AuthService()
+          .login(
+            _emailController.text.trim(),
+            _passwordController.text.trim(),
+            context,
+          )
+          .then(
+            (e) => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const Petilla(showHome: true),

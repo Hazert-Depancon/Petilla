@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
@@ -96,10 +97,16 @@ class _InChatViewState extends State<InChatView> {
           child: IconButton(
             onPressed: () async {
               String message = controller.text;
-              ChatService().sendMessage(message, controller, widget.currentUserId, widget.friendUserId,
-                  widget.friendUserEmail, widget.currentUserEmail);
+              ChatService().sendMessage(
+                message,
+                controller,
+                widget.currentUserId,
+                widget.friendUserId,
+                widget.friendUserEmail,
+                widget.currentUserEmail,
+              );
             },
-            icon: const Icon(Icons.send),
+            icon: const Icon(AppIcons.sendIcon),
           ),
         ),
       ),

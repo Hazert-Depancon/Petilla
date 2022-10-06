@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes/project_radius.dart';
@@ -92,7 +93,7 @@ class _DetailViewState extends State<DetailView> {
   FloatingActionButton _chatFabButton() {
     return FloatingActionButton(
       onPressed: _callChatPage,
-      child: const Icon(Icons.chat),
+      child: const Icon(AppIcons.chatIcon),
     );
   }
 

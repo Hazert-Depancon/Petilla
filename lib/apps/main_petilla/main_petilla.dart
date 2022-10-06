@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
+import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class MainPetilla extends StatefulWidget {
@@ -15,6 +17,7 @@ class MainPetilla extends StatefulWidget {
 
 class _MainPetillaState extends State<MainPetilla> {
   int _selectedIndex = 0;
+
   final List<Widget> pages = [
     const PetillaHomeView(),
     const AddView(),
@@ -48,14 +51,14 @@ class _MainPetillaState extends State<MainPetilla> {
 
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 2 ? const Icon(Icons.chat_bubble) : const Icon(Icons.chat_bubble_outline),
+      icon: _selectedIndex == 2 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
       label: "my_messages".tr(),
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 1 ? const Icon(Icons.add_circle) : const Icon(Icons.add_circle_outline),
+      icon: _selectedIndex == 1 ? const Icon(AppIcons.addCircleIcon) : const Icon(AppIcons.addCircleOutlinedIcon),
       label: "add_a_pet".tr(),
     );
   }
@@ -69,8 +72,8 @@ class _MainPetillaState extends State<MainPetilla> {
 
   SvgPicture _homeIcon() {
     return SvgPicture.asset(
-      _selectedIndex == 0 ? "assets/svg/home.svg" : "assets/svg/home_outline.svg",
-      color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : Colors.grey,
+      _selectedIndex == 0 ? svgBuildConstant("home") : svgBuildConstant("home_outline"),
+      color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : LightThemeColors.grey,
       height: 25,
     );
   }

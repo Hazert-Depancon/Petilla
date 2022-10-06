@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/main_pet_form_view/group_template.dart';
+import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:quickalert/quickalert.dart';
 
@@ -20,7 +21,7 @@ class PetformHomeView extends StatelessWidget {
           ListTile(
             title: Text("general_chat".tr()),
             leading: const Icon(
-              Icons.language,
+              AppIcons.languageIcon,
               size: 32,
               color: Colors.black,
             ),
@@ -112,7 +113,7 @@ class PetformHomeView extends StatelessWidget {
       onPressed: () {
         _awesomeDialog(context);
       },
-      child: const Icon(Icons.group_add_outlined),
+      child: const Icon(AppIcons.groupAddOutlinedIcon),
     );
   }
 

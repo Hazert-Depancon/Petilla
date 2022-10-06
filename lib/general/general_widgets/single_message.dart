@@ -15,18 +15,26 @@ class SingleMessage extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.all(16),
           constraints: const BoxConstraints(maxWidth: 200),
-          decoration: BoxDecoration(
-            color: isMe ? LightThemeColors.miamiMarmalade.withOpacity(0.6) : Colors.grey[300],
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(isMe ? 30 : 0),
-              topRight: Radius.circular(isMe ? 0 : 30),
-              bottomLeft: const Radius.circular(30),
-              bottomRight: const Radius.circular(30),
-            ),
-          ),
+          decoration: _boxDecoration(),
           child: Text(message),
         ),
       ],
+    );
+  }
+
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+      color: isMe ? LightThemeColors.miamiMarmalade.withOpacity(0.6) : Colors.grey[300],
+      borderRadius: _borderRadius(),
+    );
+  }
+
+  BorderRadius _borderRadius() {
+    return BorderRadius.only(
+      topLeft: Radius.circular(isMe ? 30 : 0),
+      topRight: Radius.circular(isMe ? 0 : 30),
+      bottomLeft: const Radius.circular(30),
+      bottomRight: const Radius.circular(30),
     );
   }
 }
