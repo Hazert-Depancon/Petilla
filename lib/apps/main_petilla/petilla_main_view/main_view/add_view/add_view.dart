@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes/project_icon_sizes.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
-import 'package:petilla_app_project/constant/sizes/project_radius.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
+import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:quickalert/quickalert.dart';
 
 class AddView extends StatefulWidget {
   const AddView({Key? key}) : super(key: key);
@@ -246,12 +246,7 @@ class _AddViewState extends State<AddView> {
 
   _onNextButton(context) {
     if (image == null) {
-      return QuickAlert.show(
-        context: context,
-        type: QuickAlertType.error,
-        title: _ThisPageTexts.error,
-        text: _ThisPageTexts.fillAllArea,
-      );
+      return showErrorDialog(true, _ThisPageTexts.fillAllArea, context);
     }
     if (_formKey.currentState!.validate()) {
       _callAddViewTwo(context);
@@ -277,7 +272,6 @@ class _ThisPageTexts {
   static String description = "description".tr();
   static String adopt = "adopt".tr();
   static String next = "next".tr();
-  static String error = "error".tr();
   static String fillAllArea = "fill_all_area".tr();
   static String gellery = "select_gallery".tr();
   static String camera = "shoot_from_camera".tr();

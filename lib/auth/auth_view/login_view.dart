@@ -4,10 +4,10 @@ import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes/project_card_sizes.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_card_sizes.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
@@ -27,43 +27,40 @@ class _LoginViewState extends State<LoginView> {
 
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-  }
-
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_ThisPageTexts.title),
-        centerTitle: true,
-      ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: ProjectPaddings.horizontalLargePadding,
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  _lottie(),
-                  _mailTextField(),
-                  mainSizedBox,
-                  _passwordTextField(),
-                  mainSizedBox,
-                  _loginButton(context),
-                  mainSizedBox,
-                  _dontHaveAnAccount(context),
-                  _registerButton(),
-                ],
-              ),
-            ],
-          ),
+      appBar: _appBar(),
+      body: _body(context),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: Text(_ThisPageTexts.title),
+      centerTitle: true,
+    );
+  }
+
+  Form _body(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: SingleChildScrollView(
+        padding: ProjectPaddings.horizontalLargePadding,
+        child: Column(
+          children: [
+            _lottie(),
+            _mailTextField(),
+            mainSizedBox,
+            _passwordTextField(),
+            mainSizedBox,
+            _loginButton(context),
+            mainSizedBox,
+            _dontHaveAnAccount(context),
+            _registerButton(),
+          ],
         ),
       ),
     );

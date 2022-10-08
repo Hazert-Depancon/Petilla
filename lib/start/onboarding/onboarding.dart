@@ -39,7 +39,7 @@ class _OnboardingState extends State<Onboarding> {
     return PageView(
       onPageChanged: _onPageChangedMethod,
       controller: controller,
-      children: const [
+      children: [
         OnboardingOne(),
         OnboardingPageTwo(),
         OnboardingPageThree(),

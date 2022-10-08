@@ -5,21 +5,18 @@ import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/constant/assets_build_constant/image_build_constant.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/general/general_view/profile_view.dart';
 import 'package:petilla_app_project/general/general_widgets/select_app_widget.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
-class SelectAppView extends StatefulWidget {
+class SelectAppView extends StatelessWidget {
   const SelectAppView({Key? key}) : super(key: key);
 
-  @override
-  State<SelectAppView> createState() => _SelectAppViewState();
-}
-
-class _SelectAppViewState extends State<SelectAppView> {
   final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
+  final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,7 @@ class _SelectAppViewState extends State<SelectAppView> {
       centerTitle: true,
       actions: [
         _profileAction(context),
-        const SizedBox(width: 12),
+        smallWidthSizedBox,
       ],
     );
   }

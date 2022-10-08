@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
@@ -28,9 +30,9 @@ class InChatView extends StatefulWidget {
 class _InChatViewState extends State<InChatView> {
   final TextEditingController controller = TextEditingController();
   late final Stream<QuerySnapshot<Map<String, dynamic>>> firebaseStream;
-  final String usersRef = "users";
-  final String messagesRef = "messages";
-  final String chatsRef = "chats";
+  final String usersRef = AppFirestoreCollectionNames.usersCollection;
+  final String messagesRef = AppFirestoreCollectionNames.messages;
+  final String chatsRef = AppFirestoreCollectionNames.chatsCollection;
 
   @override
   void initState() {
@@ -41,7 +43,7 @@ class _InChatViewState extends State<InChatView> {
         .collection(messagesRef)
         .doc(widget.friendUserId)
         .collection(chatsRef)
-        .orderBy("date", descending: true)
+        .orderBy(AppFirestoreFieldNames.dateField, descending: true)
         .snapshots();
   }
 

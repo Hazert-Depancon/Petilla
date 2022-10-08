@@ -1,10 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 
 class UserChat extends StatelessWidget {
-  const UserChat({Key? key, required this.onTap, required this.name}) : super(key: key);
+  UserChat({Key? key, required this.onTap, required this.name}) : super(key: key);
 
   final VoidCallback onTap;
   final String name;
+
+  var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class UserChat extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 12),
+                  smallSizedBox,
                 ],
               ),
             ),

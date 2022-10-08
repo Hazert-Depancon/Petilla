@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
-import 'package:petilla_app_project/constant/sizes/project_radius.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class DetailView extends StatefulWidget {
@@ -30,6 +30,7 @@ class _DetailViewState extends State<DetailView> {
   }
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+  var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,9 @@ class _DetailViewState extends State<DetailView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _emailText(context),
-            const SizedBox(height: 16),
+            smallSizedBox,
             _imageContainer(),
-            const SizedBox(height: 12),
+            smallSizedBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -1,11 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 
 class OnboardingPageThree extends StatelessWidget {
-  const OnboardingPageThree({super.key});
+  OnboardingPageThree({super.key});
+  var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class OnboardingPageThree extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _svgPicThree(context),
-          const SizedBox(height: 24),
+          mainHeightSizedBox,
           _textThree(context),
         ],
       ),

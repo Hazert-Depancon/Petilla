@@ -2,10 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 
+// ignore: must_be_immutable
 class OnboardingOne extends StatelessWidget {
-  const OnboardingOne({super.key});
+  OnboardingOne({super.key});
+  var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class OnboardingOne extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _svgPicOne(context),
-          const SizedBox(height: 24),
+          mainHeightSizedBox,
           _textOne(context),
         ],
       ),

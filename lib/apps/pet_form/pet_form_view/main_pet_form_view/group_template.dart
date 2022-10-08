@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
@@ -76,10 +78,15 @@ class _GroupChatState extends State<GroupChat> {
 
   void _onSendButton() {
     if (msg.text.isNotEmpty) {
-      _firestore.collection("messages").doc(widget.docId).collection(widget.collectionId).doc().set({
-        "msg": msg.text.trim(),
-        "user": loginUser!.email.toString(),
-        "time": DateTime.now(),
+      _firestore
+          .collection(AppFirestoreCollectionNames.messages)
+          .doc(widget.docId)
+          .collection(widget.collectionId)
+          .doc()
+          .set({
+        AppFirestoreFieldNames.msgField: msg.text.trim(),
+        AppFirestoreFieldNames.userField: loginUser!.email,
+        AppFirestoreFieldNames.timeField: DateTime.now(),
       });
       msg.clear();
     }
@@ -126,10 +133,10 @@ class ShowMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection("messages")
+          .collection(AppFirestoreCollectionNames.messages)
           .doc(docId)
           .collection(collectionId)
-          .orderBy("time")
+          .orderBy(AppFirestoreFieldNames.timeField)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {

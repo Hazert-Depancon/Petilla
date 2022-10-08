@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
-  final smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
+  final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
+  final smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   final _firestore = FirebaseFirestore.instance;
 
@@ -32,7 +33,7 @@ class ProfileView extends StatelessWidget {
       title: Text(_ThisPageTexts.title),
       actions: [
         _profileAction(context),
-        smallSizedBox,
+        smallWidthSizedBox,
       ],
     );
   }
@@ -78,9 +79,9 @@ class ProfileView extends StatelessWidget {
       child: Column(
         children: [
           _circleAvatar(snapshot, name),
-          smallSizedBox,
+          smallHeightSizedBox,
           _nameTextfield(snapshot, name),
-          smallSizedBox,
+          smallHeightSizedBox,
           _emailTextfield(snapshot, email),
         ],
       ),

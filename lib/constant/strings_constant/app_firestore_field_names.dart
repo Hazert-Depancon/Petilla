@@ -1,15 +1,14 @@
 class AppFirestoreFieldNames {
-  // Chat Fields
   static String senderIdField = "senderId";
+  static String userField = "user";
+  static String timeField = "time";
   static String receiverIdField = "receiverId";
-  static String messageField = "message";
+  static String msgField = "msg";
   static String typeField = "type";
   static String dateField = "date";
   static String lastMsgField = "last_msg";
   static String emailField = "email";
   static String uidField = "uid";
-
-  // Pet Field
   static String nameField = "name";
   static String descriptionField = "description";
   static String imagePathField = "imagePath";

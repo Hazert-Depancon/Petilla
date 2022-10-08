@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
 import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes/project_radius.dart';
-import 'package:petilla_app_project/general/general_widgets/fav_button.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class LargePetWidget extends StatefulWidget {
@@ -18,6 +18,7 @@ class LargePetWidget extends StatefulWidget {
 
 class _LargePetWidgetState extends State<LargePetWidget> {
   late bool _isClaim;
+  var smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   @override
   void initState() {
@@ -64,10 +65,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
 
   Container _mainContainer(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: LightThemeColors.snowbank,
-        borderRadius: ProjectRadius.buttonAllRadius,
-      ),
+      decoration: _boxDecoration(),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -78,14 +76,8 @@ class _LargePetWidgetState extends State<LargePetWidget> {
           Expanded(
             child: Column(
               children: [
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    _nameText(context),
-                    const Spacer(),
-                    _favButton(),
-                  ],
-                ),
+                smallHeightSizedBox,
+                _nameText(context),
                 Row(
                   children: [
                     _paidText(context),
@@ -94,7 +86,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
                     const SizedBox(width: 12),
                   ],
                 ),
-                const SizedBox(height: 12),
+                smallHeightSizedBox,
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: _descriptionText(context),
@@ -107,10 +99,15 @@ class _LargePetWidgetState extends State<LargePetWidget> {
     );
   }
 
-  Text _nameText(BuildContext context) => Text(widget.petModel.name, style: Theme.of(context).textTheme.headline6);
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+      color: LightThemeColors.snowbank,
+      borderRadius: ProjectRadius.buttonAllRadius,
+    );
+  }
 
-  FavButton _favButton() {
-    return const FavButton();
+  Text _nameText(BuildContext context) {
+    return Text(widget.petModel.name, style: Theme.of(context).textTheme.headline6);
   }
 
   Text _paidText(BuildContext context) {

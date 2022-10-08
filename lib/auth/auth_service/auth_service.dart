@@ -1,62 +1,51 @@
-// ignore_for_file: avoid_print
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
-import 'package:quickalert/quickalert.dart';
+import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  _showAlertDialog(context, error) {
-    return QuickAlert.show(
-      context: context,
-      type: QuickAlertType.error,
-      title: "error".tr(),
-      text: error,
-    );
-  }
 
   Future<void> login(String email, String password, context) async {
     showDefaultLoadingDialog(false, context);
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      _showAlertDialog(context, e.message);
+      showErrorDialog(true, e.message!, context);
     }
   }
 
-  Future register(String email, String password, String name, context) async {
+  Future<void> register(String email, String password, String name, context) async {
     showDefaultLoadingDialog(false, context);
 
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       await _firestore.collection("users").doc(_auth.currentUser!.uid).set({
-        "name": name,
-        "email": email,
-        "uid": _auth.currentUser!.uid,
-        "status": "Unavailable",
+        AppFirestoreFieldNames.nameField: name,
+        AppFirestoreFieldNames.emailField: email,
+        AppFirestoreFieldNames.uidField: _auth.currentUser!.uid,
       });
-      print('Register success');
     } on FirebaseAuthException catch (e) {
-      _showAlertDialog(context, e.message);
+      showErrorDialog(true, e.message!, context);
     }
   }
 
-  Future logout(context) async {
+  Future<void> logout(context) async {
     showDefaultLoadingDialog(false, context);
     try {
       await _auth.signOut().then(
             (value) => Navigator.pushAndRemoveUntil(
-                context, MaterialPageRoute(builder: (context) => const LoginView()), (route) => false),
+              context,
+              MaterialPageRoute(builder: (context) => const LoginView()),
+              (route) => false,
+            ),
           );
-      print('Logout success');
     } on FirebaseAuthException catch (e) {
-      _showAlertDialog(context, e.message);
+      showErrorDialog(true, e.message!, context);
     }
   }
 }

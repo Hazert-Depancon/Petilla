@@ -12,9 +12,9 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/model
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
-import 'package:petilla_app_project/constant/sizes/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes/project_padding.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
@@ -155,30 +155,38 @@ class _AddViewTwoState extends State<AddViewTwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("add_pet_two_for_two".tr()),
-        foregroundColor: LightThemeColors.miamiMarmalade,
-      ),
-      body: ListView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        children: [
-          mainSizedBox,
-          citySelect(),
-          mainSizedBox,
-          districtSelect(),
-          mainSizedBox,
-          _petTypeDropDown(),
-          mainSizedBox,
-          _petGenderDropDown(),
-          mainSizedBox,
-          _petAgeRangeDropDown(),
-          mainSizedBox,
-          _textField(),
-          mainSizedBox,
-          widget.radioValue == 1 ? const SizedBox() : _textField(),
-          _submitButton(context),
-        ],
-      ),
+      appBar: _appBar(),
+      body: _body(context),
+    );
+  }
+
+  ListView _body(BuildContext context) {
+    return ListView(
+      padding: ProjectPaddings.horizontalMainPadding,
+      children: [
+        mainSizedBox,
+        citySelect(),
+        mainSizedBox,
+        districtSelect(),
+        mainSizedBox,
+        _petTypeDropDown(),
+        mainSizedBox,
+        _petGenderDropDown(),
+        mainSizedBox,
+        _petAgeRangeDropDown(),
+        mainSizedBox,
+        _textField(),
+        mainSizedBox,
+        widget.radioValue == 1 ? const SizedBox() : _textField(),
+        _submitButton(context),
+      ],
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: Text("add_pet_two_for_two".tr()),
+      foregroundColor: LightThemeColors.miamiMarmalade,
     );
   }
 

@@ -4,9 +4,9 @@ import 'package:petilla_app_project/constant/strings_constant/app_firestore_fiel
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 
 class ChatService {
-  static final ChatService _compressUtils = ChatService._internal();
+  static final ChatService _chatService = ChatService._internal();
   factory ChatService() {
-    return _compressUtils;
+    return _chatService;
   }
   ChatService._internal();
 
@@ -25,19 +25,19 @@ class ChatService {
       FirebaseFirestore.instance
           .collection(AppFirestoreCollectionNames.usersCollection)
           .doc(currentUserId)
-          .collection(AppFirestoreCollectionNames.messagesCollection)
+          .collection(AppFirestoreCollectionNames.messages)
           .doc(friendUserId)
           .collection(AppFirestoreCollectionNames.chatsCollection)
           .add({
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
-        AppFirestoreFieldNames.messageField: message,
+        AppFirestoreCollectionNames.messages: message,
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
         FirebaseFirestore.instance
             .collection(AppFirestoreCollectionNames.usersCollection)
             .doc(currentUserId)
-            .collection(AppFirestoreCollectionNames.messagesCollection)
+            .collection(AppFirestoreCollectionNames.messages)
             .doc(friendUserId)
             .set({
           AppFirestoreFieldNames.lastMsgField: message,
@@ -49,19 +49,19 @@ class ChatService {
       await FirebaseFirestore.instance
           .collection(AppFirestoreCollectionNames.usersCollection)
           .doc(friendUserId)
-          .collection(AppFirestoreCollectionNames.messagesCollection)
+          .collection(AppFirestoreCollectionNames.messages)
           .doc(currentUserId)
           .collection(AppFirestoreCollectionNames.chatsCollection)
           .add({
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
-        AppFirestoreFieldNames.messageField: message,
+        AppFirestoreCollectionNames.messages: message,
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
         FirebaseFirestore.instance
             .collection(AppFirestoreCollectionNames.usersCollection)
             .doc(friendUserId)
-            .collection(AppFirestoreCollectionNames.messagesCollection)
+            .collection(AppFirestoreCollectionNames.messages)
             .doc(currentUserId)
             .set({
           AppFirestoreFieldNames.lastMsgField: message,

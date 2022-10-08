@@ -8,9 +8,9 @@ import 'package:petilla_app_project/constant/strings_constant/app_firestore_fiel
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 
 class CrudService {
-  static final CrudService _compressUtils = CrudService._internal();
+  static final CrudService _crudService = CrudService._internal();
   factory CrudService() {
-    return _compressUtils;
+    return _crudService;
   }
   CrudService._internal();
 

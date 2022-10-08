@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/chat_widgets/user_chat.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 
 class ChatSelectView extends StatefulWidget {
@@ -42,9 +43,9 @@ class _ChatSelectViewState extends State<ChatSelectView> {
   StreamBuilder<QuerySnapshot<Object?>> _customstreamBuilder() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection("users")
+          .collection(AppFirestoreCollectionNames.usersCollection)
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection("messages")
+          .collection(AppFirestoreCollectionNames.messages)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
