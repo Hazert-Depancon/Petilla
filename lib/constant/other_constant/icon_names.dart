@@ -22,4 +22,5 @@ class AppIcons {
   static const favoriteBorderIcon = Icons.favorite_border;
   static const visibilityOutlinedIcon = Icons.visibility_outlined;
   static const visibilityOffOutlinedIcon = Icons.visibility_off_outlined;
+  static const closeIcon = Icons.close;
 }

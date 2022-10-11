@@ -61,5 +61,7 @@
     "onboarding_msg_three" : "Evcil hayvanlarınızın tatlı ve komik anlarını diğer insanlarla paylaşın!",
     "continue" : "Devam",
     "start" : "BAŞLA",
-    "back" : "Geri"
+    "back" : "Geri",
+    "filter_pets" : "Evcil Hayvanları Filtrele",
+    "clear" : "Temizle"
 }

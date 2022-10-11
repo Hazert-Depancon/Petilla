@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
   
+  #Filter
+  filter_list: ^1.0.2
+
   #Localization
   easy_localization: ^3.0.1
 

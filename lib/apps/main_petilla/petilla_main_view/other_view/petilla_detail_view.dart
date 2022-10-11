@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
+import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
@@ -78,7 +78,7 @@ class _DetailViewState extends State<DetailView> {
 
   ListTile _genderListTile(BuildContext context) => _litTile(context, "gender".tr(), widget.petModel.gender);
 
-  ListTile _breedListTile(BuildContext context) => _litTile(context, "race:".tr(), widget.petModel.petBreed);
+  ListTile _breedListTile(BuildContext context) => _litTile(context, "race".tr(), widget.petModel.petBreed);
 
   ListTile _typeListTile(BuildContext context) => _litTile(context, "type".tr(), widget.petModel.petType);
 

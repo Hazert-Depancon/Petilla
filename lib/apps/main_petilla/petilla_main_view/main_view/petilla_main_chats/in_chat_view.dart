@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
-import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
+import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';

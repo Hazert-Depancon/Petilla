@@ -5,7 +5,7 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_vie
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
-import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
+import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class MainPetilla extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/main_pet_form_view/group_template.dart';
 import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
-import 'package:petilla_app_project/constant/others_constant/icon_names.dart';
+import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
