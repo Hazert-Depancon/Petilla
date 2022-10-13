@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_pages/onboarding_page_one.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_pages/onboarding_page_three.dart';
@@ -164,7 +164,7 @@ class _OnboardingState extends State<Onboarding> {
 }
 
 class _ThisPageTexts {
-  static String backText = "back".tr();
-  static String start = "start".tr();
-  static String continuePages = "continue".tr();
+  static String backText = Localization.back;
+  static String start = Localization.start;
+  static String continuePages = Localization.continueText;
 }

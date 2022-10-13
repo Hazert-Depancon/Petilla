@@ -1,22 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/chat_widgets/user_chat.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 
-class ChatSelectView extends StatefulWidget {
+class ChatSelectView extends StatelessWidget {
   const ChatSelectView({Key? key}) : super(key: key);
-
-  @override
-  State<ChatSelectView> createState() => _ChatSelectViewState();
-}
-
-class _ChatSelectViewState extends State<ChatSelectView> {
-  void callInChat(String friendEmail, String friendUid, String currentEmail, String currentUid) {
+  void _callInChat(String friendEmail, String friendUid, String currentEmail, String currentUid, context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => InChatView(
@@ -32,11 +27,15 @@ class _ChatSelectViewState extends State<ChatSelectView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("messages".tr()),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: _appBar(),
       body: _customstreamBuilder(),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: Text(_ThisPageTexts.myMessages),
+      automaticallyImplyLeading: false,
     );
   }
 
@@ -72,21 +71,22 @@ class _ChatSelectViewState extends State<ChatSelectView> {
       itemCount: snapshot.data!.docs.length,
       itemBuilder: (context, index) {
         return UserChat(
-          name: snapshot.data!.docs[index]["email"],
+          name: snapshot.data!.docs[index][AppFirestoreFieldNames.emailField],
           onTap: () {
-            _callChat(snapshot, index);
+            _callChat(snapshot, index, context);
           },
         );
       },
     );
   }
 
-  void _callChat(snapshot, index) {
-    return callInChat(
-      snapshot.data!.docs[index]["email"],
-      snapshot.data!.docs[index]["uid"],
+  void _callChat(snapshot, index, context) {
+    return _callInChat(
+      snapshot.data!.docs[index][AppFirestoreFieldNames.emailField],
+      snapshot.data!.docs[index][AppFirestoreFieldNames.uidField],
       FirebaseAuth.instance.currentUser!.email.toString(),
       FirebaseAuth.instance.currentUser!.uid,
+      context,
     );
   }
 
@@ -95,10 +95,15 @@ class _ChatSelectViewState extends State<ChatSelectView> {
       child: Column(
         children: [
           const SizedBox(height: 120),
-          Text("no_messages_yet".tr(), style: const TextStyle(fontSize: 20)),
+          Text(_ThisPageTexts.noMessagesYet, style: const TextStyle(fontSize: 20)),
           Center(child: Lottie.network(ProjectLottieUrls.emptyLottie)),
         ],
       ),
     );
   }
+}
+
+class _ThisPageTexts {
+  static String myMessages = Localization.myMessages;
+  static String noMessagesYet = Localization.noMessagesYet;
 }

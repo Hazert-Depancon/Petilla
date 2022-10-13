@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -11,6 +10,7 @@ import 'package:petilla_app_project/constant/strings_constant/project_lottie_url
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -118,5 +118,5 @@ class ProfileView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String title = "profile".tr();
+  static String title = Localization.profile;
 }

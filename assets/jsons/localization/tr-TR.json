@@ -63,5 +63,8 @@
     "start" : "BAŞLA",
     "back" : "Geri",
     "filter_pets" : "Evcil Hayvanları Filtrele",
-    "clear" : "Temizle"
+    "filter" : "Filtrele",
+    "clear" : "Temizle",
+    "not_pet_yet" : "Aradığınız Evcil Hayvanı Bulamadık",
+    "write_a_message" : "Bir mesaj yaz..."
 }

@@ -1,9 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
-import 'package:petilla_app_project/constant/assets_build_constant/image_build_constant.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/utility/assets_build_constant/image_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -108,6 +108,6 @@ class SelectAppView extends StatelessWidget {
 }
 
 class ThisPageTexts {
-  static String title = "app_name".tr();
-  static String petformTitle = "petform".tr();
+  static String title = Localization.appName;
+  static String petformTitle = Localization.petform;
 }

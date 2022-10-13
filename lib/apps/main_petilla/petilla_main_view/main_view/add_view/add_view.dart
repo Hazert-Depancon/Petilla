@@ -1,10 +1,10 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:io';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view_two.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
@@ -268,12 +268,12 @@ class _AddViewState extends State<AddView> {
 }
 
 class _ThisPageTexts {
-  static String name = "name".tr();
-  static String description = "description".tr();
-  static String adopt = "adopt".tr();
-  static String next = "next".tr();
-  static String fillAllArea = "fill_all_area".tr();
-  static String gellery = "select_gallery".tr();
-  static String camera = "shoot_from_camera".tr();
-  static String pageTitle = "add_pet_two_in_one".tr();
+  static String name = Localization.name;
+  static String description = Localization.description;
+  static String adopt = Localization.adopt;
+  static String next = Localization.next;
+  static String fillAllArea = Localization.fillAllArea;
+  static String gellery = Localization.selectGallery;
+  static String camera = Localization.shootCamera;
+  static String pageTitle = Localization.addPhotoTwoInOne;
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
@@ -31,7 +32,6 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
   String? selectedTypeFilter;
   String? selectedAgeRangeFilter;
   String? selectedGenderFilter;
-
   @override
   Widget build(BuildContext context) {
     var dogRadioListTile = _typeRadioListTile(1, _ThisPageTexts.dog, context);
@@ -284,7 +284,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
               onPressed: () {
                 Scaffold.of(context).openEndDrawer();
               },
-              tooltip: "Filtrele",
+              tooltip: _ThisPageTexts.filter,
             );
           },
         ),
@@ -305,18 +305,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Aradığınız Evcil Hayvanı Bulamadık",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Lottie.network(ProjectLottieUrls.emptyLottie),
-                ],
-              ),
-            );
+            return _notPetYet(context);
           }
           return _gridview(snapshot);
         }
@@ -326,6 +315,21 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 
         return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
       },
+    );
+  }
+
+  Center _notPetYet(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            _ThisPageTexts.notPetYet,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Lottie.network(ProjectLottieUrls.emptyLottie),
+        ],
+      ),
     );
   }
 
@@ -361,18 +365,18 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 
   PetModel _petModel(DocumentSnapshot<Object?> document) {
     return PetModel(
-      currentUid: document["currentUid"],
-      currentEmail: document["currentEmail"],
-      ilce: document["ilce"],
-      gender: document["gender"],
-      name: document["name"],
-      description: document["description"],
-      imagePath: document["imagePath"],
-      ageRange: document["ageRange"],
-      city: document["city"],
-      petBreed: document["petBreed"],
-      price: document["price"],
-      petType: document["petType"],
+      currentUid: document[AppFirestoreFieldNames.currentUidField],
+      currentEmail: document[AppFirestoreFieldNames.currentEmailField],
+      ilce: document[AppFirestoreFieldNames.ilceField],
+      gender: document[AppFirestoreFieldNames.genderField],
+      name: document[AppFirestoreFieldNames.nameField],
+      description: document[AppFirestoreFieldNames.descriptionField],
+      imagePath: document[AppFirestoreFieldNames.imagePathField],
+      ageRange: document[AppFirestoreFieldNames.ageRangeField],
+      city: document[AppFirestoreFieldNames.cityField],
+      petBreed: document[AppFirestoreFieldNames.petBreedField],
+      price: document[AppFirestoreFieldNames.priceField],
+      petType: document[AppFirestoreFieldNames.petTypeField],
     );
   }
 
@@ -387,22 +391,24 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = "home_page".tr();
-  static String filterPets = "filter_pets".tr();
-  static String clear = "clear".tr();
-  static String dog = "dog".tr();
-  static String cat = "cat".tr();
-  static String rabbit = "rabbit".tr();
-  static String fish = "fish".tr();
-  static String other = "other".tr();
-  static String zeroThreeMonths = "zero_three_months".tr();
-  static String threeSixMonths = "three_six_months".tr();
-  static String sixMonthsOneYear = "six_months_one_year".tr();
-  static String oneThreeYears = "one_three_years".tr();
-  static String moreThreeYears = "more_than_three_years".tr();
-  static String male = "male".tr();
-  static String female = "female".tr();
-  static String petType = "pet_type".tr();
-  static String petAgeRange = "pet_age_range".tr();
-  static String petGender = "pet_gender".tr();
+  static String homePage = Localization.homePage;
+  static String filterPets = Localization.filterPets;
+  static String clear = Localization.clear;
+  static String dog = Localization.dog;
+  static String cat = Localization.cat;
+  static String rabbit = Localization.rabbit;
+  static String fish = Localization.fish;
+  static String other = Localization.other;
+  static String zeroThreeMonths = Localization.zeroThreeMonths;
+  static String threeSixMonths = Localization.threeSixMonths;
+  static String sixMonthsOneYear = Localization.sixMonthsOneYear;
+  static String oneThreeYears = Localization.oneThreeYears;
+  static String moreThreeYears = Localization.moreThanThreeYears;
+  static String male = Localization.male;
+  static String female = Localization.female;
+  static String petType = Localization.petType;
+  static String petAgeRange = Localization.petAgeRange;
+  static String petGender = Localization.petGender;
+  static String filter = Localization.filter;
+  static String notPetYet = Localization.notPetYet;
 }

@@ -4,6 +4,7 @@ class AppFirestoreFieldNames {
   static String timeField = "time";
   static String receiverIdField = "receiverId";
   static String msgField = "msg";
+  static String messageField = "message";
   static String typeField = "type";
   static String dateField = "date";
   static String lastMsgField = "last_msg";

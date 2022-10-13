@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
@@ -56,7 +56,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "fill_all_area".tr();
+          return Localization.fillAllArea;
         }
         return null;
       },

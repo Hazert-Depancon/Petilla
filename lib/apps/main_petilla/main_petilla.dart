@@ -1,10 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/home_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
-import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/utility/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
@@ -52,21 +52,21 @@ class _MainPetillaState extends State<MainPetilla> {
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 2 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
-      label: "my_messages".tr(),
+      label: Localization.myMessages,
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 1 ? const Icon(AppIcons.addCircleIcon) : const Icon(AppIcons.addCircleOutlinedIcon),
-      label: "add_a_pet".tr(),
+      label: Localization.addAPet,
     );
   }
 
   BottomNavigationBarItem _homeBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _homeIcon(),
-      label: "home_page".tr(),
+      label: Localization.homePage,
     );
   }
 

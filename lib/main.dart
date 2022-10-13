@@ -8,6 +8,7 @@ import 'package:petilla_app_project/start/onboarding/onboarding.dart';
 import 'package:petilla_app_project/start/select_app_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'constant/localization/localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +62,7 @@ class _PetillaState extends State<Petilla> {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      title: "app_name".tr(),
+      title: Localization.appName,
       theme: LightTheme().theme,
       home: widget.showHome
           ? FirebaseAuth.instance.currentUser != null

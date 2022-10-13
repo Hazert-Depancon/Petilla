@@ -1,9 +1,9 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -76,7 +76,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
 
   Text _priceText(TextStyle? subtitle2) {
     return Text(
-      _isClaim ? "claim".tr() : "${widget.petModel.price}TL",
+      _isClaim ? Localization.claim : "${widget.petModel.price}TL",
       style: _isClaim
           ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis)
           : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),

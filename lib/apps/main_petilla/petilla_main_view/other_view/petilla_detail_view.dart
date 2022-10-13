@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -37,52 +37,59 @@ class _DetailViewState extends State<DetailView> {
     final headline4 = Theme.of(context).textTheme.headline4?.copyWith(color: Colors.black);
 
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: LightThemeColors.miamiMarmalade,
-      ),
-      body: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _emailText(context),
-            smallSizedBox,
-            _imageContainer(),
-            smallSizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _nameText(headline4),
-                _priceText(headline4),
-              ],
-            ),
-            mainSizedBox,
-            _descriptionText(context),
-            const SizedBox(height: 16),
-            _ageListTile(context),
-            _typeListTile(context),
-            _genderListTile(context),
-            _breedListTile(context),
-            _locationListTile(context),
-            const SizedBox(height: 120),
-          ],
-        ),
-      ),
+      appBar: _appBar(),
+      body: _body(context, headline4),
       floatingActionButton: isMe ? null : _chatFabButton(),
     );
   }
 
-  ListTile _locationListTile(BuildContext context) {
-    return _litTile(context, "location".tr(), "${widget.petModel.city} " " ${widget.petModel.ilce}");
+  SingleChildScrollView _body(BuildContext context, TextStyle? headline4) {
+    return SingleChildScrollView(
+      padding: ProjectPaddings.horizontalMainPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _emailText(context),
+          smallSizedBox,
+          _imageContainer(),
+          smallSizedBox,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _nameText(headline4),
+              _priceText(headline4),
+            ],
+          ),
+          mainSizedBox,
+          _descriptionText(context),
+          const SizedBox(height: 16),
+          _ageListTile(context),
+          _typeListTile(context),
+          _genderListTile(context),
+          _breedListTile(context),
+          _locationListTile(context),
+        ],
+      ),
+    );
   }
 
-  ListTile _genderListTile(BuildContext context) => _litTile(context, "gender".tr(), widget.petModel.gender);
+  AppBar _appBar() {
+    return AppBar(
+      foregroundColor: LightThemeColors.miamiMarmalade,
+    );
+  }
 
-  ListTile _breedListTile(BuildContext context) => _litTile(context, "race".tr(), widget.petModel.petBreed);
+  ListTile _locationListTile(BuildContext context) {
+    return _litTile(context, _ThisPageTexts.location, "${widget.petModel.city} " " ${widget.petModel.ilce}");
+  }
 
-  ListTile _typeListTile(BuildContext context) => _litTile(context, "type".tr(), widget.petModel.petType);
+  ListTile _genderListTile(BuildContext context) => _litTile(context, _ThisPageTexts.gender, widget.petModel.gender);
 
-  ListTile _ageListTile(BuildContext context) => _litTile(context, "age_range".tr(), widget.petModel.ageRange);
+  ListTile _breedListTile(BuildContext context) => _litTile(context, _ThisPageTexts.race, widget.petModel.petBreed);
+
+  ListTile _typeListTile(BuildContext context) => _litTile(context, _ThisPageTexts.type, widget.petModel.petType);
+
+  ListTile _ageListTile(BuildContext context) => _litTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
 
   Text _emailText(BuildContext context) {
     return Text(
@@ -125,7 +132,7 @@ class _DetailViewState extends State<DetailView> {
 
   Text _priceText(TextStyle? headline4) {
     return Text(
-      _isClaim ? "claim".tr() : "${widget.petModel.price}TL",
+      _isClaim ? _ThisPageTexts.claim : "${widget.petModel.price}TL",
       style: _isClaim
           ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
           : headline4?.copyWith(fontSize: 24),
@@ -134,7 +141,10 @@ class _DetailViewState extends State<DetailView> {
 
   Text _nameText(TextStyle? headline4) => Text(
         widget.petModel.name,
-        style: headline4?.copyWith(fontSize: 24, fontWeight: FontWeight.w500),
+        style: headline4?.copyWith(
+          fontSize: 24,
+          fontWeight: FontWeight.w500,
+        ),
       );
 
   Container _imageContainer() {
@@ -150,4 +160,13 @@ class _DetailViewState extends State<DetailView> {
       ),
     );
   }
+}
+
+class _ThisPageTexts {
+  static String claim = Localization.claim;
+  static String ageRange = Localization.ageRange;
+  static String gender = Localization.gender;
+  static String type = Localization.type;
+  static String race = Localization.race;
+  static String location = Localization.location;
 }

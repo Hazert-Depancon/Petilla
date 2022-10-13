@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
@@ -152,9 +152,9 @@ class _LoginViewState extends State<LoginView> {
 }
 
 class _ThisPageTexts {
-  static String title = "login".tr();
-  static String mailHintText = "mail".tr();
-  static String passwordHintText = "password".tr();
-  static String dontHaveAccount = "dont_have_account".tr();
-  static String registerText = "register".tr();
+  static String title = Localization.login;
+  static String mailHintText = Localization.mail;
+  static String passwordHintText = Localization.password;
+  static String dontHaveAccount = Localization.dontHaveAccount;
+  static String registerText = Localization.register;
 }

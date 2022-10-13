@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
@@ -52,25 +52,33 @@ class _InChatViewState extends State<InChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: LightThemeColors.miamiMarmalade,
-        title: Text(widget.friendUserEmail),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
-              ],
-            ),
+      appBar: _appBar(),
+      body: _body(),
+    );
+  }
+
+  Column _body() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
+            ],
           ),
-          mainSizedBox,
-        ],
-      ),
+        ),
+        mainSizedBox,
+      ],
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      foregroundColor: LightThemeColors.miamiMarmalade,
+      title: Text(widget.friendUserEmail),
     );
   }
 
@@ -78,7 +86,7 @@ class _InChatViewState extends State<InChatView> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: 'Bir mesaj yaz...',
+        hintText: _ThisPageTexts.writeAMessage,
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
@@ -134,7 +142,7 @@ class CustomStreamBuilder extends StatelessWidget {
         if (snapshot.hasData) {
           if (snapshot.data.docs.isEmpty) {
             return Center(
-              child: Text("say_hi".tr()),
+              child: Text(_ThisPageTexts.sayHi),
             );
           }
           return Expanded(
@@ -166,12 +174,17 @@ class MyListView extends StatelessWidget {
       reverse: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        bool isMe = snapshot.data.docs[index]["senderId"] == widget.currentUserId;
+        bool isMe = snapshot.data.docs[index][AppFirestoreFieldNames.senderIdField] == widget.currentUserId;
         return SingleMessage(
-          message: snapshot.data.docs[index]["message"],
+          message: snapshot.data.docs[index][AppFirestoreFieldNames.messageField],
           isMe: isMe,
         );
       },
     );
   }
+}
+
+class _ThisPageTexts {
+  static String writeAMessage = Localization.writeAMessage;
+  static String sayHi = Localization.sayHi;
 }

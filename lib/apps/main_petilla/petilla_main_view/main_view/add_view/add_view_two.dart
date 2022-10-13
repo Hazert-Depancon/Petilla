@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, avoid_print
 
 import 'dart:convert';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +11,7 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/model
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -116,24 +116,24 @@ class _AddViewTwoState extends State<AddViewTwo> {
   }
 
   final pets = [
-    "dog".tr(),
-    "cat".tr(),
-    "fish".tr(),
-    "rabbit".tr(),
-    "other".tr(),
+    _ThisPageTexts.dog,
+    _ThisPageTexts.cat,
+    _ThisPageTexts.fish,
+    _ThisPageTexts.rabbit,
+    _ThisPageTexts.other,
   ];
 
   final List<String> gender = [
-    "male".tr(),
-    "female".tr(),
+    _ThisPageTexts.male,
+    _ThisPageTexts.female,
   ];
 
   final List<String> ageRange = [
-    "zero_three_months".tr(),
-    "three_six_months".tr(),
-    "six_months_one_year".tr(),
-    "one_three_years".tr(),
-    "more_than_three_years".tr(),
+    _ThisPageTexts.zeroThreeMonths,
+    _ThisPageTexts.threeSixMonths,
+    _ThisPageTexts.sixMonthsOneYear,
+    _ThisPageTexts.oneThreeYears,
+    _ThisPageTexts.moreThanThreeYears,
   ];
 
   String? petSelectedValue;
@@ -185,7 +185,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
 
   AppBar _appBar() {
     return AppBar(
-      title: Text("add_pet_two_for_two".tr()),
+      title: Text(_ThisPageTexts.addAPetTwoForTwo),
       foregroundColor: LightThemeColors.miamiMarmalade,
     );
   }
@@ -198,7 +198,9 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: Text("pet_age_range".tr()),
+      hint: Text(
+        _ThisPageTexts.petAgeRange,
+      ),
       value: ageRangeSelectedValue,
       items: ageRange
           .map(
@@ -224,7 +226,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: Text("pet_gender".tr()),
+      hint: Text(_ThisPageTexts.petGender),
       value: genderSelectedValue,
       items: gender
           .map(
@@ -250,7 +252,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
           borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
-      hint: Text("pet_type".tr()),
+      hint: Text(_ThisPageTexts.petType),
       value: petSelectedValue,
       items: pets
           .map(
@@ -271,7 +273,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
   _textField() {
     return MainTextField(
       controller: _typeController,
-      hintText: "pet_race".tr(),
+      hintText: _ThisPageTexts.petRace,
     );
   }
 
@@ -281,7 +283,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: _ilceSecilmisMi ? LightThemeColors.burningOrange : Colors.grey,
+          backgroundColor: _ilceSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
           padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
@@ -292,7 +294,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         },
         child: Center(
           child: Text(
-            _ilceSecilmisMi ? _secilenIlce : "select_district".tr(),
+            _ilceSecilmisMi ? _secilenIlce : _ThisPageTexts.selectDistrict,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -311,7 +313,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: _ilSecilmisMi ? LightThemeColors.burningOrange : Colors.grey,
+          backgroundColor: _ilSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
           padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
@@ -323,7 +325,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         },
         child: Center(
           child: Text(
-            _ilSecilmisMi ? _secilenIl : "city_select",
+            _ilSecilmisMi ? _secilenIl : _ThisPageTexts.selectCity,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -342,7 +344,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
         onPressed: () async {
           _onSubmitButton(context);
         },
-        text: "add_a_pet".tr(),
+        text: _ThisPageTexts.addPet,
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
       ),
@@ -358,16 +360,16 @@ class _AddViewTwoState extends State<AddViewTwo> {
           PetModel(
             currentUid: FirebaseAuth.instance.currentUser!.uid,
             currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
-            gender: genderSelectedValue ?? "error".tr(),
+            gender: genderSelectedValue ?? _ThisPageTexts.error,
             name: widget.name,
             description: widget.description,
             imagePath: imageUrl,
-            ageRange: ageRangeSelectedValue ?? "error".tr(),
+            ageRange: ageRangeSelectedValue ?? _ThisPageTexts.error,
             city: _secilenIl,
             ilce: _secilenIlce,
             petBreed: _typeController.text,
             price: widget.radioValue == 1 ? "0" : _typeController.text,
-            petType: petSelectedValue ?? "error".tr(),
+            petType: petSelectedValue ?? _ThisPageTexts.error,
           ),
           context,
         )
@@ -379,4 +381,28 @@ class _AddViewTwoState extends State<AddViewTwo> {
           ),
         );
   }
+}
+
+class _ThisPageTexts {
+  static String dog = Localization.dog;
+  static String cat = Localization.cat;
+  static String fish = Localization.fish;
+  static String rabbit = Localization.rabbit;
+  static String other = Localization.other;
+  static String male = Localization.male;
+  static String female = Localization.female;
+  static String zeroThreeMonths = Localization.zeroThreeMonths;
+  static String threeSixMonths = Localization.threeSixMonths;
+  static String sixMonthsOneYear = Localization.sixMonthsOneYear;
+  static String oneThreeYears = Localization.oneThreeYears;
+  static String moreThanThreeYears = Localization.moreThanThreeYears;
+  static String petAgeRange = Localization.petAgeRange;
+  static String petGender = Localization.petGender;
+  static String petType = Localization.petType;
+  static String petRace = Localization.race;
+  static String selectDistrict = Localization.selectDistrict;
+  static String selectCity = Localization.citySelect;
+  static String addPet = Localization.addAPet;
+  static String error = Localization.error;
+  static String addAPetTwoForTwo = Localization.addPetTwoForTwo;
 }

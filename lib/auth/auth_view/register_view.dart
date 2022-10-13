@@ -1,8 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
@@ -33,31 +33,39 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_ThisPageTexts.title),
-        centerTitle: true,
-      ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: ProjectPaddings.horizontalLargePadding,
-          child: Column(
-            children: [
-              _lottie(),
-              _nameTextField(),
-              mainSizedBox,
-              _emailTextField(),
-              mainSizedBox,
-              _passwordTextField(),
-              mainSizedBox,
-              _registerButton(),
-              mainSizedBox,
-              _alreadyHaveAnAccount(),
-              _logInButton(context),
-            ],
-          ),
+      appBar: _appBar(),
+      body: _body(context),
+    );
+  }
+
+  Form _body(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: SingleChildScrollView(
+        padding: ProjectPaddings.horizontalLargePadding,
+        child: Column(
+          children: [
+            _lottie(),
+            _nameTextField(),
+            mainSizedBox,
+            _emailTextField(),
+            mainSizedBox,
+            _passwordTextField(),
+            mainSizedBox,
+            _registerButton(),
+            mainSizedBox,
+            _alreadyHaveAnAccount(),
+            _logInButton(context),
+          ],
         ),
       ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: Text(_ThisPageTexts.register),
+      centerTitle: true,
     );
   }
 
@@ -107,7 +115,7 @@ class _RegisterViewState extends State<RegisterView> {
       onPressed: _onRegister,
       width: ProjectButtonSizes.mainButtonWidth,
       height: ProjectButtonSizes.mainButtonHeight,
-      text: _ThisPageTexts.title,
+      text: _ThisPageTexts.logIn,
     );
   }
 
@@ -149,16 +157,18 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             (route) => false);
       },
-      child: Text(_ThisPageTexts.logIn),
+      child: Text(
+        _ThisPageTexts.logIn,
+      ),
     );
   }
 }
 
 class _ThisPageTexts {
-  static String title = "register".tr();
-  static String nameHint = "name".tr();
-  static String mailHint = "mail".tr();
-  static String passwordHint = "password".tr();
-  static String alreadyHaveAnAccount = "already_have_an_account".tr();
-  static String logIn = "login".tr();
+  static String nameHint = Localization.name;
+  static String mailHint = Localization.mail;
+  static String passwordHint = Localization.password;
+  static String alreadyHaveAnAccount = Localization.alreadyHaveAnAccount;
+  static String logIn = Localization.login;
+  static String register = Localization.register;
 }

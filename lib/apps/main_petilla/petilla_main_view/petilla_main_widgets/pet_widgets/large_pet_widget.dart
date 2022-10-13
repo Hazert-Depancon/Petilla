@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
@@ -112,7 +112,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
 
   Text _paidText(BuildContext context) {
     return Text(
-      _isClaim ? "claim".tr() : "${widget.petModel.price} TL",
+      _isClaim ? Localization.claim : "${widget.petModel.price} TL",
       style: _isClaim
           ? Theme.of(context).textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade)
           : Theme.of(context).textTheme.subtitle2,

@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/constant/assets_build_constant/svg_build_constant.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/utility/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 
@@ -27,7 +27,7 @@ class OnboardingOne extends StatelessWidget {
 }
 
 Text _textOne(BuildContext context) {
-  String msg1 = "onboarding_msg_one".tr();
+  String msg1 = Localization.onboardingMsgOne;
 
   return Text(
     msg1,
