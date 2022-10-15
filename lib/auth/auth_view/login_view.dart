@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
@@ -14,14 +16,9 @@ import 'package:petilla_app_project/general/general_widgets/textfields/auth_text
 import 'package:petilla_app_project/main.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends StatelessWidget {
+  LoginView({Key? key}) : super(key: key);
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -59,7 +56,7 @@ class _LoginViewState extends State<LoginView> {
             _loginButton(context),
             mainSizedBox,
             _dontHaveAnAccount(context),
-            _registerButton(),
+            _registerButton(context),
           ],
         ),
       ),
@@ -109,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  TextButton _registerButton() {
+  TextButton _registerButton(BuildContext context) {
     return TextButton(
       onPressed: () {
         Navigator.pushAndRemoveUntil(
@@ -124,14 +121,16 @@ class _LoginViewState extends State<LoginView> {
 
   Button _loginButton(BuildContext context) {
     return Button(
-      onPressed: _onLoginButton,
+      onPressed: () {
+        _onLoginButton(context);
+      },
       width: ProjectButtonSizes.mainButtonWidth,
       height: ProjectButtonSizes.mainButtonHeight,
       text: _ThisPageTexts.title,
     );
   }
 
-  void _onLoginButton() async {
+  void _onLoginButton(context) async {
     if (_formKey.currentState!.validate()) {
       await AuthService()
           .login(

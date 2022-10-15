@@ -153,7 +153,7 @@ class _RegisterViewState extends State<RegisterView> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginView(),
+              builder: (context) => LoginView(),
             ),
             (route) => false);
       },

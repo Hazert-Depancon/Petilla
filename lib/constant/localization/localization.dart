@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class Localization {
-  static String appName = "app_name".tr();
   static String petform = "petform".tr();
+  static String petilla = "petilla".tr();
   static String profile = "profile".tr();
   static String myMessages = "my_messages".tr();
   static String addAPet = "add_a_pet".tr();

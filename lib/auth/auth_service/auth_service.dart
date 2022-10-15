@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:petilla_app_project/auth/auth_view/login_view.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
@@ -37,13 +35,7 @@ class AuthService {
   Future<void> logout(context) async {
     showDefaultLoadingDialog(false, context);
     try {
-      await _auth.signOut().then(
-            (value) => Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginView()),
-              (route) => false,
-            ),
-          );
+      await _auth.signOut();
     } on FirebaseAuthException catch (e) {
       showErrorDialog(true, e.message!, context);
     }

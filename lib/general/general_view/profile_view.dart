@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
+import 'package:petilla_app_project/auth/auth_view/login_view.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
@@ -41,7 +42,15 @@ class ProfileView extends StatelessWidget {
   GestureDetector _profileAction(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AuthService().logout(context);
+        AuthService().logout(context).then(
+              (value) => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginView(),
+                ),
+                (route) => false,
+              ),
+            );
       },
       child: _exitIcon(),
     );

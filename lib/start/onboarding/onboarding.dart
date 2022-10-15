@@ -90,7 +90,7 @@ class _OnboardingState extends State<Onboarding> {
           (value) => Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginView(),
+              builder: (context) => LoginView(),
             ),
             (route) => false,
           ),

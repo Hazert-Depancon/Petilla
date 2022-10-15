@@ -28,7 +28,7 @@ class SelectAppView extends StatelessWidget {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      title: Text(ThisPageTexts.title),
+      title: Text(_ThisPageTexts.petillaTitle),
       centerTitle: true,
       actions: [
         _profileAction(context),
@@ -75,7 +75,7 @@ class SelectAppView extends StatelessWidget {
 
   SelectAppWidget _selectPetform() {
     return SelectAppWidget(
-      title: "Petform",
+      title: _ThisPageTexts.petformTitle,
       imagePath: pngImageBuildConstant("petform"),
       onTap: const MainPetForm(),
     );
@@ -84,7 +84,7 @@ class SelectAppView extends StatelessWidget {
   SelectAppWidget _selectPetilla() {
     return SelectAppWidget(
       isBig: true,
-      title: ThisPageTexts.title,
+      title: _ThisPageTexts.petillaTitle,
       imagePath: pngImageBuildConstant("petilla_image"),
       onTap: const MainPetilla(),
     );
@@ -107,7 +107,7 @@ class SelectAppView extends StatelessWidget {
   }
 }
 
-class ThisPageTexts {
-  static String title = Localization.appName;
+class _ThisPageTexts {
   static String petformTitle = Localization.petform;
+  static String petillaTitle = Localization.petilla;
 }

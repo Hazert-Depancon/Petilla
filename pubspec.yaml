@@ -11,9 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-  #Filter
-  filter_list: ^1.0.2
+
+  #Naivagion And Routing
+  auto_route: ^5.0.2
 
   #Localization
   easy_localization: ^3.0.1
@@ -61,6 +61,10 @@ dev_dependencies:
     sdk: flutter
     
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.0
+  
+  #Navigation And Routing
+  auto_route_generator: ^5.0.3
 
 
 flutter:
