@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 class Localization {
   static String petform = "petform".tr();
+  static String notInsertYet = "not_insert_yet".tr();
+  static String myInserts = "my_inserts".tr();
   static String petilla = "petilla".tr();
   static String profile = "profile".tr();
   static String myMessages = "my_messages".tr();
@@ -66,7 +68,6 @@ class Localization {
   static String back = "back".tr();
   static String filterPets = "filter_pets".tr();
   static String clear = "clear".tr();
-  static String filter = "filter".tr();
   static String notPetYet = "not_pet_yet".tr();
   static String writeAMessage = "write_a_message".tr();
 }

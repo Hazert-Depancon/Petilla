@@ -15,7 +15,6 @@ class SelectAppView extends StatelessWidget {
   const SelectAppView({Key? key}) : super(key: key);
 
   final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
 
   @override
@@ -30,6 +29,8 @@ class SelectAppView extends StatelessWidget {
     return AppBar(
       title: Text(_ThisPageTexts.petillaTitle),
       centerTitle: true,
+      foregroundColor: LightThemeColors.miamiMarmalade,
+      automaticallyImplyLeading: false,
       actions: [
         _profileAction(context),
         smallWidthSizedBox,
@@ -37,23 +38,30 @@ class SelectAppView extends StatelessWidget {
     );
   }
 
-  ListView _body() {
-    return ListView(
-      children: [
-        mainSizedBox,
-        Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: StaggeredGrid.count(
-            crossAxisCount: 4,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            children: [
-              _selectPetillaGridTile(),
-              _selectPetformGridTile(),
-            ],
-          ),
+  _body() {
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            mainSizedBox,
+            Padding(
+              padding: ProjectPaddings.horizontalMainPadding,
+              child: StaggeredGrid.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
+                children: [
+                  _selectPetillaGridTile(),
+                  _selectPetformGridTile(),
+                ],
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

@@ -31,6 +31,7 @@ class CrudService {
         AppFirestoreFieldNames.priceField: pet.price,
         AppFirestoreFieldNames.currentUidField: pet.currentUid,
         AppFirestoreFieldNames.currentEmailField: pet.currentEmail,
+        AppFirestoreFieldNames.currentNameField: pet.currentUserName,
       });
     } catch (e) {
       print(e);

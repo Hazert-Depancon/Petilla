@@ -13,7 +13,7 @@ class PetformHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: _appBar(context),
       body: _body(context),
       floatingActionButton: _addGroup(context),
     );
@@ -105,10 +105,16 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(context) {
     return AppBar(
       title: Text(_ThisPageTexts.selectGroup),
       foregroundColor: LightThemeColors.miamiMarmalade,
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: const Icon(AppIcons.arrowBackIcon),
+      ),
     );
   }
 

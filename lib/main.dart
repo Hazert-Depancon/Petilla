@@ -11,9 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await EasyLocalization.ensureInitialized();
-
   await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -26,7 +24,15 @@ Future<void> main() async {
 
   runApp(
     // DevicePreview(
-    //   builder: (context) => Petilla(showHome: showHome),
+    //   builder: (context) => EasyLocalization(
+    //     path: "assets/jsons/localization",
+    //     saveLocale: true,
+    //     fallbackLocale: const Locale("tr", "TR"),
+    //     supportedLocales: const [
+    //       Locale("tr", "TR"),
+    //     ],
+    //     child: Petilla(showHome: showHome),
+    //   ),
     //   enabled: true,
     //   tools: const [
     //     ...DevicePreview.defaultTools,
@@ -45,15 +51,10 @@ Future<void> main() async {
   );
 }
 
-class Petilla extends StatefulWidget {
+class Petilla extends StatelessWidget {
   const Petilla({Key? key, required this.showHome}) : super(key: key);
   final bool showHome;
 
-  @override
-  State<Petilla> createState() => _PetillaState();
-}
-
-class _PetillaState extends State<Petilla> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,7 +63,7 @@ class _PetillaState extends State<Petilla> {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: LightTheme().theme,
-      home: widget.showHome
+      home: showHome
           ? FirebaseAuth.instance.currentUser != null
               ? const SelectAppView()
               : LoginView()

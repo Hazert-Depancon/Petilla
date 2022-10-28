@@ -36,6 +36,7 @@ class LoginView extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Text(_ThisPageTexts.title),
       centerTitle: true,
     );
@@ -109,11 +110,7 @@ class LoginView extends StatelessWidget {
   TextButton _registerButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const RegisterView()),
-          (route) => false,
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterView()));
       },
       child: Text(_ThisPageTexts.registerText),
     );

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 
@@ -22,7 +23,8 @@ class AuthService {
 
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      await _firestore.collection("users").doc(_auth.currentUser!.uid).set({
+      _auth.currentUser!.updateDisplayName(name);
+      await _firestore.collection(AppFirestoreCollectionNames.usersCollection).doc(_auth.currentUser!.uid).set({
         AppFirestoreFieldNames.nameField: name,
         AppFirestoreFieldNames.emailField: email,
         AppFirestoreFieldNames.uidField: _auth.currentUser!.uid,

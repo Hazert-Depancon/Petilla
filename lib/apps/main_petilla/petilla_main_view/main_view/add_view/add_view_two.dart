@@ -149,8 +149,9 @@ class _AddViewTwoState extends State<AddViewTwo> {
   }
 
   String imageUrl = "";
-
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
+  bool _isSubmitButtonClicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +161,7 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  ListView _body(BuildContext context) {
+  _body(BuildContext context) {
     return ListView(
       padding: ProjectPaddings.horizontalMainPadding,
       children: [
@@ -341,8 +342,8 @@ class _AddViewTwoState extends State<AddViewTwo> {
   Align _submitButton(context) {
     return Align(
       child: Button(
-        onPressed: () async {
-          _onSubmitButton(context);
+        onPressed: () {
+          _isSubmitButtonClicked ? false : _onSubmitButton(context);
         },
         text: _ThisPageTexts.addPet,
         width: ProjectButtonSizes.mainButtonWidth,
@@ -351,13 +352,17 @@ class _AddViewTwoState extends State<AddViewTwo> {
     );
   }
 
-  _onSubmitButton(context) async {
+  _onSubmitButton(context) {
+    setState(() {
+      _isSubmitButtonClicked = true;
+    });
     showDefaultLoadingDialog(false, context);
     CrudService()
         .createPet(
           widget.image,
           imageUrl,
           PetModel(
+            currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
             currentUid: FirebaseAuth.instance.currentUser!.uid,
             currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
             gender: genderSelectedValue ?? _ThisPageTexts.error,

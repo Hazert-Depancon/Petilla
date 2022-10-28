@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_home_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_insert_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/utility/assets_build_constant/svg_build_constant.dart';
@@ -20,8 +21,9 @@ class _MainPetillaState extends State<MainPetilla> {
 
   final List<Widget> pages = [
     const PetillaHomeView(),
-    const AddView(),
     const ChatSelectView(),
+    const AddView(),
+    const PetillaInsertView(),
   ];
 
   @override
@@ -43,22 +45,23 @@ class _MainPetillaState extends State<MainPetilla> {
       },
       items: [
         _homeBottomNavigation(),
-        _addBottomNavigation(),
         _chatsBottomNavigation(),
+        _addBottomNavigation(),
+        _insertBottomNavigation(),
       ],
     );
   }
 
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 2 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
+      icon: _selectedIndex == 1 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
       label: Localization.myMessages,
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 1 ? const Icon(AppIcons.addCircleIcon) : const Icon(AppIcons.addCircleOutlinedIcon),
+      icon: _selectedIndex == 2 ? const Icon(AppIcons.addCircleIcon) : const Icon(AppIcons.addCircleOutlinedIcon),
       label: Localization.addAPet,
     );
   }
@@ -67,6 +70,13 @@ class _MainPetillaState extends State<MainPetilla> {
     return BottomNavigationBarItem(
       icon: _homeIcon(),
       label: Localization.homePage,
+    );
+  }
+
+  BottomNavigationBarItem _insertBottomNavigation() {
+    return BottomNavigationBarItem(
+      icon: _selectedIndex == 3 ? const Icon(AppIcons.insertOutlineIcon) : const Icon(AppIcons.insertOutlineIcon),
+      label: Localization.myMessages,
     );
   }
 

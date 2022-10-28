@@ -137,12 +137,13 @@ class _AddViewState extends State<AddView> {
 
   ListTile _pickGalleryButton(BuildContext context) {
     return ListTile(
-        leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(_ThisPageTexts.gellery),
-        onTap: () {
-          pickImageGallery();
-          Navigator.of(context).pop();
-        });
+      leading: const Icon(AppIcons.photoLibraryIcon),
+      title: Text(_ThisPageTexts.gellery),
+      onTap: () {
+        pickImageGallery();
+        Navigator.of(context).pop();
+      },
+    );
   }
 
   MainTextField _petNameTextField() {

@@ -37,7 +37,7 @@ class _DetailViewState extends State<DetailView> {
     final headline4 = Theme.of(context).textTheme.headline4?.copyWith(color: Colors.black);
 
     return Scaffold(
-      appBar: _appBar(),
+      appBar: _appBar(context),
       body: _body(context, headline4),
       floatingActionButton: isMe ? null : _chatFabButton(),
     );
@@ -49,7 +49,7 @@ class _DetailViewState extends State<DetailView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _emailText(context),
+          _userNameText(context),
           smallSizedBox,
           _imageContainer(),
           smallSizedBox,
@@ -73,9 +73,15 @@ class _DetailViewState extends State<DetailView> {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(context) {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: const Icon(AppIcons.arrowBackIcon),
+      ),
     );
   }
 
@@ -91,9 +97,9 @@ class _DetailViewState extends State<DetailView> {
 
   ListTile _ageListTile(BuildContext context) => _litTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
 
-  Text _emailText(BuildContext context) {
+  Text _userNameText(BuildContext context) {
     return Text(
-      widget.petModel.currentEmail,
+      widget.petModel.currentUserName,
       style: Theme.of(context).textTheme.headline6,
     );
   }

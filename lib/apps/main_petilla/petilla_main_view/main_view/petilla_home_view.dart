@@ -1,13 +1,12 @@
-// Dişi erkek kontrolündeki büyük küçük harf sorunu
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
@@ -277,18 +276,24 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
       title: Text(_ThisPageTexts.homePage),
       foregroundColor: LightThemeColors.miamiMarmalade,
       actions: [
-        Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.filter_list_rounded),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-              tooltip: _ThisPageTexts.filter,
-            );
-          },
-        ),
+        _filterButton(),
+        AppSizedBoxs.normalWidthSizedBox,
       ],
+    );
+  }
+
+  Builder _filterButton() {
+    return Builder(
+      builder: (BuildContext context) {
+        return GestureDetector(
+          onTap: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+          child: const Icon(
+            AppIcons.filterIcon,
+          ),
+        );
+      },
     );
   }
 
@@ -344,16 +349,14 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
     );
   }
 
-  IconButton _backSelectApp(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const SelectAppView()),
-          (route) => false,
-        );
+  _backSelectApp(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectAppView()));
       },
-      icon: const Icon(AppIcons.arrowBackIcon),
+      child: const Icon(
+        AppIcons.arrowBackIcon,
+      ),
     );
   }
 
@@ -365,6 +368,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
 
   PetModel _petModel(DocumentSnapshot<Object?> document) {
     return PetModel(
+      currentUserName: document[AppFirestoreFieldNames.currentNameField],
       currentUid: document[AppFirestoreFieldNames.currentUidField],
       currentEmail: document[AppFirestoreFieldNames.currentEmailField],
       ilce: document[AppFirestoreFieldNames.ilceField],
@@ -409,6 +413,5 @@ class _ThisPageTexts {
   static String petType = Localization.petType;
   static String petAgeRange = Localization.petAgeRange;
   static String petGender = Localization.petGender;
-  static String filter = Localization.filter;
   static String notPetYet = Localization.notPetYet;
 }

@@ -14,18 +14,16 @@ import 'package:petilla_app_project/general/general_widgets/textfields/auth_text
 import 'package:petilla_app_project/main.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class RegisterView extends StatelessWidget {
+  RegisterView({Key? key}) : super(key: key);
 
-  @override
-  State<RegisterView> createState() => _RegisterViewState();
-}
-
-class _RegisterViewState extends State<RegisterView> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
@@ -52,9 +50,9 @@ class _RegisterViewState extends State<RegisterView> {
             mainSizedBox,
             _passwordTextField(),
             mainSizedBox,
-            _registerButton(),
+            _registerButton(context),
             mainSizedBox,
-            _alreadyHaveAnAccount(),
+            _alreadyHaveAnAccount(context),
             _logInButton(context),
           ],
         ),
@@ -65,6 +63,7 @@ class _RegisterViewState extends State<RegisterView> {
   AppBar _appBar() {
     return AppBar(
       title: Text(_ThisPageTexts.register),
+      automaticallyImplyLeading: false,
       centerTitle: true,
     );
   }
@@ -110,16 +109,18 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  Button _registerButton() {
+  Button _registerButton(context) {
     return Button(
-      onPressed: _onRegister,
+      onPressed: () {
+        _onRegister(context);
+      },
       width: ProjectButtonSizes.mainButtonWidth,
       height: ProjectButtonSizes.mainButtonHeight,
-      text: _ThisPageTexts.logIn,
+      text: _ThisPageTexts.register,
     );
   }
 
-  void _onRegister() {
+  void _onRegister(context) {
     if (_formKey.currentState!.validate()) {
       AuthService()
           .register(
@@ -128,8 +129,8 @@ class _RegisterViewState extends State<RegisterView> {
             _nameController.text.trim(),
             context,
           )
-          .then(
-            (value) => Navigator.pushAndRemoveUntil(
+          .whenComplete(
+            () => Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => const Petilla(showHome: true),
@@ -140,7 +141,7 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
-  Text _alreadyHaveAnAccount() {
+  Text _alreadyHaveAnAccount(context) {
     return Text(
       _ThisPageTexts.alreadyHaveAnAccount,
       style: Theme.of(context).textTheme.titleMedium,
@@ -150,12 +151,7 @@ class _RegisterViewState extends State<RegisterView> {
   TextButton _logInButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginView(),
-            ),
-            (route) => false);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView()));
       },
       child: Text(
         _ThisPageTexts.logIn,

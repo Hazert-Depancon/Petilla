@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -48,30 +49,44 @@ class _GroupChatState extends State<GroupChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.pageTitle),
-        foregroundColor: LightThemeColors.miamiMarmalade,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: ShowMessages(
-              collectionId: widget.collectionId,
-              docId: widget.docId,
-            ),
+      appBar: _appBar(),
+      body: _body(),
+    );
+  }
+
+  Column _body() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: ShowMessages(
+            collectionId: widget.collectionId,
+            docId: widget.docId,
           ),
-          Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
-            child: Row(
-              children: [
-                Expanded(child: _textField(msg)),
-              ],
-            ),
+        ),
+        Padding(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: Row(
+            children: [
+              Expanded(child: _textField(msg)),
+            ],
           ),
-          mainSizedBox
-        ],
+        ),
+        mainSizedBox
+      ],
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      title: Text(widget.pageTitle),
+      foregroundColor: LightThemeColors.miamiMarmalade,
+      leading: GestureDetector(
+        child: const Icon(AppIcons.arrowBackIcon),
+        onTap: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
@@ -85,7 +100,7 @@ class _GroupChatState extends State<GroupChat> {
           .doc()
           .set({
         AppFirestoreFieldNames.msgField: msg.text.trim(),
-        AppFirestoreFieldNames.userField: loginUser!.email,
+        AppFirestoreFieldNames.userField: loginUser!.displayName,
         AppFirestoreFieldNames.timeField: DateTime.now(),
       });
       msg.clear();
@@ -96,7 +111,7 @@ class _GroupChatState extends State<GroupChat> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: 'Bir mesaj yaz...',
+        hintText: Localization.writeAMessage,
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36),
@@ -131,6 +146,10 @@ class ShowMessages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _streamBuilder();
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> _streamBuilder() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection(AppFirestoreCollectionNames.messages)
@@ -140,27 +159,40 @@ class ShowMessages extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              QueryDocumentSnapshot querySnapshot = snapshot.data!.docs[index];
-              return Column(
-                crossAxisAlignment:
-                    loginUser!.email == querySnapshot["user"] ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(querySnapshot["user"]),
-                  ),
-                  SingleMessage(
-                      message: querySnapshot["msg"], isMe: querySnapshot["user"] == loginUser!.email.toString()),
-                ],
-              );
-            },
-          );
+          return _listView(snapshot);
         }
         return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
       },
+    );
+  }
+
+  ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        QueryDocumentSnapshot querySnapshot = snapshot.data!.docs[index];
+        return Column(
+          crossAxisAlignment: loginUser!.displayName == querySnapshot[AppFirestoreFieldNames.userField]
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                querySnapshot[AppFirestoreFieldNames.userField],
+              ),
+            ),
+            _singleMessage(querySnapshot),
+          ],
+        );
+      },
+    );
+  }
+
+  SingleMessage _singleMessage(QueryDocumentSnapshot<Object?> querySnapshot) {
+    return SingleMessage(
+      message: querySnapshot[AppFirestoreFieldNames.msgField],
+      isMe: querySnapshot[AppFirestoreFieldNames.userField] == loginUser!.displayName.toString(),
     );
   }
 }

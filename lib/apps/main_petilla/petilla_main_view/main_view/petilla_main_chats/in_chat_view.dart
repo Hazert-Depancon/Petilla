@@ -176,7 +176,7 @@ class MyListView extends StatelessWidget {
       itemBuilder: (context, index) {
         bool isMe = snapshot.data.docs[index][AppFirestoreFieldNames.senderIdField] == widget.currentUserId;
         return SingleMessage(
-          message: snapshot.data.docs[index][AppFirestoreFieldNames.messageField],
+          message: snapshot.data.docs[index][AppFirestoreFieldNames.messagesField],
           isMe: isMe,
         );
       },

@@ -1,5 +1,6 @@
 class PetModel {
   final String name;
+  final String currentUserName;
   final String description;
   final String imagePath;
   final String ageRange;
@@ -13,6 +14,7 @@ class PetModel {
   final String currentUid;
 
   PetModel({
+    required this.currentUserName,
     required this.currentUid,
     required this.currentEmail,
     required this.ilce,

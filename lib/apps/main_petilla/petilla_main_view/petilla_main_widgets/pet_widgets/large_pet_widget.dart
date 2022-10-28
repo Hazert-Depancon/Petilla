@@ -31,6 +31,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: InkWell(
+        borderRadius: BorderRadius.circular(24),
         onTap: () {
           Navigator.push(
             context,
@@ -48,6 +49,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
 
   PetModel _petModel() {
     return PetModel(
+      currentUserName: widget.petModel.currentUserName,
       currentUid: widget.petModel.currentUid,
       currentEmail: widget.petModel.currentEmail,
       ilce: widget.petModel.ilce,
@@ -75,9 +77,11 @@ class _LargePetWidgetState extends State<LargePetWidget> {
           ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 smallHeightSizedBox,
                 _nameText(context),
+                const SizedBox(height: 12),
                 Row(
                   children: [
                     _paidText(context),

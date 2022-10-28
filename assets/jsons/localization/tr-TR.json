@@ -1,6 +1,7 @@
 {
     "petform" : "Petform",
     "petilla" : "Petilla",
+    "my_inserts" : "İlanlarım",
     "profile" : "Profil",
     "my_messages" : "Mesajlarım",
     "add_a_pet" : "Evcil Hayvan Ekle",
@@ -66,5 +67,6 @@
     "filter" : "Filtrele",
     "clear" : "Temizle",
     "not_pet_yet" : "Aradığınız Evcil Hayvanı Bulamadık",
-    "write_a_message" : "Bir mesaj yaz..."
+    "write_a_message" : "Bir mesaj yaz...",
+    "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta"
 }
