@@ -16,12 +16,16 @@ class InChatView extends StatefulWidget {
     required this.currentUserEmail,
     required this.friendUserId,
     required this.friendUserEmail,
+    required this.friendUserName,
+    required this.currentUserName,
   }) : super(key: key);
 
   final String currentUserId;
   final String currentUserEmail;
+  final String currentUserName;
   final String friendUserId;
   final String friendUserEmail;
+  final String friendUserName;
 
   @override
   State<InChatView> createState() => _InChatViewState();
@@ -78,7 +82,7 @@ class _InChatViewState extends State<InChatView> {
   AppBar _appBar() {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
-      title: Text(widget.friendUserEmail),
+      title: Text(widget.friendUserName),
     );
   }
 
@@ -114,6 +118,8 @@ class _InChatViewState extends State<InChatView> {
                 widget.friendUserId,
                 widget.friendUserEmail,
                 widget.currentUserEmail,
+                widget.friendUserName,
+                widget.currentUserName,
               );
             },
             icon: const Icon(AppIcons.sendIcon),

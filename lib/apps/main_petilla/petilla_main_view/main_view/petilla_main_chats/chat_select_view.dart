@@ -11,14 +11,24 @@ import 'package:petilla_app_project/constant/strings_constant/project_lottie_url
 
 class ChatSelectView extends StatelessWidget {
   const ChatSelectView({Key? key}) : super(key: key);
-  void _callInChat(String friendEmail, String friendUid, String currentEmail, String currentUid, context) {
+  void _callInChat(
+    String friendEmail,
+    String friendUid,
+    String currentEmail,
+    String currentUid,
+    String friendUserName,
+    String currentUserName,
+    context,
+  ) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => InChatView(
+          friendUserName: friendUserName,
           currentUserId: currentUid,
           currentUserEmail: currentEmail,
           friendUserId: friendUid,
           friendUserEmail: friendEmail,
+          currentUserName: currentUserName,
         ),
       ),
     );
@@ -70,12 +80,17 @@ class ChatSelectView extends StatelessWidget {
     return ListView.builder(
       itemCount: snapshot.data!.docs.length,
       itemBuilder: (context, index) {
-        return UserChat(
-          name: snapshot.data!.docs[index][AppFirestoreFieldNames.emailField],
-          onTap: () {
-            _callChat(snapshot, index, context);
-          },
-        );
+        return _userChatWidget(snapshot, index, context);
+      },
+    );
+  }
+
+  UserChat _userChatWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index, BuildContext context) {
+    return UserChat(
+      name: snapshot.data!.docs[index][AppFirestoreFieldNames.nameField],
+      lastMsg: snapshot.data!.docs[index][AppFirestoreFieldNames.lastMsgField],
+      onTap: () {
+        _callChat(snapshot, index, context);
       },
     );
   }
@@ -86,6 +101,8 @@ class ChatSelectView extends StatelessWidget {
       snapshot.data!.docs[index][AppFirestoreFieldNames.uidField],
       FirebaseAuth.instance.currentUser!.email.toString(),
       FirebaseAuth.instance.currentUser!.uid,
+      snapshot.data!.docs[index][AppFirestoreFieldNames.nameField],
+      FirebaseAuth.instance.currentUser!.displayName!,
       context,
     );
   }

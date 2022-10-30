@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
@@ -90,6 +90,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
         _placeIcon(),
         Text(
           widget.petModel.city,
+          style: const TextStyle(fontSize: 13),
         ),
       ],
     );

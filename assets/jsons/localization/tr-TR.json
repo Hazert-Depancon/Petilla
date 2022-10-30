@@ -68,5 +68,6 @@
     "clear" : "Temizle",
     "not_pet_yet" : "Aradığınız Evcil Hayvanı Bulamadık",
     "write_a_message" : "Bir mesaj yaz...",
-    "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta"
+    "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta",
+    "my_favorites" : "Favorilerim"
 }

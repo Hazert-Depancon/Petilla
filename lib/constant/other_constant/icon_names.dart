@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppIcons {
   static const personOutlineIcon = Icons.person_outline;
+  static const deleteIcon = Icons.delete;
   static const insertOutlineIcon = Icons.apps_sharp;
   static const addCircleIcon = Icons.add_circle;
   static const addCircleOutlinedIcon = Icons.add_circle_outline;

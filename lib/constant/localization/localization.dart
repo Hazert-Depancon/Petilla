@@ -70,4 +70,5 @@ class Localization {
   static String clear = "clear".tr();
   static String notPetYet = "not_pet_yet".tr();
   static String writeAMessage = "write_a_message".tr();
+  static String myFavorites = "my_favorites".tr();
 }

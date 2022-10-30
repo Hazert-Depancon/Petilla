@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
 
 class LargePetWidget extends StatefulWidget {
@@ -49,6 +51,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
 
   PetModel _petModel() {
     return PetModel(
+      docId: widget.petModel.docId,
       currentUserName: widget.petModel.currentUserName,
       currentUid: widget.petModel.currentUid,
       currentEmail: widget.petModel.currentEmail,
@@ -80,7 +83,21 @@ class _LargePetWidgetState extends State<LargePetWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 smallHeightSizedBox,
-                _nameText(context),
+                Row(
+                  children: [
+                    _nameText(context),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        FirebaseFirestore.instance
+                            .collection(AppFirestoreCollectionNames.petsCollection)
+                            .doc(widget.petModel.docId)
+                            .delete();
+                      },
+                      icon: const Icon(AppIcons.deleteIcon),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 12),
                 Row(
                   children: [

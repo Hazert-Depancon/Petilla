@@ -11,9 +11,11 @@ class PetModel {
   final String price;
   final String gender;
   final String currentEmail;
+  final String? docId;
   final String currentUid;
 
   PetModel({
+    this.docId,
     required this.currentUserName,
     required this.currentUid,
     required this.currentEmail,

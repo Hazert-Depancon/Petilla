@@ -10,14 +10,8 @@ class ChatService {
   }
   ChatService._internal();
 
-  void sendMessage(
-    String message,
-    TextEditingController controller,
-    currentUserId,
-    friendUserId,
-    friendUserEmail,
-    currentUserEmail,
-  ) async {
+  void sendMessage(String message, TextEditingController controller, currentUserId, friendUserId, friendUserEmail,
+      currentUserEmail, friendUserName, currentUserName) async {
     if (message.isEmpty) {
       return;
     } else {
@@ -42,6 +36,7 @@ class ChatService {
             .set({
           AppFirestoreFieldNames.lastMsgField: message,
           AppFirestoreFieldNames.emailField: friendUserEmail,
+          AppFirestoreFieldNames.nameField: friendUserName,
           AppFirestoreFieldNames.uidField: friendUserId,
         });
       });
@@ -66,6 +61,7 @@ class ChatService {
             .set({
           AppFirestoreFieldNames.lastMsgField: message,
           AppFirestoreFieldNames.uidField: currentUserId,
+          AppFirestoreFieldNames.nameField: currentUserName,
           AppFirestoreFieldNames.emailField: currentUserEmail,
         });
       });

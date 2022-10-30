@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/auth/auth_view/login_view.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
-import 'package:petilla_app_project/start/onboarding/onboarding_pages/onboarding_page_one.dart';
-import 'package:petilla_app_project/start/onboarding/onboarding_pages/onboarding_page_three.dart';
-import 'package:petilla_app_project/start/onboarding/onboarding_pages/onboarding_page_two.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding_view_model.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_one/onboarding_one_view.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_three/onboarding_three_view.dart';
+import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_two/onboarding_two_view.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -40,9 +39,9 @@ class _OnboardingState extends State<Onboarding> {
       onPageChanged: _onPageChangedMethod,
       controller: controller,
       children: [
-        OnboardingOne(),
-        OnboardingPageTwo(),
-        OnboardingPageThree(),
+        OnboardingOneView(),
+        OnboardingTwoView(),
+        OnboardingThreeView(),
       ],
     );
   }
@@ -54,7 +53,7 @@ class _OnboardingState extends State<Onboarding> {
   }
 
   _bottomSheet() {
-    return isLastPage ? _getStartedButton() : _indicatorAndButtons();
+    return isLastPage ? _getStartedButton(context) : _indicatorAndButtons();
   }
 
   Container _indicatorAndButtons() {
@@ -75,26 +74,15 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 
-  _getStartedButton() {
+  _getStartedButton(context) {
     return Button(
-      onPressed: _onGetStartedButton,
+      onPressed: () {
+        OnboardingViewModel().onGetStartedButton(context);
+      },
       height: 75,
       text: _ThisPageTexts.start,
       noBorderRadius: true,
     );
-  }
-
-  void _onGetStartedButton() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool("showHome", true).then(
-          (value) => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginView(),
-            ),
-            (route) => false,
-          ),
-        );
   }
 
   // Next button
