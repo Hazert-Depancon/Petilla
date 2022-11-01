@@ -382,6 +382,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
       petBreed: document[AppFirestoreFieldNames.petBreedField],
       price: document[AppFirestoreFieldNames.priceField],
       petType: document[AppFirestoreFieldNames.petTypeField],
+      docId: document.id,
     );
   }
 

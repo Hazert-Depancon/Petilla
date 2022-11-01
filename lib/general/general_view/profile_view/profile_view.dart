@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_view/profile_view/profile_view_model.dart';
@@ -47,7 +48,7 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Icon _exitIcon() => const Icon(AppIcons.exitAppIcon, color: Colors.black);
+  Icon _exitIcon() => const Icon(AppIcons.exitAppIcon, color: LightThemeColors.black);
 
   StreamBuilder<DocumentSnapshot> _streamBodyBuilder() {
     return StreamBuilder<DocumentSnapshot>(
@@ -57,8 +58,8 @@ class ProfileView extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          String name = snapshot.data!['name'].toString();
-          String email = snapshot.data!['email'].toString();
+          String name = snapshot.data![AppFirestoreFieldNames.nameField];
+          String email = snapshot.data![AppFirestoreFieldNames.emailField];
           return _hasDataScreen(snapshot, name, email);
         } else {
           return _loadingScreen();

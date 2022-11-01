@@ -9,6 +9,7 @@ import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.d
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NormalPetWidget extends StatefulWidget {
   const NormalPetWidget({Key? key, required this.petModel}) : super(key: key);
@@ -21,6 +22,38 @@ class NormalPetWidget extends StatefulWidget {
 
 class _NormalPetWidgetState extends State<NormalPetWidget> {
   late bool _isClaim;
+  bool? _isFav;
+
+  favButton(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getStringList("favs") == null) {
+      _isFav = false;
+    } else if (sharedPreferences.getStringList("favs")!.contains(docId)) {
+      _isFav = true;
+    } else {
+      _isFav = false;
+    }
+  }
+
+  onFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getStringList("favs") == null) {
+      return;
+    }
+    if (_isFav == true) {
+      sharedPreferences.getStringList("favs")!.remove(docId);
+      setState(() {
+        _isFav = false;
+      });
+    } else {
+      sharedPreferences.setStringList("favs", [docId]);
+      setState(() {
+        _isFav = true;
+      });
+    }
+    print(sharedPreferences.getStringList("favs"));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -41,7 +74,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: ProjectRadius.allRadius,
-          color: Colors.white,
+          color: LightThemeColors.snowbank,
         ),
         child: Padding(
           padding: ProjectPaddings.horizontalMainPadding,
@@ -115,13 +148,33 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: ProjectRadius.allRadius,
-          color: Colors.grey,
+          color: LightThemeColors.grey,
           image: DecorationImage(
             image: NetworkImage(widget.petModel.imagePath),
             fit: BoxFit.cover,
           ),
         ),
+        child: _favButton(),
       ),
+    );
+  }
+
+  FutureBuilder<Object?> _favButton() {
+    return FutureBuilder(
+      future: favButton(widget.petModel.docId),
+      builder: (context, snapshot) {
+        return Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            onPressed: () {
+              onFav(widget.petModel.docId);
+            },
+            icon: _isFav ?? false
+                ? const Icon(AppIcons.favoriteIcon, color: Colors.red)
+                : const Icon(AppIcons.favoriteBorderIcon),
+          ),
+        );
+      },
     );
   }
 }

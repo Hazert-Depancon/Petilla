@@ -23,8 +23,8 @@ class _MainPetillaState extends State<MainPetilla> {
   final List<Widget> pages = [
     const PetillaHomeView(),
     const FavoritesView(),
-    const ChatSelectView(),
     const AddView(),
+    const ChatSelectView(),
     const PetillaInsertView(),
   ];
 
@@ -55,10 +55,18 @@ class _MainPetillaState extends State<MainPetilla> {
     );
   }
 
-  BottomNavigationBarItem _chatsBottomNavigation() {
+  BottomNavigationBarItem _homeBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _selectedIndex == 3 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
-      label: Localization.myMessages,
+      icon: _homeIcon(),
+      label: Localization.homePage,
+    );
+  }
+
+  SvgPicture _homeIcon() {
+    return SvgPicture.asset(
+      _selectedIndex == 0 ? svgBuildConstant("home") : svgBuildConstant("home_outline"),
+      color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : LightThemeColors.grey,
+      height: 25,
     );
   }
 
@@ -76,10 +84,10 @@ class _MainPetillaState extends State<MainPetilla> {
     );
   }
 
-  BottomNavigationBarItem _homeBottomNavigation() {
+  BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
-      icon: _homeIcon(),
-      label: Localization.homePage,
+      icon: _selectedIndex == 3 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
+      label: Localization.myMessages,
     );
   }
 
@@ -87,14 +95,6 @@ class _MainPetillaState extends State<MainPetilla> {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 4 ? const Icon(AppIcons.insertOutlineIcon) : const Icon(AppIcons.insertOutlineIcon),
       label: Localization.myInserts,
-    );
-  }
-
-  SvgPicture _homeIcon() {
-    return SvgPicture.asset(
-      _selectedIndex == 0 ? svgBuildConstant("home") : svgBuildConstant("home_outline"),
-      color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : LightThemeColors.grey,
-      height: 25,
     );
   }
 }
