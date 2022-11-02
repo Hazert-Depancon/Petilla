@@ -31,8 +31,8 @@ class _FavoritesViewState extends State<FavoritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: FutureBuilder(
-        future: FirebaseFirestore.instance.collection("pets").doc(getData()),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("pets").doc(getData()).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data == null) {
