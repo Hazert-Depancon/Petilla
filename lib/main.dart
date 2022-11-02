@@ -22,7 +22,6 @@ Future<void> main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool(SharedPreferencesKeyConstants.showHomeConstant) ?? false;
-  // prefs.setStringList("favs", ["q66cXCi8kqYqaNc40Ee4"]);
 
   runApp(
     // DevicePreview(

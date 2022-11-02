@@ -35,24 +35,41 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
     }
   }
 
-  onFav(docId) async {
+  addFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    myList.add(docId);
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = true;
+    });
+  }
+
+  removeFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    for (int i = 0; i < myList.length; i++) {
+      if (myList[i] == docId) {
+        myList.removeAt(i);
+        break;
+      }
+    }
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = false;
+    });
+  }
+
+  changeFav(docId) async {
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getStringList("favs") == null) {
-      sharedPreferences.setStringList("favs", [docId]);
-      setState(() {
-        _isFav = true;
-      });
-      return;
+      await sharedPreferences.setStringList("favs", []);
+      addFav(docId);
+    } else if (_isFav == false) {
+      addFav(docId);
+    } else if (_isFav == true) {
+      removeFav(docId);
     }
-    if (_isFav == true) {
-      sharedPreferences.getStringList("favs")!.remove(docId);
-      setState(() {
-        _isFav = false;
-      });
-      return;
-    }
-    print(sharedPreferences.getStringList("favs"));
-    return;
   }
 
   @override
@@ -61,50 +78,67 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
   }
 
+  callDetailView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return DetailView(
+            petModel: widget.petModel,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final subtitle2 = Theme.of(context).textTheme.subtitle2;
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return DetailView(
-            petModel: widget.petModel,
-          );
-        }));
+        callDetailView();
       },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: ProjectRadius.allRadius,
-          color: LightThemeColors.snowbank,
-        ),
-        child: Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: Column(
-            children: [
-              const SizedBox(height: 8),
-              _imageContainer(),
-              const SizedBox(height: 8),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: _nameText(subtitle2)),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        _priceText(subtitle2),
-                        const SizedBox(height: 4),
-                        _location(),
-                      ],
-                    ),
+      child: _mainContainer(subtitle2),
+    );
+  }
+
+  Container _mainContainer(TextStyle? subtitle2) {
+    return Container(
+      decoration: _boxDecoration(),
+      child: Padding(
+        padding: ProjectPaddings.horizontalMainPadding,
+        child: Column(
+          children: [
+            const SizedBox(height: 8),
+            _imageContainer(),
+            const SizedBox(height: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: _nameText(subtitle2)),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      _priceText(subtitle2),
+                      const SizedBox(height: 4),
+                      _location(),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 8),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+          ],
         ),
       ),
+    );
+  }
+
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+      borderRadius: ProjectRadius.allRadius,
+      color: LightThemeColors.snowbank,
     );
   }
 
@@ -168,7 +202,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
           alignment: Alignment.topRight,
           child: IconButton(
             onPressed: () {
-              onFav(widget.petModel.docId);
+              changeFav(widget.petModel.docId);
             },
             icon: _isFav ?? false
                 ? const Icon(AppIcons.favoriteIcon, color: Colors.red)

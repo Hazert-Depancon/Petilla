@@ -15,6 +15,11 @@ class _FavoritesViewState extends State<FavoritesView> {
     return sharedPreferences.getStringList("favorites");
   }
 
+  getFavs() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getStringList("favs");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
