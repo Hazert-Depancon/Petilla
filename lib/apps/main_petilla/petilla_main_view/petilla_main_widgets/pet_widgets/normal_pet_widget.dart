@@ -38,6 +38,10 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
   onFav(docId) async {
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getStringList("favs") == null) {
+      sharedPreferences.setStringList("favs", [docId]);
+      setState(() {
+        _isFav = true;
+      });
       return;
     }
     if (_isFav == true) {
@@ -45,13 +49,10 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
       setState(() {
         _isFav = false;
       });
-    } else {
-      sharedPreferences.setStringList("favs", [docId]);
-      setState(() {
-        _isFav = true;
-      });
+      return;
     }
     print(sharedPreferences.getStringList("favs"));
+    return;
   }
 
   @override
