@@ -16,40 +16,51 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  late String docId;
+  int listLenght = 0;
+  List myList = [];
+  String docId = "";
 
-  getData() async {
+  Future<void> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    List myList = preferences.getStringList("favs")!.toList();
-
-    for (var i = 0; i < preferences.getStringList("favs")!.length; i++) {
-      return myList[i];
+    myList = preferences.getStringList("favs")!;
+    listLenght = myList.length;
+    for (var i = 0; i < listLenght - 1; i++) {
+      setState(() {
+        docId = myList[i];
+      });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("pets").doc(getData()).snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data == null) {
-              return _notPetYet(context);
-            }
-            return ListView.builder(
-              itemBuilder: (context, index) {
+      body: ListView(
+        children: [
+          // Text(docId),
+          StreamBuilder(
+            stream: FirebaseFirestore.instance.collection("pets").doc().snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data == null) {
+                  return _notPetYet(context);
+                }
                 return _largePetWidget(snapshot.data);
-              },
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
-          }
+              }
+              if (snapshot.hasError) {
+                return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+              }
 
-          return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
-        },
+              return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+            },
+          ),
+        ],
       ),
     );
   }
@@ -78,7 +89,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     );
   }
 
-  PetModel _petModel(DocumentSnapshot<Object?> document) {
+  PetModel _petModel(document) {
     return PetModel(
       currentUserName: document[AppFirestoreFieldNames.currentNameField],
       currentUid: document[AppFirestoreFieldNames.currentUidField],
