@@ -36,21 +36,16 @@ class _FavoritesViewState extends State<FavoritesView> {
       body: FutureBuilder(
         future: _getShared(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (myList?.isNotEmpty ?? false) {
             return StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("pets").doc(myList![0]).snapshots(),
+              stream: FirebaseFirestore.instance.collection("pets").doc(id).snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return ListView.builder(
+                if (snapshot.hasData) {
+                  return ListView(
                     padding: ProjectPaddings.horizontalMainPadding,
-                    itemBuilder: (context, index) {
-                      return LargePetWidget(petModel: _petModel(snapshot.data));
-                    },
-                  );
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                    children: [
+                      LargePetWidget(petModel: _petModel(snapshot.data)),
+                    ],
                   );
                 }
                 return const Center(
@@ -59,27 +54,14 @@ class _FavoritesViewState extends State<FavoritesView> {
               },
             );
           }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView.builder(
-            padding: ProjectPaddings.horizontalMainPadding,
-            itemBuilder: (context, index) {
-              return LargePetWidget(petModel: _petModel(snapshot.data));
-            },
+
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         },
       ),
     );
   }
-
-  // LargePetWidget _largePetWidget(document) {
-  //   return LargePetWidget(
-  //     petModel: _petModel(document),
-  //   );
-  // }
 
   AppBar _appBar() {
     return AppBar(
