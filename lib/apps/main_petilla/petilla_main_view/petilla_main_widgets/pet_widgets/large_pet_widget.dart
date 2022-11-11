@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
@@ -20,12 +21,14 @@ class LargePetWidget extends StatefulWidget {
 
 class _LargePetWidgetState extends State<LargePetWidget> {
   late bool _isClaim;
+  late bool _isMe;
   var smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   @override
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
+    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : false;
   }
 
   @override
@@ -35,16 +38,20 @@ class _LargePetWidgetState extends State<LargePetWidget> {
       child: InkWell(
         borderRadius: BorderRadius.circular(24),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailView(
-                petModel: _petModel(),
-              ),
-            ),
-          );
+          _callDetailView();
         },
         child: _mainContainer(context),
+      ),
+    );
+  }
+
+  void _callDetailView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailView(
+          petModel: _petModel(),
+        ),
       ),
     );
   }
@@ -87,15 +94,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
                   children: [
                     _nameText(context),
                     const Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        FirebaseFirestore.instance
-                            .collection(AppFirestoreCollectionNames.petsCollection)
-                            .doc(widget.petModel.docId)
-                            .delete();
-                      },
-                      icon: const Icon(AppIcons.deleteIcon),
-                    ),
+                    _isMe ? _deleteIconButton() : const SizedBox.shrink(),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -117,6 +116,18 @@ class _LargePetWidgetState extends State<LargePetWidget> {
           ),
         ],
       ),
+    );
+  }
+
+  IconButton _deleteIconButton() {
+    return IconButton(
+      onPressed: () {
+        FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.petsCollection)
+            .doc(widget.petModel.docId)
+            .delete();
+      },
+      icon: const Icon(AppIcons.deleteIcon),
     );
   }
 

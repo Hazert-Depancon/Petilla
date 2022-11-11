@@ -17,6 +17,7 @@ class FavoritesView extends StatefulWidget {
 class _FavoritesViewState extends State<FavoritesView> {
   int? listLenght;
   List? myList;
+  List<String> list = [];
   String? id;
 
   _getShared() async {
@@ -25,7 +26,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     listLenght = myList?.length ?? 0;
 
     for (var i = 0; i < listLenght!; i++) {
-      id = myList![i];
+      list.add(myList![i]);
     }
   }
 
@@ -37,19 +38,19 @@ class _FavoritesViewState extends State<FavoritesView> {
         future: _getShared(),
         builder: (context, snapshot) {
           if (myList?.isNotEmpty ?? false) {
-            return StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("pets").doc(id).snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView(
-                    padding: ProjectPaddings.horizontalMainPadding,
-                    children: [
-                      LargePetWidget(petModel: _petModel(snapshot.data)),
-                    ],
-                  );
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
+            return ListView.builder(
+              padding: ProjectPaddings.horizontalMainPadding,
+              itemBuilder: (context, index) {
+                return StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection("pets").doc(list[index]).snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      LargePetWidget(petModel: _petModel(snapshot.data));
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 );
               },
             );
