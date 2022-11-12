@@ -15,19 +15,21 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  int? listLenght;
+  int? listLenght = 0;
   List? myList;
   List<String> list = [];
-  String? id;
+  bool _isLoaded = false;
 
   _getShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     myList = preferences.getStringList("favs") ?? [];
-    listLenght = myList?.length ?? 0;
+    // listLenght = myList?.length ?? 0;
 
     for (var i = 0; i < listLenght!; i++) {
       list.add(myList![i]);
+      listLenght! + 1;
     }
+    _isLoaded = true;
   }
 
   @override
@@ -38,22 +40,31 @@ class _FavoritesViewState extends State<FavoritesView> {
         future: _getShared(),
         builder: (context, snapshot) {
           if (myList?.isNotEmpty ?? false) {
-            return ListView.builder(
-              padding: ProjectPaddings.horizontalMainPadding,
-              itemBuilder: (context, index) {
-                return StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection("pets").doc(list[index]).snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      LargePetWidget(petModel: _petModel(snapshot.data));
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                );
-              },
-            );
+            if (_isLoaded == true) {
+              return ListView.builder(
+                padding: ProjectPaddings.horizontalMainPadding,
+                itemBuilder: (context, index) {
+                  return StreamBuilder(
+                    stream: _isLoaded == true
+                        ? FirebaseFirestore.instance.collection("pets").doc(list[index]).snapshots()
+                        : null,
+                    builder: (context, snapshot) {
+                      if (index == listLenght!) {
+                        return const SizedBox.shrink();
+                      }
+                      if (snapshot.hasData) {
+                        LargePetWidget(petModel: _petModel(snapshot.data));
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                },
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
           }
 
           return const Center(
