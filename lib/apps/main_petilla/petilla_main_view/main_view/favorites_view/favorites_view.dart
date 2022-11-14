@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesView extends StatefulWidget {
@@ -18,18 +21,15 @@ class _FavoritesViewState extends State<FavoritesView> {
   int? listLenght = 0;
   List? myList;
   List<String> list = [];
-  bool _isLoaded = false;
 
   _getShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     myList = preferences.getStringList("favs") ?? [];
-    // listLenght = myList?.length ?? 0;
+    listLenght = myList?.length ?? 0;
 
     for (var i = 0; i < listLenght!; i++) {
       list.add(myList![i]);
-      listLenght! + 1;
     }
-    _isLoaded = true;
   }
 
   @override
@@ -40,31 +40,32 @@ class _FavoritesViewState extends State<FavoritesView> {
         future: _getShared(),
         builder: (context, snapshot) {
           if (myList?.isNotEmpty ?? false) {
-            if (_isLoaded == true) {
-              return ListView.builder(
-                padding: ProjectPaddings.horizontalMainPadding,
-                itemBuilder: (context, index) {
-                  return StreamBuilder(
-                    stream: _isLoaded == true
-                        ? FirebaseFirestore.instance.collection("pets").doc(list[index]).snapshots()
-                        : null,
-                    builder: (context, snapshot) {
-                      if (index == listLenght!) {
-                        return const SizedBox.shrink();
-                      }
-                      if (snapshot.hasData) {
-                        LargePetWidget(petModel: _petModel(snapshot.data));
-                      }
+            return ListView.builder(
+              padding: ProjectPaddings.horizontalMainPadding,
+              itemCount: listLenght,
+              itemBuilder: (context, index) {
+                return StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection(AppFirestoreCollectionNames.petsCollection)
+                      .doc(myList![index])
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return LargePetWidget(petModel: _petModel(snapshot.data));
+                    }
+                    if (myList == []) {
+                      return Center(
+                        child: Lottie.network(ProjectLottieUrls.emptyLottie),
+                      );
+                    } else {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    },
-                  );
-                },
-              );
-            } else {
-              return const SizedBox.shrink();
-            }
+                    }
+                  },
+                );
+              },
+            );
           }
 
           return const Center(

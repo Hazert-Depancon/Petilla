@@ -28,7 +28,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : false;
+    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : _isMe = false;
   }
 
   @override
