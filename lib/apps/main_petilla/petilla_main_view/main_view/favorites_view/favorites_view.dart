@@ -36,45 +36,65 @@ class _FavoritesViewState extends State<FavoritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: FutureBuilder(
-        future: _getShared(),
-        builder: (context, snapshot) {
-          if (myList?.isNotEmpty ?? false) {
-            return ListView.builder(
-              padding: ProjectPaddings.horizontalMainPadding,
-              itemCount: listLenght,
-              itemBuilder: (context, index) {
-                return StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection(AppFirestoreCollectionNames.petsCollection)
-                      .doc(myList![index])
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return LargePetWidget(petModel: _petModel(snapshot.data));
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                );
-              },
-            );
-          }
-
-          if (myList?.isEmpty ?? true) {
-            return Center(
-              child: Lottie.network(ProjectLottieUrls.emptyLottie),
-            );
-          }
-          return Center(
-            child: Lottie.network(ProjectLottieUrls.loadingLottie),
-          );
-        },
-      ),
+      body: _body(),
     );
   }
+
+  FutureBuilder<Object?> _body() {
+    return FutureBuilder(
+      future: _getShared(),
+      builder: (context, snapshot) {
+        if (myList?.isNotEmpty ?? false) {
+          return _listView();
+        }
+        if (myList?.isEmpty ?? true) {
+          return _emptyLottie();
+        }
+        return _loadingLottie();
+      },
+    );
+  }
+
+  Center _emptyLottie() {
+    return Center(
+      child: Lottie.network(ProjectLottieUrls.emptyLottie),
+    );
+  }
+
+  Center _loadingLottie() {
+    return Center(
+      child: Lottie.network(ProjectLottieUrls.loadingLottie),
+    );
+  }
+
+  ListView _listView() {
+    return ListView.builder(
+      padding: ProjectPaddings.horizontalMainPadding,
+      itemCount: listLenght,
+      itemBuilder: (context, index) {
+        return _streamBuilder(index);
+      },
+    );
+  }
+
+  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>> _streamBuilder(int index) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance
+          .collection(AppFirestoreCollectionNames.petsCollection)
+          .doc(myList![index])
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return _largePetWidget(snapshot);
+        } else {
+          return _loadingLottie();
+        }
+      },
+    );
+  }
+
+  LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) =>
+      LargePetWidget(petModel: _petModel(snapshot.data));
 
   AppBar _appBar() {
     return AppBar(

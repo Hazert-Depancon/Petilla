@@ -9,7 +9,7 @@ import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class LargePetWidget extends StatefulWidget {
   const LargePetWidget({Key? key, required this.petModel}) : super(key: key);
@@ -28,51 +28,21 @@ class _LargePetWidgetState extends State<LargePetWidget> {
 
   //* Fav Button Commands
   favButton(docId) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getStringList("favs") == null) {
-      _isFav = false;
-    } else if (sharedPreferences.getStringList("favs")!.contains(docId)) {
-      _isFav = true;
-    } else {
-      _isFav = false;
-    }
+    _isFav = await FavButtonService().favButton(docId);
   }
 
   addFav(docId) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    List<String> myList = sharedPreferences.getStringList("favs")!;
-    myList.add(docId);
-    await sharedPreferences.setStringList("favs", myList);
-    setState(() {
-      _isFav = true;
-    });
+    _isFav = await FavButtonService().addFav(docId);
   }
 
   removeFav(docId) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    List<String> myList = sharedPreferences.getStringList("favs")!;
-    for (int i = 0; i < myList.length; i++) {
-      if (myList[i] == docId) {
-        myList.removeAt(i);
-        break;
-      }
-    }
-    await sharedPreferences.setStringList("favs", myList);
-    setState(() {
-      _isFav = false;
-    });
+    _isFav = await FavButtonService().removeFav(docId);
   }
 
   changeFav(docId) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getStringList("favs") == null) {
-      await sharedPreferences.setStringList("favs", []);
-      addFav(docId);
-    } else if (_isFav == false) {
-      addFav(docId);
-    } else if (_isFav == true) {
-      removeFav(docId);
-    }
+    setState(() {
+      FavButtonService().changeFav(docId, _isFav);
+    });
   }
 
   @override
