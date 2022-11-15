@@ -9,6 +9,7 @@ import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LargePetWidget extends StatefulWidget {
   const LargePetWidget({Key? key, required this.petModel}) : super(key: key);
@@ -22,7 +23,57 @@ class LargePetWidget extends StatefulWidget {
 class _LargePetWidgetState extends State<LargePetWidget> {
   late bool _isClaim;
   late bool _isMe;
+  bool? _isFav;
   var smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
+
+  //* Fav Button Commands
+  favButton(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getStringList("favs") == null) {
+      _isFav = false;
+    } else if (sharedPreferences.getStringList("favs")!.contains(docId)) {
+      _isFav = true;
+    } else {
+      _isFav = false;
+    }
+  }
+
+  addFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    myList.add(docId);
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = true;
+    });
+  }
+
+  removeFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    for (int i = 0; i < myList.length; i++) {
+      if (myList[i] == docId) {
+        myList.removeAt(i);
+        break;
+      }
+    }
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = false;
+    });
+  }
+
+  changeFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getStringList("favs") == null) {
+      await sharedPreferences.setStringList("favs", []);
+      addFav(docId);
+    } else if (_isFav == false) {
+      addFav(docId);
+    } else if (_isFav == true) {
+      removeFav(docId);
+    }
+  }
 
   @override
   void initState() {
@@ -57,22 +108,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
   }
 
   PetModel _petModel() {
-    return PetModel(
-      docId: widget.petModel.docId,
-      currentUserName: widget.petModel.currentUserName,
-      currentUid: widget.petModel.currentUid,
-      currentEmail: widget.petModel.currentEmail,
-      ilce: widget.petModel.ilce,
-      gender: widget.petModel.gender,
-      name: widget.petModel.name,
-      description: widget.petModel.description,
-      imagePath: widget.petModel.imagePath,
-      ageRange: widget.petModel.ageRange,
-      city: widget.petModel.city,
-      petBreed: widget.petModel.petBreed,
-      price: widget.petModel.price,
-      petType: widget.petModel.petType,
-    );
+    return widget.petModel;
   }
 
   Container _mainContainer(BuildContext context) {
@@ -175,6 +211,7 @@ class _LargePetWidgetState extends State<LargePetWidget> {
           image: NetworkImage(widget.petModel.imagePath),
         ),
       ),
+      child: _favButton(),
     );
   }
 
@@ -193,6 +230,25 @@ class _LargePetWidgetState extends State<LargePetWidget> {
       AppIcons.locationOnOtlinedIcon,
       size: 20,
       color: LightThemeColors.pastelStrawberry,
+    );
+  }
+
+  FutureBuilder<Object?> _favButton() {
+    return FutureBuilder(
+      future: favButton(widget.petModel.docId),
+      builder: (context, snapshot) {
+        return Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            onPressed: () {
+              changeFav(widget.petModel.docId);
+            },
+            icon: _isFav ?? false
+                ? const Icon(AppIcons.favoriteIcon, color: Colors.red)
+                : const Icon(AppIcons.favoriteBorderIcon),
+          ),
+        );
+      },
     );
   }
 }
