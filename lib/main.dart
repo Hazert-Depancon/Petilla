@@ -24,23 +24,6 @@ Future<void> main() async {
   final showHome = prefs.getBool(SharedPreferencesKeyConstants.showHomeConstant) ?? false;
 
   runApp(
-    // DevicePreview(
-    //   builder: (context) => EasyLocalization(
-    //     path: "assets/jsons/localization",
-    //     saveLocale: true,
-    //     fallbackLocale: const Locale("tr", "TR"),
-    //     supportedLocales: const [
-    //       Locale("tr", "TR"),
-    //     ],
-    //     child: Petilla(showHome: showHome),
-    //   ),
-    //   enabled: true,
-    //   tools: const [
-    //     ...DevicePreview.defaultTools,
-    //   ],
-    // ),
-
-    // ToDO: local constant edilecek.
     EasyLocalization(
       supportedLocales: const [
         Locale("tr", "TR"),

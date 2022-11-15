@@ -8,6 +8,7 @@ import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart
 import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesView extends StatefulWidget {
@@ -32,6 +33,15 @@ class _FavoritesViewState extends State<FavoritesView> {
     }
   }
 
+  _removeFav(docId) async {
+    await FavButtonService().removeFav(docId);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +60,7 @@ class _FavoritesViewState extends State<FavoritesView> {
         if (myList?.isEmpty ?? true) {
           return _emptyLottie();
         }
+
         return _loadingLottie();
       },
     );
@@ -87,17 +98,15 @@ class _FavoritesViewState extends State<FavoritesView> {
         if (snapshot.hasData) {
           return _largePetWidget(snapshot);
         }
-        if (snapshot.data?.id == null) {
-          return const Text("ahhhaa sıçtık ");
-        } else {
-          return _loadingLottie();
-        }
+
+        return _loadingLottie();
       },
     );
   }
 
-  LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) =>
-      LargePetWidget(petModel: _petModel(snapshot.data));
+  LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+    return LargePetWidget(petModel: _petModel(snapshot.data));
+  }
 
   AppBar _appBar() {
     return AppBar(
