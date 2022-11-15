@@ -52,11 +52,6 @@ class _FavoritesViewState extends State<FavoritesView> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return LargePetWidget(petModel: _petModel(snapshot.data));
-                    }
-                    if (myList == []) {
-                      return Center(
-                        child: Lottie.network(ProjectLottieUrls.emptyLottie),
-                      );
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),
@@ -68,8 +63,13 @@ class _FavoritesViewState extends State<FavoritesView> {
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
+          if (myList?.isEmpty ?? true) {
+            return Center(
+              child: Lottie.network(ProjectLottieUrls.emptyLottie),
+            );
+          }
+          return Center(
+            child: Lottie.network(ProjectLottieUrls.loadingLottie),
           );
         },
       ),

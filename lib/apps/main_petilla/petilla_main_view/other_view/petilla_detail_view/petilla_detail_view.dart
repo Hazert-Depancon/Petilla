@@ -8,6 +8,8 @@ import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({Key? key, required this.petModel}) : super(key: key);
@@ -31,6 +33,56 @@ class _DetailViewState extends State<DetailView> {
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
+  bool? _isFav;
+
+  favButton(docId) async {
+    _isFav = await FavButtonService().favButton(docId);
+    // final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // if (sharedPreferences.getStringList("favs") == null) {
+    //   _isFav = false;
+    // } else if (sharedPreferences.getStringList("favs")!.contains(docId)) {
+    //   _isFav = true;
+    // } else {
+    //   _isFav = false;
+    // }
+  }
+
+  addFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    myList.add(docId);
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = true;
+    });
+  }
+
+  removeFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> myList = sharedPreferences.getStringList("favs")!;
+    for (int i = 0; i < myList.length; i++) {
+      if (myList[i] == docId) {
+        myList.removeAt(i);
+        break;
+      }
+    }
+    await sharedPreferences.setStringList("favs", myList);
+    setState(() {
+      _isFav = false;
+    });
+  }
+
+  changeFav(docId) async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getStringList("favs") == null) {
+      await sharedPreferences.setStringList("favs", []);
+      addFav(docId);
+    } else if (_isFav == false) {
+      addFav(docId);
+    } else if (_isFav == true) {
+      removeFav(docId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +128,16 @@ class _DetailViewState extends State<DetailView> {
   AppBar _appBar(context) {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
-      leading: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: const Icon(AppIcons.arrowBackIcon),
-      ),
+      leading: _backIcon(context),
+    );
+  }
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
     );
   }
 
@@ -166,6 +222,29 @@ class _DetailViewState extends State<DetailView> {
           fit: BoxFit.cover,
         ),
       ),
+      child: Align(
+        alignment: Alignment.topRight,
+        child: _favButton(),
+      ),
+    );
+  }
+
+  FutureBuilder<Object?> _favButton() {
+    return FutureBuilder(
+      future: favButton(widget.petModel.docId),
+      builder: (context, snapshot) {
+        return Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            onPressed: () {
+              changeFav(widget.petModel.docId);
+            },
+            icon: _isFav ?? false
+                ? const Icon(AppIcons.favoriteIcon, color: Colors.red, size: 30)
+                : const Icon(AppIcons.favoriteBorderIcon, size: 30),
+          ),
+        );
+      },
     );
   }
 }
