@@ -53,11 +53,6 @@ Future<void> main() async {
   );
 }
 
-// void dmlaskmd() {
-//   final prefs = await SharedPreferences.getInstance();
-//   final showHome = prefs.setStringList(key, value)
-// }
-
 class Petilla extends StatelessWidget {
   const Petilla({Key? key, required this.showHome}) : super(key: key);
   final bool showHome;

@@ -86,6 +86,9 @@ class _FavoritesViewState extends State<FavoritesView> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return _largePetWidget(snapshot);
+        }
+        if (snapshot.data?.id == null) {
+          return const Text("ahhhaa sıçtık ");
         } else {
           return _loadingLottie();
         }
