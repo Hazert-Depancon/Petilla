@@ -176,12 +176,9 @@ class _LargePetWidgetState extends State<LargePetWidget> {
       decoration: BoxDecoration(
         color: LightThemeColors.miamiMarmalade,
         borderRadius: ProjectRadius.allRadius,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(widget.petModel.imagePath),
-        ),
+        image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(widget.petModel.imagePath)),
       ),
-      child: _favButton(),
+      child: _isMe ? null : _favButton(),
     );
   }
 

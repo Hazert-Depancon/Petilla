@@ -21,13 +21,13 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   late bool _isClaim;
-  late bool isMe;
+  late bool _isMe;
 
   @override
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-    widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? isMe = true : isMe = false;
+    widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? _isMe = true : _isMe = false;
   }
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
@@ -54,12 +54,12 @@ class _DetailViewState extends State<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    final headline4 = Theme.of(context).textTheme.headline4?.copyWith(color: Colors.black);
+    final headline4 = Theme.of(context).textTheme.headline4?.copyWith(color: LightThemeColors.black);
 
     return Scaffold(
       appBar: _appBar(context),
       body: _body(context, headline4),
-      floatingActionButton: isMe ? null : _chatFabButton(),
+      floatingActionButton: _isMe ? null : _chatFabButton(),
     );
   }
 
@@ -192,7 +192,7 @@ class _DetailViewState extends State<DetailView> {
       ),
       child: Align(
         alignment: Alignment.topRight,
-        child: _favButton(),
+        child: _isMe ? null : _favButton(),
       ),
     );
   }

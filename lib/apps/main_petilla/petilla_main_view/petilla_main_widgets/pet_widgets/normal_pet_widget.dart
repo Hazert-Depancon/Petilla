@@ -1,5 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
@@ -22,6 +23,7 @@ class NormalPetWidget extends StatefulWidget {
 
 class _NormalPetWidgetState extends State<NormalPetWidget> {
   late bool _isClaim;
+  late bool _isMe;
   bool? _isFav;
 
   favButton(docId) async {
@@ -46,6 +48,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
+    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : _isMe = false;
   }
 
   callDetailView() {
@@ -159,7 +162,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
             fit: BoxFit.cover,
           ),
         ),
-        child: _favButton(),
+        child: _isMe ? null : _favButton(),
       ),
     );
   }
