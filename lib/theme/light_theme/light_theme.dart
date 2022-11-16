@@ -8,6 +8,7 @@ class LightTheme {
   LightTheme() {
     theme = ThemeData(
       primarySwatch: Colors.orange,
+      primaryColor: LightThemeColors.white,
 
       scaffoldBackgroundColor: LightThemeColors.scaffoldBackgroundColor,
       brightness: Brightness.light,
