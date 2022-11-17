@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class AuthTextField extends StatefulWidget {
   const AuthTextField(
@@ -56,7 +58,7 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Lütfen tüm alanları doldurun";
+          return LocaleKeys.fillAllArea.locale;
         }
         return null;
       },

@@ -1,4 +1,6 @@
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:quickalert/quickalert.dart';
 
 showErrorDialog(bool dismissible, String error, context) {
@@ -14,6 +16,6 @@ showErrorDialog(bool dismissible, String error, context) {
 }
 
 class _ThisDialogConstantsTexts {
-  static String confirmBtnText = "Tamam";
-  static String error = "Hata";
+  static String confirmBtnText = LocaleKeys.ok.locale;
+  static String error = LocaleKeys.error.locale;
 }

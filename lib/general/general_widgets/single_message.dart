@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class SingleMessage extends StatelessWidget {
   const SingleMessage({Key? key, required this.message, required this.isMe}) : super(key: key);

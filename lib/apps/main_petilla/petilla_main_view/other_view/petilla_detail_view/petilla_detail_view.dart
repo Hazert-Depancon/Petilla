@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class DetailView extends StatefulWidget {
@@ -218,10 +220,10 @@ class _DetailViewState extends BaseState<DetailView> {
 }
 
 class _ThisPageTexts {
-  static String claim = "Sahiplen";
-  static String ageRange = "Evcil Hayvan Yaş Aralığı";
-  static String gender = "Evcil Hayvan Cinsiyeti";
-  static String type = "Evcil Hayvan Türü";
-  static String race = "Evcil Hayvan Irkı";
-  static String location = "Konum";
+  static String claim = LocaleKeys.adopt.locale;
+  static String ageRange = LocaleKeys.petAgeRange.locale;
+  static String gender = LocaleKeys.gender.locale;
+  static String type = LocaleKeys.petType.locale;
+  static String race = LocaleKeys.petRace.locale;
+  static String location = LocaleKeys.location.locale;
 }

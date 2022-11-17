@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/chat_widgets/user_chat.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 
 class ChatSelectView extends StatelessWidget {
   const ChatSelectView({Key? key}) : super(key: key);
@@ -120,6 +122,6 @@ class ChatSelectView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String myMessages = "Mesajlarım";
-  static String noMessagesYet = "Henüz Hiç Kimse İle Mesajlaşmadınız";
+  static String myMessages = LocaleKeys.myMessages.locale;
+  static String noMessagesYet = LocaleKeys.noMessagesYet.locale;
 }

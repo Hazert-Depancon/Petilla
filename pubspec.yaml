@@ -71,7 +71,7 @@ flutter:
     - assets/images/
     - assets/jsons/
     - assets/svg/
-    - assets/jsons/localization/
+    - assets/jsons/lang/
 
   # example:
   # fonts:

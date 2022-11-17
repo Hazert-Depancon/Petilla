@@ -3,15 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view_model.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 var loginUser = FirebaseAuth.instance.currentUser;
 
@@ -88,7 +90,7 @@ class _GroupChatState extends BaseState<GroupChat> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: "Bir mesaj yaz...",
+        hintText: LocaleKeys.writeAMessage.locale,
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class Button extends StatelessWidget {
   const Button({

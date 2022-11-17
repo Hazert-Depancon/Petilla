@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class InChatView extends StatefulWidget {
   const InChatView({
@@ -191,6 +193,6 @@ class MyListView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String writeAMessage = "Bir mesaj yaz...";
-  static String sayHi = "Selam Ver";
+  static String writeAMessage = LocaleKeys.writeAMessage.locale;
+  static String sayHi = LocaleKeys.sayHi.locale;
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class PetformHomeView extends StatelessWidget {
   const PetformHomeView({Key? key}) : super(key: key);
@@ -132,15 +134,15 @@ class PetformHomeView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String selectGroup = "Bir Grup Seç";
-  static String groupAddNotYet = "Grup Ekleme Özelliği Henüz Aktif Değil";
-  static String generalChat = "Genel Sohbet";
-  static String dog = "Köpek";
-  static String dogChat = "Köpek Sohbeti";
-  static String cat = "Kedi";
-  static String catChat = "Kedi Sohbeti";
-  static String rabbit = "Tavşan";
-  static String rabbitChat = "Tavşan Sohbeti";
-  static String fish = "Balık";
-  static String fishChat = "Balık Sohbeti";
+  static String selectGroup = LocaleKeys.selectAGroup.locale;
+  static String groupAddNotYet = LocaleKeys.groupAddNotYet.locale;
+  static String generalChat = LocaleKeys.generalChat.locale;
+  static String dog = LocaleKeys.dog.locale;
+  static String dogChat = LocaleKeys.dogChat.locale;
+  static String cat = LocaleKeys.cat.locale;
+  static String catChat = LocaleKeys.catChat.locale;
+  static String rabbit = LocaleKeys.rabbit.locale;
+  static String rabbitChat = LocaleKeys.rabbitChat.locale;
+  static String fish = LocaleKeys.fish.locale;
+  static String fishChat = LocaleKeys.fishChat.locale;
 }

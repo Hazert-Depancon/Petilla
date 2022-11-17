@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
 
 class OnboardingThreeView extends StatelessWidget {
   OnboardingThreeView({super.key});
@@ -27,7 +29,7 @@ class OnboardingThreeView extends StatelessWidget {
 }
 
 Text _textThree(BuildContext context) {
-  var msg3 = "Sokaktaki dostlarına destek ol!";
+  var msg3 = LocaleKeys.onboardingMsgThree.locale;
 
   return Text(
     msg3,

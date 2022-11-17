@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/utility/asset_utils/compress_utils.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
 
 class StorageCrud {
   static final StorageCrud _storageService = StorageCrud._internal();

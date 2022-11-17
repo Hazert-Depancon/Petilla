@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view/login_view.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view/register_view_model.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_card_sizes.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_card_sizes.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);
@@ -146,10 +148,10 @@ class RegisterView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String nameHint = "İsim";
-  static String mailHint = "E-mail";
-  static String passwordHint = "Şifre";
-  static String alreadyHaveAnAccount = "Zaten hesabın var mı?";
-  static String logIn = "Giriş Yap";
-  static String register = "Kayıt Ol";
+  static String nameHint = LocaleKeys.name.locale;
+  static String mailHint = LocaleKeys.mail.locale;
+  static String passwordHint = LocaleKeys.password.locale;
+  static String alreadyHaveAnAccount = LocaleKeys.alreadyHaveAnAccount.locale;
+  static String logIn = LocaleKeys.login.locale;
+  static String register = LocaleKeys.register.locale;
 }

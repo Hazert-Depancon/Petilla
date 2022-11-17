@@ -2,17 +2,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view/add_view_model.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_icon_sizes.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class AddView extends StatefulWidget {
   const AddView({Key? key}) : super(key: key);
@@ -262,12 +264,12 @@ class _AddViewState extends BaseState<AddView> {
 }
 
 class _ThisPageTexts {
-  static String name = "İsim";
-  static String description = "Açıklama";
-  static String adopt = "Sahiplen";
-  static String next = "Devam";
-  static String fillAllArea = "Lütfen tüm alanları doldurun";
-  static String gellery = "Galeriden Seç";
-  static String camera = "Kameradan Çek";
-  static String pageTitle = "Evcil Hayvan Ekle 1/2";
+  static String name = LocaleKeys.name.locale;
+  static String description = LocaleKeys.description.locale;
+  static String adopt = LocaleKeys.adopt.locale;
+  static String next = LocaleKeys.continuePages.locale;
+  static String fillAllArea = LocaleKeys.fillAllArea.locale;
+  static String gellery = LocaleKeys.selectGallery.locale;
+  static String camera = LocaleKeys.shootFromCamera.locale;
+  static String pageTitle = LocaleKeys.addPetOneInTwo.locale;
 }

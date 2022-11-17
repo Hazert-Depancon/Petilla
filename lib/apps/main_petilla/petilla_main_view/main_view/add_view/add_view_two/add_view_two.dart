@@ -12,14 +12,16 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/model
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class AddViewTwo extends StatefulWidget {
   const AddViewTwo({
@@ -390,25 +392,25 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 }
 
 class _ThisPageTexts {
-  static String dog = "Köpek";
-  static String cat = "Kedi";
-  static String fish = "Balık";
-  static String rabbit = "Tavşan";
-  static String other = "Diğer";
-  static String male = "Erkek";
-  static String female = "Dişi";
-  static String zeroThreeMonths = "0 - 3 Ay";
-  static String threeSixMonths = "3 - 6 Ay";
-  static String sixMonthsOneYear = "6 Ay - 1 Yıl";
-  static String oneThreeYears = "1 - 3 Yıl";
-  static String moreThanThreeYears = "3 Yıldan Başla";
-  static String petAgeRange = "Evcil Hayvan Yaş Aralığı";
-  static String petGender = "Evcil Hayvan Cinsiyeti";
-  static String petType = "Evcil Hayvan Türü";
-  static String petRace = "Evcil Hayvan Irkı";
-  static String selectDistrict = "İlçe Seçin";
-  static String selectCity = "İl Seçin";
-  static String addPet = "Evcil Hayvan Ekle";
-  static String error = "Hata";
-  static String addAPetTwoForTwo = "Evcil Hayvan Ekle 2/2";
+  static String dog = LocaleKeys.dog.locale;
+  static String cat = LocaleKeys.cat.locale;
+  static String fish = LocaleKeys.fish.locale;
+  static String rabbit = LocaleKeys.rabbit.locale;
+  static String other = LocaleKeys.other.locale;
+  static String male = LocaleKeys.male.locale;
+  static String female = LocaleKeys.female.locale;
+  static String zeroThreeMonths = LocaleKeys.zeroThreeMonths.locale;
+  static String threeSixMonths = LocaleKeys.threeSixMonths.locale;
+  static String sixMonthsOneYear = LocaleKeys.sixMonthsOneYear.locale;
+  static String oneThreeYears = LocaleKeys.oneThreeYears.locale;
+  static String moreThanThreeYears = LocaleKeys.moreThanThreeYears.locale;
+  static String petAgeRange = LocaleKeys.petAgeRange.locale;
+  static String petGender = LocaleKeys.petGender.locale;
+  static String petType = LocaleKeys.petType.locale;
+  static String petRace = LocaleKeys.petRace.locale;
+  static String selectDistrict = LocaleKeys.selectDistrict.locale;
+  static String selectCity = LocaleKeys.selectCity.locale;
+  static String addPet = LocaleKeys.addAPet.locale;
+  static String error = LocaleKeys.error.locale;
+  static String addAPetTwoForTwo = LocaleKeys.addPetTwoForTwo.locale;
 }

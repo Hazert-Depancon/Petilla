@@ -3,12 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class LargePetWidget extends StatefulWidget {
@@ -150,7 +152,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
 
   Text _paidText(BuildContext context) {
     return Text(
-      _isClaim ? "Sahiplen" : "${widget.petModel.price} TL",
+      _isClaim ? LocaleKeys.adopt.locale : "${widget.petModel.price} TL",
       style: _isClaim
           ? Theme.of(context).textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade)
           : Theme.of(context).textTheme.subtitle2,

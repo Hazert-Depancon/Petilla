@@ -1,18 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/start/select_app_view/select_app_view.dart';
-import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class PetillaHomeView extends StatefulWidget {
   const PetillaHomeView({Key? key}) : super(key: key);
@@ -396,23 +398,23 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = "Anasayfa";
-  static String filterPets = "Evcil Hayvanları Filtrele";
-  static String clear = "Temizle";
-  static String dog = "Köpek";
-  static String cat = "Kedi";
-  static String rabbit = "Tavşan";
-  static String fish = "Balık";
-  static String other = "Diğer";
-  static String zeroThreeMonths = "0 - 3 Ay";
-  static String threeSixMonths = "3 - 6 Ay";
-  static String sixMonthsOneYear = "6 Ay - 1 Yıl";
-  static String oneThreeYears = "1 - 3 Yıl";
-  static String moreThreeYears = "3 Yıldan Fazla";
-  static String male = "Erkek";
-  static String female = "Dişi";
-  static String petType = "Evcil Hayvan Türü";
-  static String petAgeRange = "Evcil Hayvan Yaş Aralığı";
-  static String petGender = "Evcil Hayvan Cinsiyeti";
-  static String notPetYet = "Aradığınız Evcil Hayvanı Bulamadık";
+  static String homePage = LocaleKeys.homePage.locale;
+  static String filterPets = LocaleKeys.filterPets.locale;
+  static String clear = LocaleKeys.clear.locale;
+  static String dog = LocaleKeys.dog.locale;
+  static String cat = LocaleKeys.cat.locale;
+  static String rabbit = LocaleKeys.rabbit.locale;
+  static String fish = LocaleKeys.fish.locale;
+  static String other = LocaleKeys.other.locale;
+  static String zeroThreeMonths = LocaleKeys.zeroThreeMonths.locale;
+  static String threeSixMonths = LocaleKeys.threeSixMonths.locale;
+  static String sixMonthsOneYear = LocaleKeys.sixMonthsOneYear.locale;
+  static String oneThreeYears = LocaleKeys.oneThreeYears.locale;
+  static String moreThreeYears = LocaleKeys.moreThanThreeYears.locale;
+  static String male = LocaleKeys.male.locale;
+  static String female = LocaleKeys.female.locale;
+  static String petType = LocaleKeys.petType.locale;
+  static String petAgeRange = LocaleKeys.petAgeRange.locale;
+  static String petGender = LocaleKeys.petGender.locale;
+  static String notPetYet = LocaleKeys.notPetYet.locale;
 }
