@@ -9,6 +9,7 @@ import 'package:petilla_app_project/core/constant/sizes_constant/project_padding
 import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constant/string_constant/shared_preferences_key_constants.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ class FavoritesView extends StatelessWidget {
 
   _getShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    myList = preferences.getStringList("favs") ?? [];
+    myList = preferences.getStringList(SharedPreferencesKeyConstants.favsConstant) ?? [];
     listLenght = myList?.length ?? 0;
 
     for (var i = 0; i < listLenght!; i++) {
