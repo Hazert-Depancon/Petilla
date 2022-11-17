@@ -1,4 +1,3 @@
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:quickalert/quickalert.dart';
 
@@ -15,6 +14,6 @@ showErrorDialog(bool dismissible, String error, context) {
 }
 
 class _ThisDialogConstantsTexts {
-  static String confirmBtnText = Localization.ok;
-  static String error = Localization.error;
+  static String confirmBtnText = "Tamam";
+  static String error = "Hata";
 }

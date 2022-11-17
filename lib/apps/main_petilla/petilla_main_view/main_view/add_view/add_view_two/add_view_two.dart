@@ -12,7 +12,6 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/model
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -391,25 +390,25 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 }
 
 class _ThisPageTexts {
-  static String dog = Localization.dog;
-  static String cat = Localization.cat;
-  static String fish = Localization.fish;
-  static String rabbit = Localization.rabbit;
-  static String other = Localization.other;
-  static String male = Localization.male;
-  static String female = Localization.female;
-  static String zeroThreeMonths = Localization.zeroThreeMonths;
-  static String threeSixMonths = Localization.threeSixMonths;
-  static String sixMonthsOneYear = Localization.sixMonthsOneYear;
-  static String oneThreeYears = Localization.oneThreeYears;
-  static String moreThanThreeYears = Localization.moreThanThreeYears;
-  static String petAgeRange = Localization.petAgeRange;
-  static String petGender = Localization.petGender;
-  static String petType = Localization.petType;
-  static String petRace = Localization.race;
-  static String selectDistrict = Localization.selectDistrict;
-  static String selectCity = Localization.citySelect;
-  static String addPet = Localization.addAPet;
-  static String error = Localization.error;
-  static String addAPetTwoForTwo = Localization.addPetTwoForTwo;
+  static String dog = "Köpek";
+  static String cat = "Kedi";
+  static String fish = "Balık";
+  static String rabbit = "Tavşan";
+  static String other = "Diğer";
+  static String male = "Erkek";
+  static String female = "Dişi";
+  static String zeroThreeMonths = "0 - 3 Ay";
+  static String threeSixMonths = "3 - 6 Ay";
+  static String sixMonthsOneYear = "6 Ay - 1 Yıl";
+  static String oneThreeYears = "1 - 3 Yıl";
+  static String moreThanThreeYears = "3 Yıldan Başla";
+  static String petAgeRange = "Evcil Hayvan Yaş Aralığı";
+  static String petGender = "Evcil Hayvan Cinsiyeti";
+  static String petType = "Evcil Hayvan Türü";
+  static String petRace = "Evcil Hayvan Irkı";
+  static String selectDistrict = "İlçe Seçin";
+  static String selectCity = "İl Seçin";
+  static String addPet = "Evcil Hayvan Ekle";
+  static String error = "Hata";
+  static String addAPetTwoForTwo = "Evcil Hayvan Ekle 2/2";
 }

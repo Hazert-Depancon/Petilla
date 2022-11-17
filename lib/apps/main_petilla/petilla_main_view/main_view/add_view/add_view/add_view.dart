@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view/add_view_model.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
@@ -263,12 +262,12 @@ class _AddViewState extends BaseState<AddView> {
 }
 
 class _ThisPageTexts {
-  static String name = Localization.name;
-  static String description = Localization.description;
-  static String adopt = Localization.adopt;
-  static String next = Localization.next;
-  static String fillAllArea = Localization.fillAllArea;
-  static String gellery = Localization.selectGallery;
-  static String camera = Localization.shootCamera;
-  static String pageTitle = Localization.addPhotoTwoInOne;
+  static String name = "İsim";
+  static String description = "Açıklama";
+  static String adopt = "Sahiplen";
+  static String next = "Devam";
+  static String fillAllArea = "Lütfen tüm alanları doldurun";
+  static String gellery = "Galeriden Seç";
+  static String camera = "Kameradan Çek";
+  static String pageTitle = "Evcil Hayvan Ekle 1/2";
 }

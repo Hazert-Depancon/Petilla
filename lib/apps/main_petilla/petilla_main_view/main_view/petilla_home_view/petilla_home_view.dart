@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
 import "package:flutter/material.dart";
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -205,7 +203,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   ExpansionTile _expansionTile(context, String title, List<Widget> children) {
     return ExpansionTile(
       title: Text(
-        title.tr(),
+        title,
         style: themeData.textTheme.titleLarge!.copyWith(fontSize: 18),
       ),
       children: children,
@@ -398,23 +396,23 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = Localization.homePage;
-  static String filterPets = Localization.filterPets;
-  static String clear = Localization.clear;
-  static String dog = Localization.dog;
-  static String cat = Localization.cat;
-  static String rabbit = Localization.rabbit;
-  static String fish = Localization.fish;
-  static String other = Localization.other;
-  static String zeroThreeMonths = Localization.zeroThreeMonths;
-  static String threeSixMonths = Localization.threeSixMonths;
-  static String sixMonthsOneYear = Localization.sixMonthsOneYear;
-  static String oneThreeYears = Localization.oneThreeYears;
-  static String moreThreeYears = Localization.moreThanThreeYears;
-  static String male = Localization.male;
-  static String female = Localization.female;
-  static String petType = Localization.petType;
-  static String petAgeRange = Localization.petAgeRange;
-  static String petGender = Localization.petGender;
-  static String notPetYet = Localization.notPetYet;
+  static String homePage = "Anasayfa";
+  static String filterPets = "Evcil Hayvanları Filtrele";
+  static String clear = "Temizle";
+  static String dog = "Köpek";
+  static String cat = "Kedi";
+  static String rabbit = "Tavşan";
+  static String fish = "Balık";
+  static String other = "Diğer";
+  static String zeroThreeMonths = "0 - 3 Ay";
+  static String threeSixMonths = "3 - 6 Ay";
+  static String sixMonthsOneYear = "6 Ay - 1 Yıl";
+  static String oneThreeYears = "1 - 3 Yıl";
+  static String moreThreeYears = "3 Yıldan Fazla";
+  static String male = "Erkek";
+  static String female = "Dişi";
+  static String petType = "Evcil Hayvan Türü";
+  static String petAgeRange = "Evcil Hayvan Yaş Aralığı";
+  static String petGender = "Evcil Hayvan Cinsiyeti";
+  static String notPetYet = "Aradığınız Evcil Hayvanı Bulamadık";
 }

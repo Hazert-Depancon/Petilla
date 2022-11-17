@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
@@ -57,7 +56,7 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return Localization.fillAllArea;
+          return "Lütfen tüm alanları doldurun";
         }
         return null;
       },

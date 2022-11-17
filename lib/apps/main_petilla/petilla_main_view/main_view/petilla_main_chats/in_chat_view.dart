@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
@@ -192,6 +191,6 @@ class MyListView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String writeAMessage = Localization.writeAMessage;
-  static String sayHi = Localization.sayHi;
+  static String writeAMessage = "Bir mesaj yaz...";
+  static String sayHi = "Selam Ver";
 }

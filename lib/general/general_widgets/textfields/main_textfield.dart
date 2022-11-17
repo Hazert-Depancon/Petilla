@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
@@ -55,7 +54,7 @@ class MainTextField extends StatelessWidget {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return Localization.fillAllArea;
+          return "Lütfen tüm alanları doldurun";
         }
         return null;
       },

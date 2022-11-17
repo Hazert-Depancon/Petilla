@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view/login_view.dart';
 import 'package:petilla_app_project/auth/auth_view/register_view/register_view_model.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
@@ -147,10 +146,10 @@ class RegisterView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String nameHint = Localization.name;
-  static String mailHint = Localization.mail;
-  static String passwordHint = Localization.password;
-  static String alreadyHaveAnAccount = Localization.alreadyHaveAnAccount;
-  static String logIn = Localization.login;
-  static String register = Localization.register;
+  static String nameHint = "İsim";
+  static String mailHint = "E-mail";
+  static String passwordHint = "Şifre";
+  static String alreadyHaveAnAccount = "Zaten hesabın var mı?";
+  static String logIn = "Giriş Yap";
+  static String register = "Kayıt Ol";
 }

@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/other_view/petilla_detail_view/petilla_detail_view.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -118,7 +117,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
 
   Text _priceText(TextStyle? subtitle2) {
     return Text(
-      _isClaim ? Localization.claim : "${widget.petModel.price}TL",
+      _isClaim ? "Sahiplen" : "${widget.petModel.price}TL",
       style: _isClaim
           ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis)
           : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),

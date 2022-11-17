@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -219,10 +218,10 @@ class _DetailViewState extends BaseState<DetailView> {
 }
 
 class _ThisPageTexts {
-  static String claim = Localization.claim;
-  static String ageRange = Localization.ageRange;
-  static String gender = Localization.gender;
-  static String type = Localization.type;
-  static String race = Localization.race;
-  static String location = Localization.location;
+  static String claim = "Sahiplen";
+  static String ageRange = "Evcil Hayvan Yaş Aralığı";
+  static String gender = "Evcil Hayvan Cinsiyeti";
+  static String type = "Evcil Hayvan Türü";
+  static String race = "Evcil Hayvan Irkı";
+  static String location = "Konum";
 }

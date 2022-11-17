@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view_model.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -89,7 +88,7 @@ class _GroupChatState extends BaseState<GroupChat> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: Localization.writeAMessage,
+        hintText: "Bir mesaj yaz...",
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36),

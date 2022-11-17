@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_view_model.dart';
@@ -153,7 +152,7 @@ class _OnboardingState extends BaseState<Onboarding> {
 }
 
 class _ThisPageTexts {
-  static String backText = Localization.back;
-  static String start = Localization.start;
-  static String continuePages = Localization.continueText;
+  static String backText = "Geri";
+  static String start = "Başla";
+  static String continuePages = "Devam";
 }

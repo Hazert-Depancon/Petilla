@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
@@ -106,6 +105,6 @@ PetModel _petModel(DocumentSnapshot<Object?> document) {
 }
 
 class _ThisPageTexts {
-  static String myInserts = Localization.myInserts;
-  static String notInsertYet = Localization.notInsertYet;
+  static String myInserts = "İlanlarım";
+  static String notInsertYet = "Henüz Hiç İlanınız Yok";
 }

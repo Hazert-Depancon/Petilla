@@ -11,7 +11,6 @@ import 'package:petilla_app_project/general/general_view/profile_view/profile_vi
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -119,5 +118,5 @@ class ProfileView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String title = Localization.profile;
+  static String title = "Profil";
 }

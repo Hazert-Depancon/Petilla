@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
@@ -133,15 +132,15 @@ class PetformHomeView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String selectGroup = Localization.selectAGroup;
-  static String groupAddNotYet = Localization.groupAddNotYet;
-  static String generalChat = Localization.generalChat;
-  static String dog = Localization.dog;
-  static String dogChat = Localization.dogChat;
-  static String cat = Localization.cat;
-  static String catChat = Localization.catChat;
-  static String rabbit = Localization.rabbit;
-  static String rabbitChat = Localization.rabbitChat;
-  static String fish = Localization.fish;
-  static String fishChat = Localization.fishChat;
+  static String selectGroup = "Bir Grup Seç";
+  static String groupAddNotYet = "Grup Ekleme Özelliği Henüz Aktif Değil";
+  static String generalChat = "Genel Sohbet";
+  static String dog = "Köpek";
+  static String dogChat = "Köpek Sohbeti";
+  static String cat = "Kedi";
+  static String catChat = "Kedi Sohbeti";
+  static String rabbit = "Tavşan";
+  static String rabbitChat = "Tavşan Sohbeti";
+  static String fish = "Balık";
+  static String fishChat = "Balık Sohbeti";
 }

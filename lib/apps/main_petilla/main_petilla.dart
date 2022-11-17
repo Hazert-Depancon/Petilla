@@ -5,7 +5,6 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_vie
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_home_view/petilla_home_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_insert_view/petilla_insert_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
@@ -59,7 +58,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
   BottomNavigationBarItem _homeBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _homeIcon(),
-      label: Localization.homePage,
+      label: "Anasayfa",
     );
   }
 
@@ -74,28 +73,28 @@ class _MainPetillaState extends BaseState<MainPetilla> {
   BottomNavigationBarItem _favsBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 1 ? const Icon(AppIcons.favoriteIcon) : const Icon(AppIcons.favoriteBorderIcon),
-      label: Localization.myFavorites,
+      label: "Favorilerim",
     );
   }
 
   BottomNavigationBarItem _addBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 2 ? const Icon(AppIcons.addCircleIcon) : const Icon(AppIcons.addCircleOutlinedIcon),
-      label: Localization.addAPet,
+      label: "Evcil Hayvan Ekle",
     );
   }
 
   BottomNavigationBarItem _chatsBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 3 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
-      label: Localization.myMessages,
+      label: "Mesajlarım",
     );
   }
 
   BottomNavigationBarItem _insertBottomNavigation() {
     return BottomNavigationBarItem(
       icon: _selectedIndex == 4 ? const Icon(AppIcons.insertOutlineIcon) : const Icon(AppIcons.insertOutlineIcon),
-      label: Localization.myInserts,
+      label: "İlanlarım",
     );
   }
 }

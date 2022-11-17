@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
@@ -27,7 +26,7 @@ class OnboardingOneView extends StatelessWidget {
 }
 
 Text _textOne(BuildContext context) {
-  String msg1 = Localization.onboardingMsgOne;
+  String msg1 = "Evcil hayvanları en güvenli şekilde sahiplen veya sahiplendir!";
 
   return Text(
     msg1,
