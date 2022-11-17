@@ -1,25 +1,24 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FavoritesView extends StatefulWidget {
-  const FavoritesView({super.key});
+class FavoritesView extends StatelessWidget {
+  FavoritesView({super.key});
 
-  @override
-  State<FavoritesView> createState() => _FavoritesViewState();
-}
-
-class _FavoritesViewState extends State<FavoritesView> {
   int? listLenght = 0;
+
   List? myList;
+
   List<String> list = [];
 
   _getShared() async {
@@ -30,11 +29,6 @@ class _FavoritesViewState extends State<FavoritesView> {
     for (var i = 0; i < listLenght!; i++) {
       list.add(myList![i]);
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override

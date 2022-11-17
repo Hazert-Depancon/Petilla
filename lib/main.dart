@@ -4,16 +4,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view/login_view.dart';
-import 'package:petilla_app_project/constant/strings_constant/shared_preferences_key_constants.dart';
+import 'package:petilla_app_project/constant/string_constant/path_constants.dart';
+import 'package:petilla_app_project/constant/string_constant/shared_preferences_key_constants.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding.dart';
 import 'package:petilla_app_project/start/select_app_view/select_app_view.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp();
+  await _init();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -28,12 +27,18 @@ Future<void> main() async {
       supportedLocales: const [
         Locale("tr", "TR"),
       ],
-      path: "assets/jsons/localization",
+      path: AppPathConstants.langAssetPet,
       saveLocale: true,
       fallbackLocale: const Locale("tr", "TR"),
       child: Petilla(showHome: showHome),
     ),
   );
+}
+
+Future<void> _init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp();
 }
 
 class Petilla extends StatelessWidget {

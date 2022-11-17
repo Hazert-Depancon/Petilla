@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class MainTextField extends StatelessWidget {
   const MainTextField({

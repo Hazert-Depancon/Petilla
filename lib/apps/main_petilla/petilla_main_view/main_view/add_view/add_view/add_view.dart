@@ -9,10 +9,11 @@ import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes
 import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class AddView extends StatefulWidget {
   const AddView({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class AddView extends StatefulWidget {
   State<AddView> createState() => _AddViewState();
 }
 
-class _AddViewState extends State<AddView> {
+class _AddViewState extends BaseState<AddView> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
@@ -235,7 +236,7 @@ class _AddViewState extends State<AddView> {
           val = value;
         });
       },
-      title: Text(title, style: Theme.of(context).textTheme.bodyText1),
+      title: Text(title, style: themeData.textTheme.bodyText1),
     );
   }
 

@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
 
 class PetillaInsertView extends StatelessWidget {
   const PetillaInsertView({super.key});

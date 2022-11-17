@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/storage_service.dart/storage_crud.dart';
-import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
 
 class CrudService {
   static final CrudService _crudService = CrudService._internal();

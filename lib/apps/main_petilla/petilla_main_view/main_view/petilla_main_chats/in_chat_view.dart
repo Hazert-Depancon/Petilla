@@ -4,10 +4,11 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/general/general_widgets/single_message.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class InChatView extends StatefulWidget {
   const InChatView({
@@ -31,7 +32,7 @@ class InChatView extends StatefulWidget {
   State<InChatView> createState() => _InChatViewState();
 }
 
-class _InChatViewState extends State<InChatView> {
+class _InChatViewState extends BaseState<InChatView> {
   final TextEditingController controller = TextEditingController();
   late final Stream<QuerySnapshot<Map<String, dynamic>>> firebaseStream;
   final String usersRef = AppFirestoreCollectionNames.usersCollection;

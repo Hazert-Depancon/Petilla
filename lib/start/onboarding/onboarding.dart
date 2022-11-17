@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_view_model.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_one/onboarding_one_view.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_three/onboarding_three_view.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_two/onboarding_two_view.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -15,7 +16,7 @@ class Onboarding extends StatefulWidget {
   State<Onboarding> createState() => _OnboardingState();
 }
 
-class _OnboardingState extends State<Onboarding> {
+class _OnboardingState extends BaseState<Onboarding> {
   final controller = PageController();
   bool isLastPage = false;
 

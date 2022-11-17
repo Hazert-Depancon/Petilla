@@ -16,10 +16,11 @@ import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class AddViewTwo extends StatefulWidget {
   const AddViewTwo({
@@ -39,7 +40,7 @@ class AddViewTwo extends StatefulWidget {
   _AddViewTwoState createState() => _AddViewTwoState();
 }
 
-class _AddViewTwoState extends State<AddViewTwo> {
+class _AddViewTwoState extends BaseState<AddViewTwo> {
   bool _yuklemeTamamlandiMi = false;
 
   late String _secilenIl;

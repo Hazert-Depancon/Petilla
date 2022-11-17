@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class AuthTextField extends StatefulWidget {
   const AuthTextField(
@@ -26,7 +27,7 @@ class AuthTextField extends StatefulWidget {
   State<AuthTextField> createState() => _AuthTextFieldState();
 }
 
-class _AuthTextFieldState extends State<AuthTextField> {
+class _AuthTextFieldState extends BaseState<AuthTextField> {
   bool? _obscureText;
 
   @override

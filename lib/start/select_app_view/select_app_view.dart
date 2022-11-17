@@ -9,7 +9,7 @@ import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/general/general_view/profile_view/profile_view.dart';
 import 'package:petilla_app_project/start/select_app_view/select_app_widgets/select_app_widget.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class SelectAppView extends StatelessWidget {
   const SelectAppView({Key? key}) : super(key: key);

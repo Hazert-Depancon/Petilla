@@ -7,7 +7,8 @@ import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class DetailView extends StatefulWidget {
@@ -19,7 +20,7 @@ class DetailView extends StatefulWidget {
   State<DetailView> createState() => _DetailViewState();
 }
 
-class _DetailViewState extends State<DetailView> {
+class _DetailViewState extends BaseState<DetailView> {
   late bool _isClaim;
   late bool _isMe;
 
@@ -54,7 +55,7 @@ class _DetailViewState extends State<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    final headline4 = Theme.of(context).textTheme.headline4?.copyWith(color: LightThemeColors.black);
+    final headline4 = themeData.textTheme.headline4?.copyWith(color: LightThemeColors.black);
 
     return Scaffold(
       appBar: _appBar(context),
@@ -124,7 +125,7 @@ class _DetailViewState extends State<DetailView> {
   Text _userNameText(BuildContext context) {
     return Text(
       widget.petModel.currentUserName,
-      style: Theme.of(context).textTheme.headline6,
+      style: themeData.textTheme.headline6,
     );
   }
 
@@ -153,13 +154,13 @@ class _DetailViewState extends State<DetailView> {
   ListTile _litTile(BuildContext context, title, trailing) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: Theme.of(context).textTheme.headline6),
-      trailing: Text(trailing, style: Theme.of(context).textTheme.headline6),
+      title: Text(title, style: themeData.textTheme.headline6),
+      trailing: Text(trailing, style: themeData.textTheme.headline6),
     );
   }
 
   Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description, style: Theme.of(context).textTheme.subtitle1);
+    return Text(widget.petModel.description, style: themeData.textTheme.subtitle1);
   }
 
   Text _priceText(TextStyle? headline4) {

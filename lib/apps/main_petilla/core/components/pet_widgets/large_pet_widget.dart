@@ -7,8 +7,9 @@ import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class LargePetWidget extends StatefulWidget {
@@ -20,7 +21,7 @@ class LargePetWidget extends StatefulWidget {
   State<LargePetWidget> createState() => _LargePetWidgetState();
 }
 
-class _LargePetWidgetState extends State<LargePetWidget> {
+class _LargePetWidgetState extends BaseState<LargePetWidget> {
   late bool _isClaim;
   late bool _isMe;
   bool? _isFav;

@@ -9,7 +9,8 @@ import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class NormalPetWidget extends StatefulWidget {
@@ -21,7 +22,7 @@ class NormalPetWidget extends StatefulWidget {
   State<NormalPetWidget> createState() => _NormalPetWidgetState();
 }
 
-class _NormalPetWidgetState extends State<NormalPetWidget> {
+class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
   late bool _isClaim;
   late bool _isMe;
   bool? _isFav;
@@ -66,7 +67,7 @@ class _NormalPetWidgetState extends State<NormalPetWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle2 = Theme.of(context).textTheme.subtitle2;
+    final subtitle2 = themeData.textTheme.subtitle2;
     return GestureDetector(
       onTap: () {
         callDetailView();

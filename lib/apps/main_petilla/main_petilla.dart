@@ -6,9 +6,10 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_vie
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_insert_view/petilla_insert_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class MainPetilla extends StatefulWidget {
   const MainPetilla({Key? key}) : super(key: key);
@@ -17,12 +18,12 @@ class MainPetilla extends StatefulWidget {
   State<MainPetilla> createState() => _MainPetillaState();
 }
 
-class _MainPetillaState extends State<MainPetilla> {
+class _MainPetillaState extends BaseState<MainPetilla> {
   int _selectedIndex = 0;
 
   final List<Widget> pages = [
     const PetillaHomeView(),
-    const FavoritesView(),
+    FavoritesView(),
     const AddView(),
     const ChatSelectView(),
     const PetillaInsertView(),

@@ -2,18 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import "package:flutter/material.dart";
 import 'package:lottie/lottie.dart';
+import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/petilla_main_widgets/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/constant/strings_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/start/select_app_view/select_app_view.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class PetillaHomeView extends StatefulWidget {
   const PetillaHomeView({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class PetillaHomeView extends StatefulWidget {
   State<PetillaHomeView> createState() => _PetillaHomeViewState();
 }
 
-class _PetillaHomeViewState extends State<PetillaHomeView> {
+class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   Object? val1 = 0;
   Object? val2 = 0;
   Object? val3 = 0;
@@ -142,10 +143,10 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
   Text _drawerTitle(BuildContext context) {
     return Text(
       _ThisPageTexts.filterPets,
-      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            color: LightThemeColors.miamiMarmalade,
-            fontSize: 22,
-          ),
+      style: themeData.textTheme.titleLarge!.copyWith(
+        color: LightThemeColors.miamiMarmalade,
+        fontSize: 22,
+      ),
     );
   }
 
@@ -205,7 +206,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
     return ExpansionTile(
       title: Text(
         title.tr(),
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18),
+        style: themeData.textTheme.titleLarge!.copyWith(fontSize: 18),
       ),
       children: children,
     );
@@ -227,7 +228,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
           selectedAgeRangeFilter = title;
         });
       },
-      title: Text(title, style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: themeData.textTheme.bodyText2!.copyWith(fontSize: 20)),
     );
   }
 
@@ -247,7 +248,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
           selectedTypeFilter = title;
         });
       },
-      title: Text(title, style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: themeData.textTheme.bodyText2!.copyWith(fontSize: 20)),
     );
   }
 
@@ -331,7 +332,7 @@ class _PetillaHomeViewState extends State<PetillaHomeView> {
         children: [
           Text(
             _ThisPageTexts.notPetYet,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: themeData.textTheme.titleLarge,
           ),
           Lottie.network(ProjectLottieUrls.emptyLottie),
         ],

@@ -5,7 +5,7 @@ import 'package:petilla_app_project/constant/localization/localization.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/constant/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class PetformHomeView extends StatelessWidget {
   const PetformHomeView({Key? key}) : super(key: key);

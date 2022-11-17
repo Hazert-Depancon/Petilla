@@ -10,10 +10,10 @@ import 'package:petilla_app_project/constant/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_button_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_card_sizes.dart';
 import 'package:petilla_app_project/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/constant/strings_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/constant/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/auth_textfield.dart';
-import 'package:petilla_app_project/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/init/theme/light_theme/light_theme_colors.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);

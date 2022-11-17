@@ -2,15 +2,10 @@
 
 import 'package:flutter/material.dart';
 
-class IlSecimiSayfasi extends StatefulWidget {
+class IlSecimiSayfasi extends StatelessWidget {
   final List ilIsimleri;
 
   const IlSecimiSayfasi({Key? key, required this.ilIsimleri}) : super(key: key);
-  @override
-  _IlSecimiSayfasiState createState() => _IlSecimiSayfasiState();
-}
-
-class _IlSecimiSayfasiState extends State<IlSecimiSayfasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +13,11 @@ class _IlSecimiSayfasiState extends State<IlSecimiSayfasi> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: widget.ilIsimleri.length,
+              itemCount: ilIsimleri.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    widget.ilIsimleri[index],
+                    ilIsimleri[index],
                   ),
                   onTap: () {
                     Navigator.pop(context, index);
