@@ -1,16 +1,36 @@
-# petilla_app_project
+# Petilla [TR]
+Petilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtlı sayıda mobil uygulama olmasından dolayı yapımına başlanmış ve Kasım 2022 itibari ile sınırlandırılmış sürüm (Beta 1.0) olarak Google Play Store'da ilk kullanıcılarının karşısına çıkmaya hazırlanmaktadır.
 
-A new Flutter project.
+# İşlevi
+Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali hazırda çalışmakta olan;
 
-## Getting Started
+*-Hayvan sahiplenme hizmeti*
 
-This project is a starting point for a Flutter application.
+*-Hayvanlara dair sohbet etme*
 
-A few resources to get you started if this is your first Flutter project:
+özellikleri vardır.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Şuanda yapım aşamasında olan ise;
+Yardıma ihtiyacı olan sokak hayvanlarına acil destek.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Gelecekte yapılacak olan ise; 
+
+*-Evcil hayvan eşya tedariği* 
+
+*-Kayıp evcil hayvan bulma*
+
+*-Evcil hayvan eş bulma*
+
+hizmetleri en kısa sürede eklenecektir.
+
+# Emeği Geçenler
+
+Oğuz Kağan Güllü (Petilla Kurucu, Yazılım, https://github.com/hazert-depancon)
+
+Erdinç Güllü (Danışman)
+
+A Eymen Nuhoğlu (Danışman)
+
+M. Said Korkmaz (Yazılım Yardımı, https://github.com/saidkorkmaz)
+
+Veli Bacık (Yazılım Yardımı, https://github.com/VB10/) 
