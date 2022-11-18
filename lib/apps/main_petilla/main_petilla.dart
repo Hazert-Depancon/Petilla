@@ -7,7 +7,6 @@ import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_ins
 import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
-import 'package:petilla_app_project/core/extension/context_extension.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
@@ -34,14 +33,14 @@ class _MainPetillaState extends BaseState<MainPetilla> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomNavBar(context),
+      bottomNavigationBar: _bottomNavBar(),
       body: pages[_selectedIndex],
     );
   }
 
-  BottomNavigationBar _bottomNavBar(BuildContext context) {
+  BottomNavigationBar _bottomNavBar() {
     return BottomNavigationBar(
-      backgroundColor: context.lightThemeColors.black,
+      backgroundColor: LightThemeColors.white,
       currentIndex: _selectedIndex,
       onTap: (index) {
         setState(() {

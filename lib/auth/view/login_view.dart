@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/auth/auth_view/login_view/login_view_model.dart';
-import 'package:petilla_app_project/auth/auth_view/register_view/register_view.dart';
+import 'package:petilla_app_project/auth/viewmodel/login_view_model.dart';
+import 'package:petilla_app_project/auth/view/register_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
 import 'package:petilla_app_project/core/components/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';

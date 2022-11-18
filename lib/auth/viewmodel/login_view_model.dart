@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/auth/auth_service/auth_service.dart';
+import 'package:petilla_app_project/auth/service/auth_service.dart';
 import 'package:petilla_app_project/main.dart';
 
 class LoginViewModel {
