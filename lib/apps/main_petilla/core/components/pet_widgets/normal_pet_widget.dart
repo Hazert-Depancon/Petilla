@@ -68,7 +68,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle2 = themeData.textTheme.subtitle2;
+    final subtitle2 = textTheme.subtitle2;
     return GestureDetector(
       onTap: () {
         callDetailView();

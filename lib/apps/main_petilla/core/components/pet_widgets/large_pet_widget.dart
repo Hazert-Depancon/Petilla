@@ -147,15 +147,13 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   }
 
   Text _nameText(BuildContext context) {
-    return Text(widget.petModel.name, style: Theme.of(context).textTheme.headline6);
+    return Text(widget.petModel.name, style: textTheme.headline6);
   }
 
   Text _paidText(BuildContext context) {
     return Text(
       _isClaim ? LocaleKeys.adopt.locale : "${widget.petModel.price} TL",
-      style: _isClaim
-          ? Theme.of(context).textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade)
-          : Theme.of(context).textTheme.subtitle2,
+      style: _isClaim ? textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade) : textTheme.subtitle2,
     );
   }
 
@@ -166,7 +164,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
         widget.petModel.description,
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.subtitle1?.copyWith(color: Colors.grey[600]),
+        style: textTheme.subtitle1?.copyWith(color: Colors.grey[600]),
       ),
     );
   }
@@ -189,7 +187,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _placeIcon(),
-        Text(widget.petModel.city, overflow: TextOverflow.clip, style: Theme.of(context).textTheme.subtitle1),
+        Text(widget.petModel.city, overflow: TextOverflow.clip, style: textTheme.subtitle1),
       ],
     );
   }

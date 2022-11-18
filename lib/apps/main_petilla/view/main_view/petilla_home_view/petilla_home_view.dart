@@ -143,7 +143,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   Text _drawerTitle(BuildContext context) {
     return Text(
       _ThisPageTexts.filterPets,
-      style: themeData.textTheme.titleLarge!.copyWith(
+      style: textTheme.titleLarge!.copyWith(
         color: LightThemeColors.miamiMarmalade,
         fontSize: 22,
       ),
@@ -206,7 +206,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
     return ExpansionTile(
       title: Text(
         title,
-        style: themeData.textTheme.titleLarge!.copyWith(fontSize: 18),
+        style: textTheme.titleLarge!.copyWith(fontSize: 18),
       ),
       children: children,
     );
@@ -228,7 +228,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedAgeRangeFilter = title;
         });
       },
-      title: Text(title, style: themeData.textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
     );
   }
 
@@ -248,7 +248,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedTypeFilter = title;
         });
       },
-      title: Text(title, style: themeData.textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
     );
   }
 
@@ -268,7 +268,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedGenderFilter = title;
         });
       },
-      title: Text(title, style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
     );
   }
 

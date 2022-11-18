@@ -237,7 +237,7 @@ class _AddViewState extends BaseState<AddView> {
           val = value;
         });
       },
-      title: Text(title, style: themeData.textTheme.bodyText1),
+      title: Text(title, style: textTheme.bodyText1),
     );
   }
 

@@ -56,7 +56,7 @@ class _DetailViewState extends BaseState<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    final headline4 = themeData.textTheme.headline4?.copyWith(color: LightThemeColors.black);
+    final headline4 = textTheme.headline4?.copyWith(color: LightThemeColors.black);
 
     return Scaffold(
       appBar: _appBar(context),
@@ -126,7 +126,7 @@ class _DetailViewState extends BaseState<DetailView> {
   Text _userNameText(BuildContext context) {
     return Text(
       widget.petModel.currentUserName,
-      style: themeData.textTheme.headline6,
+      style: textTheme.headline6,
     );
   }
 
@@ -155,13 +155,13 @@ class _DetailViewState extends BaseState<DetailView> {
   ListTile _litTile(BuildContext context, title, trailing) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: themeData.textTheme.headline6),
-      trailing: Text(trailing, style: themeData.textTheme.headline6),
+      title: Text(title, style: textTheme.headline6),
+      trailing: Text(trailing, style: textTheme.headline6),
     );
   }
 
   Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description, style: themeData.textTheme.subtitle1);
+    return Text(widget.petModel.description, style: textTheme.subtitle1);
   }
 
   Text _priceText(TextStyle? headline4) {
