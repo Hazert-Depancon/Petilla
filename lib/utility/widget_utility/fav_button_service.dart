@@ -1,4 +1,4 @@
-import 'package:petilla_app_project/core/constant/string_constant/shared_preferences_key_constants.dart';
+import 'package:petilla_app_project/core/constants/string_constant/shared_preferences_key_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavButtonService {

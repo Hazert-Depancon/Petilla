@@ -4,20 +4,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:petilla_app_project/auth/auth_view/login_view/login_view.dart';
-import 'package:petilla_app_project/core/constant/app/app_constants.dart';
-import 'package:petilla_app_project/core/constant/string_constant/shared_preferences_key_constants.dart';
+import 'package:petilla_app_project/core/constants/app/app_constants.dart';
+import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
+import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
 import 'package:petilla_app_project/core/init/lang/language_manager.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding.dart';
 import 'package:petilla_app_project/start/select_app_view/select_app_view.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   await _init();
   _initSystemUi();
 
-  final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool(SharedPreferencesKeyConstants.showHomeConstant) ?? false;
+  final showHome = LocaleManager.instance.getBoolValue(SharedKeys.SHOWHOME);
 
   runApp(
     EasyLocalization(
@@ -31,6 +30,7 @@ Future<void> main() async {
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await LocaleManager.preferencesInit();
   await Firebase.initializeApp();
 }
 

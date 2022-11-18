@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 

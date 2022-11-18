@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 
 class UserChat extends StatelessWidget {
   UserChat({Key? key, required this.onTap, required this.name, required this.lastMsg}) : super(key: key);

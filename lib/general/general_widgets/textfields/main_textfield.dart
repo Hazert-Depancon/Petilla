@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';

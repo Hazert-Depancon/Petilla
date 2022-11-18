@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
-import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';

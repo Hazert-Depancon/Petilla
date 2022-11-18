@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';

@@ -4,7 +4,7 @@ import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/gr
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
-import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 

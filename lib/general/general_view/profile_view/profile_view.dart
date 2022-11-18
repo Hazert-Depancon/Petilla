@@ -2,17 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/core/constant/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constant/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constant/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constant/string_constant/project_lottie_urls.dart';
+import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/general/general_view/profile_view/profile_view_model.dart';
 import 'package:petilla_app_project/general/general_widgets/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);

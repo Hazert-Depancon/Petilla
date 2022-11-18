@@ -12,9 +12,9 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/model
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/city_select_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/city/ilce_select_view.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constant/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
