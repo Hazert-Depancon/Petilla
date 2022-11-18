@@ -2,14 +2,14 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
-import 'package:petilla_app_project/core/constants/string_constant/shared_preferences_key_constants.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,14 +18,12 @@ class FavoritesView extends StatelessWidget {
   FavoritesView({super.key});
 
   int? listLenght = 0;
-
   List? myList;
-
   List<String> list = [];
 
   _getShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    myList = preferences.getStringList(SharedPreferencesKeyConstants.favsConstant) ?? [];
+    myList = preferences.getStringList(SharedKeys.FAVS.toString()) ?? [];
     listLenght = myList?.length ?? 0;
 
     for (var i = 0; i < listLenght!; i++) {
@@ -57,16 +55,12 @@ class FavoritesView extends StatelessWidget {
     );
   }
 
-  Center _emptyLottie() {
-    return Center(
-      child: Lottie.network(ProjectLottieUrls.emptyLottie),
-    );
+  _emptyLottie() {
+    return const StatusView(status: StatusKeysEnum.EMPTY);
   }
 
-  Center _loadingLottie() {
-    return Center(
-      child: Lottie.network(ProjectLottieUrls.loadingLottie),
-    );
+  _loadingLottie() {
+    return const StatusView(status: StatusKeysEnum.LOADING);
   }
 
   ListView _listView() {
@@ -94,9 +88,17 @@ class FavoritesView extends StatelessWidget {
           return const Text("Favoriler listenizdeki bu ilan kaldırıldı.");
         }
 
+        if (snapshot.connectionState == ConnectionState.none) {
+          return _connectionErrorView();
+        }
+
         return _loadingLottie();
       },
     );
+  }
+
+  _connectionErrorView() {
+    return const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
   }
 
   LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {

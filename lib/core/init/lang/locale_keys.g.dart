@@ -2,6 +2,7 @@
 
 abstract class LocaleKeys {
   static const petform = 'petform';
+  static const connectionErrorText = 'connection_error_text';
   static const petilla = 'petilla';
   static const other = 'other';
   static const female = 'female';

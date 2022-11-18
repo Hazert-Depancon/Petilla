@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view_model.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
@@ -18,8 +18,12 @@ import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colo
 var loginUser = FirebaseAuth.instance.currentUser;
 
 class GroupChat extends StatefulWidget {
-  const GroupChat({Key? key, required this.pageTitle, required this.docId, required this.collectionId})
-      : super(key: key);
+  const GroupChat({
+    Key? key,
+    required this.pageTitle,
+    required this.docId,
+    required this.collectionId,
+  }) : super(key: key);
 
   final String pageTitle;
   final String docId;
@@ -77,12 +81,16 @@ class _GroupChatState extends BaseState<GroupChat> {
     return AppBar(
       title: Text(widget.pageTitle),
       foregroundColor: LightThemeColors.miamiMarmalade,
-      leading: GestureDetector(
-        child: const Icon(AppIcons.arrowBackIcon),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),
+      leading: _backIcon(),
+    );
+  }
+
+  GestureDetector _backIcon() {
+    return GestureDetector(
+      child: const Icon(AppIcons.arrowBackIcon),
+      onTap: () {
+        Navigator.pop(context);
+      },
     );
   }
 
@@ -142,10 +150,22 @@ class ShowMessages extends StatelessWidget {
         if (snapshot.hasData) {
           return _listView(snapshot);
         }
-        return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+        if (snapshot.hasError) {
+          return _errorWidget();
+        }
+        if (snapshot.connectionState == ConnectionState.none) {
+          return _connectionErrorWidget();
+        }
+        return _loadingWidget();
       },
     );
   }
+
+  _errorWidget() => const StatusView(status: StatusKeysEnum.ERROR);
+
+  _connectionErrorWidget() => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+
+  _loadingWidget() => const StatusView(status: StatusKeysEnum.LOADING);
 
   ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(

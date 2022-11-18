@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/chat_widgets/user_chat.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/in_chat_view.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 
 class ChatSelectView extends StatelessWidget {
   const ChatSelectView({Key? key}) : super(key: key);
+
   void _callInChat(
     String friendEmail,
     String friendUid,
@@ -61,21 +62,29 @@ class ChatSelectView extends StatelessWidget {
         if (snapshot.hasData) {
           if (snapshot.data!.docs.isEmpty) {
             return _notMessagesYetWidget();
-          } else if (snapshot.data!.docs.isNotEmpty) {
+          }
+          if (snapshot.data!.docs.isNotEmpty) {
             return _customListView(snapshot);
           }
         }
         if (snapshot.hasError) {
           return _errorWidget();
         }
+        if (snapshot.connectionState == ConnectionState.none) {
+          return _connectionError();
+        }
         return _loadingWidget();
       },
     );
   }
 
-  Center _loadingWidget() => Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+  _loadingWidget() => const StatusView(status: StatusKeysEnum.LOADING);
 
-  Center _errorWidget() => Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+  _connectionError() => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+
+  _notMessagesYetWidget() => const StatusView(status: StatusKeysEnum.EMPTY);
+
+  _errorWidget() => const StatusView(status: StatusKeysEnum.ERROR);
 
   ListView _customListView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(
@@ -107,21 +116,8 @@ class ChatSelectView extends StatelessWidget {
       context,
     );
   }
-
-  Center _notMessagesYetWidget() {
-    return Center(
-      child: Column(
-        children: [
-          const SizedBox(height: 120),
-          Text(_ThisPageTexts.noMessagesYet, style: const TextStyle(fontSize: 20)),
-          Center(child: Lottie.network(ProjectLottieUrls.emptyLottie)),
-        ],
-      ),
-    );
-  }
 }
 
 class _ThisPageTexts {
   static String myMessages = LocaleKeys.myMessages.locale;
-  static String noMessagesYet = LocaleKeys.noMessagesYet.locale;
 }

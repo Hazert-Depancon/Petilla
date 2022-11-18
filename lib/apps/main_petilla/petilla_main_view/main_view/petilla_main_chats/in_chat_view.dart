@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/chat_service/chat_service.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
@@ -69,7 +72,7 @@ class _InChatViewState extends BaseState<InChatView> {
       children: [
         CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: ProjectPaddings.horizontalMainPadding,
           child: Row(
             children: [
               Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
@@ -111,23 +114,25 @@ class _InChatViewState extends BaseState<InChatView> {
           backgroundColor: LightThemeColors.miamiMarmalade,
           foregroundColor: LightThemeColors.white,
           child: IconButton(
-            onPressed: () async {
-              String message = controller.text;
-              ChatService().sendMessage(
-                message,
-                controller,
-                widget.currentUserId,
-                widget.friendUserId,
-                widget.friendUserEmail,
-                widget.currentUserEmail,
-                widget.friendUserName,
-                widget.currentUserName,
-              );
-            },
+            onPressed: _onSendButton,
             icon: const Icon(AppIcons.sendIcon),
           ),
         ),
       ),
+    );
+  }
+
+  _onSendButton() {
+    String message = controller.text;
+    ChatService().sendMessage(
+      message,
+      controller,
+      widget.currentUserId,
+      widget.friendUserId,
+      widget.friendUserEmail,
+      widget.currentUserEmail,
+      widget.friendUserName,
+      widget.currentUserName,
     );
   }
 }
@@ -142,6 +147,8 @@ class CustomStreamBuilder extends StatelessWidget {
   final Stream<QuerySnapshot<Map<String, dynamic>>> firebaseStream;
   final InChatView widget;
 
+  _loadingView() => const StatusView(status: StatusKeysEnum.EMPTY);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -149,17 +156,13 @@ class CustomStreamBuilder extends StatelessWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.docs.isEmpty) {
-            return Center(
-              child: Text(_ThisPageTexts.sayHi),
-            );
+            return Text(_ThisPageTexts.sayHi);
           }
           return Expanded(
             child: MyListView(widget: widget, snapshot: snapshot),
           );
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return _loadingView();
       },
     );
   }

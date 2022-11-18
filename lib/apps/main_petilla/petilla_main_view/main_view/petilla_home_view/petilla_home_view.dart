@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_service/models/pet_model.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
@@ -317,27 +317,31 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           return _gridview(snapshot);
         }
         if (snapshot.hasError) {
-          return Center(child: Lottie.network(ProjectLottieUrls.errorLottie));
+          return _errorLottie();
+        }
+        if (snapshot.connectionState == ConnectionState.none) {
+          return _connectionErrorLottie();
         }
 
-        return Center(child: Lottie.network(ProjectLottieUrls.loadingLottie));
+        return _loadingLottie();
       },
     );
   }
 
-  Center _notPetYet(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            _ThisPageTexts.notPetYet,
-            style: themeData.textTheme.titleLarge,
-          ),
-          Lottie.network(ProjectLottieUrls.emptyLottie),
-        ],
-      ),
-    );
+  _loadingLottie() {
+    return const StatusView(status: StatusKeysEnum.LOADING);
+  }
+
+  _connectionErrorLottie() {
+    return const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  }
+
+  _errorLottie() {
+    return const StatusView(status: StatusKeysEnum.ERROR);
+  }
+
+  _notPetYet(BuildContext context) {
+    return const StatusView(status: StatusKeysEnum.EMPTY);
   }
 
   GridView _gridview(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
@@ -416,5 +420,4 @@ class _ThisPageTexts {
   static String petType = LocaleKeys.petType.locale;
   static String petAgeRange = LocaleKeys.petAgeRange.locale;
   static String petGender = LocaleKeys.petGender.locale;
-  static String notPetYet = LocaleKeys.notPetYet.locale;
 }
