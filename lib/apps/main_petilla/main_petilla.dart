@@ -6,9 +6,9 @@ import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_vie
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_insert_view/petilla_insert_view.dart';
 import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
@@ -66,7 +66,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
 
   SvgPicture _homeIcon() {
     return SvgPicture.asset(
-      _selectedIndex == 0 ? svgBuildConstant("home") : svgBuildConstant("home_outline"),
+      _selectedIndex == 0 ? ImageConstants.instance.home : ImageConstants.instance.homeOutline,
       color: _selectedIndex == 0 ? LightThemeColors.miamiMarmalade : LightThemeColors.grey,
       height: 25,
     );

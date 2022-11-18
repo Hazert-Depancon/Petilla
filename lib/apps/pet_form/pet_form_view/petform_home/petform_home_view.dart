@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/utility/asset_utils/assets_build_constant/svg_build_constant.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/general/general_widgets/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -35,7 +35,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _fishListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.fish,
-      "fish",
+      ImageConstants.instance.fish,
       "fish_messages",
       "fish_chat",
       _ThisPageTexts.fishChat,
@@ -46,7 +46,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _rabbitListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.rabbit,
-      "rabbit",
+      ImageConstants.instance.rabbit,
       "rabbit_messages",
       "rabbit_chat",
       _ThisPageTexts.rabbitChat,
@@ -57,7 +57,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _catListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.cat,
-      "cat",
+      ImageConstants.instance.cat,
       "cat_messages",
       "cat_chat",
       _ThisPageTexts.catChat,
@@ -68,7 +68,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _dogListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.dog,
-      "dog",
+      ImageConstants.instance.dog,
       "dog_messages",
       "dog_chat",
       _ThisPageTexts.dogChat,
@@ -90,7 +90,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _listTile(String title, String assetName, String collectionId, String docId, String pageTitle, context) {
     return ListTile(
       title: Text(title),
-      leading: SvgPicture.asset(svgBuildConstant(assetName), height: 32),
+      leading: SvgPicture.asset(ImageConstants.instance.toSvg(assetName), height: 32),
       onTap: () {
         Navigator.push(
           context,
