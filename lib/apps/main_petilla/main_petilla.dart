@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/add_view/add_view/add_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/favorites_view/favorites_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_home_view/petilla_home_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_insert_view/petilla_insert_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/petilla_main_view/main_view/petilla_main_chats/chat_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/add_view/add_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_view/favorites_view/favorites_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_home_view/petilla_home_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_insert_view/petilla_insert_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_main_chats/chat_select_view.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
-import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/extension/context_extension.dart';
+import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -33,14 +34,14 @@ class _MainPetillaState extends BaseState<MainPetilla> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomNavBar(),
+      bottomNavigationBar: _bottomNavBar(context),
       body: pages[_selectedIndex],
     );
   }
 
-  BottomNavigationBar _bottomNavBar() {
+  BottomNavigationBar _bottomNavBar(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: LightThemeColors.white,
+      backgroundColor: context.lightThemeColors.black,
       currentIndex: _selectedIndex,
       onTap: (index) {
         setState(() {

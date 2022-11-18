@@ -12,6 +12,7 @@ class LightTheme {
 
       scaffoldBackgroundColor: LightThemeColors.scaffoldBackgroundColor,
       brightness: Brightness.light,
+
       // inputDecoration
       inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(fontSize: 16),

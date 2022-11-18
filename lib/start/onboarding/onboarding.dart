@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/core/extension/string_extension.dart';
+import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/general/general_widgets/button.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_view_model.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_one/onboarding_one_view.dart';
 import 'package:petilla_app_project/start/onboarding/onboarding_views/onboarding_three/onboarding_three_view.dart';
