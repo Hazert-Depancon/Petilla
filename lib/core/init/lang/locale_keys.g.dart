@@ -5,6 +5,7 @@ abstract class LocaleKeys {
   static const connectionErrorText = 'connection_error_text';
   static const petilla = 'petilla';
   static const other = 'other';
+  static const notFavYet = 'not_fav_yet';
   static const female = 'female';
   static const male = 'male';
   static const myInserts = 'my_inserts';

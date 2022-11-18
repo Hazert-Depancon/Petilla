@@ -70,5 +70,6 @@
     "write_a_message" : "Bir mesaj yaz...",
     "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta",
     "my_favorites" : "Favorilerim",
-    "connection_error_text" : "Bağlantı Hatası"
+    "connection_error_text" : "Bağlantı Hatası",
+    "not_fav_yet" : "Favoriler listenizdeki bu ilan kaldırıldı"
 }
