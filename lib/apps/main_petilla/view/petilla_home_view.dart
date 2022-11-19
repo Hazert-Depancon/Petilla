@@ -13,7 +13,7 @@ import 'package:petilla_app_project/core/constants/string_constant/project_fires
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/start/select_app_view/select_app_view.dart';
+import 'package:petilla_app_project/start/view/select_app_view.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class PetillaHomeView extends StatefulWidget {

@@ -9,7 +9,7 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/base/view/profile_view.dart';
-import 'package:petilla_app_project/start/select_app_view/select_app_widgets/select_app_widget.dart';
+import 'package:petilla_app_project/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class SelectAppView extends StatelessWidget {
