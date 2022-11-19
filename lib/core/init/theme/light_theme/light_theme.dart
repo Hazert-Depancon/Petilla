@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:petilla_app_project/core/init/theme/app_theme.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class LightTheme {
@@ -63,4 +64,14 @@ class LightTheme {
       ),
     );
   }
+}
+
+class LightThemes extends AppTheme {
+  static LightThemes? _instace;
+  static LightThemes get instance {
+    _instace ??= LightThemes._init();
+    return _instace!;
+  }
+
+  LightThemes._init();
 }

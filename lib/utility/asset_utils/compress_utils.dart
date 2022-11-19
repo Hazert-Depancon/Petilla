@@ -5,6 +5,7 @@ import 'dart:math';
 
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:petilla_app_project/core/constants/enums/file_type_enum.dart';
 
 class CompressUtils {
   static final CompressUtils _compressUtils = CompressUtils._internal();
@@ -31,7 +32,17 @@ class CompressUtils {
   Future<String> getFileSize(File file) async {
     final int bytes = await file.length();
     if (bytes <= 0) return "0 B";
-    const List<String> suffixes = <String>["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    List<String> suffixes = <String>[
+      FileTypeEnum.B.toString(),
+      FileTypeEnum.KB.toString(),
+      FileTypeEnum.MB.toString(),
+      FileTypeEnum.GB.toString(),
+      FileTypeEnum.TB.toString(),
+      FileTypeEnum.PB.toString(),
+      FileTypeEnum.EB.toString(),
+      FileTypeEnum.ZB.toString(),
+      FileTypeEnum.YB.toString()
+    ];
     final int i = (log(bytes) / log(1024)).floor();
     return "${(bytes / pow(1024, i)).toStringAsFixed(3)} ${suffixes[i]}";
   }
