@@ -8,7 +8,7 @@ import 'package:petilla_app_project/core/constants/app/app_constants.dart';
 import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
 import 'package:petilla_app_project/core/init/lang/language_manager.dart';
-import 'package:petilla_app_project/start/onboarding/onboarding.dart';
+import 'package:petilla_app_project/auth/onboard/view/onboarding.dart';
 import 'package:petilla_app_project/start/view/select_app_view.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
 
