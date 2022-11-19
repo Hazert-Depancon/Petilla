@@ -11,11 +11,12 @@ class LoginViewModel {
           context,
         )
         .then(
-          (e) => Navigator.push(
+          (e) => Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => const Petilla(showHome: true),
             ),
+            (route) => false,
           ),
         );
   }

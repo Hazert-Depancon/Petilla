@@ -40,28 +40,23 @@ class SelectAppView extends StatelessWidget {
   }
 
   _body() {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            mainSizedBox,
-            Padding(
-              padding: ProjectPaddings.horizontalMainPadding,
-              child: StaggeredGrid.count(
-                crossAxisCount: 4,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                children: [
-                  _selectPetillaGridTile(),
-                  _selectPetformGridTile(),
-                ],
-              ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          mainSizedBox,
+          Padding(
+            padding: ProjectPaddings.horizontalMainPadding,
+            child: StaggeredGrid.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              children: [
+                _selectPetillaGridTile(),
+                _selectPetformGridTile(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
