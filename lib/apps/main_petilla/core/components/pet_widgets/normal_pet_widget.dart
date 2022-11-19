@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/other_view/petilla_detail_view/petilla_detail_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/petilla_detail_view.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';

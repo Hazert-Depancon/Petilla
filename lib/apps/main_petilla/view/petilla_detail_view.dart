@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_main_chats/in_chat_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/petilla_detail_view_model.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -65,6 +65,22 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
+  AppBar _appBar(context) {
+    return AppBar(
+      foregroundColor: LightThemeColors.miamiMarmalade,
+      leading: _backIcon(context),
+    );
+  }
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
+    );
+  }
+
   SingleChildScrollView _body(BuildContext context, TextStyle? headline4) {
     return SingleChildScrollView(
       padding: ProjectPaddings.horizontalMainPadding,
@@ -95,91 +111,12 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  AppBar _appBar(context) {
-    return AppBar(
-      foregroundColor: LightThemeColors.miamiMarmalade,
-      leading: _backIcon(context),
-    );
-  }
-
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(AppIcons.arrowBackIcon),
-    );
-  }
-
-  ListTile _locationListTile(BuildContext context) {
-    return _litTile(context, _ThisPageTexts.location, "${widget.petModel.city} " " ${widget.petModel.ilce}");
-  }
-
-  ListTile _genderListTile(BuildContext context) => _litTile(context, _ThisPageTexts.gender, widget.petModel.gender);
-
-  ListTile _breedListTile(BuildContext context) => _litTile(context, _ThisPageTexts.race, widget.petModel.petBreed);
-
-  ListTile _typeListTile(BuildContext context) => _litTile(context, _ThisPageTexts.type, widget.petModel.petType);
-
-  ListTile _ageListTile(BuildContext context) => _litTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
-
   Text _userNameText(BuildContext context) {
     return Text(
       widget.petModel.currentUserName,
       style: textTheme.headline6,
     );
   }
-
-  FloatingActionButton _chatFabButton() {
-    return FloatingActionButton(
-      onPressed: _callChatPage,
-      child: const Icon(AppIcons.chatIcon),
-    );
-  }
-
-  void _callChatPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => InChatView(
-          friendUserName: widget.petModel.currentUserName,
-          currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
-          currentUserId: FirebaseAuth.instance.currentUser!.uid,
-          friendUserId: widget.petModel.currentUid,
-          friendUserEmail: widget.petModel.currentEmail,
-          currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
-        ),
-      ),
-    );
-  }
-
-  ListTile _litTile(BuildContext context, title, trailing) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(title, style: textTheme.headline6),
-      trailing: Text(trailing, style: textTheme.headline6),
-    );
-  }
-
-  Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description, style: textTheme.subtitle1);
-  }
-
-  Text _priceText(TextStyle? headline4) {
-    return Text(
-      _isClaim ? _ThisPageTexts.claim : "${widget.petModel.price}TL",
-      style: _isClaim
-          ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
-          : headline4?.copyWith(fontSize: 24),
-    );
-  }
-
-  Text _nameText(TextStyle? headline4) => Text(
-        widget.petModel.name,
-        style: headline4?.copyWith(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-        ),
-      );
 
   Container _imageContainer() {
     return Container(
@@ -210,11 +147,65 @@ class _DetailViewState extends BaseState<DetailView> {
               changeFav(widget.petModel.docId);
             },
             icon: _isFav ?? false
-                ? const Icon(AppIcons.favoriteIcon, color: Colors.red, size: 30)
+                ? const Icon(AppIcons.favoriteIcon, color: LightThemeColors.red, size: 30)
                 : const Icon(AppIcons.favoriteBorderIcon, size: 30),
           ),
         );
       },
+    );
+  }
+
+  Text _nameText(TextStyle? headline4) => Text(
+        widget.petModel.name,
+        style: headline4?.copyWith(
+          fontSize: 24,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+
+  Text _priceText(TextStyle? headline4) {
+    return Text(
+      _isClaim ? _ThisPageTexts.claim : "${widget.petModel.price}TL",
+      style: _isClaim
+          ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
+          : headline4?.copyWith(fontSize: 24),
+    );
+  }
+
+  ListTile _listTile(BuildContext context, title, trailing) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(title, style: textTheme.headline6),
+      trailing: Text(trailing, style: textTheme.headline6),
+    );
+  }
+
+  ListTile _ageListTile(BuildContext context) => _listTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
+
+  ListTile _genderListTile(BuildContext context) => _listTile(context, _ThisPageTexts.gender, widget.petModel.gender);
+
+  ListTile _typeListTile(BuildContext context) => _listTile(context, _ThisPageTexts.type, widget.petModel.petType);
+
+  ListTile _breedListTile(BuildContext context) => _listTile(context, _ThisPageTexts.race, widget.petModel.petBreed);
+
+  ListTile _locationListTile(BuildContext context) =>
+      _listTile(context, _ThisPageTexts.location, "${widget.petModel.city} " " ${widget.petModel.ilce}");
+
+  Text _descriptionText(BuildContext context) {
+    return Text(widget.petModel.description, style: textTheme.subtitle1);
+  }
+
+  FloatingActionButton _chatFabButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        PetillaDetailVievModel().callChatPage(
+          context,
+          widget.petModel.currentUserName,
+          widget.petModel.currentUid,
+          widget.petModel.currentEmail,
+        );
+      },
+      child: const Icon(AppIcons.chatIcon),
     );
   }
 }

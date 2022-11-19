@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view.dart';
+import 'package:petilla_app_project/apps/pet_form/view/group_template_view.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
@@ -79,7 +79,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _generalListtile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.generalChat,
-      "language",
+      ImageConstants.instance.general,
       "general_messages",
       "general_chat",
       _ThisPageTexts.generalChat,
@@ -90,7 +90,7 @@ class PetformHomeView extends StatelessWidget {
   ListTile _listTile(String title, String assetName, String collectionId, String docId, String pageTitle, context) {
     return ListTile(
       title: Text(title),
-      leading: SvgPicture.asset(ImageConstants.instance.toSvg(assetName), height: 32),
+      leading: SvgPicture.asset(assetName, height: 32),
       onTap: () {
         Navigator.push(
           context,

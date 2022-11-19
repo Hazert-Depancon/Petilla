@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/apps/pet_form/pet_form_view/petform_group/group_template_view_model.dart';
+import 'package:petilla_app_project/apps/pet_form/viewmodel/group_template_view_model.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/components/single_message.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';

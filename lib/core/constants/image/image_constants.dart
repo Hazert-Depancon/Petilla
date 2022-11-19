@@ -6,10 +6,11 @@ class ImageConstants {
 
   String get home => toSvg("home");
   String get homeOutline => toSvg("home_outline");
-  String get cat => toSvg("home_outline");
+  String get cat => toSvg("cat");
   String get rabbit => toSvg("rabbit");
   String get fish => toSvg("fish");
-  String get dog => toSvg("fish");
+  String get dog => toSvg("dog");
+  String get general => toSvg("language");
   String get onboardingOne => toSvg("onboarding_one");
   String get onboardingThree => toSvg("onboarding_three");
   String get onboardingTwo => toSvg("onboarding_two");

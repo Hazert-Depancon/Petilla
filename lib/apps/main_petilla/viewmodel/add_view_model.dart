@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/add_view_two/add_view_two.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/add_view_two.dart';
 
 class AddViewModel {
   void callAddViewTwo(name, description, val, image, context) {

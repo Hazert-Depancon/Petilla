@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/add_view/add_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/favorites_view/favorites_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_home_view/petilla_home_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_insert_view/petilla_insert_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/petilla_main_chats/chat_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/add_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/favorites_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/petilla_insert_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/chat_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/petilla_home_view.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';

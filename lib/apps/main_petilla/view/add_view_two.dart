@@ -2,18 +2,14 @@
 
 import 'dart:convert';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
-import 'package:petilla_app_project/apps/main_petilla/service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/jsons/city_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/city/city_select_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/city/ilce_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/city_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/ilce_select_view.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/add_view_two_view_model.dart';
 import 'package:petilla_app_project/core/components/button.dart';
-import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
@@ -346,48 +342,30 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return Align(
       child: Button(
         onPressed: () {
-          _isSubmitButtonClicked ? false : _onSubmitButton(context);
+          _isSubmitButtonClicked == false
+              ? setState(() {
+                  _isSubmitButtonClicked = AddViewTwoViewModel().onSubmitButton(
+                    context,
+                    widget.image,
+                    imageUrl,
+                    genderSelectedValue,
+                    widget.name,
+                    widget.description,
+                    ageRangeSelectedValue,
+                    _secilenIl,
+                    _secilenIlce,
+                    _typeController.text,
+                    widget.radioValue,
+                    petSelectedValue,
+                  );
+                })
+              : null;
         },
         text: _ThisPageTexts.addPet,
         width: ProjectButtonSizes.mainButtonWidth,
         height: ProjectButtonSizes.mainButtonHeight,
       ),
     );
-  }
-
-  _onSubmitButton(context) {
-    setState(() {
-      _isSubmitButtonClicked = true;
-    });
-    showDefaultLoadingDialog(false, context);
-    CrudService()
-        .createPet(
-          widget.image,
-          imageUrl,
-          PetModel(
-            currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
-            currentUid: FirebaseAuth.instance.currentUser!.uid,
-            currentEmail: FirebaseAuth.instance.currentUser!.email.toString(),
-            gender: genderSelectedValue ?? _ThisPageTexts.error,
-            name: widget.name,
-            description: widget.description,
-            imagePath: imageUrl,
-            ageRange: ageRangeSelectedValue ?? _ThisPageTexts.error,
-            city: _secilenIl,
-            ilce: _secilenIlce,
-            petBreed: _typeController.text,
-            price: widget.radioValue == 1 ? "0" : _typeController.text,
-            petType: petSelectedValue ?? _ThisPageTexts.error,
-          ),
-          context,
-        )
-        .then(
-          (value) => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const MainPetilla()),
-            (route) => false,
-          ),
-        );
   }
 }
 
@@ -411,6 +389,5 @@ class _ThisPageTexts {
   static String selectDistrict = LocaleKeys.selectDistrict.locale;
   static String selectCity = LocaleKeys.selectCity.locale;
   static String addPet = LocaleKeys.addAPet.locale;
-  static String error = LocaleKeys.error.locale;
   static String addAPetTwoForTwo = LocaleKeys.addPetTwoForTwo.locale;
 }

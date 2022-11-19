@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:petilla_app_project/apps/main_petilla/view/main_view/add_view/add_view/add_view_model.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/add_view_model.dart';
 import 'package:petilla_app_project/core/components/button.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
