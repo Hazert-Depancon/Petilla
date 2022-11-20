@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/firebase_crud/crud_service.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';

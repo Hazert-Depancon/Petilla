@@ -47,14 +47,6 @@ class Petilla extends StatelessWidget {
   const Petilla({Key? key, required this.showHome}) : super(key: key);
   final bool showHome;
 
-  Widget control() {
-    return showHome
-        ? FirebaseAuth.instance.currentUser != null
-            ? const SelectAppView()
-            : LoginView()
-        : const Onboarding();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

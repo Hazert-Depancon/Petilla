@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:petilla_app_project/apps/main_petilla/main_petilla.dart';
+import 'package:petilla_app_project/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
