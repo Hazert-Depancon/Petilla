@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -137,6 +137,12 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 
   final TextEditingController _typeController = TextEditingController();
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _illeriGetir().then((value) => _ilIsimleriniGetir());
+  // }
+
   String imageUrl = "";
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
@@ -152,116 +158,47 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
         viewModel = model;
         viewModel.illeriGetir().then((value) => viewModel.ilIsimleriniGetir());
       },
-      viewModel: viewModel,
-      onPageBuilder: (context, value) => _buildScaffold,
+      viewModel: AddViewTwoViewModel(),
+      onPageBuilder: (context, value) => buildScaffold,
     );
   }
 
-  Scaffold get _buildScaffold => Scaffold(
-        appBar: _appBar,
+  Scaffold get buildScaffold => Scaffold(
+        appBar: _appBar(),
         body: _body(context),
       );
-
-  AppBar get _appBar {
-    return AppBar(
-      title: Text(_ThisPageTexts.addAPetTwoForTwo),
-      foregroundColor: LightThemeColors.miamiMarmalade,
-    );
-  }
 
   _body(BuildContext context) {
     return ListView(
       padding: ProjectPaddings.horizontalMainPadding,
       children: [
         mainSizedBox,
-        citySelect,
+        citySelect(context),
         mainSizedBox,
-        districtSelect,
+        districtSelect(context),
         mainSizedBox,
-        _petTypeDropDown,
+        _petTypeDropDown(),
         mainSizedBox,
-        _petGenderDropDown,
+        _petGenderDropDown(),
         mainSizedBox,
-        _petAgeRangeDropDown,
+        _petAgeRangeDropDown(),
         mainSizedBox,
-        _textField,
+        _textField(),
         mainSizedBox,
-        widget.radioValue == 1 ? const SizedBox() : _textField,
+        widget.radioValue == 1 ? const SizedBox() : _textField(),
         _submitButton(context),
       ],
     );
   }
 
-  SizedBox get districtSelect {
-    return SizedBox(
-      width: 175,
-      child: Observer(builder: (_) {
-        return ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            backgroundColor: viewModel.ilceSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-            ),
-          ),
-          onPressed: () async {
-            await viewModel.ilceSecmeSayfasinaGit(context);
-          },
-          child: Center(
-            child: Observer(builder: (_) {
-              return Text(
-                viewModel.ilceSecilmisMi ? viewModel.secilenIlce : _ThisPageTexts.selectDistrict,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            }),
-          ),
-        );
-      }),
+  AppBar _appBar() {
+    return AppBar(
+      title: Text(_ThisPageTexts.addAPetTwoForTwo),
+      foregroundColor: LightThemeColors.miamiMarmalade,
     );
   }
 
-  SizedBox get citySelect {
-    return SizedBox(
-      width: 175,
-      child: Observer(builder: (_) {
-        return ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            backgroundColor: viewModel.ilSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-            ),
-          ),
-          onPressed: () async {
-            await viewModel.ilSecmeSayfasinaGit(context);
-            viewModel.ilceSecilmisMi = false;
-          },
-          child: Center(
-            child: Observer(builder: (_) {
-              return Text(
-                viewModel.ilSecilmisMi ? viewModel.secilenIl : _ThisPageTexts.selectCity,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              );
-            }),
-          ),
-        );
-      }),
-    );
-  }
-
-  DropdownButtonFormField<String> get _petAgeRangeDropDown {
+  DropdownButtonFormField<String> _petAgeRangeDropDown() {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -289,7 +226,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     );
   }
 
-  DropdownButtonFormField<String> get _petGenderDropDown {
+  DropdownButtonFormField<String> _petGenderDropDown() {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -315,7 +252,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     );
   }
 
-  DropdownButtonFormField get _petTypeDropDown {
+  DropdownButtonFormField<String> _petTypeDropDown() {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -341,42 +278,108 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     );
   }
 
-  MainTextField get _textField {
+  _textField() {
     return MainTextField(
       controller: _typeController,
       hintText: _ThisPageTexts.petRace,
     );
   }
 
-  Align _submitButton(context) {
-    return Align(
+  SizedBox districtSelect(context) {
+    return SizedBox(
+      width: 175,
       child: Observer(builder: (_) {
-        return Button(
-          onPressed: () {
-            _isSubmitButtonClicked == false
-                ? setState(() {
-                    _isSubmitButtonClicked = AddViewTwoViewModel().onSubmitButton(
-                      context,
-                      widget.image,
-                      imageUrl,
-                      genderSelectedValue,
-                      widget.name,
-                      widget.description,
-                      ageRangeSelectedValue,
-                      viewModel.secilenIl,
-                      viewModel.secilenIlce,
-                      _typeController.text,
-                      widget.radioValue,
-                      petSelectedValue,
-                    );
-                  })
-                : null;
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            backgroundColor: viewModel.ilceSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
+            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+          ),
+          onPressed: () async {
+            setState(() {
+              viewModel.ilceSecmeSayfasinaGit(context);
+            });
           },
-          text: _ThisPageTexts.addPet,
-          width: ProjectButtonSizes.mainButtonWidth,
-          height: ProjectButtonSizes.mainButtonHeight,
+          child: Center(
+            child: Observer(builder: (_) {
+              return Text(
+                viewModel.ilceSecilmisMi ? viewModel.secilenIlce : _ThisPageTexts.selectDistrict,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            }),
+          ),
         );
       }),
+    );
+  }
+
+  SizedBox citySelect(context) {
+    return SizedBox(
+      width: 175,
+      child: Observer(builder: (_) {
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            backgroundColor: viewModel.ilSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
+            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+          ),
+          onPressed: () async {
+            await viewModel.ilSecmeSayfasinaGit(context);
+          },
+          child: Center(
+            child: Text(
+              viewModel.ilSecilmisMi ? viewModel.secilenIl : _ThisPageTexts.selectCity,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+  Align _submitButton(context) {
+    return Align(
+      child: Button(
+        onPressed: () {
+          _isSubmitButtonClicked == false
+              ? setState(() {
+                  _isSubmitButtonClicked = AddViewTwoViewModel().onSubmitButton(
+                    context,
+                    widget.image,
+                    imageUrl,
+                    genderSelectedValue,
+                    widget.name,
+                    widget.description,
+                    ageRangeSelectedValue,
+                    viewModel.secilenIl,
+                    viewModel.secilenIlce,
+                    _typeController.text,
+                    widget.radioValue,
+                    petSelectedValue,
+                  );
+                })
+              : null;
+        },
+        text: _ThisPageTexts.addPet,
+        width: ProjectButtonSizes.mainButtonWidth,
+        height: ProjectButtonSizes.mainButtonHeight,
+      ),
     );
   }
 }

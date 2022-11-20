@@ -187,16 +187,6 @@ mixin _$AddViewTwoViewModel on _AddViewTwoViewModelBase, Store {
         .run(() => super.ilSecmeSayfasinaGit(context));
   }
 
-  late final _$ilceSecmeSayfasinaGitAsyncAction = AsyncAction(
-      '_AddViewTwoViewModelBase.ilceSecmeSayfasinaGit',
-      context: context);
-
-  @override
-  Future<void> ilceSecmeSayfasinaGit(dynamic context) {
-    return _$ilceSecmeSayfasinaGitAsyncAction
-        .run(() => super.ilceSecmeSayfasinaGit(context));
-  }
-
   late final _$_AddViewTwoViewModelBaseActionController =
       ActionController(name: '_AddViewTwoViewModelBase', context: context);
 

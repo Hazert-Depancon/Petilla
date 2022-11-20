@@ -8,7 +8,7 @@ class BaseView<T extends Store> extends StatefulWidget {
     Key? key,
     required this.viewModel,
     required this.onPageBuilder,
-    required this.onModelReady,
+    this.onModelReady,
     this.onDispose,
   }) : super(key: key);
 
@@ -26,9 +26,9 @@ class _BaseViewState<T extends Store> extends State<BaseView<T>> {
 
   @override
   void initState() {
-    super.initState();
     model = widget.viewModel;
-    widget.onModelReady;
+    widget.onModelReady != null ? widget.onModelReady!(model) : null;
+    super.initState();
   }
 
   @override

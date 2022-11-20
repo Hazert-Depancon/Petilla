@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,28 +33,20 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
 
   @observable
   late String secilenIl;
-
   @observable
   late String secilenIlce;
-
   @observable
   bool ilSecilmisMi = false;
-
   @observable
   bool ilceSecilmisMi = false;
-
   @observable
   List<dynamic> illerListesi = [];
-
   @observable
   List<String> ilIsimleriListesi = [];
-
   @observable
   List<String> ilceIsimleriListesi = [];
-
   @observable
   late int secilenIlIndexi;
-
   @observable
   late int secilenIlceIndexi;
 
@@ -75,7 +66,7 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
     for (var element in illerListesi) {
       ilIsimleriListesi.add(element.ilAdi);
     }
-
+    // ! Setstate ile kullanılacak method
     yuklemeTamamlandiMi = true;
   }
 
@@ -103,10 +94,10 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
       ilSecilmisMi = true;
       secilenIl = ilIsimleriListesi[secilenIlIndexi];
       secilenIlinIlceleriniGetir(illerListesi[secilenIlIndexi].toString());
+      // ! Setstate ile kullanılacak method
     }
   }
 
-  @action
   Future<void> ilceSecmeSayfasinaGit(context) async {
     if (ilSecilmisMi) {
       secilenIlinIlceleriniGetir(ilIsimleriListesi[secilenIlIndexi]);
@@ -117,6 +108,7 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
           ));
       ilceSecilmisMi = true;
       secilenIlce = ilceIsimleriListesi[secilenIlceIndexi];
+      // ! Setstate ile kullanılacak method
     }
   }
 
