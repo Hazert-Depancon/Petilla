@@ -3,15 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:petilla_app_project/auth/onboard/view/onboarding.dart';
-import 'package:petilla_app_project/auth/view/login_view.dart';
 import 'package:petilla_app_project/core/constants/app/app_constants.dart';
 import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
 import 'package:petilla_app_project/core/init/lang/language_manager.dart';
-import 'package:petilla_app_project/core/init/router/app_router.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
 import 'package:petilla_app_project/start/view/select_app_view.dart';
+import 'auth/onboard/view/onboarding.dart';
+import 'auth/view/login_view.dart';
 
 Future<void> main() async {
   await _init();
@@ -44,46 +43,31 @@ void _initSystemUi() {
   );
 }
 
-class Petilla extends StatefulWidget {
+class Petilla extends StatelessWidget {
   const Petilla({Key? key, required this.showHome}) : super(key: key);
   final bool showHome;
 
-  @override
-  State<Petilla> createState() => _PetillaState();
-}
-
-class _PetillaState extends State<Petilla> {
-  @override
-  void initState() {
-    super.initState();
-    Control(showhome: widget.showHome);
+  Widget control() {
+    return showHome
+        ? FirebaseAuth.instance.currentUser != null
+            ? const SelectAppView()
+            : LoginView()
+        : const Onboarding();
   }
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
-    return MaterialApp.router(
-      routerDelegate: appRouter.delegate(),
-      routeInformationParser: appRouter.defaultRouteParser(),
+    return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: LightTheme().theme,
+      home: showHome
+          ? FirebaseAuth.instance.currentUser != null
+              ? const SelectAppView()
+              : LoginView()
+          : const Onboarding(),
     );
-  }
-}
-
-class Control extends StatelessWidget {
-  const Control({super.key, required this.showhome});
-  final bool showhome;
-
-  @override
-  Widget build(BuildContext context) {
-    return showhome
-        ? FirebaseAuth.instance.currentUser != null
-            ? const SelectAppView()
-            : LoginView()
-        : const Onboarding();
   }
 }
