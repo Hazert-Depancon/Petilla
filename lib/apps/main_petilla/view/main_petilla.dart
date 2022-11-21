@@ -28,7 +28,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
     const PetillaHomeView(),
     FavoritesView(),
     const AddView(),
-    const ChatSelectView(),
+    ChatSelectView(),
     const PetillaInsertView(),
   ];
 

@@ -2,115 +2,109 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:petilla_app_project/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/favorites_view_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
-import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesView extends StatelessWidget {
   FavoritesView({super.key});
 
-  int? listLenght = 0;
-  List? myList;
-  List<String> list = [];
-
-  _getShared() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    myList = preferences.getStringList(SharedKeys.FAVS.toString()) ?? [];
-    listLenght = myList?.length ?? 0;
-
-    for (var i = 0; i < listLenght!; i++) {
-      list.add(myList![i]);
-    }
-  }
+  late FavoritesViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(),
-      body: _body(),
-    );
-  }
-
-  FutureBuilder<Object?> _body() {
-    return FutureBuilder(
-      future: _getShared(),
-      builder: (context, snapshot) {
-        if (myList?.isNotEmpty ?? false) {
-          return _listView();
-        }
-        if (myList?.isEmpty ?? true) {
-          return _emptyLottie();
-        }
-
-        return _loadingLottie();
+    return BaseView<FavoritesViewViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
       },
+      viewModel: FavoritesViewViewModel(),
+      onPageBuilder: (context, value) => _buildScaffold,
     );
   }
 
-  _emptyLottie() {
-    return const StatusView(status: StatusKeysEnum.EMPTY);
+  Scaffold get _buildScaffold => Scaffold(
+        appBar: _appBar,
+        body: _body(),
+      );
+
+  AppBar get _appBar => AppBar(
+        title: Text(LocaleKeys.myFavorites.locale),
+        automaticallyImplyLeading: false,
+      );
+
+  Observer _body() {
+    return Observer(builder: (_) {
+      return FutureBuilder(
+        future: viewModel.getShared(),
+        builder: (context, snapshot) {
+          if (viewModel.myList?.isNotEmpty ?? false) {
+            return _listView();
+          }
+          if (viewModel.myList?.isEmpty ?? true) {
+            return _emptyLottie;
+          }
+
+          return _loadingLottie;
+        },
+      );
+    });
   }
 
-  _loadingLottie() {
-    return const StatusView(status: StatusKeysEnum.LOADING);
+  Observer _listView() {
+    return Observer(builder: (_) {
+      return ListView.builder(
+        padding: ProjectPaddings.horizontalMainPadding,
+        itemCount: viewModel.listLenght,
+        itemBuilder: (context, index) {
+          return _streamBuilder(index);
+        },
+      );
+    });
   }
 
-  ListView _listView() {
-    return ListView.builder(
-      padding: ProjectPaddings.horizontalMainPadding,
-      itemCount: listLenght,
-      itemBuilder: (context, index) {
-        return _streamBuilder(index);
-      },
-    );
+  Observer _streamBuilder(int index) {
+    return Observer(builder: (_) {
+      return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        stream: FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.petsCollection)
+            .doc(viewModel.myList![index])
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data!.exists == true) {
+            return _largePetWidget(snapshot);
+          }
+          if (snapshot.data?.exists == false) {
+            return const Text(LocaleKeys.notFavYet);
+          }
+
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionErrorView;
+          }
+
+          return _loadingLottie;
+        },
+      );
+    });
   }
 
-  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>> _streamBuilder(int index) {
-    return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.petsCollection)
-          .doc(myList![index])
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData && snapshot.data!.exists == true) {
-          return _largePetWidget(snapshot);
-        }
-        if (snapshot.data?.exists == false) {
-          // Todo
-          return const Text("Favoriler listenizdeki bu ilan kaldırıldı.");
-        }
+  StatusView get _connectionErrorView => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-        if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionErrorView();
-        }
+  StatusView get _emptyLottie => const StatusView(status: StatusKeysEnum.EMPTY);
 
-        return _loadingLottie();
-      },
-    );
-  }
-
-  _connectionErrorView() {
-    return const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
-  }
+  StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
 
   LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
     return LargePetWidget(
       petModel: _petModel(snapshot.data),
-    );
-  }
-
-  AppBar _appBar() {
-    return AppBar(
-      title: Text(LocaleKeys.myFavorites.locale),
-      automaticallyImplyLeading: false,
     );
   }
 

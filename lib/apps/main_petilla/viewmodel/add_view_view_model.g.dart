@@ -49,6 +49,14 @@ mixin _$AddViewViewModel on _AddViewViewModelBase, Store {
     return _$pickImageCameraAsyncAction.run(() => super.pickImageCamera());
   }
 
+  late final _$pickImageGalleryAsyncAction =
+      AsyncAction('_AddViewViewModelBase.pickImageGallery', context: context);
+
+  @override
+  Future<void> pickImageGallery() {
+    return _$pickImageGalleryAsyncAction.run(() => super.pickImageGallery());
+  }
+
   late final _$_AddViewViewModelBaseActionController =
       ActionController(name: '_AddViewViewModelBase', context: context);
 

@@ -60,11 +60,13 @@ class _InChatViewState extends BaseState<InChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+  }
+
+  Scaffold get buildScaffold =>Scaffold(
       appBar: _appBar(),
       body: _body(),
     );
-  }
 
   Column _body() {
     return Column(
