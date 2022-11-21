@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/apps/main_petilla/service/chat_service/chat_service.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/in_chat_view_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/components/single_message.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
@@ -43,32 +44,34 @@ class _InChatViewState extends BaseState<InChatView> {
   final String messagesRef = AppFirestoreCollectionNames.messages;
   final String chatsRef = AppFirestoreCollectionNames.chatsCollection;
 
-  @override
-  void initState() {
-    super.initState();
-    firebaseStream = FirebaseFirestore.instance
-        .collection(usersRef)
-        .doc(widget.currentUserId)
-        .collection(messagesRef)
-        .doc(widget.friendUserId)
-        .collection(chatsRef)
-        .orderBy(AppFirestoreFieldNames.dateField, descending: true)
-        .snapshots();
-  }
-
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+  late InChatViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return 
+    return BaseView<InChatViewViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
+        firebaseStream = FirebaseFirestore.instance
+            .collection(usersRef)
+            .doc(widget.currentUserId)
+            .collection(messagesRef)
+            .doc(widget.friendUserId)
+            .collection(chatsRef)
+            .orderBy(AppFirestoreFieldNames.dateField, descending: true)
+            .snapshots();
+      },
+      viewModel: InChatViewViewModel(),
+      onPageBuilder: (context, value) => buildScaffold,
+    );
   }
 
-  Scaffold get buildScaffold =>Scaffold(
-      appBar: _appBar(),
-      body: _body(),
-    );
+  Scaffold get buildScaffold => Scaffold(
+        appBar: _appBar,
+        body: _body,
+      );
 
-  Column _body() {
+  Column get _body {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -86,12 +89,10 @@ class _InChatViewState extends BaseState<InChatView> {
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      foregroundColor: LightThemeColors.miamiMarmalade,
-      title: Text(widget.friendUserName),
-    );
-  }
+  AppBar get _appBar => AppBar(
+        foregroundColor: LightThemeColors.miamiMarmalade,
+        title: Text(widget.friendUserName),
+      );
 
   TextField _textField(String currentUserId, String friendUserId, TextEditingController controller) {
     return TextField(
@@ -116,25 +117,21 @@ class _InChatViewState extends BaseState<InChatView> {
           backgroundColor: LightThemeColors.miamiMarmalade,
           foregroundColor: LightThemeColors.white,
           child: IconButton(
-            onPressed: _onSendButton,
+            onPressed: () {
+              viewModel.onSendButton(
+                controller,
+                widget.currentUserId,
+                widget.friendUserId,
+                widget.friendUserEmail,
+                widget.currentUserEmail,
+                widget.friendUserName,
+                widget.currentUserName,
+              );
+            },
             icon: const Icon(AppIcons.sendIcon),
           ),
         ),
       ),
-    );
-  }
-
-  _onSendButton() {
-    String message = controller.text;
-    ChatService().sendMessage(
-      message,
-      controller,
-      widget.currentUserId,
-      widget.friendUserId,
-      widget.friendUserEmail,
-      widget.currentUserEmail,
-      widget.friendUserName,
-      widget.currentUserName,
     );
   }
 }
