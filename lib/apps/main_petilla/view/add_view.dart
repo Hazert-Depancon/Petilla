@@ -1,7 +1,7 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:petilla_app_project/apps/main_petilla/viewmodel/add_view_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/add_view_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
@@ -30,62 +30,48 @@ class _AddViewState extends BaseState<AddView> {
   final TextEditingController _descriptionController = TextEditingController();
 
   Object? val = 1;
-  XFile? image;
-
-  File? imageFile;
-
-  void pickImageGallery() async {
-    image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (image == null) {
-      return;
-    } else {
-      setState(() {
-        imageFile = File(image!.path);
-      });
-    }
-  }
-
-  void pickImageCamera() async {
-    image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (image == null) {
-      return;
-    } else {
-      setState(() {
-        imageFile = File(image!.path);
-      });
-    }
-  }
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+  RadioListTile get adoptRadioListTile => _radioListTile(1, _ThisPageTexts.adopt, context);
+
+  late AddViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    var adoptRadioListTile = _radioListTile(1, _ThisPageTexts.adopt, context);
-    return Scaffold(
-      appBar: _appBar(),
-      body: _body(context, adoptRadioListTile),
+    return BaseView<AddViewViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
+      },
+      viewModel: AddViewViewModel(),
+      onPageBuilder: (context, value) => buildScaffold,
     );
   }
+
+  Scaffold get buildScaffold => Scaffold(
+        appBar: _appBar(),
+        body: _body(context, adoptRadioListTile),
+      );
 
   Form _body(BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
     return Form(
       key: _formKey,
-      child: ListView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        children: [
-          imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
-          mainSizedBox,
-          _petNameTextField(),
-          mainSizedBox,
-          _petDescriptionTextField(),
-          adoptRadioListTile,
-          mainSizedBox,
-          Align(
-            child: _nextButton(context),
-          ),
-        ],
-      ),
+      child: Observer(builder: (_) {
+        return ListView(
+          padding: ProjectPaddings.horizontalMainPadding,
+          children: [
+            viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+            mainSizedBox,
+            _petNameTextField(),
+            mainSizedBox,
+            _petDescriptionTextField(),
+            adoptRadioListTile,
+            mainSizedBox,
+            Align(
+              child: _nextButton(context),
+            ),
+          ],
+        );
+      }),
     );
   }
 
@@ -96,24 +82,26 @@ class _AddViewState extends BaseState<AddView> {
     );
   }
 
-  InkWell _photoContainer(context) {
-    return InkWell(
-      onTap: () {
-        _bottomSheet(context);
-      },
-      child: Container(
-        height: 175,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: ProjectRadius.mainAllRadius,
-          color: LightThemeColors.miamiMarmalade,
-          image: DecorationImage(
-            image: FileImage(imageFile!),
-            fit: BoxFit.cover,
+  Observer _photoContainer(context) {
+    return Observer(builder: (_) {
+      return InkWell(
+        onTap: () {
+          _bottomSheet(context);
+        },
+        child: Container(
+          height: 175,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: ProjectRadius.mainAllRadius,
+            color: LightThemeColors.miamiMarmalade,
+            image: DecorationImage(
+              image: FileImage(viewModel.imageFile!),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Future<dynamic> _bottomSheet(context) {
@@ -132,26 +120,32 @@ class _AddViewState extends BaseState<AddView> {
     );
   }
 
-  ListTile _pickCameraButton(BuildContext context) {
-    return ListTile(
-      leading: const Icon(AppIcons.photoCameraIcon),
-      title: Text(_ThisPageTexts.camera),
-      onTap: () {
-        pickImageCamera();
-        Navigator.of(context).pop();
-      },
-    );
+  Observer _pickCameraButton(BuildContext context) {
+    return Observer(builder: (_) {
+      return ListTile(
+        leading: const Icon(AppIcons.photoCameraIcon),
+        title: Text(_ThisPageTexts.camera),
+        onTap: () {
+          // pickImageCamera();
+          viewModel.pickImageCamera();
+          Navigator.of(context).pop();
+        },
+      );
+    });
   }
 
-  ListTile _pickGalleryButton(BuildContext context) {
-    return ListTile(
-      leading: const Icon(AppIcons.photoLibraryIcon),
-      title: Text(_ThisPageTexts.gellery),
-      onTap: () {
-        pickImageGallery();
-        Navigator.of(context).pop();
-      },
-    );
+  Observer _pickGalleryButton(BuildContext context) {
+    return Observer(builder: (_) {
+      return ListTile(
+        leading: const Icon(AppIcons.photoLibraryIcon),
+        title: Text(_ThisPageTexts.gellery),
+        onTap: () {
+          // pickImageGallery();
+          viewModel.pickImageGallery();
+          Navigator.of(context).pop();
+        },
+      );
+    });
   }
 
   MainTextField _petNameTextField() {
@@ -254,11 +248,11 @@ class _AddViewState extends BaseState<AddView> {
   }
 
   _onNextButton(context) {
-    if (image == null) {
+    if (viewModel.image == null) {
       return showErrorDialog(true, _ThisPageTexts.fillAllArea, context);
     }
     if (_formKey.currentState!.validate()) {
-      AddViewModel().callAddViewTwo(_nameController, _descriptionController, val, image, context);
+      viewModel.callAddViewTwo(_nameController, _descriptionController, val, viewModel.image, context);
     }
   }
 }
