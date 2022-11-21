@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:petilla_app_project/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/apps/main_petilla/viewmodel/petilla_detail_view_model.dart';
+import 'package:petilla_app_project/apps/main_petilla/viewmodel/petilla_detail_view_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -10,7 +12,6 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_radius
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/utility/widget_utility/fav_button_service.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({Key? key, required this.petModel}) : super(key: key);
@@ -34,36 +35,46 @@ class _DetailViewState extends BaseState<DetailView> {
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
-  bool? _isFav;
+  // bool? _isFav;
 
-  favButton(docId) async {
-    _isFav = await FavButtonService().favButton(docId);
-  }
+  // favButton(docId) async {
+  //   _isFav = await FavButtonService().favButton(docId);
+  // }
 
-  addFav(docId) async {
-    _isFav = await FavButtonService().addFav(docId);
-  }
+  // addFav(docId) async {
+  //   _isFav = await FavButtonService().addFav(docId);
+  // }
 
-  removeFav(docId) async {
-    _isFav = await FavButtonService().removeFav(docId);
-  }
+  // removeFav(docId) async {
+  //   _isFav = await FavButtonService().removeFav(docId);
+  // }
 
-  changeFav(docId) async {
-    setState(() {
-      FavButtonService().changeFav(docId, _isFav);
-    });
-  }
+  // changeFav(docId) async {
+  //   setState(() {
+  //     FavButtonService().changeFav(docId, _isFav);
+  //   });
+  // }
+
+  late DetailViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
     final headline4 = textTheme.headline4?.copyWith(color: LightThemeColors.black);
 
-    return Scaffold(
-      appBar: _appBar(context),
-      body: _body(context, headline4),
-      floatingActionButton: _isMe ? null : _chatFabButton(),
+    return BaseView<DetailViewViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
+      },
+      viewModel: DetailViewViewModel(),
+      onPageBuilder: (context, value) => buildScaffold(headline4),
     );
   }
+
+  Scaffold buildScaffold(headline4) => Scaffold(
+        appBar: _appBar(context),
+        body: _body(context, headline4),
+        floatingActionButton: _isMe ? null : _chatFabButton(),
+      );
 
   AppBar _appBar(context) {
     return AppBar(
@@ -136,23 +147,25 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  FutureBuilder<Object?> _favButton() {
-    return FutureBuilder(
-      future: favButton(widget.petModel.docId),
-      builder: (context, snapshot) {
-        return Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            onPressed: () {
-              changeFav(widget.petModel.docId);
-            },
-            icon: _isFav ?? false
-                ? const Icon(AppIcons.favoriteIcon, color: LightThemeColors.red, size: 30)
-                : const Icon(AppIcons.favoriteBorderIcon, size: 30),
-          ),
-        );
-      },
-    );
+  Observer _favButton() {
+    return Observer(builder: (_) {
+      return FutureBuilder<Object?>(
+        future: viewModel.favButton(widget.petModel.docId),
+        builder: (context, snapshot) {
+          return Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                viewModel.changeFav(widget.petModel.docId);
+              },
+              icon: viewModel.isFav ?? false
+                  ? const Icon(AppIcons.favoriteIcon, color: LightThemeColors.red, size: 30)
+                  : const Icon(AppIcons.favoriteBorderIcon, size: 30),
+            ),
+          );
+        },
+      );
+    });
   }
 
   Text _nameText(TextStyle? headline4) => Text(
@@ -198,7 +211,7 @@ class _DetailViewState extends BaseState<DetailView> {
   FloatingActionButton _chatFabButton() {
     return FloatingActionButton(
       onPressed: () {
-        PetillaDetailVievModel().callChatPage(
+        viewModel.callChatPage(
           context,
           widget.petModel.currentUserName,
           widget.petModel.currentUid,
