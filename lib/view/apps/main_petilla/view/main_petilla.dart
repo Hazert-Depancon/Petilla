@@ -11,6 +11,7 @@ import 'package:petilla_app_project/view/apps/main_petilla/view/add_view.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/view/chat_select_view.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/view/favorites_view.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/view/petilla_home_view.dart';
+import 'package:petilla_app_project/view/apps/main_petilla/view/petilla_insert_view.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/viewmodel/main_petilla_view_model.dart';
 
 class MainPetilla extends StatefulWidget {
@@ -28,7 +29,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
     FavoritesView(),
     const AddView(),
     ChatSelectView(),
-    const PetillaHomeView(),
+    const PetillaInsertView(),
   ];
 
   late MainPetillaViewModel viewModel;
