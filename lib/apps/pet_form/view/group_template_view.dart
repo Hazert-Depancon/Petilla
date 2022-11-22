@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/apps/pet_form/viewmodel/group_template_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/components/single_message.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
@@ -34,26 +35,38 @@ class GroupChat extends StatefulWidget {
 }
 
 class _GroupChatState extends BaseState<GroupChat> {
-  final auth = FirebaseAuth.instance;
   TextEditingController msg = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    loginUser = GroupTemplateViewModel().getCurrentUser();
-  }
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
+  late GroupTemplateViewModel viewModel;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(),
-      body: _body(),
+    return BaseView<GroupTemplateViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
+        loginUser = viewModel.getCurrentUser();
+      },
+      viewModel: GroupTemplateViewModel(),
+      onPageBuilder: (context, value) => _buildScaffold,
     );
   }
 
-  Column _body() {
+  Scaffold get _buildScaffold => Scaffold(
+        appBar: _appBar,
+        body: _body,
+      );
+
+  AppBar get _appBar {
+    return AppBar(
+      title: Text(widget.pageTitle),
+      foregroundColor: LightThemeColors.miamiMarmalade,
+      leading: _backIcon,
+    );
+  }
+
+  Column get _body {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -77,15 +90,7 @@ class _GroupChatState extends BaseState<GroupChat> {
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      title: Text(widget.pageTitle),
-      foregroundColor: LightThemeColors.miamiMarmalade,
-      leading: _backIcon(),
-    );
-  }
-
-  GestureDetector _backIcon() {
+  GestureDetector get _backIcon {
     return GestureDetector(
       child: const Icon(AppIcons.arrowBackIcon),
       onTap: () {
@@ -151,21 +156,21 @@ class ShowMessages extends StatelessWidget {
           return _listView(snapshot);
         }
         if (snapshot.hasError) {
-          return _errorWidget();
+          return _errorWidget;
         }
         if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionErrorWidget();
+          return _connectionErrorWidget;
         }
-        return _loadingWidget();
+        return _loadingWidget;
       },
     );
   }
 
-  _errorWidget() => const StatusView(status: StatusKeysEnum.ERROR);
+  StatusView get _errorWidget => const StatusView(status: StatusKeysEnum.ERROR);
 
-  _connectionErrorWidget() => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _connectionErrorWidget => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  _loadingWidget() => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingWidget => const StatusView(status: StatusKeysEnum.LOADING);
 
   ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(
