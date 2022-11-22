@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/apps/pet_form/view/group_template_view.dart';
+import 'package:petilla_app_project/apps/pet_form/viewmodel/petform_home_view_model.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
@@ -9,16 +12,26 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class PetformHomeView extends StatelessWidget {
-  const PetformHomeView({Key? key}) : super(key: key);
+  PetformHomeView({Key? key}) : super(key: key);
+
+  late PetformHomeViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(context),
-      body: _body(context),
-      floatingActionButton: _addGroup(context),
+    return BaseView<PetformHomeViewViewModel>(
+      onModelReady: (model) {
+        viewModel = model;
+      },
+      viewModel: PetformHomeViewViewModel(),
+      onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
+
+  Scaffold _buildScaffold(context) => Scaffold(
+        appBar: _appBar(context),
+        body: _body(context),
+        floatingActionButton: _addGroup(context),
+      );
 
   Column _body(BuildContext context) {
     return Column(
@@ -92,16 +105,7 @@ class PetformHomeView extends StatelessWidget {
       title: Text(title),
       leading: SvgPicture.asset(assetName, height: 32),
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GroupChat(
-              collectionId: collectionId,
-              docId: docId,
-              pageTitle: pageTitle,
-            ),
-          ),
-        );
+        viewModel.callGroupChatView(title, assetName, collectionId, docId, pageTitle, context);
       },
     );
   }
@@ -110,12 +114,16 @@ class PetformHomeView extends StatelessWidget {
     return AppBar(
       title: Text(_ThisPageTexts.selectGroup),
       foregroundColor: LightThemeColors.miamiMarmalade,
-      leading: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: const Icon(AppIcons.arrowBackIcon),
-      ),
+      leading: _backIcon(context),
+    );
+  }
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
     );
   }
 
