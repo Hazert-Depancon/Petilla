@@ -142,12 +142,6 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 
   final TextEditingController _typeController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _illeriGetir().then((value) => _ilIsimleriniGetir());
-  }
-
   String imageUrl = "";
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
@@ -161,6 +155,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _illeriGetir().then((value) => _ilIsimleriniGetir());
       },
       viewModel: AddViewTwoViewModel(),
       onPageBuilder: (context, value) => _buildScaffold,

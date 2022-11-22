@@ -51,6 +51,7 @@ class _InChatViewState extends BaseState<InChatView> {
   Widget build(BuildContext context) {
     return BaseView<InChatViewViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
         firebaseStream = FirebaseFirestore.instance
             .collection(usersRef)

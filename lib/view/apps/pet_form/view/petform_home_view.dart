@@ -20,6 +20,7 @@ class PetformHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PetformHomeViewViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
       },
       viewModel: PetformHomeViewViewModel(),

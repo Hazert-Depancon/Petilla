@@ -37,6 +37,7 @@ class _DetailViewState extends BaseState<DetailView> {
 
     return BaseView<DetailViewViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
         widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
         widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? _isMe = true : _isMe = false;

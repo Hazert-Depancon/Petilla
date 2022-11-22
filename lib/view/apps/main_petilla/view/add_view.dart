@@ -40,6 +40,7 @@ class _AddViewState extends BaseState<AddView> {
   Widget build(BuildContext context) {
     return BaseView<AddViewViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
       },
       viewModel: AddViewViewModel(),

@@ -45,6 +45,7 @@ class _GroupChatState extends BaseState<GroupChat> {
   Widget build(BuildContext context) {
     return BaseView<GroupTemplateViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
         loginUser = viewModel.getCurrentUser();
       },

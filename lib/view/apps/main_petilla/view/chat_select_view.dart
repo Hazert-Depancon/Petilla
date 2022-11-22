@@ -22,6 +22,7 @@ class ChatSelectView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<ChatSelectViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
       },
       viewModel: ChatSelectViewModel(),

@@ -24,6 +24,7 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<FavoritesViewViewModel>(
       onModelReady: (model) {
+        model.setContext(context);
         viewModel = model;
       },
       viewModel: FavoritesViewViewModel(),
