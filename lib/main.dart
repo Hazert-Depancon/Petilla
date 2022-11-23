@@ -55,6 +55,7 @@ class Petilla extends StatelessWidget {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: LightTheme().theme,
+      title: "Petilla",
       home: showHome
           ? FirebaseAuth.instance.currentUser != null
               ? const SelectAppView()
