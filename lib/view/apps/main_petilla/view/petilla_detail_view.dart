@@ -11,6 +11,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/service/models/pet_model.dart';
+import 'package:petilla_app_project/view/apps/main_petilla/view/other_profile_view.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/viewmodel/petilla_detail_view_view_model.dart';
 
 class DetailView extends StatefulWidget {
@@ -99,10 +100,20 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  Text _userNameText(BuildContext context) {
-    return Text(
-      widget.petModel.currentUserName,
-      style: textTheme.headline6,
+  GestureDetector _userNameText(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OtherProfileView(petModel: widget.petModel),
+          ),
+        );
+      },
+      child: Text(
+        widget.petModel.currentUserName,
+        style: Theme.of(context).textTheme.headline6,
+      ),
     );
   }
 
