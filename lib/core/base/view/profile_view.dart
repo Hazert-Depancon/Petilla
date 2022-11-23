@@ -61,7 +61,7 @@ class ProfileView extends StatelessWidget {
         if (snapshot.hasData) {
           String name = snapshot.data![AppFirestoreFieldNames.nameField];
           String email = snapshot.data![AppFirestoreFieldNames.emailField];
-          return _hasDataScreen(snapshot, name, email);
+          return _hasDataScreen(snapshot, name, email, context);
         }
         if (snapshot.hasError) {
           return _errorLottie();
@@ -78,12 +78,12 @@ class ProfileView extends StatelessWidget {
   _errorLottie() => const StatusView(status: StatusKeysEnum.ERROR);
   _connectionErrorLottie() => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  SingleChildScrollView _hasDataScreen(snapshot, String name, String email) {
+  SingleChildScrollView _hasDataScreen(snapshot, String name, String email, context) {
     return SingleChildScrollView(
       padding: ProjectPaddings.horizontalMainPadding,
       child: Column(
         children: [
-          _circleAvatar(snapshot, name),
+          _circleAvatar(snapshot, name, context),
           smallHeightSizedBox,
           _nameTextfield(snapshot, name),
           smallHeightSizedBox,
@@ -109,13 +109,13 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  CircleAvatar _circleAvatar(snapshot, String name) {
+  CircleAvatar _circleAvatar(snapshot, String name, context) {
     return CircleAvatar(
       radius: 60,
       child: Center(
         child: Text(
           name.substring(0, 1),
-          style: const TextStyle(fontSize: 40),
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
     );

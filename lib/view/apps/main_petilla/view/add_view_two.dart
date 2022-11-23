@@ -300,10 +300,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
         child: Center(
           child: Text(
             _ilceSecilmisMi ? _secilenIlce : _ThisPageTexts.selectDistrict,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
+            style: textTheme.bodyMedium!.copyWith(
+              color: LightThemeColors.white,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -331,10 +329,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
         child: Center(
           child: Text(
             _ilSecilmisMi ? _secilenIl : _ThisPageTexts.selectCity,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
+            style: textTheme.bodyMedium!.copyWith(
+              color: LightThemeColors.white,
               overflow: TextOverflow.ellipsis,
             ),
           ),

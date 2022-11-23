@@ -25,7 +25,10 @@ class UserChat extends StatelessWidget {
             const SizedBox(width: 12),
             CircleAvatar(
               radius: 35,
-              child: Text(name[0], style: const TextStyle(fontSize: 40, color: Colors.white)),
+              child: Text(
+                name[0],
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -33,9 +36,9 @@ class UserChat extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(name, style: Theme.of(context).textTheme.headline6),
                   smallSizedBox,
-                  Text(lastMsg)
+                  Text(lastMsg),
                 ],
               ),
             ),
