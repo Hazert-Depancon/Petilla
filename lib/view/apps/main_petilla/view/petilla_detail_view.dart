@@ -133,7 +133,9 @@ class _DetailViewState extends BaseState<DetailView> {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () {
-                viewModel.changeFav(widget.petModel.docId);
+                setState(() {
+                  viewModel.changeFav(widget.petModel.docId);
+                });
               },
               icon: viewModel.isFav ?? false
                   ? const Icon(AppIcons.favoriteIcon, color: LightThemeColors.red, size: 30)
