@@ -141,7 +141,6 @@ class _OnboardingState extends BaseState<Onboarding> {
   Text _backTextButtons() {
     return Text(
       _ThisPageTexts.backText,
-      style: const TextStyle(color: LightThemeColors.miamiMarmalade),
     );
   }
 

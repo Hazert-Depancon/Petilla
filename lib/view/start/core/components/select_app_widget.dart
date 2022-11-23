@@ -26,7 +26,7 @@ class SelectAppWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.4,
         height: isBig ? 220 : 105,
         decoration: _boxDecoration(),
-        child: _imageContainer(),
+        child: _imageContainer(context),
       ),
     );
   }
@@ -42,7 +42,7 @@ class SelectAppWidget extends StatelessWidget {
     );
   }
 
-  Container _imageContainer() {
+  Container _imageContainer(context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
@@ -50,20 +50,16 @@ class SelectAppWidget extends StatelessWidget {
           image: AssetImage(imagePath),
         ),
       ),
-      child: _text(),
+      child: _text(context),
     );
   }
 
-  Padding _text() {
+  Padding _text(context) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w500,
-          color: LightThemeColors.miamiMarmalade,
-        ),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }
