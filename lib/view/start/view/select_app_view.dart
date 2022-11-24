@@ -53,6 +53,7 @@ class SelectAppView extends StatelessWidget {
               children: [
                 _selectPetillaGridTile(),
                 _selectPetformGridTile(),
+                _selectAnimalReportGridTile(),
               ],
             ),
           ),
@@ -73,6 +74,14 @@ class SelectAppView extends StatelessWidget {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
+      child: _selectPetilla(),
+    );
+  }
+
+  StaggeredGridTile _selectAnimalReportGridTile() {
+    return StaggeredGridTile.count(
+      crossAxisCellCount: 2,
+      mainAxisCellCount: 1.5,
       child: _selectPetilla(),
     );
   }
