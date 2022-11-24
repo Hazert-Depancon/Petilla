@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
@@ -369,6 +370,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   NormalPetWidget _petWidget(document) {
     return NormalPetWidget(
       petModel: _petModel(document),
+      isFav: _petModel(document).currentUid == FirebaseAuth.instance.currentUser!.uid,
     );
   }
 

@@ -1,6 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
@@ -15,9 +14,10 @@ import 'package:petilla_app_project/view/apps/main_petilla/service/models/pet_mo
 import 'package:petilla_app_project/view/apps/main_petilla/view/petilla_detail_view.dart';
 
 class NormalPetWidget extends StatefulWidget {
-  const NormalPetWidget({Key? key, required this.petModel}) : super(key: key);
+  const NormalPetWidget({Key? key, required this.petModel, this.isFav}) : super(key: key);
 
   final PetModel petModel;
+  final bool? isFav;
 
   @override
   State<NormalPetWidget> createState() => _NormalPetWidgetState();
@@ -50,7 +50,6 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : _isMe = false;
   }
 
   callDetailView() {
@@ -164,7 +163,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
             fit: BoxFit.cover,
           ),
         ),
-        child: _isMe ? null : _favButton(),
+        child: widget.isFav ?? false ? null : _favButton(),
       ),
     );
   }
