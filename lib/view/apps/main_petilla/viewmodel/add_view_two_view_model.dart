@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
@@ -57,6 +58,7 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
             price: radioValue == 1 ? "0" : "",
             petType: petSelectedValue ?? LocaleKeys.error,
           ),
+          AppFirestoreCollectionNames.petsCollection,
           context,
         )
         .then(

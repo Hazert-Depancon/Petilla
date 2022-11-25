@@ -24,4 +24,8 @@ class AppFirestoreFieldNames {
   static String currentUidField = "currentUid";
   static String currentEmailField = "currentEmail";
   static String currentNameField = "currentName";
+  static String adoptField = "adopt";
+  static String phoneNumberField = "phone_number";
+  static String lat = "lat";
+  static String long = "long";
 }

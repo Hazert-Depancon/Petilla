@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
@@ -12,6 +10,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_button
 import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -45,24 +44,6 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   String dowlandLink = "";
 
-  Future<Position> getCurrentLocation() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error("HATA");
-    }
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error("HATA");
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error("HATA");
-    }
-    return await Geolocator.getCurrentPosition();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<AnimalReportHomeViewModel>(
@@ -81,7 +62,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       );
 
   AppBar _appBar(context) => AppBar(
-        title: const Text("Hayvan Bildir"),
+        title: Text(LocaleKeys.reportAnimal.locale),
         foregroundColor: LightThemeColors.miamiMarmalade,
         actions: [
           _callIcon(),
@@ -115,38 +96,6 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
         }),
       ),
     );
-  }
-
-  Observer _button() {
-    return Observer(builder: (_) {
-      return Button(
-        height: ProjectButtonSizes.mainButtonHeight,
-        width: ProjectButtonSizes.mainButtonWidth,
-        onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            await getCurrentLocation().then((value) {
-              setState(() {
-                lat = "${value.latitude}";
-                long = "${value.longitude}";
-              });
-            });
-            viewModel.isImageLoaded || viewModel.image != null
-                ? dowlandLink = await StorageCrud().addPhotoToStorage(viewModel.image!)
-                : null;
-
-            FirebaseFirestore.instance.collection("reported_pets").add({
-              "dowland_link": dowlandLink == "" ? null : dowlandLink,
-              "description": descriptionController.text,
-              "phone_number": phoneNumberController.text,
-              "adopt": swichValue,
-              "lat": lat,
-              "long": long,
-            });
-          }
-        },
-        text: "Bildir",
-      );
-    });
   }
 
   RadioListTile _radioListTile(int radioNumber, String title, context) {
@@ -191,7 +140,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   MainTextField _contactPhoneTextField() {
     return MainTextField(
-      hintText: "İletişim Numarası",
+      hintText: LocaleKeys.contactPhone.locale,
       prefix: "+90 ",
       controller: phoneNumberController,
     );
@@ -199,7 +148,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   MainTextField _descriptionTextField() {
     return MainTextField(
-      hintText: "Açıklama",
+      hintText: LocaleKeys.description.locale,
       isNext: true,
       controller: descriptionController,
     );
@@ -268,7 +217,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoCameraIcon),
-        title: const Text("Kameradan Çek"),
+        title: Text(LocaleKeys.shootFromCamera.locale),
         onTap: () {
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
@@ -281,7 +230,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoLibraryIcon),
-        title: const Text("Galeriden Seç"),
+        title: Text(LocaleKeys.selectGallery.locale),
         onTap: () {
           viewModel.pickImageGallery();
           Navigator.of(context).pop();
@@ -317,11 +266,49 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       context: context,
       type: QuickAlertType.info,
       confirmBtnColor: LightThemeColors.miamiMarmalade,
-      title: "Hayvan Bildir",
-      text:
-          "Hayvan bildir özelliği sayesinde sokakta karşılaştığınız hayvanları belediyenize veya barınaklara bildirerek zararsız hale getirilmesiniz sağlayabilirsiniz!",
-      confirmBtnText: "TAMAM",
+      title: LocaleKeys.reportAnimal.locale,
+      text: LocaleKeys.reportAnimalInfo.locale,
+      confirmBtnText: LocaleKeys.ok.locale,
       borderRadius: 24,
     );
   }
+
+  Observer _button() {
+    return Observer(builder: (_) {
+      return Button(
+        height: ProjectButtonSizes.mainButtonHeight,
+        width: ProjectButtonSizes.mainButtonWidth,
+        onPressed: onSubmitButtonClicked,
+        text: LocaleKeys.report.locale,
+      );
+    });
+  }
+
+  void onSubmitButtonClicked() async {
+    if (_formKey.currentState!.validate()) {
+      await _getCurrentLocation().then((value) {
+        setState(() {
+          lat = "${value.latitude}";
+          long = "${value.longitude}";
+        });
+      });
+      viewModel.isImageLoaded || viewModel.image != null
+          ? dowlandLink = await StorageCrud().addPhotoToStorage(
+              viewModel.image!,
+              AppFirestoreCollectionNames.reportAnimalCollection,
+            )
+          : null;
+
+      await viewModel.loadFirestore(
+        dowlandLink,
+        descriptionController,
+        phoneNumberController,
+        swichValue,
+        lat,
+        long,
+      );
+    }
+  }
+
+  Future _getCurrentLocation() => viewModel.getCurrentLocation();
 }

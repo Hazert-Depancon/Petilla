@@ -71,5 +71,9 @@
     "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta",
     "my_favorites" : "Favorilerim",
     "connection_error_text" : "Bağlantı Hatası",
-    "not_fav_yet" : "Favoriler listenizdeki bu ilan kaldırıldı"
+    "not_fav_yet" : "Favoriler listenizdeki bu ilan kaldırıldı",
+    "report" : "BİLDİR",
+    "report_animal" : "Hayvan Bildir",
+    "report_animal_info":"Hayvan bildir özelliği sayesinde sokakta karşılaştığınız hayvanları belediyenize veya barınaklara bildirerek zararsız hale getirilmesiniz sağlayabilirsiniz!",
+    "contact_phone": "İletişim Numarası"
 }

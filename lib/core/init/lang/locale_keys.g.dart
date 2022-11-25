@@ -74,4 +74,8 @@ abstract class LocaleKeys {
   static const writeAMessage = 'write_a_message';
   static const notInsertYet = 'not_insert_yet';
   static const myFavorites = 'my_favorites';
+  static const report = 'report';
+  static const reportAnimal = 'report_animal';
+  static const reportAnimalInfo = 'report_animal_info';
+  static const contactPhone = 'contact_phone';
 }
