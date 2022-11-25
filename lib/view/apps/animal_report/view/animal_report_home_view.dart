@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart';
 import 'package:quickalert/quickalert.dart';
@@ -16,7 +18,8 @@ class AnimalReportHomeView extends StatefulWidget {
 class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
   late AnimalReportHomeViewModel viewModel;
 
-  var smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
+  var normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
+  var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +36,17 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
   Scaffold buildScaffold(context) => Scaffold(
         appBar: _appBar(context),
         body: SingleChildScrollView(
+          padding: ProjectPaddings.horizontalMainPadding,
           child: Column(
-            children: const [],
+            children: [
+              const MainTextField(),
+              mainHeightSizedBox,
+              const MainTextField(),
+              mainHeightSizedBox,
+              const MainTextField(),
+              mainHeightSizedBox,
+              const MainTextField(),
+            ],
           ),
         ),
       );
@@ -44,9 +56,9 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
         foregroundColor: LightThemeColors.miamiMarmalade,
         actions: [
           _callIcon(),
-          smallWidthSizedBox,
+          normalWidthSizedBox,
           _infoIcon(context),
-          smallWidthSizedBox,
+          normalWidthSizedBox,
         ],
       );
 
