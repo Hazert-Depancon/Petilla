@@ -25,7 +25,6 @@ class NormalPetWidget extends StatefulWidget {
 
 class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
   late bool _isClaim;
-  late bool _isMe;
   bool? _isFav;
 
   favButton(docId) async {
