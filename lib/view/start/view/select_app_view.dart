@@ -121,7 +121,7 @@ class SelectAppView extends StatelessWidget {
   SelectAppWidget _selectAnimalReport() {
     return SelectAppWidget(
       isBig: true,
-      title: "Bildir",
+      title: LocaleKeys.report,
       imagePath: ImageConstants.instance.animalReport,
       onTap: const MainAnimalReport(),
     );
