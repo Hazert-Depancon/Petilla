@@ -57,6 +57,32 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
     });
   }
 
+  late final _$loadFirestoreAsyncAction = AsyncAction(
+      '_AnimalReportHomeViewModelBase.loadFirestore',
+      context: context);
+
+  @override
+  Future<void> loadFirestore(
+      dynamic dowlandLink,
+      dynamic descriptionController,
+      dynamic phoneNumberController,
+      dynamic swichValue,
+      dynamic lat,
+      dynamic long) {
+    return _$loadFirestoreAsyncAction.run(() => super.loadFirestore(dowlandLink,
+        descriptionController, phoneNumberController, swichValue, lat, long));
+  }
+
+  late final _$getCurrentLocationAsyncAction = AsyncAction(
+      '_AnimalReportHomeViewModelBase.getCurrentLocation',
+      context: context);
+
+  @override
+  Future<Position> getCurrentLocation() {
+    return _$getCurrentLocationAsyncAction
+        .run(() => super.getCurrentLocation());
+  }
+
   late final _$pickImageCameraAsyncAction = AsyncAction(
       '_AnimalReportHomeViewModelBase.pickImageCamera',
       context: context);
