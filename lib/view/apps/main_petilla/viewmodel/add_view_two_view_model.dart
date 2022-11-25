@@ -42,7 +42,6 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
     CrudService()
         .createPet(
           image,
-          imageUrl,
           PetModel(
             currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
             currentUid: FirebaseAuth.instance.currentUser!.uid,

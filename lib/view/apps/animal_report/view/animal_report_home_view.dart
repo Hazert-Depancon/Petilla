@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
@@ -13,6 +16,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart';
+import 'package:petilla_app_project/view/apps/main_petilla/service/storage_service.dart/storage_crud.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -23,13 +27,41 @@ class AnimalReportHomeView extends StatefulWidget {
   State<AnimalReportHomeView> createState() => _AnimalReportHomeViewState();
 }
 
-class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
+class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
   final _formKey = GlobalKey<FormState>();
   late AnimalReportHomeViewModel viewModel;
 
   var normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
   var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
   bool swichValue = false;
+  RadioListTile get _locationRadioListTile => _radioListTile(1, "Şuanki konumu al", context);
+  Object? val = 1;
+
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+
+  String? lat;
+  String? long;
+
+  String dowlandLink = "";
+
+  Future<Position> getCurrentLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error("HATA");
+    }
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error("HATA");
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error("HATA");
+    }
+    return await Geolocator.getCurrentPosition();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +80,17 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
         body: _body(context),
       );
 
+  AppBar _appBar(context) => AppBar(
+        title: const Text("Hayvan Bildir"),
+        foregroundColor: LightThemeColors.miamiMarmalade,
+        actions: [
+          _callIcon(),
+          normalWidthSizedBox,
+          _infoIcon(context),
+          normalWidthSizedBox,
+        ],
+      );
+
   Form _body(context) {
     return Form(
       key: _formKey,
@@ -58,30 +101,13 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
             children: [
               viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
               mainHeightSizedBox,
-              const MainTextField(
-                hintText: "Açıklama",
-                isNext: true,
-              ),
+              _descriptionTextField(),
               mainHeightSizedBox,
-              const MainTextField(
-                hintText: "İletişim Numarası",
-                prefix: "+90 ",
-              ),
+              _contactPhoneTextField(),
               mainHeightSizedBox,
-              ListTile(
-                title: Text(
-                  LocaleKeys.adopt.locale,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                trailing: Switch(
-                  value: swichValue,
-                  onChanged: (value) {
-                    setState(() {
-                      swichValue = value;
-                    });
-                  },
-                ),
-              ),
+              _adoptListTile(context),
+              mainHeightSizedBox,
+              _locationRadioListTile,
               mainHeightSizedBox,
               _button()
             ],
@@ -91,12 +117,91 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
     );
   }
 
-  Button _button() {
-    return Button(
-      height: ProjectButtonSizes.mainButtonHeight,
-      width: ProjectButtonSizes.mainButtonWidth,
-      onPressed: () {},
-      text: "Bildir",
+  Observer _button() {
+    return Observer(builder: (_) {
+      return Button(
+        height: ProjectButtonSizes.mainButtonHeight,
+        width: ProjectButtonSizes.mainButtonWidth,
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            await getCurrentLocation().then((value) {
+              setState(() {
+                lat = "${value.latitude}";
+                long = "${value.longitude}";
+              });
+            });
+            viewModel.isImageLoaded || viewModel.image != null
+                ? dowlandLink = await StorageCrud().addPhotoToStorage(viewModel.image!)
+                : null;
+
+            FirebaseFirestore.instance.collection("reported_pets").add({
+              "dowland_link": dowlandLink == "" ? null : dowlandLink,
+              "description": descriptionController.text,
+              "phone_number": phoneNumberController.text,
+              "adopt": swichValue,
+              "lat": lat,
+              "long": long,
+            });
+          }
+        },
+        text: "Bildir",
+      );
+    });
+  }
+
+  RadioListTile _radioListTile(int radioNumber, String title, context) {
+    return RadioListTile(
+      shape: RoundedRectangleBorder(
+        borderRadius: ProjectRadius.buttonAllRadius,
+      ),
+      contentPadding: EdgeInsets.zero,
+      groupValue: val,
+      value: radioNumber,
+      selected: val == radioNumber,
+      onChanged: (value) {
+        setState(() {
+          val = value;
+        });
+      },
+      title: Text(title, style: textTheme.bodyText1),
+    );
+  }
+
+  ListTile _adoptListTile(context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        LocaleKeys.adopt.locale,
+        style: Theme.of(context).textTheme.headline5,
+      ),
+      trailing: _adoptSwich(),
+    );
+  }
+
+  Switch _adoptSwich() {
+    return Switch(
+      value: swichValue,
+      onChanged: (value) {
+        setState(() {
+          swichValue = value;
+        });
+      },
+    );
+  }
+
+  MainTextField _contactPhoneTextField() {
+    return MainTextField(
+      hintText: "İletişim Numarası",
+      prefix: "+90 ",
+      controller: phoneNumberController,
+    );
+  }
+
+  MainTextField _descriptionTextField() {
+    return MainTextField(
+      hintText: "Açıklama",
+      isNext: true,
+      controller: descriptionController,
     );
   }
 
@@ -178,24 +283,12 @@ class _AnimalReportHomeViewState extends State<AnimalReportHomeView> {
         leading: const Icon(AppIcons.photoLibraryIcon),
         title: const Text("Galeriden Seç"),
         onTap: () {
-          // pickImageGallery();
           viewModel.pickImageGallery();
           Navigator.of(context).pop();
         },
       );
     });
   }
-
-  AppBar _appBar(context) => AppBar(
-        title: const Text("Hayvan Bildir"),
-        foregroundColor: LightThemeColors.miamiMarmalade,
-        actions: [
-          _callIcon(),
-          normalWidthSizedBox,
-          _infoIcon(context),
-          normalWidthSizedBox,
-        ],
-      );
 
   GestureDetector _callIcon() {
     return GestureDetector(

@@ -26,12 +26,16 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
   @observable
   File? imageFile;
 
+  @observable
+  bool isImageLoaded = false;
+
   @action
   Future<void> pickImageCamera() async {
     image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) {
       return;
     } else {
+      isImageLoaded = true;
       imageFile = File(image!.path);
     }
   }
@@ -43,6 +47,7 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
     if (image == null) {
       return;
     } else {
+      isImageLoaded = true;
       imageFile = File(image!.path);
     }
   }

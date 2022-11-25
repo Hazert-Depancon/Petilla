@@ -14,10 +14,10 @@ class CrudService {
   }
   CrudService._internal();
 
-  Future<void> createPet(XFile image, String imageUrl, PetModel pet, context) async {
+  Future<void> createPet(XFile image, PetModel pet, context) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     try {
-      var dowlandLink = await StorageCrud().addPhotoToStorage(image, imageUrl);
+      var dowlandLink = await StorageCrud().addPhotoToStorage(image);
       await db.collection(AppFirestoreCollectionNames.petsCollection).add({
         AppFirestoreFieldNames.nameField: pet.name,
         AppFirestoreFieldNames.descriptionField: pet.description,

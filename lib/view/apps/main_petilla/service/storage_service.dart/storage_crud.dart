@@ -11,7 +11,7 @@ class StorageCrud {
   }
   StorageCrud._internal();
 
-  Future addPhotoToStorage(XFile image, String imageUrl) async {
+  Future addPhotoToStorage(XFile image) async {
     String imagedowlandUrl = "";
     Reference ref = FirebaseStorage.instance.ref().child(AppFirestoreCollectionNames.petsCollection).child(image.name);
 

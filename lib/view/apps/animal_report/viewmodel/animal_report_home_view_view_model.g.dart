@@ -41,6 +41,22 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
     });
   }
 
+  late final _$isImageLoadedAtom = Atom(
+      name: '_AnimalReportHomeViewModelBase.isImageLoaded', context: context);
+
+  @override
+  bool get isImageLoaded {
+    _$isImageLoadedAtom.reportRead();
+    return super.isImageLoaded;
+  }
+
+  @override
+  set isImageLoaded(bool value) {
+    _$isImageLoadedAtom.reportWrite(value, super.isImageLoaded, () {
+      super.isImageLoaded = value;
+    });
+  }
+
   late final _$pickImageCameraAsyncAction = AsyncAction(
       '_AnimalReportHomeViewModelBase.pickImageCamera',
       context: context);
@@ -63,7 +79,8 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
   String toString() {
     return '''
 image: ${image},
-imageFile: ${imageFile}
+imageFile: ${imageFile},
+isImageLoaded: ${isImageLoaded}
     ''';
   }
 }
