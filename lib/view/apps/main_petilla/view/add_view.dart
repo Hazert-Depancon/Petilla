@@ -127,7 +127,6 @@ class _AddViewState extends BaseState<AddView> {
         leading: const Icon(AppIcons.photoCameraIcon),
         title: Text(_ThisPageTexts.camera),
         onTap: () {
-          // pickImageCamera();
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
         },
@@ -141,7 +140,6 @@ class _AddViewState extends BaseState<AddView> {
         leading: const Icon(AppIcons.photoLibraryIcon),
         title: Text(_ThisPageTexts.gellery),
         onTap: () {
-          // pickImageGallery();
           viewModel.pickImageGallery();
           Navigator.of(context).pop();
         },

@@ -18,6 +18,7 @@ class MainTextField extends StatelessWidget {
     this.isNext,
     this.enabled,
     this.suffixIcon,
+    this.prefix,
   }) : super(key: key);
 
   final String? hintText;
@@ -31,6 +32,7 @@ class MainTextField extends StatelessWidget {
   final bool? isNext;
   final bool? enabled;
   final Icon? suffixIcon;
+  final String? prefix;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class MainTextField extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         hintText: hintText,
+        prefixText: prefix,
         prefixIcon: prefixIcon,
         suffixText: suffix,
         suffixIcon: suffixIcon,

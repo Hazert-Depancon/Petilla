@@ -84,7 +84,7 @@ class FavoritesView extends StatelessWidget {
             return _largePetWidget(snapshot);
           }
           if (snapshot.data?.exists == false) {
-            return const Text(LocaleKeys.notFavYet);
+            return Text(LocaleKeys.notFavYet.locale);
           }
 
           if (snapshot.connectionState == ConnectionState.none) {

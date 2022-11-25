@@ -48,8 +48,8 @@ dependencies:
   flutter_image_compress: ^1.1.0
   image_picker: ^0.8.5+3
 
-  #Google 
-  google_maps_flutter: ^2.2.1
+  #Maps 
+  geolocator: ^9.0.2
 
   # Utility
   device_preview: ^1.1.0
