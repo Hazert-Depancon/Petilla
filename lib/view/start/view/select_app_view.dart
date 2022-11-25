@@ -9,6 +9,7 @@ import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/view/apps/animal_report/view/main_animal_report.dart';
 import 'package:petilla_app_project/view/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/view/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/view/start/core/components/select_app_widget.dart';
@@ -27,7 +28,7 @@ class SelectAppView extends StatelessWidget {
     return BaseView<SelectAppViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
-        model = viewModel;
+        viewModel = model;
       },
       viewModel: SelectAppViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
@@ -94,7 +95,7 @@ class SelectAppView extends StatelessWidget {
   StaggeredGridTile _selectAnimalReportGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
-      mainAxisCellCount: 1.5,
+      mainAxisCellCount: 2,
       child: _selectAnimalReport(),
     );
   }
@@ -116,12 +117,13 @@ class SelectAppView extends StatelessWidget {
     );
   }
 
+  //ToDo
   SelectAppWidget _selectAnimalReport() {
     return SelectAppWidget(
       isBig: true,
-      title: _ThisPageTexts.petillaTitle,
-      imagePath: ImageConstants.instance.petilla,
-      onTap: const MainPetilla(),
+      title: "Bildir",
+      imagePath: ImageConstants.instance.animalReport,
+      onTap: const MainAnimalReport(),
     );
   }
 

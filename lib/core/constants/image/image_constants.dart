@@ -16,6 +16,7 @@ class ImageConstants {
   String get onboardingTwo => toSvg("onboarding_two");
   String get petform => toPng("petform");
   String get petilla => toPng("petilla_image");
+  String get animalReport => toPng("animal_report");
 
   String toSvg(String imageName) => "assets/svg/$imageName.svg";
   String toPng(String imageName) => "assets/images/$imageName.png";
