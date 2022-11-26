@@ -12,4 +12,5 @@ class LightThemeColors {
   static const Color grey = Color(0xFF9E9E9E);
   static const Color red = Colors.red;
   static const Color black = Colors.black;
+  static const Color green = Colors.green;
 }

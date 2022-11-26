@@ -37,7 +37,8 @@ class LoginView extends StatelessWidget {
     "s4uQcxrVMShVrt6i4jxD8rGds",
     "crXcD3wvF4pzLFJkanm6ySB7",
     "MsDBbuaRuMAeywd8scHJRtrJ",
-    "Pzjxhrb4se7KHnHjRv4DGZSV"
+    "Pzjxhrb4se7KHnHjRv4DGZSV",
+    "test"
   ];
 
   @override
@@ -142,17 +143,26 @@ class LoginView extends StatelessWidget {
   }
 
   void _onLoginButton(context) async {
-    if (_formKey.currentState!.validate()) {
-      if (adminMails.contains(_emailController.text)) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const AdminHomeView()),
-          (route) => false,
-        );
-      } else {
-        LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
-      }
+    if (adminMails.contains(_emailController.text)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        _snackBar(),
+      );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => AdminHomeView()),
+        (route) => false,
+      );
     }
+    if (_formKey.currentState!.validate()) {
+      LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
+    }
+  }
+
+  SnackBar _snackBar() {
+    return const SnackBar(
+      content: Text("Admin hesabı ile giriş yapıldı."),
+      backgroundColor: LightThemeColors.green,
+    );
   }
 }
 

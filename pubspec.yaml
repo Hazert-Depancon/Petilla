@@ -50,6 +50,7 @@ dependencies:
 
   #Maps 
   geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.1
 
   # Utility
   device_preview: ^1.1.0

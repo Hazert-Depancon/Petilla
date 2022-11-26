@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -42,6 +43,9 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
       AppFirestoreFieldNames.adoptField: swichValue,
       AppFirestoreFieldNames.lat: lat,
       AppFirestoreFieldNames.long: long,
+      AppFirestoreFieldNames.currentEmailField: FirebaseAuth.instance.currentUser!.email,
+      AppFirestoreFieldNames.currentNameField: FirebaseAuth.instance.currentUser!.displayName,
+      AppFirestoreFieldNames.currentUidField: FirebaseAuth.instance.currentUser!.uid,
     });
   }
 
