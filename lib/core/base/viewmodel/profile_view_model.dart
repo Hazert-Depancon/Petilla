@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/view/auth/service/auth_service.dart';
-import 'package:petilla_app_project/view/auth/view/login_view.dart';
+import 'package:petilla_app_project/view/user/auth/service/auth_service.dart';
+import 'package:petilla_app_project/view/user/auth/view/login_view.dart';
 
 class ProfileViewModel {
   Future<void> logOut(context) async {
