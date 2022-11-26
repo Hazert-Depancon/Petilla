@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, iterable_contains_unrelated_type
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -13,6 +13,7 @@ import 'package:petilla_app_project/core/constants/string_constant/project_lotti
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/admin/view/admin_home_view.dart';
 import 'package:petilla_app_project/view/user/auth/view/register_view.dart';
 import 'package:petilla_app_project/view/user/auth/viewmodel/login_view_model.dart';
 
@@ -25,6 +26,19 @@ class LoginView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
+  List<String> adminMails = [
+    "DukSrKR6Gxo5KZdYnJZiWeW6",
+    "HrYA7EVN9j4UsSLueFVTzdQe",
+    "xpea6mRcgfEBwCXXt54YTmFR",
+    "dekxe2UTiyuWKDqXpXCtaE3q",
+    "jEgBV5XmyUL8SFT8w2N65yrK",
+    "ZyHn2yytGZKJw2zmHybBzScP",
+    "s4uQcxrVMShVrt6i4jxD8rGds",
+    "crXcD3wvF4pzLFJkanm6ySB7",
+    "MsDBbuaRuMAeywd8scHJRtrJ",
+    "Pzjxhrb4se7KHnHjRv4DGZSV"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +143,15 @@ class LoginView extends StatelessWidget {
 
   void _onLoginButton(context) async {
     if (_formKey.currentState!.validate()) {
-      LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
+      if (adminMails.contains(_emailController.text)) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const AdminHomeView()),
+          (route) => false,
+        );
+      } else {
+        LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
+      }
     }
   }
 }

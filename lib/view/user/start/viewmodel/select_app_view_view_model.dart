@@ -19,6 +19,6 @@ abstract class _SelectAppViewViewModelBase with Store, BaseViewModel {
 
   @action
   void callProfileView(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileView()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileView()));
   }
 }

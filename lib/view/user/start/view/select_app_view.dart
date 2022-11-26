@@ -23,6 +23,7 @@ class SelectAppView extends StatelessWidget {
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
 
   late SelectAppViewViewModel viewModel;
+
   @override
   Widget build(BuildContext context) {
     return BaseView<SelectAppViewViewModel>(
