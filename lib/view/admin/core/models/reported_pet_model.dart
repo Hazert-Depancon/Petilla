@@ -1,5 +1,5 @@
 class ReportedPetModel {
-  final String imagePath;
+  final String? imagePath;
   final String description;
   final String phoneNumber;
   final bool adopt;
@@ -10,7 +10,7 @@ class ReportedPetModel {
   final String currentName;
 
   ReportedPetModel({
-    required this.imagePath,
+    this.imagePath,
     required this.description,
     required this.phoneNumber,
     required this.adopt,

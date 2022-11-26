@@ -287,10 +287,8 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
   void onSubmitButtonClicked() async {
     if (_formKey.currentState!.validate()) {
       await _getCurrentLocation().then((value) {
-        setState(() {
-          lat = "${value.latitude}";
-          long = "${value.longitude}";
-        });
+        lat = "${value.latitude}";
+        long = "${value.longitude}";
       });
       viewModel.isImageLoaded || viewModel.image != null
           ? dowlandLink = await StorageCrud().addPhotoToStorage(

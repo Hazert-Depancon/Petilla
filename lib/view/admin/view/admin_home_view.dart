@@ -45,28 +45,40 @@ class AdminHomeView extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportAnimalCollection).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.builder(
-            padding: ProjectPaddings.horizontalMainPadding,
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              return ReportedPetWidget(
-                petModel: ReportedPetModel(
-                  imagePath: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
-                  description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
-                  phoneNumber: snapshot.data!.docs[index][AppFirestoreFieldNames.phoneNumberField],
-                  adopt: snapshot.data!.docs[index][AppFirestoreFieldNames.adoptField],
-                  long: snapshot.data!.docs[index][AppFirestoreFieldNames.long],
-                  currentEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
-                  currentUid: snapshot.data!.docs[index][AppFirestoreFieldNames.currentUidField],
-                  currentName: snapshot.data!.docs[index][AppFirestoreFieldNames.currentNameField],
-                  lat: snapshot.data!.docs[index][AppFirestoreFieldNames.lat],
-                ),
-              );
-            },
-          );
+          return _listView(snapshot);
         }
         return _loadingLottie;
       },
+    );
+  }
+
+  ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      padding: ProjectPaddings.horizontalMainPadding,
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        return _reportedPetWidget(snapshot, index);
+      },
+    );
+  }
+
+  ReportedPetWidget _reportedPetWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+    return ReportedPetWidget(
+      petModel: _petModel(snapshot, index),
+    );
+  }
+
+  ReportedPetModel _petModel(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+    return ReportedPetModel(
+      imagePath: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
+      description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
+      phoneNumber: snapshot.data!.docs[index][AppFirestoreFieldNames.phoneNumberField],
+      adopt: snapshot.data!.docs[index][AppFirestoreFieldNames.adoptField],
+      long: snapshot.data!.docs[index][AppFirestoreFieldNames.long],
+      currentEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
+      currentUid: snapshot.data!.docs[index][AppFirestoreFieldNames.currentUidField],
+      currentName: snapshot.data!.docs[index][AppFirestoreFieldNames.currentNameField],
+      lat: snapshot.data!.docs[index][AppFirestoreFieldNames.lat],
     );
   }
 
