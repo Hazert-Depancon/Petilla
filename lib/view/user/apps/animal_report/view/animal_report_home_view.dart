@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
@@ -16,6 +17,7 @@ import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/storage_service.dart/storage_crud.dart';
+import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -43,6 +45,8 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
   String? long;
 
   String dowlandLink = "";
+
+  bool _isClicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -278,34 +282,53 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       return Button(
         height: ProjectButtonSizes.mainButtonHeight,
         width: ProjectButtonSizes.mainButtonWidth,
-        onPressed: onSubmitButtonClicked,
+        onPressed: () {
+          onSubmitButtonClicked(context);
+        },
         text: LocaleKeys.report.locale,
       );
     });
   }
 
-  void onSubmitButtonClicked() async {
+  void onSubmitButtonClicked(context) async {
     if (_formKey.currentState!.validate()) {
-      await _getCurrentLocation().then((value) {
-        lat = "${value.latitude}";
-        long = "${value.longitude}";
-      });
-      viewModel.isImageLoaded || viewModel.image != null
-          ? dowlandLink = await StorageCrud().addPhotoToStorage(
-              viewModel.image!,
-              AppFirestoreCollectionNames.reportAnimalCollection,
-            )
-          : null;
+      if (_isClicked == false) {
+        _isClicked = true;
+        showDefaultLoadingDialog(true, context);
+        await _getCurrentLocation().then((value) {
+          lat = "${value.latitude}";
+          long = "${value.longitude}";
+        });
+        viewModel.isImageLoaded || viewModel.image != null
+            ? dowlandLink = await StorageCrud().addPhotoToStorage(
+                viewModel.image!,
+                AppFirestoreCollectionNames.reportAnimalCollection,
+              )
+            : null;
 
-      await viewModel.loadFirestore(
-        dowlandLink,
-        descriptionController,
-        phoneNumberController,
-        swichValue,
-        lat,
-        long,
-      );
+        await viewModel.loadFirestore(
+          dowlandLink,
+          descriptionController,
+          phoneNumberController,
+          swichValue,
+          lat,
+          long,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(_snackBar());
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => SelectAppView()),
+          (route) => false,
+        );
+      }
     }
+  }
+
+  SnackBar _snackBar() {
+    return const SnackBar(
+      content: Text("Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır."),
+      backgroundColor: LightThemeColors.green,
+    );
   }
 
   Future _getCurrentLocation() => viewModel.getCurrentLocation();
