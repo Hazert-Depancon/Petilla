@@ -42,6 +42,7 @@ void _initSystemUi() {
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: LightThemeColors.scaffoldBackgroundColor,
       systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
     ),
   );
 }
