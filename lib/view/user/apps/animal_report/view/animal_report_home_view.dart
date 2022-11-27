@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
@@ -142,12 +143,26 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
     );
   }
 
-  MainTextField _contactPhoneTextField() {
-    return MainTextField(
-      hintText: LocaleKeys.contactPhone.locale,
-      prefix: "+90 ",
+  _contactPhoneTextField() {
+    return IntlPhoneField(
+      invalidNumberMessage: LocaleKeys.fillAllArea.locale,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: LightThemeColors.snowbank,
+        border: OutlineInputBorder(
+          borderRadius: ProjectRadius.allRadius,
+          borderSide: BorderSide.none,
+        ),
+      ),
+      initialCountryCode: 'TR',
       controller: phoneNumberController,
     );
+
+    // return MainTextField(
+    //   hintText: LocaleKeys.contactPhone.locale,
+    //   prefix: "+90 ",
+    //   controller: phoneNumberController,
+    // );
   }
 
   MainTextField _descriptionTextField() {

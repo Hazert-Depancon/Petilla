@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
@@ -39,7 +40,8 @@ class ReportedPetDetailView extends StatelessWidget {
             String googleURL = "https://www.google.com/maps/search/?api=1&query=${petModel.lat},${petModel.long}";
             await canLaunchUrlString(googleURL) ? await launchUrlString(googleURL) : throw "ERROR";
           },
-          label: const Text("Haritada Göster"),
+          label: const Text("Konum"),
+          icon: const Icon(AppIcons.locationOnOtlinedIcon),
         ),
       );
 
