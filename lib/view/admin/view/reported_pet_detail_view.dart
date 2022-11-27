@@ -6,6 +6,8 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
+import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/admin/core/models/reported_pet_model.dart';
 import 'package:petilla_app_project/view/admin/viewmodel/reported_pet_detail_view_view_model.dart';
@@ -40,7 +42,7 @@ class ReportedPetDetailView extends StatelessWidget {
             String googleURL = "https://www.google.com/maps/search/?api=1&query=${petModel.lat},${petModel.long}";
             await canLaunchUrlString(googleURL) ? await launchUrlString(googleURL) : throw "ERROR";
           },
-          label: const Text("Konum"),
+          label: Text(LocaleKeys.location.locale),
           icon: const Icon(AppIcons.locationOnOtlinedIcon),
         ),
       );
