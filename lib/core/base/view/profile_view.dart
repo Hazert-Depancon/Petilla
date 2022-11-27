@@ -1,7 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
@@ -10,7 +14,6 @@ import 'package:petilla_app_project/core/constants/string_constant/app_firestore
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/base/viewmodel/profile_view_model.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 
@@ -21,8 +24,21 @@ class ProfileView extends StatelessWidget {
 
   final _firestore = FirebaseFirestore.instance;
 
+  late ProfileViewViewModel viewModel;
+
   @override
   Widget build(BuildContext context) {
+    return BaseView<ProfileViewViewModel>(
+      onModelReady: (model) {
+        model.setContext(context);
+        viewModel = model;
+      },
+      viewModel: ProfileViewViewModel(),
+      onPageBuilder: (context, value) => buildScaffold(context),
+    );
+  }
+
+  Scaffold buildScaffold(context) {
     return Scaffold(
       appBar: _appBar(context),
       body: _streamBodyBuilder(),
@@ -43,7 +59,7 @@ class ProfileView extends StatelessWidget {
   GestureDetector _profileAction(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        ProfileViewModel().logOut(context);
+        viewModel.logOut(context);
       },
       child: _exitIcon(),
     );
@@ -64,19 +80,19 @@ class ProfileView extends StatelessWidget {
           return _hasDataScreen(snapshot, name, email, context);
         }
         if (snapshot.hasError) {
-          return _errorLottie();
+          return _errorLottie;
         }
         if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionErrorLottie();
+          return _connectionErrorLottie;
         }
-        return _loadingLottie();
+        return _loadingLottie;
       },
     );
   }
 
-  _loadingLottie() => const StatusView(status: StatusKeysEnum.LOADING);
-  _errorLottie() => const StatusView(status: StatusKeysEnum.ERROR);
-  _connectionErrorLottie() => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _errorLottie => const StatusView(status: StatusKeysEnum.ERROR);
+  StatusView get _connectionErrorLottie => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
   SingleChildScrollView _hasDataScreen(snapshot, String name, String email, context) {
     return SingleChildScrollView(
