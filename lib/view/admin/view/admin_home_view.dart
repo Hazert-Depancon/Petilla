@@ -8,6 +8,8 @@ import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/view/admin/core/components/reported_pet_widget.dart';
 import 'package:petilla_app_project/view/admin/core/models/reported_pet_model.dart';
 import 'package:petilla_app_project/view/admin/viewmodel/admin_home_view_view_model.dart';
@@ -36,7 +38,7 @@ class AdminHomeView extends StatelessWidget {
 
   AppBar get _appBar {
     return AppBar(
-      title: const Text("Bildirilen Hayvanlar"),
+      title: Text(LocaleKeys.reportedAnimals.locale),
     );
   }
 

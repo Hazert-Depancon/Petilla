@@ -143,7 +143,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
     );
   }
 
-  _contactPhoneTextField() {
+  IntlPhoneField _contactPhoneTextField() {
     return IntlPhoneField(
       invalidNumberMessage: LocaleKeys.fillAllArea.locale,
       decoration: InputDecoration(
@@ -157,12 +157,6 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       initialCountryCode: 'TR',
       controller: phoneNumberController,
     );
-
-    // return MainTextField(
-    //   hintText: LocaleKeys.contactPhone.locale,
-    //   prefix: "+90 ",
-    //   controller: phoneNumberController,
-    // );
   }
 
   MainTextField _descriptionTextField() {
@@ -340,8 +334,8 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
   }
 
   SnackBar _snackBar() {
-    return const SnackBar(
-      content: Text("Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır."),
+    return SnackBar(
+      content: Text(LocaleKeys.takeYourReportMsg.locale),
       backgroundColor: LightThemeColors.green,
     );
   }

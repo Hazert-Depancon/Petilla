@@ -76,5 +76,7 @@
     "report_animal" : "Hayvan Bildir",
     "report_animal_info":"Hayvan bildir özelliği sayesinde sokakta karşılaştığınız hayvanları belediyenize veya barınaklara bildirerek zararsız hale getirilmesiniz sağlayabilirsiniz!",
     "contact_phone": "İletişim Numarası",
-    "get_current_location": "Şuanki konumu al"
+    "get_current_location": "Şuanki konumu al",
+    "reported_animals" : "Bildirilen Hayvanlar",
+    "take_your_report_msg" : "Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır."
 }
