@@ -29,6 +29,7 @@
     "name" : "İsim",
     "description" : "Açıklama",
     "adopt" : "Sahiplendir",
+    "sleep" : "Uyut",
     "next" : "Sonraki",
     "fill_all_area" : "Lütfen tüm alanları doldurunuz",
     "select_gallery" : "Galeriden Seç",

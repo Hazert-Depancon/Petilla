@@ -33,6 +33,7 @@ abstract class LocaleKeys {
   static const name = 'name';
   static const description = 'description';
   static const adopt = 'adopt';
+  static const sleep = 'sleep';
   static const next = 'next';
   static const fillAllArea = 'fill_all_area';
   static const selectGallery = 'select_gallery';

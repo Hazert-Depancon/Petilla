@@ -73,7 +73,7 @@ class ReportedPetDetailView extends StatelessWidget {
 
   Text _adoptText(context) {
     return Text(
-      petModel.adopt ? "Sahiplendir" : "Uyut",
+      petModel.adopt ? LocaleKeys.adopt : LocaleKeys.sleep,
       style: Theme.of(context).textTheme.titleLarge,
     );
   }
