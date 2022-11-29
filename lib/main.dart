@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,9 +7,11 @@ import 'package:petilla_app_project/core/constants/app/app_constants.dart';
 import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
 import 'package:petilla_app_project/core/init/lang/language_manager.dart';
-import 'package:petilla_app_project/core/init/router/app_router.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/user/auth/onboard/view/onboarding.dart';
+import 'package:petilla_app_project/view/user/auth/view/login_view.dart';
+import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 Future<void> main() async {
   await _init();
@@ -50,20 +53,20 @@ class Petilla extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routeInformationParser: AppRouter().router.routeInformationParser,
-      routerDelegate: AppRouter().router.routerDelegate,
+    return MaterialApp(
+      // routeInformationParser: AppRouter().router.routeInformationParser,
+      // routerDelegate: AppRouter().router.routerDelegate,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: LightTheme().theme,
       title: "Petilla",
-      // home: showHome
-      //     ? FirebaseAuth.instance.currentUser != null
-      //         ? SelectAppView()
-      //         : LoginView()
-      //     : const Onboarding(),
+      home: showHome
+          ? FirebaseAuth.instance.currentUser != null
+              ? SelectAppView()
+              : LoginView()
+          : const Onboarding(),
     );
   }
 }
