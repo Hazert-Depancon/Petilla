@@ -8,6 +8,8 @@ Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali h
 
 *-Hayvanlara dair sohbet etme*
 
+*-Sokakta saldıran hayvanları ilgili kurumlara bildirme*
+
 özellikleri vardır.
 
 Şuanda yapım aşamasında olan ise;
@@ -32,5 +34,3 @@ Erdinç Güllü (Danışman)
 A Eymen Nuhoğlu (Danışman)
 
 M. Said Korkmaz (Yazılım Yardımı, https://github.com/saidkorkmaz)
-
-Veli Bacık (Yazılım Yardımı, https://github.com/VB10/) 
