@@ -130,7 +130,7 @@ class SelectAppView extends StatelessWidget {
   GestureDetector _profileAction(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        viewModel.callProfileView(context);
+        viewModel.callProfileView();
       },
       child: const Icon(
         AppIcons.personOutlineIcon,

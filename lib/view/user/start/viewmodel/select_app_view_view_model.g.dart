@@ -13,11 +13,11 @@ mixin _$SelectAppViewViewModel on _SelectAppViewViewModelBase, Store {
       ActionController(name: '_SelectAppViewViewModelBase', context: context);
 
   @override
-  void callProfileView(BuildContext context) {
+  void callProfileView() {
     final _$actionInfo = _$_SelectAppViewViewModelBaseActionController
         .startAction(name: '_SelectAppViewViewModelBase.callProfileView');
     try {
-      return super.callProfileView(context);
+      return super.callProfileView();
     } finally {
       _$_SelectAppViewViewModelBaseActionController.endAction(_$actionInfo);
     }

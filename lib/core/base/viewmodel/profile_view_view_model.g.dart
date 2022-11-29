@@ -13,8 +13,8 @@ mixin _$ProfileViewViewModel on _ProfileViewViewModelBase, Store {
       AsyncAction('_ProfileViewViewModelBase.logOut', context: context);
 
   @override
-  Future<void> logOut(dynamic context) {
-    return _$logOutAsyncAction.run(() => super.logOut(context));
+  Future<void> logOut() {
+    return _$logOutAsyncAction.run(() => super.logOut());
   }
 
   @override

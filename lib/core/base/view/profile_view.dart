@@ -40,26 +40,26 @@ class ProfileView extends StatelessWidget {
 
   Scaffold buildScaffold(context) {
     return Scaffold(
-      appBar: _appBar(context),
+      appBar: _appBar(),
       body: _streamBodyBuilder(),
     );
   }
 
-  AppBar _appBar(BuildContext context) {
+  AppBar _appBar() {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
       title: Text(_ThisPageTexts.title),
       actions: [
-        _profileAction(context),
+        _profileAction(),
         smallWidthSizedBox,
       ],
     );
   }
 
-  GestureDetector _profileAction(BuildContext context) {
+  GestureDetector _profileAction() {
     return GestureDetector(
       onTap: () {
-        viewModel.logOut(context);
+        viewModel.logOut();
       },
       child: _exitIcon(),
     );

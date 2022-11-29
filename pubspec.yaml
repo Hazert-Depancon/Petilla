@@ -22,8 +22,9 @@ dependencies:
   mobx: ^2.1.3
   mobx_codegen: ^2.1.1
 
-  #Routing 
-  
+  #Routing
+  go_router: ^5.2.0
+
   #Firebase 
   firebase_core: ^1.20.0
   cloud_firestore: ^3.4.0
