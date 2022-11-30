@@ -54,8 +54,6 @@ class Petilla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // routeInformationParser: AppRouter().router.routeInformationParser,
-      // routerDelegate: AppRouter().router.routerDelegate,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
