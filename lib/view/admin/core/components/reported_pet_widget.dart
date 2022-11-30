@@ -16,14 +16,7 @@ class ReportedPetWidget extends StatefulWidget {
 class _ReportedPetWidgetState extends State<ReportedPetWidget> {
   String noImage = "https://ispark.istanbul/wp-content/themes/ispark2019/images/gorselyok.png";
 
-  late bool _isAdopt;
   var smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.petModel.adopt ? _isAdopt = true : _isAdopt = false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +51,6 @@ class _ReportedPetWidgetState extends State<ReportedPetWidget> {
                   Text(widget.petModel.description),
                   smallHeightSizedBox,
                   Text(widget.petModel.phoneNumber),
-                  smallHeightSizedBox,
-                  Text(_isAdopt ? "Sahiplendir" : "Uyut"),
                 ],
               ),
             ],

@@ -40,7 +40,6 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
       AppFirestoreFieldNames.imagePathField: dowlandLink == "" ? null : dowlandLink,
       AppFirestoreFieldNames.descriptionField: descriptionController.text,
       AppFirestoreFieldNames.phoneNumberField: phoneNumberController.text,
-      AppFirestoreFieldNames.adoptField: swichValue,
       AppFirestoreFieldNames.lat: lat,
       AppFirestoreFieldNames.long: long,
       AppFirestoreFieldNames.currentEmailField: FirebaseAuth.instance.currentUser!.email,

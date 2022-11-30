@@ -65,16 +65,8 @@ class ReportedPetDetailView extends StatelessWidget {
           mainHeightSizedBox,
           _phoneNumberText(context),
           mainHeightSizedBox,
-          _adoptText(context)
         ],
       ),
-    );
-  }
-
-  Text _adoptText(context) {
-    return Text(
-      petModel.adopt ? LocaleKeys.adopt.locale : LocaleKeys.sleep.locale,
-      style: Theme.of(context).textTheme.titleLarge,
     );
   }
 

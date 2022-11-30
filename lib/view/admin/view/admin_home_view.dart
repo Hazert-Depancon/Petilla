@@ -75,7 +75,6 @@ class AdminHomeView extends StatelessWidget {
       imagePath: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
       description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
       phoneNumber: snapshot.data!.docs[index][AppFirestoreFieldNames.phoneNumberField],
-      adopt: snapshot.data!.docs[index][AppFirestoreFieldNames.adoptField],
       long: snapshot.data!.docs[index][AppFirestoreFieldNames.long],
       currentEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
       currentUid: snapshot.data!.docs[index][AppFirestoreFieldNames.currentUidField],

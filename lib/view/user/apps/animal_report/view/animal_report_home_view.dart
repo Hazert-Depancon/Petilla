@@ -91,8 +91,6 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
               mainHeightSizedBox,
               _contactPhoneTextField(),
               mainHeightSizedBox,
-              _adoptListTile(context),
-              mainHeightSizedBox,
               _locationRadioListTile,
               mainHeightSizedBox,
               _button()
@@ -118,28 +116,6 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
         });
       },
       title: Text(title, style: textTheme.bodyText1),
-    );
-  }
-
-  ListTile _adoptListTile(context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(
-        LocaleKeys.adopt.locale,
-        style: Theme.of(context).textTheme.headline5,
-      ),
-      trailing: _adoptSwich(),
-    );
-  }
-
-  Switch _adoptSwich() {
-    return Switch(
-      value: swichValue,
-      onChanged: (value) {
-        setState(() {
-          swichValue = value;
-        });
-      },
     );
   }
 
