@@ -170,7 +170,7 @@ class _DetailViewState extends BaseState<DetailView> {
     return Text(
       _isClaim ? _ThisPageTexts.claim : "${widget.petModel.price}TL",
       style: _isClaim
-          ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24)
+          ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24, fontWeight: FontWeight.bold)
           : headline4?.copyWith(fontSize: 24),
     );
   }
@@ -178,8 +178,8 @@ class _DetailViewState extends BaseState<DetailView> {
   ListTile _listTile(BuildContext context, title, trailing) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: textTheme.headline6),
-      trailing: Text(trailing, style: textTheme.headline6),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+      trailing: Text(trailing, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
     );
   }
 
@@ -195,7 +195,7 @@ class _DetailViewState extends BaseState<DetailView> {
       _listTile(context, _ThisPageTexts.location, "${widget.petModel.city} " " ${widget.petModel.ilce}");
 
   Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description, style: textTheme.subtitle1);
+    return Text(widget.petModel.description, style: const TextStyle(fontSize: 16));
   }
 
   FloatingActionButton _chatFabButton() {
@@ -214,7 +214,7 @@ class _DetailViewState extends BaseState<DetailView> {
 }
 
 class _ThisPageTexts {
-  static String claim = LocaleKeys.adopt.locale;
+  static String claim = LocaleKeys.claim.locale;
   static String ageRange = LocaleKeys.petAgeRange.locale;
   static String gender = LocaleKeys.gender.locale;
   static String type = LocaleKeys.petType.locale;

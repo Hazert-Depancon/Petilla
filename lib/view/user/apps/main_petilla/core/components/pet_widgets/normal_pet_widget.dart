@@ -117,9 +117,10 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
 
   Text _priceText(TextStyle? subtitle2) {
     return Text(
-      _isClaim ? LocaleKeys.adopt.locale : "${widget.petModel.price}TL",
+      _isClaim ? LocaleKeys.claim.locale : "${widget.petModel.price}TL",
       style: _isClaim
-          ? subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis)
+          ? subtitle2?.copyWith(
+              color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold)
           : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),
     );
   }
