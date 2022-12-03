@@ -88,7 +88,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _nameText(subtitle2)),
+                _nameText(subtitle2),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
