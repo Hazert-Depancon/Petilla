@@ -7,6 +7,7 @@ class ReportedPetModel {
   final String currentEmail;
   final String currentUid;
   final String currentName;
+  final bool isDamaged;
 
   ReportedPetModel({
     this.imagePath,
@@ -17,5 +18,6 @@ class ReportedPetModel {
     required this.currentUid,
     required this.currentName,
     required this.lat,
+    required this.isDamaged,
   });
 }

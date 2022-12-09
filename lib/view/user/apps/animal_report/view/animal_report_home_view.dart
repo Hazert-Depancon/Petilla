@@ -37,7 +37,8 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
   var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
   bool swichValue = false;
   RadioListTile get _locationRadioListTile => _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
-  Object? val = 1;
+  Object? currentLocationVal = 1;
+  bool isDamaged = false;
 
   TextEditingController descriptionController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
@@ -93,6 +94,8 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
               mainHeightSizedBox,
               _locationRadioListTile,
               mainHeightSizedBox,
+              checkBoxListTile(),
+              mainHeightSizedBox,
               _button()
             ],
           );
@@ -107,12 +110,12 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
         borderRadius: ProjectRadius.buttonAllRadius,
       ),
       contentPadding: EdgeInsets.zero,
-      groupValue: val,
+      groupValue: currentLocationVal,
       value: radioNumber,
-      selected: val == radioNumber,
+      selected: currentLocationVal == radioNumber,
       onChanged: (value) {
         setState(() {
-          val = value;
+          currentLocationVal = value;
         });
       },
       title: Text(title, style: textTheme.bodyText1),
@@ -132,6 +135,18 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       ),
       initialCountryCode: 'TR',
       controller: phoneNumberController,
+    );
+  }
+
+  CheckboxListTile checkBoxListTile() {
+    return CheckboxListTile(
+      value: isDamaged,
+      onChanged: (value) {
+        setState(() {
+          isDamaged = value!;
+        });
+      },
+      title: Text(LocaleKeys.iDamaged.locale),
     );
   }
 
@@ -298,6 +313,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
           swichValue,
           lat,
           long,
+          isDamaged,
         );
         ScaffoldMessenger.of(context).showSnackBar(_snackBar());
         Navigator.pushAndRemoveUntil(

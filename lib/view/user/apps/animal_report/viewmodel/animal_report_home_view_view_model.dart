@@ -35,7 +35,8 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
   bool isImageLoaded = false;
 
   @action
-  Future<void> loadFirestore(dowlandLink, descriptionController, phoneNumberController, swichValue, lat, long) async {
+  Future<void> loadFirestore(
+      dowlandLink, descriptionController, phoneNumberController, swichValue, lat, long, isDamaged) async {
     await FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportAnimalCollection).add({
       AppFirestoreFieldNames.imagePathField: dowlandLink == "" ? null : dowlandLink,
       AppFirestoreFieldNames.descriptionField: descriptionController.text,
@@ -45,6 +46,7 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
       AppFirestoreFieldNames.currentEmailField: FirebaseAuth.instance.currentUser!.email,
       AppFirestoreFieldNames.currentNameField: FirebaseAuth.instance.currentUser!.displayName,
       AppFirestoreFieldNames.currentUidField: FirebaseAuth.instance.currentUser!.uid,
+      AppFirestoreFieldNames.isDamaged: isDamaged,
     });
   }
 

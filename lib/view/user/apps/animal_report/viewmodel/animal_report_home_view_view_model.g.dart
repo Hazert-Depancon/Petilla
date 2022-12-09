@@ -68,9 +68,16 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
       dynamic phoneNumberController,
       dynamic swichValue,
       dynamic lat,
-      dynamic long) {
-    return _$loadFirestoreAsyncAction.run(() => super.loadFirestore(dowlandLink,
-        descriptionController, phoneNumberController, swichValue, lat, long));
+      dynamic long,
+      dynamic isDamaged) {
+    return _$loadFirestoreAsyncAction.run(() => super.loadFirestore(
+        dowlandLink,
+        descriptionController,
+        phoneNumberController,
+        swichValue,
+        lat,
+        long,
+        isDamaged));
   }
 
   late final _$getCurrentLocationAsyncAction = AsyncAction(

@@ -80,6 +80,7 @@ class AdminHomeView extends StatelessWidget {
       currentUid: snapshot.data!.docs[index][AppFirestoreFieldNames.currentUidField],
       currentName: snapshot.data!.docs[index][AppFirestoreFieldNames.currentNameField],
       lat: snapshot.data!.docs[index][AppFirestoreFieldNames.lat],
+      isDamaged: snapshot.data!.docs[index][AppFirestoreFieldNames.isDamaged],
     );
   }
 

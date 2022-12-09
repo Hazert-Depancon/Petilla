@@ -65,8 +65,16 @@ class ReportedPetDetailView extends StatelessWidget {
           mainHeightSizedBox,
           _phoneNumberText(context),
           mainHeightSizedBox,
+          _isDamagedText(context)
         ],
       ),
+    );
+  }
+
+  Text _isDamagedText(context) {
+    return Text(
+      petModel.isDamaged == true ? LocaleKeys.animalDamaged.locale : LocaleKeys.animalDontDamaged.locale,
+      style: Theme.of(context).textTheme.subtitle2,
     );
   }
 

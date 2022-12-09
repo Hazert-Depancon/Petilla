@@ -79,5 +79,8 @@
     "contact_phone": "İletişim Numarası",
     "get_current_location": "Şuanki konumu al",
     "reported_animals" : "Bildirilen Hayvanlar",
-    "take_your_report_msg" : "Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır."
+    "take_your_report_msg" : "Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır.",
+    "i_damaged" : "Bu hayvandan fiziksel olarak zarar gördüm.",
+    "animal_damaged" : "Hayvandan zarar görülmüş",
+    "dont_animal_damaged" : "Hayvandan bir zarar görülmemiş"
 }

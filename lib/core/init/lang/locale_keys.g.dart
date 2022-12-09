@@ -82,4 +82,7 @@ abstract class LocaleKeys {
   static const getCurrentLocation = 'get_current_location';
   static const reportedAnimals = 'reported_animals';
   static const takeYourReportMsg = 'take_your_report_msg';
+  static const iDamaged = 'i_damaged';
+  static const animalDamaged = 'animal_damaged';
+  static const animalDontDamaged = 'dont_animal_damaged';
 }

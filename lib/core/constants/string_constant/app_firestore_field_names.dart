@@ -28,4 +28,5 @@ class AppFirestoreFieldNames {
   static String phoneNumberField = "phone_number";
   static String lat = "lat";
   static String long = "long";
+  static String isDamaged = "isDamaged";
 }
