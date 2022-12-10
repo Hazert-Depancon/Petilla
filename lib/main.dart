@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/constants/app/app_constants.dart';
 import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
 import 'package:petilla_app_project/core/init/lang/language_manager.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/auth/onboard/view/onboarding.dart';
 import 'package:petilla_app_project/view/user/auth/view/login_view.dart';
 import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
@@ -30,6 +30,7 @@ Future<void> main() async {
 
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await EasyLocalization.ensureInitialized();
   await LocaleManager.preferencesInit();
   await Firebase.initializeApp();
@@ -40,7 +41,7 @@ void _initSystemUi() {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: LightThemeColors.scaffoldBackgroundColor,
+      systemNavigationBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.light,
     ),
@@ -62,7 +63,7 @@ class Petilla extends StatelessWidget {
       title: "Petilla",
       home: showHome
           ? FirebaseAuth.instance.currentUser != null
-              ? SelectAppView()
+              ? const SelectAppView()
               : LoginView()
           : const Onboarding(),
     );

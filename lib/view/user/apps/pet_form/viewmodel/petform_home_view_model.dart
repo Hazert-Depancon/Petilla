@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
+import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/view/group_template_view.dart';
 
 part 'petform_home_view_model.g.dart';
@@ -15,6 +17,35 @@ abstract class PetformHomeViewViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {}
+
+  @observable
+  InterstitialAd? interstitialAd;
+
+  @action
+  void createInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdmobManager.interstitialAdUnitId!,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) => interstitialAd = ad,
+        onAdFailedToLoad: (LoadAdError error) => interstitialAd = null,
+      ),
+    );
+  }
+
+  @action
+  void showInterstitialAd() {
+    if (interstitialAd != null) {
+      interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          createInterstitialAd();
+        },
+      );
+      interstitialAd!.show();
+      interstitialAd = null;
+    }
+  }
 
   @action
   void callGroupChatView(

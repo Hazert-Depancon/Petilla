@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
@@ -11,10 +12,43 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
 
-class PetformHomeView extends StatelessWidget {
-  PetformHomeView({Key? key}) : super(key: key);
+class PetformHomeView extends StatefulWidget {
+  const PetformHomeView({Key? key}) : super(key: key);
 
+  @override
+  State<PetformHomeView> createState() => _PetformHomeViewState();
+}
+
+class _PetformHomeViewState extends State<PetformHomeView> {
   late PetformHomeViewViewModel viewModel;
+
+  // InterstitialAd? interstitialAd;
+
+  void _createInterstitialAd() {
+    viewModel.createInterstitialAd();
+    // InterstitialAd.load(
+    //   adUnitId: AdmobManager.interstitialAdUnitId!,
+    //   request: const AdRequest(),
+    //   adLoadCallback: InterstitialAdLoadCallback(
+    //     onAdLoaded: (ad) => interstitialAd = ad,
+    //     onAdFailedToLoad: (LoadAdError error) => interstitialAd = null,
+    //   ),
+    // );
+  }
+
+  void _showInterstitialAd() {
+    viewModel.showInterstitialAd();
+    // if (interstitialAd != null) {
+    //   interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+    //     onAdDismissedFullScreenContent: (ad) {
+    //       ad.dispose();
+    //       _createInterstitialAd();
+    //     },
+    //   );
+    //   interstitialAd!.show();
+    //   interstitialAd = null;
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +56,7 @@ class PetformHomeView extends StatelessWidget {
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _createInterstitialAd();
       },
       viewModel: PetformHomeViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
@@ -37,7 +72,7 @@ class PetformHomeView extends StatelessWidget {
   Column _body(BuildContext context) {
     return Column(
       children: [
-        _generalListtile(context),
+        _generalListTile(context),
         _dogListTile(context),
         _catListTile(context),
         _rabbitListTile(context),
@@ -46,7 +81,7 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _fishListTile(BuildContext context) {
+  _fishListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.fish,
       ImageConstants.instance.fish,
@@ -57,7 +92,7 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _rabbitListTile(BuildContext context) {
+  _rabbitListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.rabbit,
       ImageConstants.instance.rabbit,
@@ -68,7 +103,7 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _catListTile(BuildContext context) {
+  _catListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.cat,
       ImageConstants.instance.cat,
@@ -79,7 +114,7 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _dogListTile(BuildContext context) {
+  _dogListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.dog,
       ImageConstants.instance.dog,
@@ -90,7 +125,7 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _generalListtile(BuildContext context) {
+  _generalListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.generalChat,
       ImageConstants.instance.general,
@@ -101,14 +136,17 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  ListTile _listTile(String title, String assetName, String collectionId, String docId, String pageTitle, context) {
-    return ListTile(
-      title: Text(title),
-      leading: SvgPicture.asset(assetName, height: 32),
-      onTap: () {
-        viewModel.callGroupChatView(title, assetName, collectionId, docId, pageTitle, context);
-      },
-    );
+  Observer _listTile(String title, String assetName, String collectionId, String docId, String pageTitle, context) {
+    return Observer(builder: (_) {
+      return ListTile(
+        title: Text(title),
+        leading: SvgPicture.asset(assetName, height: 32),
+        onTap: () {
+          _showInterstitialAd();
+          viewModel.callGroupChatView(title, assetName, collectionId, docId, pageTitle, context);
+        },
+      );
+    });
   }
 
   AppBar _appBar(context) {

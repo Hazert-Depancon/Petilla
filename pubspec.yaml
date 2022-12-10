@@ -43,8 +43,8 @@ dependencies:
   shared_preferences: ^2.0.15
 
   #Admob
-  # google_mobile_ads: ^2.0.1
-
+  google_mobile_ads: ^2.3.0
+  
   #Image
   flutter_image_compress: ^1.1.0
   image_picker: ^0.8.5+3
