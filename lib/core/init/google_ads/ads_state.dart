@@ -30,17 +30,6 @@ class AdmobManager {
     )..load();
   }
 
-  // createInterstitialAd() {
-  //   return InterstitialAd.load(
-  //     adUnitId: interstitialAdUnitId!,
-  //     request: const AdRequest(),
-  //     adLoadCallback: InterstitialAdLoadCallback(
-  //       onAdLoaded: (ad) =>
-  //       onAdFailedToLoad: (ad, error) {},
-  //     ),
-  //   );
-  // }
-
   static final BannerAdListener bannerAdListener = BannerAdListener(
     onAdFailedToLoad: (ad, error) {
       ad.dispose();

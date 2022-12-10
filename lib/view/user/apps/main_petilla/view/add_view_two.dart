@@ -149,6 +149,14 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 
   late AddViewTwoViewModel viewModel;
 
+  void _createInterstitialAd() {
+    viewModel.createInterstitialAd();
+  }
+
+  void _showInterstitialAd() {
+    viewModel.showInterstitialAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<AddViewTwoViewModel>(
@@ -156,6 +164,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
         model.setContext(context);
         viewModel = model;
         _illeriGetir().then((value) => _ilIsimleriniGetir());
+        _createInterstitialAd();
       },
       viewModel: AddViewTwoViewModel(),
       onPageBuilder: (context, value) => _buildScaffold,
@@ -343,24 +352,25 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return Align(
       child: Button(
         onPressed: () {
-          _isSubmitButtonClicked == false
-              ? setState(() {
-                  _isSubmitButtonClicked = viewModel.onSubmitButton(
-                    context,
-                    widget.image,
-                    imageUrl,
-                    genderSelectedValue,
-                    widget.name,
-                    widget.description,
-                    ageRangeSelectedValue,
-                    _secilenIl,
-                    _secilenIlce,
-                    _typeController.text,
-                    widget.radioValue,
-                    petSelectedValue,
-                  );
-                })
-              : null;
+          if (_isSubmitButtonClicked == false) {
+            _showInterstitialAd();
+            setState(() {
+              _isSubmitButtonClicked = viewModel.onSubmitButton(
+                context,
+                widget.image,
+                imageUrl,
+                genderSelectedValue,
+                widget.name,
+                widget.description,
+                ageRangeSelectedValue,
+                _secilenIl,
+                _secilenIlce,
+                _typeController.text,
+                widget.radioValue,
+                petSelectedValue,
+              );
+            });
+          }
         },
         text: _ThisPageTexts.addPet,
         width: ProjectButtonSizes.mainButtonWidth,

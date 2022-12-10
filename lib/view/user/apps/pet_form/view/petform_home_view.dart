@@ -22,32 +22,12 @@ class PetformHomeView extends StatefulWidget {
 class _PetformHomeViewState extends State<PetformHomeView> {
   late PetformHomeViewViewModel viewModel;
 
-  // InterstitialAd? interstitialAd;
-
   void _createInterstitialAd() {
     viewModel.createInterstitialAd();
-    // InterstitialAd.load(
-    //   adUnitId: AdmobManager.interstitialAdUnitId!,
-    //   request: const AdRequest(),
-    //   adLoadCallback: InterstitialAdLoadCallback(
-    //     onAdLoaded: (ad) => interstitialAd = ad,
-    //     onAdFailedToLoad: (LoadAdError error) => interstitialAd = null,
-    //   ),
-    // );
   }
 
   void _showInterstitialAd() {
     viewModel.showInterstitialAd();
-    // if (interstitialAd != null) {
-    //   interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
-    //     onAdDismissedFullScreenContent: (ad) {
-    //       ad.dispose();
-    //       _createInterstitialAd();
-    //     },
-    //   );
-    //   interstitialAd!.show();
-    //   interstitialAd = null;
-    // }
   }
 
   @override
