@@ -1,0 +1,23 @@
+"filename", "language", "JSON", "YAML", "Dart", "XML", "Shell Script", "comment", "blank", "total"
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\android\app\src\main\AndroidManifest.xml", "XML", 0, 0, 0, 3, 0, 0, 0, 3
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\assets\jsons\lang\tr-TR.json", "JSON", 3, 0, 0, 0, 0, 0, 0, 3
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\core\base\view\status_view.dart", "Dart", 0, 0, -4, 0, 0, 0, -1, -5
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\core\constants\string_constant\app_firestore_field_names.dart", "Dart", 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\core\init\google_ads\ads_state.dart", "Dart", 0, 0, 33, 0, 0, 0, 6, 39
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\core\init\lang\locale_keys.g.dart", "Dart", 0, 0, 3, 0, 0, 0, 0, 3
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\main.dart", "Dart", 0, 0, 1, 0, 0, -2, 0, -1
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\admin\core\components\reported_pet_widget.dart", "Dart", 0, 0, -8, 0, 0, 0, -1, -9
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\animal_report\view\animal_report_home_view.dart", "Dart", 0, 0, -7, 0, 0, 0, -1, -8
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\animal_report\viewmodel\animal_report_home_view_view_model.dart", "Dart", 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\animal_report\viewmodel\animal_report_home_view_view_model.g.dart", "Dart", 0, 0, 7, 0, 0, 0, 0, 7
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\main_petilla\core\components\pet_widgets\normal_pet_widget.dart", "Dart", 0, 0, 1, 0, 0, 0, 0, 1
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\main_petilla\view\add_view_two.dart", "Dart", 0, 0, 8, 0, 0, 0, 2, 10
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\main_petilla\viewmodel\add_view_two_view_model.dart", "Dart", 0, 0, 25, 0, 0, 0, 3, 28
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\main_petilla\viewmodel\add_view_two_view_model.g.dart", "Dart", 0, 0, 34, 0, 0, 0, 4, 38
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\pet_form\view\petform_home_view.dart", "Dart", 0, 0, 15, 0, 0, 0, 3, 18
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\pet_form\viewmodel\petform_home_view_model.dart", "Dart", 0, 0, 28, 0, 0, 0, 3, 31
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\apps\pet_form\viewmodel\petform_home_view_model.g.dart", "Dart", 0, 0, 34, 0, 0, 0, 4, 38
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\lib\view\user\start\view\select_app_view.dart", "Dart", 0, 0, 24, 0, 0, 0, 5, 29
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\pubspec.yaml", "YAML", 0, 1, 0, 0, 0, -1, 0, 0
+"c:\Users\oguzk\Desktop\visual studio\petilla_app_project\petilla_app_project\scripts\lang.sh", "Shell Script", 0, 0, 0, 0, -1, 0, -1, -2
+"Total", "-", 3, 1, 196, 3, -1, -3, 26, 225
