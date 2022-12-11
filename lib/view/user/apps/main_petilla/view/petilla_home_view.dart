@@ -359,7 +359,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   _backSelectApp(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAppView()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectAppView()));
       },
       child: const Icon(
         AppIcons.arrowBackIcon,

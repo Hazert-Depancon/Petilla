@@ -67,6 +67,9 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
+  #Splash Scree
+  flutter_native_splash: ^2.2.16
+
   #App Icon
   flutter_launcher_icons: ^0.10.0
 
@@ -76,7 +79,9 @@ flutter_icons:
   image_path: "assets/icons/app_icon.png"
   min_sdk_android: 21
 
-
+flutter_native_splash:
+  color: "#FA941E"
+  image: "assets/icons/app_icon.png"
 
 flutter:
   uses-material-design: true

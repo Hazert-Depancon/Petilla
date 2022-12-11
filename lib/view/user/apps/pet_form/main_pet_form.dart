@@ -6,6 +6,6 @@ class MainPetForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PetformHomeView();
+    return const PetformHomeView();
   }
 }
