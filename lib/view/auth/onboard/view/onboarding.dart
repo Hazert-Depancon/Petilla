@@ -4,10 +4,10 @@ import 'package:petilla_app_project/core/components/button.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/auth/onboard/view/onboarding_one_view.dart';
-import 'package:petilla_app_project/view/user/auth/onboard/view/onboarding_three_view.dart';
-import 'package:petilla_app_project/view/user/auth/onboard/view/onboarding_two_view.dart';
-import 'package:petilla_app_project/view/user/auth/onboard/viewmodel/onboarding_view_model.dart';
+import 'package:petilla_app_project/view/auth/onboard/view/onboarding_one_view.dart';
+import 'package:petilla_app_project/view/auth/onboard/view/onboarding_three_view.dart';
+import 'package:petilla_app_project/view/auth/onboard/view/onboarding_two_view.dart';
+import 'package:petilla_app_project/view/auth/onboard/viewmodel/onboarding_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {

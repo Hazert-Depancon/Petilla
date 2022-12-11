@@ -14,8 +14,8 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/admin/view/admin_home_view.dart';
-import 'package:petilla_app_project/view/user/auth/view/register_view.dart';
-import 'package:petilla_app_project/view/user/auth/viewmodel/login_view_model.dart';
+import 'package:petilla_app_project/view/auth/view/register_view.dart';
+import 'package:petilla_app_project/view/auth/viewmodel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
