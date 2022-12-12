@@ -80,7 +80,7 @@ flutter_icons:
   min_sdk_android: 21
 
 flutter_native_splash:
-  color: "#FA941E"
+  color: "#ffffff"
   image: "assets/icons/app_icon.png"
 
 flutter:
