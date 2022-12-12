@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
@@ -10,6 +11,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_paddin
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
+import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
@@ -20,12 +22,19 @@ class FavoritesView extends StatelessWidget {
 
   late FavoritesViewViewModel viewModel;
 
+  BannerAd? _banner;
+
+  void _createBannerAd() {
+    _banner = AdmobManager().createBannerAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<FavoritesViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _createBannerAd();
       },
       viewModel: FavoritesViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold,
@@ -64,12 +73,25 @@ class FavoritesView extends StatelessWidget {
     return Observer(builder: (_) {
       return ListView.builder(
         padding: ProjectPaddings.horizontalMainPadding,
-        itemCount: viewModel.listLenght,
+        itemCount: viewModel.listLenght!,
         itemBuilder: (context, index) {
+          if (index == 0) {
+            return _adsWidget();
+          }
           return _streamBuilder(index);
         },
       );
     });
+  }
+
+  Container _adsWidget() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      height: 52,
+      child: AdWidget(
+        ad: _banner!,
+      ),
+    );
   }
 
   Observer _streamBuilder(int index) {
