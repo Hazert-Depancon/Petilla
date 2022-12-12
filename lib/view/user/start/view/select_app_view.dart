@@ -18,14 +18,9 @@ import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';
 
-class SelectAppView extends StatefulWidget {
-  const SelectAppView({Key? key}) : super(key: key);
+class SelectAppView extends StatelessWidget {
+  SelectAppView({Key? key}) : super(key: key);
 
-  @override
-  State<SelectAppView> createState() => _SelectAppViewState();
-}
-
-class _SelectAppViewState extends State<SelectAppView> {
   final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
@@ -34,14 +29,8 @@ class _SelectAppViewState extends State<SelectAppView> {
 
   BannerAd? _banner;
 
-  @override
-  void initState() {
-    super.initState();
-    _createBannerAd();
-  }
-
   void _createBannerAd() {
-    _banner = AdmobManager().createBannerAd(); // _banner = BannerAd(
+    _banner = AdmobManager().createBannerAd();
   }
 
   @override
@@ -50,6 +39,7 @@ class _SelectAppViewState extends State<SelectAppView> {
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _createBannerAd();
       },
       viewModel: SelectAppViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),

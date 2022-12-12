@@ -318,7 +318,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
         ScaffoldMessenger.of(context).showSnackBar(_snackBar());
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const SelectAppView()),
+          MaterialPageRoute(builder: (context) => SelectAppView()),
           (route) => false,
         );
       }

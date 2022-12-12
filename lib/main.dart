@@ -64,7 +64,7 @@ class Petilla extends StatelessWidget {
       title: "Petilla",
       home: showHome
           ? FirebaseAuth.instance.currentUser != null
-              ? const SelectAppView()
+              ? SelectAppView()
               : LoginView()
           : const Onboarding(),
     );
