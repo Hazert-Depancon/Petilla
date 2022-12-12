@@ -5,7 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class AdmobManager {
   static String? get bannerAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-3940256099942544/6300978111";
+      return "ca-app-pub-6393554220663084/8851212254";
     } else if (Platform.isIOS) {
       return "ca-app-pub-3940256099942544/2934735716";
     }
@@ -14,7 +14,7 @@ class AdmobManager {
 
   static String? get interstitialAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-3940256099942544/1033173712";
+      return "ca-app-pub-6393554220663084/1515647712";
     } else if (Platform.isIOS) {
       return "ca-app-pub-3940256099942544/4411468910";
     }
