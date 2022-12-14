@@ -36,7 +36,14 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> loadFirestore(
-      dowlandLink, descriptionController, phoneNumberController, swichValue, lat, long, isDamaged) async {
+    dowlandLink,
+    descriptionController,
+    phoneNumberController,
+    swichValue,
+    lat,
+    long,
+    isDamaged,
+  ) async {
     await FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportAnimalCollection).add({
       AppFirestoreFieldNames.imagePathField: dowlandLink == "" ? null : dowlandLink,
       AppFirestoreFieldNames.descriptionField: descriptionController.text,
