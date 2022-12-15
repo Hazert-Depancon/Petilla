@@ -6,11 +6,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 
 part 'animal_report_home_view_view_model.g.dart';
 
@@ -33,6 +35,35 @@ abstract class _AnimalReportHomeViewModelBase with Store, BaseViewModel {
 
   @observable
   bool isImageLoaded = false;
+
+  @observable
+  InterstitialAd? interstitialAd;
+
+  @action
+  void createInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdmobManager.interstitialAdUnitId!,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) => interstitialAd = ad,
+        onAdFailedToLoad: (LoadAdError error) => interstitialAd = null,
+      ),
+    );
+  }
+
+  @action
+  void showInterstitialAd() {
+    if (interstitialAd != null) {
+      interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          createInterstitialAd();
+        },
+      );
+      interstitialAd!.show();
+      interstitialAd = null;
+    }
+  }
 
   @action
   Future<void> loadFirestore(

@@ -50,12 +50,21 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   bool _isClicked = false;
 
+  void _createInterstitialAd() {
+    viewModel.createInterstitialAd();
+  }
+
+  void _showInterstitialAd() {
+    viewModel.showInterstitialAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<AnimalReportHomeViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _createInterstitialAd();
       },
       viewModel: AnimalReportHomeViewModel(),
       onPageBuilder: (context, value) => buildScaffold(context),
@@ -316,6 +325,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
           isDamaged,
         );
         ScaffoldMessenger.of(context).showSnackBar(_snackBar());
+        _showInterstitialAd();
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => SelectAppView()),
