@@ -1,4 +1,4 @@
-package com.example.petilla_app_project
+package com.hazret.petilla
 
 import io.flutter.embedding.android.FlutterActivity
 
