@@ -85,4 +85,5 @@ abstract class LocaleKeys {
   static const iDamaged = 'i_damaged';
   static const animalDamaged = 'animal_damaged';
   static const animalDontDamaged = 'dont_animal_damaged';
+  static const reportInsert = 'report_insert';
 }

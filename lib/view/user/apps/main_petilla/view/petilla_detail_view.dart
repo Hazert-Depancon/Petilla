@@ -10,6 +10,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_radius
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/utility/report_utils/report_service.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/other_profile_view.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/petilla_detail_view_view_model.dart';
@@ -58,6 +59,56 @@ class _DetailViewState extends BaseState<DetailView> {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
       leading: _backIcon(context),
+      actions: [
+        _popupMenuButton(),
+      ],
+    );
+  }
+
+  PopupMenuButton<int> _popupMenuButton() {
+    return PopupMenuButton(
+      itemBuilder: (context) {
+        return [
+          _reportPopupItem(),
+        ];
+      },
+      onSelected: (value) {
+        if (value == 0) {
+          ReportService.instance.reportPet(widget.petModel);
+          ScaffoldMessenger.of(context).showSnackBar(_reportInsertSnackBar());
+        }
+      },
+    );
+  }
+
+  SnackBar _reportInsertSnackBar() {
+    return SnackBar(
+      content: Row(
+        children: [
+          const Icon(
+            AppIcons.success,
+            color: LightThemeColors.white,
+          ),
+          Text(LocaleKeys.reportInsert.locale)
+        ],
+      ),
+      backgroundColor: LightThemeColors.green,
+    );
+  }
+
+  PopupMenuItem<int> _reportPopupItem() {
+    return PopupMenuItem<int>(
+      value: 0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Icon(
+            AppIcons.flag,
+            color: LightThemeColors.red,
+          ),
+          Text(LocaleKeys.report.locale)
+        ],
+      ),
     );
   }
 

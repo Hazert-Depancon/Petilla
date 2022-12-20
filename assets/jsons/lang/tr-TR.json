@@ -82,5 +82,6 @@
     "take_your_report_msg" : "Bildirinizi aldık. Size en kısa sürede telefon veya mail aracılığı ile dönüş sağlanacaktır.",
     "i_damaged" : "Bu hayvandan fiziksel olarak zarar gördüm.",
     "animal_damaged" : "Hayvandan zarar görülmüş",
-    "dont_animal_damaged" : "Hayvandan bir zarar görülmemiş"
+    "dont_animal_damaged" : "Hayvandan bir zarar görülmemiş",
+    "report_insert" : "Bildirinizi aldık. İlan en kısa sürede incelenecektir."
 }

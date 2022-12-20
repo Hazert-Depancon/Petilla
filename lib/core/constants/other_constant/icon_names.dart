@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppIcons {
   static const personOutlineIcon = Icons.person_outline;
+  static const success = Icons.done;
   static const deleteIcon = Icons.delete;
   static const insertOutlineIcon = Icons.apps_sharp;
   static const addCircleIcon = Icons.add_circle;
@@ -26,4 +27,5 @@ class AppIcons {
   static const visibilityOffOutlinedIcon = Icons.visibility_off_outlined;
   static const closeIcon = Icons.close;
   static const filterIcon = Icons.filter_list_rounded;
+  static const flag = Icons.flag;
 }
