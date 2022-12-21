@@ -14,9 +14,10 @@ import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/p
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_detail_view.dart';
 
 class LargePetWidget extends StatefulWidget {
-  const LargePetWidget({Key? key, required this.petModel}) : super(key: key);
+  const LargePetWidget({Key? key, required this.petModel, this.isMe}) : super(key: key);
 
   final PetModel petModel;
+  final bool? isMe;
 
   @override
   State<LargePetWidget> createState() => _LargePetWidgetState();
@@ -51,7 +52,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-    widget.petModel.currentUid == FirebaseAuth.instance.currentUser!.uid ? _isMe = true : _isMe = false;
+    widget.petModel.currentUid == FirebaseAuth.instance.currentUser?.uid ? _isMe = true : _isMe = false;
   }
 
   @override
@@ -102,7 +103,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
                   children: [
                     _nameText(context),
                     const Spacer(),
-                    _isMe ? _deleteIconButton() : const SizedBox.shrink(),
+                    _isMe || (widget.isMe ?? false) ? _deleteIconButton() : const SizedBox.shrink(),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -147,7 +148,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   }
 
   Text _nameText(BuildContext context) {
-    return Text(widget.petModel.name, style: textTheme.headline6);
+    return Text(widget.petModel.name, style: textTheme.bodyText2?.copyWith(fontSize: 20));
   }
 
   Text _paidText(BuildContext context) {
@@ -178,7 +179,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
         borderRadius: ProjectRadius.allRadius,
         image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(widget.petModel.imagePath)),
       ),
-      child: _isMe ? null : _favButton(),
+      child: _isMe || (widget.isMe ?? false) ? null : _favButton(),
     );
   }
 

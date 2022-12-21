@@ -75,9 +75,6 @@ class FavoritesView extends StatelessWidget {
         padding: ProjectPaddings.horizontalMainPadding,
         itemCount: viewModel.listLenght!,
         itemBuilder: (context, index) {
-          if (index == 0) {
-            return _adsWidget();
-          }
           return _streamBuilder(index);
         },
       );

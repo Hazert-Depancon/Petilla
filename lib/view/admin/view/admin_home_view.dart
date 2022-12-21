@@ -13,6 +13,8 @@ import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/view/admin/core/components/reported_pet_widget.dart';
 import 'package:petilla_app_project/view/admin/core/models/reported_pet_model.dart';
 import 'package:petilla_app_project/view/admin/viewmodel/admin_home_view_view_model.dart';
+import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
 
 class AdminHomeView extends StatelessWidget {
   AdminHomeView({super.key});
@@ -31,18 +33,91 @@ class AdminHomeView extends StatelessWidget {
     );
   }
 
-  Scaffold get _buildScaffold => Scaffold(
-        appBar: _appBar,
-        body: _body(),
+  DefaultTabController get _buildScaffold => DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: _appBar,
+          body: _body(),
+        ),
       );
 
   AppBar get _appBar {
     return AppBar(
       title: Text(LocaleKeys.reportedAnimals.locale),
+      bottom: const TabBar(
+        tabs: <Widget>[
+          Tab(
+            text: "Bildirilen Hayvanlar",
+          ),
+          Tab(
+            text: "Bildirilen İlanlar",
+          ),
+        ],
+      ),
     );
   }
 
-  StreamBuilder<QuerySnapshot> _body() {
+  TabBarView _body() {
+    return TabBarView(
+      children: <Widget>[
+        reportedAnimals(),
+        StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportedInserts).snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                padding: ProjectPaddings.horizontalMainPadding,
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    stream: FirebaseFirestore.instance
+                        .collection(AppFirestoreCollectionNames.petsCollection)
+                        .doc(snapshot.data!.docs[index].id)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return _largePetWidget(snapshot);
+                      }
+                      return const StatusView(status: StatusKeysEnum.LOADING);
+                    },
+                  );
+                },
+              );
+            }
+            return const StatusView(status: StatusKeysEnum.LOADING);
+          },
+        ),
+      ],
+    );
+  }
+
+  LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+    return LargePetWidget(
+      petModel: _petModel(snapshot.data),
+      isMe: true,
+    );
+  }
+
+  PetModel _petModel(document) {
+    return PetModel(
+      currentUserName: document[AppFirestoreFieldNames.currentNameField],
+      currentUid: document[AppFirestoreFieldNames.currentUidField],
+      currentEmail: document[AppFirestoreFieldNames.currentEmailField],
+      ilce: document[AppFirestoreFieldNames.ilceField],
+      gender: document[AppFirestoreFieldNames.genderField],
+      name: document[AppFirestoreFieldNames.nameField],
+      description: document[AppFirestoreFieldNames.descriptionField],
+      imagePath: document[AppFirestoreFieldNames.imagePathField],
+      ageRange: document[AppFirestoreFieldNames.ageRangeField],
+      city: document[AppFirestoreFieldNames.cityField],
+      petBreed: document[AppFirestoreFieldNames.petBreedField],
+      price: document[AppFirestoreFieldNames.priceField],
+      petType: document[AppFirestoreFieldNames.petTypeField],
+      docId: document.id,
+    );
+  }
+
+  StreamBuilder<QuerySnapshot> reportedAnimals() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportAnimalCollection).snapshots(),
       builder: (context, snapshot) {
@@ -66,11 +141,11 @@ class AdminHomeView extends StatelessWidget {
 
   ReportedPetWidget _reportedPetWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
     return ReportedPetWidget(
-      petModel: _petModel(snapshot, index),
+      petModel: _reportedAnimalModel(snapshot, index),
     );
   }
 
-  ReportedPetModel _petModel(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+  ReportedPetModel _reportedAnimalModel(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
     return ReportedPetModel(
       imagePath: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
       description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
