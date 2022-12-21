@@ -61,33 +61,41 @@ class AdminHomeView extends StatelessWidget {
     return TabBarView(
       children: <Widget>[
         reportedAnimals(),
-        StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportedInserts).snapshots(),
+        _reportedInserts(),
+      ],
+    );
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> _reportedInserts() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.reportedInserts).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return listView(snapshot);
+        }
+        return const StatusView(status: StatusKeysEnum.LOADING);
+      },
+    );
+  }
+
+  ListView listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      padding: ProjectPaddings.horizontalMainPadding,
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+          stream: FirebaseFirestore.instance
+              .collection(AppFirestoreCollectionNames.petsCollection)
+              .doc(snapshot.data!.docs[index].id)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
-                padding: ProjectPaddings.horizontalMainPadding,
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                    stream: FirebaseFirestore.instance
-                        .collection(AppFirestoreCollectionNames.petsCollection)
-                        .doc(snapshot.data!.docs[index].id)
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return _largePetWidget(snapshot);
-                      }
-                      return const StatusView(status: StatusKeysEnum.LOADING);
-                    },
-                  );
-                },
-              );
+              return _largePetWidget(snapshot);
             }
             return const StatusView(status: StatusKeysEnum.LOADING);
           },
-        ),
-      ],
+        );
+      },
     );
   }
 
