@@ -21,7 +21,9 @@ abstract class _FeedBackViewViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> onSubmitButton(
-      TextEditingController titleController, TextEditingController descriptionController,) async {
+    TextEditingController titleController,
+    TextEditingController descriptionController,
+  ) async {
     FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.feedBacks).add({
       AppFirestoreFieldNames.title: titleController.text.trim(),
       AppFirestoreFieldNames.descriptionField: descriptionController.text.trim(),
