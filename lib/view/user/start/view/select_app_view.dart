@@ -13,6 +13,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/animal_report/view/main_animal_report.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_control.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
@@ -87,6 +88,7 @@ class SelectAppView extends StatelessWidget {
               children: [
                 _selectPetillaGridTile(),
                 _selectPetformGridTile(),
+                _selectLiveHelpGridTile(),
                 _selectAnimalReportGridTile(),
               ],
             ),
@@ -115,8 +117,16 @@ class SelectAppView extends StatelessWidget {
   StaggeredGridTile _selectAnimalReportGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
-      mainAxisCellCount: 2,
+      mainAxisCellCount: 1.5,
       child: _selectAnimalReport(),
+    );
+  }
+
+  StaggeredGridTile _selectLiveHelpGridTile() {
+    return StaggeredGridTile.count(
+      crossAxisCellCount: 2,
+      mainAxisCellCount: 2,
+      child: _selectLiveHelp(),
     );
   }
 
@@ -143,6 +153,15 @@ class SelectAppView extends StatelessWidget {
       title: LocaleKeys.report.locale,
       imagePath: ImageConstants.instance.animalReport,
       onTap: const MainAnimalReport(),
+    );
+  }
+
+  SelectAppWidget _selectLiveHelp() {
+    return SelectAppWidget(
+      isBig: true,
+      title: "Yardım",
+      imagePath: ImageConstants.instance.animalReport,
+      onTap: const HelpMeControl(),
     );
   }
 
