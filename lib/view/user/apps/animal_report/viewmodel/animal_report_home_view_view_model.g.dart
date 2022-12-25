@@ -57,6 +57,22 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
     });
   }
 
+  late final _$interstitialAdAtom = Atom(
+      name: '_AnimalReportHomeViewModelBase.interstitialAd', context: context);
+
+  @override
+  InterstitialAd? get interstitialAd {
+    _$interstitialAdAtom.reportRead();
+    return super.interstitialAd;
+  }
+
+  @override
+  set interstitialAd(InterstitialAd? value) {
+    _$interstitialAdAtom.reportWrite(value, super.interstitialAd, () {
+      super.interstitialAd = value;
+    });
+  }
+
   late final _$loadFirestoreAsyncAction = AsyncAction(
       '_AnimalReportHomeViewModelBase.loadFirestore',
       context: context);
@@ -108,12 +124,40 @@ mixin _$AnimalReportHomeViewModel on _AnimalReportHomeViewModelBase, Store {
     return _$pickImageGalleryAsyncAction.run(() => super.pickImageGallery());
   }
 
+  late final _$_AnimalReportHomeViewModelBaseActionController =
+      ActionController(
+          name: '_AnimalReportHomeViewModelBase', context: context);
+
+  @override
+  void createInterstitialAd() {
+    final _$actionInfo =
+        _$_AnimalReportHomeViewModelBaseActionController.startAction(
+            name: '_AnimalReportHomeViewModelBase.createInterstitialAd');
+    try {
+      return super.createInterstitialAd();
+    } finally {
+      _$_AnimalReportHomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void showInterstitialAd() {
+    final _$actionInfo = _$_AnimalReportHomeViewModelBaseActionController
+        .startAction(name: '_AnimalReportHomeViewModelBase.showInterstitialAd');
+    try {
+      return super.showInterstitialAd();
+    } finally {
+      _$_AnimalReportHomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 image: ${image},
 imageFile: ${imageFile},
-isImageLoaded: ${isImageLoaded}
+isImageLoaded: ${isImageLoaded},
+interstitialAd: ${interstitialAd}
     ''';
   }
 }

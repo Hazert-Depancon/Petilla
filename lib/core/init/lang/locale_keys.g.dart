@@ -86,4 +86,12 @@ abstract class LocaleKeys {
   static const animalDamaged = 'animal_damaged';
   static const animalDontDamaged = 'dont_animal_damaged';
   static const reportInsert = 'report_insert';
+  static const reportedInserts = 'reported_inserts';
+  static const logout = 'logout';
+  static const about = 'about';
+  static const feedBack = 'feedBack';
+  static const links = 'links';
+  static const title = 'title';
+  static const send = 'send';
+  static const thanksFeedback = 'thanks_feedback';
 }

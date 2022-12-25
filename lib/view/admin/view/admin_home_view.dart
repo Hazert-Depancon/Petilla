@@ -44,13 +44,13 @@ class AdminHomeView extends StatelessWidget {
   AppBar get _appBar {
     return AppBar(
       title: Text(LocaleKeys.reportedAnimals.locale),
-      bottom: const TabBar(
+      bottom: TabBar(
         tabs: <Widget>[
           Tab(
-            text: "Bildirilen Hayvanlar",
+            text: LocaleKeys.reportedAnimals.locale,
           ),
           Tab(
-            text: "Bildirilen İlanlar",
+            text: LocaleKeys.reportedInserts.locale,
           ),
         ],
       ),

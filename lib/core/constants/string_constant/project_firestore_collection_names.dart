@@ -8,4 +8,7 @@ class AppFirestoreCollectionNames {
   static String petsCollection = "pets";
   static String reportAnimalCollection = "report_animal";
   static String reportedInserts = "reported_inserts";
+
+  // Other Collections
+  static String feedBacks = "feed_backs";
 }

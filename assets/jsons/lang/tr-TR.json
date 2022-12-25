@@ -83,5 +83,13 @@
     "i_damaged" : "Bu hayvandan fiziksel olarak zarar gördüm.",
     "animal_damaged" : "Hayvandan zarar görülmüş",
     "dont_animal_damaged" : "Hayvandan bir zarar görülmemiş",
-    "report_insert" : "Bildirinizi aldık. İlan en kısa sürede incelenecektir."
+    "report_insert" : "Bildirinizi aldık. İlan en kısa sürede incelenecektir.",
+    "reported_inserts" : "Bildirilen Hayvanlar",
+    "logout" : "Çıkış Yap",
+    "about" : "Hakkında",
+    "feedBack" : "Geri Bildirim Gönder",
+    "links" : "Sosyal Medya Adreslerimiz",
+    "send" : "Gönder",
+    "title" : "Başlık",
+    "thanks_feedback" : "Geri bildiriminiz için teşekkürler!"
 }

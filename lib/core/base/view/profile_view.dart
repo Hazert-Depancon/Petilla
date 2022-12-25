@@ -16,6 +16,8 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/view/user/other/view/about_view.dart';
+import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -40,32 +42,69 @@ class ProfileView extends StatelessWidget {
 
   Scaffold buildScaffold(context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: _appBar(context),
       body: _streamBodyBuilder(),
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(context) {
     return AppBar(
       foregroundColor: LightThemeColors.miamiMarmalade,
       title: Text(_ThisPageTexts.title),
-      actions: [
-        _profileAction(),
-        smallWidthSizedBox,
-      ],
+      actions: [settingsIcon(context), smallWidthSizedBox],
     );
   }
 
-  GestureDetector _profileAction() {
+  GestureDetector settingsIcon(context) {
     return GestureDetector(
       onTap: () {
-        viewModel.logOut();
+        _settingBottomSheet(context);
       },
-      child: _exitIcon(),
+      child: const Icon(
+        Icons.settings_outlined,
+        color: LightThemeColors.black,
+      ),
     );
   }
 
-  Icon _exitIcon() => const Icon(AppIcons.exitAppIcon, color: LightThemeColors.black);
+  Future<dynamic> _settingBottomSheet(context) {
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24),
+          child: Column(
+            children: [
+              _listTile(context, Icons.info_outline, LocaleKeys.about, const AboutView()),
+              _listTile(context, Icons.feed_outlined, LocaleKeys.feedBack, FeedBackView()),
+              _listTile(context, Icons.link_outlined, LocaleKeys.links, FeedBackView()),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  ListTile _listTile(BuildContext context, IconData icon, String text, Widget route) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        size: 32,
+        color: LightThemeColors.black,
+      ),
+      title: Text(
+        text.locale,
+        style: Theme.of(context).textTheme.headline6,
+      ),
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => route));
+      },
+    );
+  }
 
   StreamBuilder<DocumentSnapshot> _streamBodyBuilder() {
     return StreamBuilder<DocumentSnapshot>(
@@ -104,6 +143,21 @@ class ProfileView extends StatelessWidget {
           _nameTextfield(snapshot, name),
           smallHeightSizedBox,
           _emailTextfield(snapshot, email),
+          smallHeightSizedBox,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton(
+              onPressed: () {
+                viewModel.logOut();
+              },
+              child: Text(
+                LocaleKeys.logout.locale,
+                style: const TextStyle(
+                  color: LightThemeColors.red,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
