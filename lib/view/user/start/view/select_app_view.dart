@@ -160,7 +160,7 @@ class SelectAppView extends StatelessWidget {
     return SelectAppWidget(
       isBig: true,
       title: "Yardım",
-      imagePath: ImageConstants.instance.animalReport,
+      imagePath: ImageConstants.instance.helpMe,
       onTap: const HelpMeControl(),
     );
   }
