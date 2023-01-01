@@ -9,7 +9,6 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_button
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/other/viewmodel/feedback_view_view_model.dart';
 
 class FeedBackView extends StatelessWidget {
@@ -43,7 +42,6 @@ class FeedBackView extends StatelessWidget {
 
   AppBar get _appBar => AppBar(
         title: Text(LocaleKeys.feedBack.locale),
-        foregroundColor: LightThemeColors.miamiMarmalade,
       );
 
   Form _body(context) {

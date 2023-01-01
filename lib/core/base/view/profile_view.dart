@@ -49,7 +49,6 @@ class ProfileView extends StatelessWidget {
 
   AppBar _appBar(context) {
     return AppBar(
-      foregroundColor: LightThemeColors.miamiMarmalade,
       title: Text(_ThisPageTexts.title),
       actions: [settingsIcon(context), smallWidthSizedBox],
     );
@@ -61,7 +60,7 @@ class ProfileView extends StatelessWidget {
         _settingBottomSheet(context);
       },
       child: const Icon(
-        Icons.settings_outlined,
+        AppIcons.setting,
         color: LightThemeColors.black,
       ),
     );
@@ -78,9 +77,9 @@ class ProfileView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 24),
           child: Column(
             children: [
-              _listTile(context, Icons.info_outline, LocaleKeys.about, const AboutView()),
-              _listTile(context, Icons.feed_outlined, LocaleKeys.feedBack, FeedBackView()),
-              _listTile(context, Icons.link_outlined, LocaleKeys.links, FeedBackView()),
+              _listTile(context, AppIcons.info, LocaleKeys.about, const AboutView()),
+              _listTile(context, AppIcons.feed, LocaleKeys.feedBack, FeedBackView()),
+              _listTile(context, AppIcons.link, LocaleKeys.links, FeedBackView()),
             ],
           ),
         );

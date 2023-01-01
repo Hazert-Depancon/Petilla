@@ -8,7 +8,6 @@ import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/other_profile_view_view_model.dart';
@@ -40,7 +39,6 @@ class OtherProfileView extends StatelessWidget {
   AppBar get _appBar {
     return AppBar(
       title: Text(petModel.currentUserName),
-      foregroundColor: LightThemeColors.miamiMarmalade,
     );
   }
 

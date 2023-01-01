@@ -47,9 +47,7 @@ class ReportedPetDetailView extends StatelessWidget {
         ),
       );
 
-  AppBar get _appBar => AppBar(
-        foregroundColor: LightThemeColors.miamiMarmalade,
-      );
+  AppBar get _appBar => AppBar();
 
   SingleChildScrollView _body(context) {
     return SingleChildScrollView(

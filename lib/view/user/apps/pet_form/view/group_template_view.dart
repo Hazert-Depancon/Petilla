@@ -62,7 +62,6 @@ class _GroupChatState extends BaseState<GroupChat> {
   AppBar get _appBar {
     return AppBar(
       title: Text(widget.pageTitle),
-      foregroundColor: LightThemeColors.miamiMarmalade,
       leading: _backIcon,
     );
   }

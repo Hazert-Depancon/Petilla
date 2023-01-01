@@ -29,16 +29,6 @@ class LoginView extends StatelessWidget {
 
   List<String> adminMails = [
     "DukSrKR6Gxo5KZdYnJZiWeW6",
-    "HrYA7EVN9j4UsSLueFVTzdQe",
-    "xpea6mRcgfEBwCXXt54YTmFR",
-    "dekxe2UTiyuWKDqXpXCtaE3q",
-    "jEgBV5XmyUL8SFT8w2N65yrK",
-    "ZyHn2yytGZKJw2zmHybBzScP",
-    "s4uQcxrVMShVrt6i4jxD8rGds",
-    "crXcD3wvF4pzLFJkanm6ySB7",
-    "MsDBbuaRuMAeywd8scHJRtrJ",
-    "Pzjxhrb4se7KHnHjRv4DGZSV",
-    "test"
   ];
 
   @override

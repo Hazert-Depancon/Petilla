@@ -4,7 +4,7 @@
     "my_inserts" : "İlanlarım",
     "profile" : "Profil",
     "my_messages" : "Mesajlarım",
-    "add_a_pet" : "Evcil Hayvan Ekle",
+    "add_a_pet" : "Hayvan Ekle",
     "home_page" : "Hayvan Sahiplen",
     "dog" : "Köpek",
     "other": "Diğer",
@@ -92,5 +92,7 @@
     "send" : "Gönder",
     "title" : "Başlık",
     "thanks_feedback" : "Geri bildiriminiz için teşekkürler!",
-    "about_one" : "Petilla 2022 Mayıs ayında sıradan bir mobil uygulama fikri olarak doğmuştu... 13 yaşında 6. sınıf öğrencisi olan ben, Oğuz Kağan Güllü tarafından."
+    "about_one" : "Petilla 2022 Mayıs ayında sıradan bir mobil uygulama fikri olarak doğmuştu... 13 yaşında 6. sınıf öğrencisi olan ben, Oğuz Kağan Güllü tarafından.",
+    "food_help" : "Hayvanın mama yardımına ihtiyacı var",
+    "vet_help" : "Hayvanın veteriner yardımına ihtiyacı var"
 }

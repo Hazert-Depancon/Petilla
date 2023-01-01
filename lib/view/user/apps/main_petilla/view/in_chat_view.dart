@@ -91,7 +91,6 @@ class _InChatViewState extends BaseState<InChatView> {
   }
 
   AppBar get _appBar => AppBar(
-        foregroundColor: LightThemeColors.miamiMarmalade,
         title: Text(widget.friendUserName),
       );
 

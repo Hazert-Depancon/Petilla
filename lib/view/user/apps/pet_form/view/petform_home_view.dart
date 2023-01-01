@@ -11,7 +11,6 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
 
 class PetformHomeView extends StatelessWidget {
@@ -145,7 +144,6 @@ class PetformHomeView extends StatelessWidget {
   AppBar _appBar(context) {
     return AppBar(
       title: Text(_ThisPageTexts.selectGroup),
-      foregroundColor: LightThemeColors.miamiMarmalade,
       leading: _backIcon(context),
     );
   }

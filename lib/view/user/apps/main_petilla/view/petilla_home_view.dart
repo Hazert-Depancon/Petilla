@@ -277,7 +277,6 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
     return AppBar(
       leading: _backSelectApp(context),
       title: Text(_ThisPageTexts.homePage),
-      foregroundColor: LightThemeColors.miamiMarmalade,
       actions: [
         _filterButton(),
         AppSizedBoxs.normalWidthSizedBox,

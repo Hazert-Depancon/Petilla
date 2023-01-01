@@ -178,7 +178,6 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 
   AppBar get _appBar => AppBar(
         title: Text(_ThisPageTexts.addAPetTwoForTwo),
-        foregroundColor: LightThemeColors.miamiMarmalade,
       );
 
   ListView _body(BuildContext context) {

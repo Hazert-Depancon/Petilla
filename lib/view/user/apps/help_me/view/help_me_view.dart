@@ -1,6 +1,8 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
@@ -16,32 +18,32 @@ import 'package:petilla_app_project/core/constants/string_constant/project_fires
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/storage_service.dart/storage_crud.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-class AnimalReportHomeView extends StatefulWidget {
-  const AnimalReportHomeView({super.key});
+class HelpMeView extends StatefulWidget {
+  const HelpMeView({super.key});
 
   @override
-  State<AnimalReportHomeView> createState() => _AnimalReportHomeViewState();
+  State<HelpMeView> createState() => _HelpMeViewState();
 }
 
-class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
-  final _formKey = GlobalKey<FormState>();
-  late AnimalReportHomeViewModel viewModel;
+class _HelpMeViewState extends BaseState<HelpMeView> {
+  late HelpMeViewViewModel viewModel;
 
-  var normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
-  var mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  bool swichValue = false;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
+  bool isVetHelp = false;
+  bool isFoodHelp = false;
+
   RadioListTile get _locationRadioListTile => _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
   Object? currentLocationVal = 1;
-  bool isDamaged = false;
 
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   String? lat;
   String? long;
@@ -50,43 +52,26 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   bool _isClicked = false;
 
-  void _createInterstitialAd() {
-    viewModel.createInterstitialAd();
-  }
-
-  void _showInterstitialAd() {
-    viewModel.showInterstitialAd();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BaseView<AnimalReportHomeViewModel>(
+    return BaseView<HelpMeViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
-        _createInterstitialAd();
       },
-      viewModel: AnimalReportHomeViewModel(),
-      onPageBuilder: (context, value) => buildScaffold(context),
+      viewModel: HelpMeViewViewModel(),
+      onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
 
-  Scaffold buildScaffold(context) => Scaffold(
-        appBar: _appBar(context),
-        body: _body(context),
-      );
+  Scaffold _buildScaffold(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar,
+      body: _buildBody(context),
+    );
+  }
 
-  AppBar _appBar(context) => AppBar(
-        title: Text(LocaleKeys.reportAnimal.locale),
-        actions: [
-          _callIcon(),
-          normalWidthSizedBox,
-          _infoIcon(context),
-          normalWidthSizedBox,
-        ],
-      );
-
-  Form _body(context) {
+  Form _buildBody(context) {
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -96,15 +81,18 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
             children: [
               viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
               mainHeightSizedBox,
-              _descriptionTextField(),
+              _titleTextField,
               mainHeightSizedBox,
-              _contactPhoneTextField(),
+              _descriptionTextField,
+              mainHeightSizedBox,
+              vetHelpCheckBoxListTile,
+              mainHeightSizedBox,
+              foodHelpCheckBoxListTile,
               mainHeightSizedBox,
               _locationRadioListTile,
               mainHeightSizedBox,
-              checkBoxListTile(),
+              _submitButton,
               mainHeightSizedBox,
-              _button()
             ],
           );
         }),
@@ -130,42 +118,101 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
     );
   }
 
-  IntlPhoneField _contactPhoneTextField() {
-    return IntlPhoneField(
-      invalidNumberMessage: LocaleKeys.fillAllArea.locale,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: LightThemeColors.snowbank,
-        border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
-          borderSide: BorderSide.none,
-        ),
-      ),
-      initialCountryCode: 'TR',
-      controller: phoneNumberController,
-    );
-  }
-
-  CheckboxListTile checkBoxListTile() {
+  CheckboxListTile get vetHelpCheckBoxListTile {
     return CheckboxListTile(
       shape: RoundedRectangleBorder(borderRadius: ProjectRadius.allRadius),
-      value: isDamaged,
+      value: isVetHelp,
       onChanged: (value) {
         setState(() {
-          isDamaged = value!;
+          isVetHelp = value!;
         });
       },
-      title: Text(LocaleKeys.iDamaged.locale),
+      title: Text(LocaleKeys.vetHelp.locale),
     );
   }
 
-  MainTextField _descriptionTextField() {
-    return MainTextField(
-      hintText: LocaleKeys.description.locale,
-      isNext: true,
-      controller: descriptionController,
+  CheckboxListTile get foodHelpCheckBoxListTile {
+    return CheckboxListTile(
+      shape: RoundedRectangleBorder(borderRadius: ProjectRadius.allRadius),
+      value: isFoodHelp,
+      onChanged: (value) {
+        setState(() {
+          isFoodHelp = value!;
+        });
+      },
+      title: Text(LocaleKeys.foodHelp.locale),
     );
   }
+
+  Button get _submitButton {
+    return Button(
+      text: LocaleKeys.addAPet.locale,
+      height: ProjectButtonSizes.mainButtonHeight,
+      width: ProjectButtonSizes.mainButtonWidth,
+      onPressed: () {
+        onSubmitButtonClicked(context);
+      },
+    );
+  }
+
+  void onSubmitButtonClicked(context) async {
+    if (_formKey.currentState!.validate()) {
+      if (_isClicked == false) {
+        _isClicked = true;
+        showDefaultLoadingDialog(true, context);
+        await _getCurrentLocation().then((value) {
+          lat = "${value.latitude}";
+          long = "${value.longitude}";
+        });
+        viewModel.isImageLoaded || viewModel.image != null
+            ? dowlandLink = await StorageCrud().addPhotoToStorage(
+                viewModel.image!,
+                AppFirestoreCollectionNames.animalHelp,
+              )
+            : null;
+
+        await viewModel
+            .loadFirestore(
+              HelpMeModel(
+                title: titleController.text,
+                description: descriptionController.text,
+                long: long!,
+                lat: lat!,
+                isVetHelp: isVetHelp,
+                isFoodHelp: isFoodHelp,
+                imageDowlandUrl: dowlandLink,
+                currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
+                currentUserId: FirebaseAuth.instance.currentUser!.uid,
+                currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+              ),
+            )
+            .then(
+              (value) => viewModel.callHelpMeHomeView(),
+            );
+      }
+    }
+  }
+
+  Future _getCurrentLocation() => viewModel.getCurrentLocation();
+
+  MainTextField get _descriptionTextField {
+    return MainTextField(
+      controller: descriptionController,
+      hintText: LocaleKeys.description.locale,
+      minLines: 5,
+    );
+  }
+
+  MainTextField get _titleTextField {
+    return MainTextField(
+      hintText: LocaleKeys.title.locale,
+      isNext: true,
+      maxLength: 10,
+      controller: titleController,
+    );
+  }
+
+  AppBar get _buildAppBar => AppBar();
 
   Observer _photoContainer(context) {
     return Observer(builder: (_) {
@@ -251,96 +298,4 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
       );
     });
   }
-
-  GestureDetector _callIcon() {
-    return GestureDetector(
-      onTap: () {
-        launchUrlString("tel://153");
-      },
-      child: const Icon(
-        AppIcons.phone,
-        color: LightThemeColors.black,
-      ),
-    );
-  }
-
-  GestureDetector _infoIcon(context) {
-    return GestureDetector(
-      onTap: () => quickInfoAlertDialog(context),
-      child: const Icon(
-        AppIcons.info,
-        color: LightThemeColors.black,
-      ),
-    );
-  }
-
-  quickInfoAlertDialog(context) {
-    return QuickAlert.show(
-      context: context,
-      type: QuickAlertType.info,
-      confirmBtnColor: LightThemeColors.miamiMarmalade,
-      title: LocaleKeys.reportAnimal.locale,
-      text: LocaleKeys.reportAnimalInfo.locale,
-      confirmBtnText: LocaleKeys.ok.locale,
-      borderRadius: 24,
-    );
-  }
-
-  Observer _button() {
-    return Observer(builder: (_) {
-      return Button(
-        height: ProjectButtonSizes.mainButtonHeight,
-        width: ProjectButtonSizes.mainButtonWidth,
-        onPressed: () {
-          onSubmitButtonClicked(context);
-        },
-        text: LocaleKeys.report.locale,
-      );
-    });
-  }
-
-  void onSubmitButtonClicked(context) async {
-    if (_formKey.currentState!.validate()) {
-      if (_isClicked == false) {
-        _isClicked = true;
-        showDefaultLoadingDialog(true, context);
-        await _getCurrentLocation().then((value) {
-          lat = "${value.latitude}";
-          long = "${value.longitude}";
-        });
-        viewModel.isImageLoaded || viewModel.image != null
-            ? dowlandLink = await StorageCrud().addPhotoToStorage(
-                viewModel.image!,
-                AppFirestoreCollectionNames.reportAnimalCollection,
-              )
-            : null;
-
-        await viewModel.loadFirestore(
-          dowlandLink,
-          descriptionController,
-          phoneNumberController,
-          swichValue,
-          lat,
-          long,
-          isDamaged,
-        );
-        ScaffoldMessenger.of(context).showSnackBar(_snackBar());
-        _showInterstitialAd();
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => SelectAppView()),
-          (route) => false,
-        );
-      }
-    }
-  }
-
-  SnackBar _snackBar() {
-    return SnackBar(
-      content: Text(LocaleKeys.takeYourReportMsg.locale),
-      backgroundColor: LightThemeColors.green,
-    );
-  }
-
-  Future _getCurrentLocation() => viewModel.getCurrentLocation();
 }

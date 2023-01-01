@@ -35,7 +35,7 @@ class _DetailViewState extends BaseState<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    final headline4 = textTheme.headline4?.copyWith(color: LightThemeColors.black);
+    final headline4 = textTheme.headline4;
 
     return BaseView<DetailViewViewModel>(
       onModelReady: (model) {
@@ -57,7 +57,6 @@ class _DetailViewState extends BaseState<DetailView> {
 
   AppBar _appBar(context) {
     return AppBar(
-      foregroundColor: LightThemeColors.miamiMarmalade,
       leading: _backIcon(context),
       actions: [
         _popupMenuButton(),
@@ -209,13 +208,7 @@ class _DetailViewState extends BaseState<DetailView> {
     });
   }
 
-  Text _nameText(TextStyle? headline4) => Text(
-        widget.petModel.name,
-        style: headline4?.copyWith(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-        ),
-      );
+  Text _nameText(TextStyle? headline4) => Text(widget.petModel.name, style: headline4);
 
   Text _priceText(TextStyle? headline4) {
     return Text(

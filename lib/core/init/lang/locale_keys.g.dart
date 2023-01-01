@@ -95,4 +95,6 @@ abstract class LocaleKeys {
   static const send = 'send';
   static const thanksFeedback = 'thanks_feedback';
   static const aboutOne = 'about_one';
+  static const vetHelp = 'vet_help';
+  static const foodHelp = 'food_help';
 }

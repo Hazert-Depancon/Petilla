@@ -13,7 +13,7 @@ class AppIcons {
   static const descriptionIcon = Icons.description;
   static const addPhotoAlternateIcon = Icons.add_photo_alternate_outlined;
   static const sendIcon = Icons.send;
-  static const chatIcon = Icons.chat_bubble;
+  static const chatIcon = Icons.chat_bubble_outline;
   static const chatOutlinedIcon = Icons.chat_bubble_outline;
   static const locationOnOtlinedIcon = Icons.location_on_outlined;
   static const languageIcon = Icons.language;
@@ -28,4 +28,10 @@ class AppIcons {
   static const closeIcon = Icons.close;
   static const filterIcon = Icons.filter_list_rounded;
   static const flag = Icons.flag;
+  static const setting = Icons.settings_outlined;
+  static const info = Icons.info_outline_rounded;
+  static const feed = Icons.feed_outlined;
+  static const link = Icons.link_outlined;
+  static const phone = Icons.phone_outlined;
+  static const addPhoto = Icons.add_a_photo_outlined;
 }

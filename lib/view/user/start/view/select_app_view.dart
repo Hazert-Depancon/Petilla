@@ -65,7 +65,6 @@ class SelectAppView extends StatelessWidget {
     return AppBar(
       title: Text(_ThisPageTexts.petillaTitle),
       centerTitle: true,
-      foregroundColor: LightThemeColors.miamiMarmalade,
       automaticallyImplyLeading: false,
       actions: [
         _profileAction(context),

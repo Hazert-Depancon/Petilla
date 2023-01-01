@@ -1,14 +1,23 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/core/components/help_me_widget.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_view.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_home_view_view_model.dart';
 
 class HelpMeHomeView extends StatefulWidget {
   const HelpMeHomeView({super.key});
@@ -22,16 +31,16 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
 
   final normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
 
-  late HelpMeViewViewModel viewModel;
+  late HelpMeHomeViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<HelpMeViewViewModel>(
+    return BaseView<HelpMeHomeViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
       },
-      viewModel: HelpMeViewViewModel(),
+      viewModel: HelpMeHomeViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
@@ -40,7 +49,6 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         endDrawer: _endDrawer(context),
         appBar: AppBar(
           title: const Text("Yardım Et!"),
-          foregroundColor: LightThemeColors.miamiMarmalade,
           actions: [
             _helpMe(),
             normalWidthSizedBox,
@@ -48,7 +56,50 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
             normalWidthSizedBox,
           ],
         ),
+        body: _bodyStreamBuilder(),
       );
+
+  StreamBuilder<QuerySnapshot<Object?>> _bodyStreamBuilder() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.animalHelp).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return _listView(snapshot);
+        }
+        return const StatusView(status: StatusKeysEnum.LOADING);
+      },
+    );
+  }
+
+  ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        return _helpMeWidget(snapshot, index);
+      },
+    );
+  }
+
+  HelpMeWidget _helpMeWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+    return _helpMeModel(snapshot, index);
+  }
+
+  HelpMeWidget _helpMeModel(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+    return HelpMeWidget(
+      helpMeModel: HelpMeModel(
+        title: snapshot.data!.docs[index][AppFirestoreFieldNames.title],
+        description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
+        long: snapshot.data!.docs[index][AppFirestoreFieldNames.long],
+        lat: snapshot.data!.docs[index][AppFirestoreFieldNames.lat],
+        isVetHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isVetHelp],
+        isFoodHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isFoodHelp],
+        imageDowlandUrl: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
+        currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
+        currentUserId: FirebaseAuth.instance.currentUser!.uid,
+        currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+      ),
+    );
+  }
 
   Drawer _endDrawer(context) => Drawer(
         child: ListView(
@@ -76,8 +127,15 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
   }
 
   GestureDetector _helpMe() => GestureDetector(
-        onTap: () {},
-        child: const Icon(Icons.add_a_photo_outlined),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HelpMeView(),
+            ),
+          );
+        },
+        child: const Icon(AppIcons.addPhoto),
       );
 
   Builder _filterButton() {

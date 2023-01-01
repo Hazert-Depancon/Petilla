@@ -11,4 +11,5 @@ class AppFirestoreCollectionNames {
 
   // Other Collections
   static String feedBacks = "feed_backs";
+  static String animalHelp = "animal_help";
 }
