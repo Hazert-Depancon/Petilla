@@ -66,7 +66,7 @@ class HelpMeDetailView extends StatelessWidget {
   Expanded _showInMapButton() {
     return Expanded(
       child: Button(
-        text: "Konumu Göster",
+        text: LocaleKeys.location.locale,
         onPressed: () async {
           viewModel.showInMap(helpMeModel);
         },

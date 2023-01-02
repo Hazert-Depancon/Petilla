@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
@@ -48,7 +47,7 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
   Scaffold _buildScaffold(context) => Scaffold(
         endDrawer: _endDrawer(context),
         appBar: AppBar(
-          title: const Text("Yardım Et!"),
+          title: Text(LocaleKeys.helpMe.locale),
           actions: [
             _helpMe(),
             normalWidthSizedBox,
@@ -94,9 +93,10 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         isVetHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isVetHelp],
         isFoodHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isFoodHelp],
         imageDowlandUrl: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
-        currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
-        currentUserId: FirebaseAuth.instance.currentUser!.uid,
-        currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+        currentUserEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
+        currentUserId: snapshot.data!.docs[index][AppFirestoreFieldNames.uidField],
+        currentUserName: snapshot.data!.docs[index][AppFirestoreFieldNames.nameField],
+        otherNeeds: snapshot.data!.docs[index][AppFirestoreFieldNames.otherNeeds],
       ),
     );
   }

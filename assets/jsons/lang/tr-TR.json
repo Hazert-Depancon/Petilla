@@ -96,5 +96,7 @@
     "food_help" : "Hayvanın mama yardımına ihtiyacı var",
     "vet_help" : "Hayvanın veteriner yardımına ihtiyacı var",
     "instagram" : "Instagram",
-    "discord" : "Discord"
+    "discord" : "Discord",
+    "other_needs" : "Hayanın diğer ihtiyaçları",
+    "help_me" : "Yardım Et!"
 }

@@ -158,7 +158,7 @@ class SelectAppView extends StatelessWidget {
   SelectAppWidget _selectLiveHelp() {
     return SelectAppWidget(
       isBig: true,
-      title: "Yardım",
+      title: LocaleKeys.helpMe.locale,
       imagePath: ImageConstants.instance.helpMe,
       onTap: const HelpMeControl(),
     );

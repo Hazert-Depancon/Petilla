@@ -7,10 +7,12 @@ class HelpMeModel {
   final String imageDowlandUrl;
   final String long;
   final String lat;
+  final String otherNeeds;
   final bool isVetHelp;
   final bool isFoodHelp;
 
   HelpMeModel({
+    required this.otherNeeds,
     required this.currentUserName,
     required this.currentUserEmail,
     required this.currentUserId,

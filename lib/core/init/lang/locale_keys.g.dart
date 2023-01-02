@@ -99,4 +99,6 @@ abstract class LocaleKeys {
   static const vetHelp = 'vet_help';
   static const foodHelp = 'food_help';
   static const discord = 'discord';
+  static const otherNeeds = 'other_needs';
+  static const helpMe = 'help_me';
 }

@@ -33,4 +33,5 @@ class AppFirestoreFieldNames {
   static String title = "title";
   static String isVetHelp = "isVetHelp";
   static String isFoodHelp = "isFoodHelp";
+  static String otherNeeds = "other_needs";
 }

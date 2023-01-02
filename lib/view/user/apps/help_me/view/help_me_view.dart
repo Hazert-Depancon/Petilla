@@ -34,6 +34,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController otherNeedsController = TextEditingController();
 
   final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
@@ -85,6 +86,8 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
               mainHeightSizedBox,
               _descriptionTextField,
               mainHeightSizedBox,
+              _otherNeedsTextfield,
+              mainHeightSizedBox,
               vetHelpCheckBoxListTile,
               mainHeightSizedBox,
               foodHelpCheckBoxListTile,
@@ -97,6 +100,13 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           );
         }),
       ),
+    );
+  }
+
+  MainTextField get _otherNeedsTextfield {
+    return MainTextField(
+      hintText: LocaleKeys.otherNeeds.locale,
+      controller: otherNeedsController,
     );
   }
 
@@ -171,7 +181,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
               )
             : null;
 
-        await viewModel
+        viewModel
             .loadFirestore(
               HelpMeModel(
                 title: titleController.text,
@@ -184,6 +194,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
                 currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
                 currentUserId: FirebaseAuth.instance.currentUser!.uid,
                 currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+                otherNeeds: otherNeedsController.text.trim(),
               ),
             )
             .then(

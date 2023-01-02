@@ -85,6 +85,10 @@ abstract class _HelpMeViewViewModelBase with Store, BaseViewModel {
       AppFirestoreFieldNames.lat: helpMeModel.lat,
       AppFirestoreFieldNames.long: helpMeModel.long,
       AppFirestoreFieldNames.imagePathField: helpMeModel.imageDowlandUrl,
+      AppFirestoreFieldNames.otherNeeds: helpMeModel.otherNeeds,
+      AppFirestoreFieldNames.currentEmailField: helpMeModel.currentUserEmail,
+      AppFirestoreFieldNames.uidField: helpMeModel.currentUserId,
+      AppFirestoreFieldNames.nameField: helpMeModel.currentUserName,
     });
   }
 
