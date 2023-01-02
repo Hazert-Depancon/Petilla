@@ -18,6 +18,7 @@ import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colo
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/view/user/other/view/about_view.dart';
 import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
+import 'package:petilla_app_project/view/user/other/view/social_connection_view.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -73,17 +74,36 @@ class ProfileView extends StatelessWidget {
         borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
       ),
       builder: (context) {
-        return Padding(
+        return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _listTile(context, AppIcons.info, LocaleKeys.about, const AboutView()),
               _listTile(context, AppIcons.feed, LocaleKeys.feedBack, FeedBackView()),
-              _listTile(context, AppIcons.link, LocaleKeys.links, FeedBackView()),
+              _listTile(context, AppIcons.link, LocaleKeys.links, const SocialConnectionView()),
+              _logOutButton(),
             ],
           ),
         );
       },
+    );
+  }
+
+  Padding _logOutButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0),
+      child: TextButton(
+        onPressed: () {
+          viewModel.logOut();
+        },
+        child: Text(
+          LocaleKeys.logout.locale,
+          style: const TextStyle(
+            color: LightThemeColors.red,
+          ),
+        ),
+      ),
     );
   }
 
@@ -143,20 +163,6 @@ class ProfileView extends StatelessWidget {
           smallHeightSizedBox,
           _emailTextfield(snapshot, email),
           smallHeightSizedBox,
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton(
-              onPressed: () {
-                viewModel.logOut();
-              },
-              child: Text(
-                LocaleKeys.logout.locale,
-                style: const TextStyle(
-                  color: LightThemeColors.red,
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

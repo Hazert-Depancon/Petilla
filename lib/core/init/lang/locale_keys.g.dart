@@ -2,6 +2,7 @@
 
 abstract class LocaleKeys {
   static const petform = 'petform';
+  static const instagram = 'instagram';
   static const connectionErrorText = 'connection_error_text';
   static const petilla = 'petilla';
   static const other = 'other';
@@ -97,4 +98,5 @@ abstract class LocaleKeys {
   static const aboutOne = 'about_one';
   static const vetHelp = 'vet_help';
   static const foodHelp = 'food_help';
+  static const discord = 'discord';
 }
