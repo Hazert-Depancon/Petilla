@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.dart';
@@ -13,6 +14,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
+import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -29,12 +31,19 @@ class ProfileView extends StatelessWidget {
 
   late ProfileViewViewModel viewModel;
 
+  BannerAd? _banner;
+
+  void _createBannerAd() {
+    _banner = AdmobManager().createBannerAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<ProfileViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
+        _createBannerAd();
       },
       viewModel: ProfileViewViewModel(),
       onPageBuilder: (context, value) => buildScaffold(context),
@@ -45,6 +54,15 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: _appBar(context),
       body: _streamBodyBuilder(),
+      bottomNavigationBar: _banner == null
+          ? null
+          : Container(
+              margin: const EdgeInsets.only(bottom: 0),
+              height: 52,
+              child: AdWidget(
+                ad: _banner!,
+              ),
+            ),
     );
   }
 
