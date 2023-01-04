@@ -51,8 +51,8 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
           actions: [
             _helpMe(),
             normalWidthSizedBox,
-            _filterButton(),
-            normalWidthSizedBox,
+            // _filterButton(),
+            // normalWidthSizedBox, 
           ],
         ),
         body: _bodyStreamBuilder(),

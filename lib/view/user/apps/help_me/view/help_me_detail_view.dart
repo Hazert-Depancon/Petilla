@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/button.dart';
@@ -42,24 +43,28 @@ class HelpMeDetailView extends StatelessWidget {
           child: Row(
             children: [
               _showInMapButton(),
-              normalWidthSizedBox,
-              _chatButton(context),
+              helpMeModel.currentUserId == FirebaseAuth.instance.currentUser!.uid
+                  ? const SizedBox.shrink()
+                  : _chatButton(context),
             ],
           ),
         ),
       );
 
-  FloatingActionButton _chatButton(BuildContext context) {
-    return FloatingActionButton(
-      child: const Icon(AppIcons.chatIcon),
-      onPressed: () {
-        viewModel.callChatPage(
-          context,
-          helpMeModel.currentUserName,
-          helpMeModel.currentUserId,
-          helpMeModel.currentUserId,
-        );
-      },
+  Padding _chatButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12),
+      child: FloatingActionButton(
+        child: const Icon(AppIcons.chatIcon),
+        onPressed: () {
+          viewModel.callChatPage(
+            context,
+            helpMeModel.currentUserName,
+            helpMeModel.currentUserId,
+            helpMeModel.currentUserId,
+          );
+        },
+      ),
     );
   }
 
