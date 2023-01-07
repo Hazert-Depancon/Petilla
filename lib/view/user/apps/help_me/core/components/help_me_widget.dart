@@ -33,25 +33,27 @@ class HelpMeWidget extends StatelessWidget {
               children: [
                 _imageContainer(),
                 smallWidthSizedBox,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _titleText(context),
-                    smallHeightSizedBox,
-                    _descriptionText(context),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _titleText(context),
+                      smallHeightSizedBox,
+                      _descriptionText(context),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
         ),
       ),
-      // ),
     );
   }
 
-  Text _descriptionText(context) {
+  _descriptionText(context) {
     return Text(
+      maxLines: 3,
       helpMeModel.description,
       style: Theme.of(context).textTheme.headline6,
       overflow: TextOverflow.ellipsis,
