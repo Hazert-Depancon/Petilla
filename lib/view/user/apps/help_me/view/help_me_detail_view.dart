@@ -38,18 +38,22 @@ class HelpMeDetailView extends StatelessWidget {
   Scaffold _buildScaffold(BuildContext context) => Scaffold(
         appBar: _appBar(),
         body: _body(context),
-        bottomNavigationBar: Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: Row(
-            children: [
-              _showInMapButton(),
-              helpMeModel.currentUserId == FirebaseAuth.instance.currentUser!.uid
-                  ? const SizedBox.shrink()
-                  : _chatButton(context),
-            ],
-          ),
-        ),
+        bottomNavigationBar: _locationAndChatButtons(context),
       );
+
+  Padding _locationAndChatButtons(BuildContext context) {
+    return Padding(
+      padding: ProjectPaddings.horizontalMainPadding,
+      child: Row(
+        children: [
+          _showInMapButton(),
+          helpMeModel.currentUserId == FirebaseAuth.instance.currentUser!.uid
+              ? const SizedBox.shrink()
+              : _chatButton(context),
+        ],
+      ),
+    );
+  }
 
   Padding _chatButton(BuildContext context) {
     return Padding(
@@ -95,8 +99,16 @@ class HelpMeDetailView extends StatelessWidget {
           helpMeModel.isFoodHelp ? _footdHelpText(context) : _emptySizedBox(),
           helpMeModel.isFoodHelp ? mainHeightSizedBox : _emptySizedBox(),
           helpMeModel.isVetHelp ? _vetHelpText(context) : _emptySizedBox(),
+          _otherNeeds(context),
         ],
       ),
+    );
+  }
+
+  Text _otherNeeds(context) {
+    return Text(
+      helpMeModel.otherNeeds,
+      style: Theme.of(context).textTheme.subtitle2,
     );
   }
 
