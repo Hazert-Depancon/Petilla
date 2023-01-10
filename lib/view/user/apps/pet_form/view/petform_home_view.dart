@@ -18,14 +18,6 @@ class PetformHomeView extends StatelessWidget {
 
   late PetformHomeViewViewModel viewModel;
 
-  void _createInterstitialAd() {
-    viewModel.createInterstitialAd();
-  }
-
-  void _showInterstitialAd() {
-    viewModel.showInterstitialAd();
-  }
-
   BannerAd? _banner;
 
   void _createBannerAd() {
@@ -38,7 +30,6 @@ class PetformHomeView extends StatelessWidget {
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
-        _createInterstitialAd();
         _createBannerAd();
       },
       viewModel: PetformHomeViewViewModel(),
@@ -134,7 +125,6 @@ class PetformHomeView extends StatelessWidget {
         title: Text(title),
         leading: SvgPicture.asset(assetName, height: 32),
         onTap: () {
-          _showInterstitialAd();
           viewModel.callGroupChatView(title, assetName, collectionId, docId, pageTitle, context);
         },
       );
