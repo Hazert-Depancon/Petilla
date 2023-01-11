@@ -10,10 +10,9 @@ Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali h
 
 *-Sokakta saldıran hayvanları ilgili kurumlara bildirme*
 
-özellikleri vardır.
+*-Sokakta yardıma muhtaç hayvanları çevredeki insanlar ile paylaşma*
 
-Şuanda yapım aşamasında olan ise;
-Yardıma ihtiyacı olan sokak hayvanlarına acil destek.
+özellikleri vardır.
 
 Gelecekte yapılacak olan ise; 
 
