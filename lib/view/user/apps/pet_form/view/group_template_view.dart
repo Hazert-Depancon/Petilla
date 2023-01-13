@@ -174,6 +174,7 @@ class ShowMessages extends StatelessWidget {
 
   ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(
+      reverse: true,
       itemCount: snapshot.data!.docs.length,
       itemBuilder: (context, index) {
         QueryDocumentSnapshot querySnapshot = snapshot.data!.docs[index];

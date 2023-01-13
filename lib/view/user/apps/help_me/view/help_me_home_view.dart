@@ -17,6 +17,7 @@ import 'package:petilla_app_project/view/user/apps/help_me/core/components/help_
 import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_view.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_home_view_view_model.dart';
+import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class HelpMeHomeView extends StatefulWidget {
   const HelpMeHomeView({super.key});
@@ -48,15 +49,27 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         endDrawer: _endDrawer(context),
         appBar: AppBar(
           title: Text(LocaleKeys.helpMe.locale),
+          leading: _backIcon(context),
           actions: [
             _helpMe(),
             normalWidthSizedBox,
-            // _filterButton(),
-            // normalWidthSizedBox, 
           ],
         ),
         body: _bodyStreamBuilder(),
       );
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => SelectAppView()),
+          (route) => false,
+        );
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
+    );
+  }
 
   StreamBuilder<QuerySnapshot<Object?>> _bodyStreamBuilder() {
     return StreamBuilder<QuerySnapshot>(

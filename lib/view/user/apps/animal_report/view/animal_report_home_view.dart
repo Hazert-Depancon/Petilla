@@ -78,6 +78,7 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
 
   AppBar _appBar(context) => AppBar(
         title: Text(LocaleKeys.reportAnimal.locale),
+        leading: _backIcon(context),
         actions: [
           _callIcon(),
           normalWidthSizedBox,
@@ -85,6 +86,19 @@ class _AnimalReportHomeViewState extends BaseState<AnimalReportHomeView> {
           normalWidthSizedBox,
         ],
       );
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => SelectAppView()),
+          (route) => false,
+        );
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
+    );
+  }
 
   Form _body(context) {
     return Form(

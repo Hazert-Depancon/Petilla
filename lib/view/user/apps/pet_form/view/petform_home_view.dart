@@ -12,6 +12,7 @@ import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
+import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class PetformHomeView extends StatelessWidget {
   PetformHomeView({Key? key}) : super(key: key);
@@ -141,7 +142,11 @@ class PetformHomeView extends StatelessWidget {
   GestureDetector _backIcon(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => SelectAppView()),
+          (route) => false,
+        );
       },
       child: const Icon(AppIcons.arrowBackIcon),
     );
