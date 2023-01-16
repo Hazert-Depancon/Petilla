@@ -98,5 +98,9 @@
     "instagram" : "Instagram",
     "discord" : "Discord",
     "other_needs" : "Hayanın diğer ihtiyaçları",
-    "help_me" : "Yardım Et!"
+    "help_me" : "Yardım Et!",
+    "petilla_description" : "Hayvan sahiplen ve sahiplendir!",
+    "petform_description" : "Sorunlarını hayvan sahipleri ile çöz!",
+    "animal_report_description" : "Zarar gördüğün hayvanları bildir!",
+    "help_me_description" : "Sokak hayvanlarına yardım et!"
 }

@@ -32,9 +32,6 @@ class SelectAppWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: LightThemeColors.white,
           borderRadius: ProjectRadius.allRadius,
-          border: Border.all(
-            color: LightThemeColors.grey.withOpacity(0.6),
-          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -21,6 +21,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_paddin
 import 'package:petilla_app_project/view/user/other/view/about_view.dart';
 import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
 import 'package:petilla_app_project/view/user/other/view/social_connection_view.dart';
+import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -69,7 +70,21 @@ class ProfileView extends StatelessWidget {
   AppBar _appBar(context) {
     return AppBar(
       title: Text(_ThisPageTexts.title),
+      leading: _backIcon(context),
       actions: [settingsIcon(context), smallWidthSizedBox],
+    );
+  }
+
+  GestureDetector _backIcon(context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => SelectAppView()),
+          (route) => false,
+        );
+      },
+      child: const Icon(AppIcons.arrowBackIcon),
     );
   }
 

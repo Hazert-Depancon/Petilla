@@ -79,28 +79,28 @@ class SelectAppView extends StatelessWidget {
         children: [
           SelectAppWidget(
             title: LocaleKeys.petilla.locale,
-            description: "Hayvan sahiplen ve sahiplendir",
+            description: LocaleKeys.petillaDescription.locale,
             imagePath: ImageConstants.instance.petilla,
             onTap: const MainPetilla(),
           ),
           mainSizedBox,
           SelectAppWidget(
             title: LocaleKeys.petform.locale,
-            description: "Sorunlarını hayvan sahipleri ile çöz!",
+            description: LocaleKeys.petformDescription.locale,
             imagePath: ImageConstants.instance.petform,
             onTap: const MainPetForm(),
           ),
           mainSizedBox,
           SelectAppWidget(
             title: LocaleKeys.helpMe.locale,
-            description: "Sokak hayvanlarına yardım et!",
+            description: LocaleKeys.helpMeDescription.locale,
             imagePath: ImageConstants.instance.helpMe,
             onTap: const HelpMeControl(),
           ),
           mainSizedBox,
           SelectAppWidget(
             title: LocaleKeys.report.locale,
-            description: "Zarar gördüğün hayvanları bildir!",
+            description: LocaleKeys.animalReportDescription.locale,
             imagePath: ImageConstants.instance.animalReport,
             onTap: const MainAnimalReport(),
           ),
@@ -123,6 +123,5 @@ class SelectAppView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String petformTitle = LocaleKeys.petform.locale;
   static String petillaTitle = LocaleKeys.petilla.locale;
 }

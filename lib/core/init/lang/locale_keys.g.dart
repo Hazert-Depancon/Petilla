@@ -101,4 +101,8 @@ abstract class LocaleKeys {
   static const discord = 'discord';
   static const otherNeeds = 'other_needs';
   static const helpMe = 'help_me';
+  static const petillaDescription = 'petilla_description';
+  static const petformDescription = 'petform_description';
+  static const animalReportDescription = "animal_report_description";
+  static const helpMeDescription = "help_me_description";
 }
