@@ -11,7 +11,10 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/user/apps/animal_report/view/main_animal_report.dart';
+import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_control.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
+import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';
 
@@ -75,137 +78,36 @@ class SelectAppView extends StatelessWidget {
       child: Column(
         children: [
           SelectAppWidget(
-            title: "Petilla",
+            title: LocaleKeys.petilla.locale,
             description: "Hayvan sahiplen ve sahiplendir",
             imagePath: ImageConstants.instance.petilla,
             onTap: const MainPetilla(),
           ),
           mainSizedBox,
           SelectAppWidget(
-            title: "Petform",
+            title: LocaleKeys.petform.locale,
             description: "Sorunlarını hayvan sahipleri ile çöz!",
             imagePath: ImageConstants.instance.petform,
-            onTap: const MainPetilla(),
+            onTap: const MainPetForm(),
           ),
           mainSizedBox,
           SelectAppWidget(
-            title: "Yardım Et!",
+            title: LocaleKeys.helpMe.locale,
             description: "Sokak hayvanlarına yardım et!",
             imagePath: ImageConstants.instance.helpMe,
-            onTap: const MainPetilla(),
+            onTap: const HelpMeControl(),
           ),
           mainSizedBox,
           SelectAppWidget(
-            title: "Bildir",
+            title: LocaleKeys.report.locale,
             description: "Zarar gördüğün hayvanları bildir!",
             imagePath: ImageConstants.instance.animalReport,
-            onTap: const MainPetilla(),
+            onTap: const MainAnimalReport(),
           ),
-          // Container(
-          //   height: 110,
-          //   decoration: BoxDecoration(
-          //     color: LightThemeColors.white,
-          //     borderRadius: ProjectRadius.allRadius,
-          //   ),
-          // ),
-          // mainSizedBox,
-          // Container(
-          //   height: 110,
-          //   decoration: BoxDecoration(
-          //     color: LightThemeColors.white,
-          //     borderRadius: ProjectRadius.allRadius,
-          //   ),
-          // ),
-          // mainSizedBox,
-          // Container(
-          //   height: 110,
-          //   decoration: BoxDecoration(
-          //     color: LightThemeColors.white,
-          //     borderRadius: ProjectRadius.allRadius,
-          //   ),
-          // ),
-          // StaggeredGrid.count(
-          //   crossAxisCount: 4,
-          //   mainAxisSpacing: 12,
-          //   crossAxisSpacing: 12,
-          //   children: [
-          //     _selectPetillaGridTile(),
-          //     _selectPetformGridTile(),
-          //     _selectLiveHelpGridTile(),
-          //     _selectAnimalReportGridTile(),
-          //   ],
-          // ),
         ],
       ),
     );
   }
-
-  // StaggeredGridTile _selectPetformGridTile() {
-  //   return StaggeredGridTile.count(
-  //     crossAxisCellCount: 2,
-  //     mainAxisCellCount: 1.5,
-  //     child: _selectPetform(),
-  //   );
-  // }
-
-  // StaggeredGridTile _selectPetillaGridTile() {
-  //   return StaggeredGridTile.count(
-  //     crossAxisCellCount: 2,
-  //     mainAxisCellCount: 2,
-  //     child: _selectPetilla(),
-  //   );
-  // }
-
-  // StaggeredGridTile _selectAnimalReportGridTile() {
-  //   return StaggeredGridTile.count(
-  //     crossAxisCellCount: 2,
-  //     mainAxisCellCount: 1.5,
-  //     child: _selectAnimalReport(),
-  //   );
-  // }
-
-  // StaggeredGridTile _selectLiveHelpGridTile() {
-  //   return StaggeredGridTile.count(
-  //     crossAxisCellCount: 2,
-  //     mainAxisCellCount: 2,
-  //     child: _selectLiveHelp(),
-  //   );
-  // }
-
-  // SelectAppWidget _selectPetform() {
-  //   return SelectAppWidget(
-  //     title: _ThisPageTexts.petformTitle,
-  //     imagePath: ImageConstants.instance.petform,
-  //     onTap: const MainPetForm(),
-  //   );
-  // }
-
-  // SelectAppWidget _selectPetilla() {
-  //   return SelectAppWidget(
-  //     isBig: true,
-  //     title: _ThisPageTexts.petillaTitle,
-  //     imagePath: ImageConstants.instance.petilla,
-  //     onTap: const MainPetilla(),
-  //   );
-  // }
-
-  // SelectAppWidget _selectAnimalReport() {
-  //   return SelectAppWidget(
-  //     isBig: true,
-  //     title: LocaleKeys.report.locale,
-  //     imagePath: ImageConstants.instance.animalReport,
-  //     onTap: const MainAnimalReport(),
-  //   );
-  // }
-
-  // SelectAppWidget _selectLiveHelp() {
-  //   return SelectAppWidget(
-  //     isBig: true,
-  //     title: LocaleKeys.helpMe.locale,
-  //     imagePath: ImageConstants.instance.helpMe,
-  //     onTap: const HelpMeControl(),
-  //   );
-  // }
 
   GestureDetector _profileAction(BuildContext context) {
     return GestureDetector(

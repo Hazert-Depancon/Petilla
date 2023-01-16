@@ -149,7 +149,7 @@ class ShowMessages extends StatelessWidget {
           .collection(AppFirestoreCollectionNames.messages)
           .doc(docId)
           .collection(collectionId)
-          .orderBy(AppFirestoreFieldNames.timeField)
+          .orderBy(AppFirestoreFieldNames.timeField, descending: true)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
