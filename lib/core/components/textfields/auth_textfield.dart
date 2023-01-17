@@ -69,7 +69,7 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
     return IconButton(
       icon: Icon(
         _obscureText! ? AppIcons.visibilityOutlinedIcon : AppIcons.visibilityOffOutlinedIcon,
-        color: LightThemeColors.cherrywoord,
+        color: LightThemeColors.black,
       ),
       onPressed: () {
         _changeVisibility();

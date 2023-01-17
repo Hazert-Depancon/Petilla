@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';

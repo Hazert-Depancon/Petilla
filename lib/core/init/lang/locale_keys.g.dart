@@ -105,4 +105,6 @@ abstract class LocaleKeys {
   static const petformDescription = 'petform_description';
   static const animalReportDescription = "animal_report_description";
   static const helpMeDescription = "help_me_description";
+  static const welcomeAgain = "welcome_again";
+  static const signInWithAdmin = "sign_in_with_admin";
 }

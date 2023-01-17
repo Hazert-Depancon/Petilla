@@ -18,6 +18,7 @@ class ImageConstants {
   String get petilla => toPng("petilla_image");
   String get animalReport => toPng("animal_report");
   String get helpMe => toPng("help_me");
+  String get loginBackgroundImage => toPng("login_background_image");
 
   String toSvg(String imageName) => "assets/svg/$imageName.svg";
   String toPng(String imageName) => "assets/images/$imageName.png";

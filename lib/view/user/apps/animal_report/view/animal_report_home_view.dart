@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';

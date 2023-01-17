@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/components/textfields/auth_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';

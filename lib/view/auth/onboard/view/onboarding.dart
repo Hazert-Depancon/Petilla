@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';

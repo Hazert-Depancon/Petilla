@@ -1,20 +1,15 @@
 // ignore_for_file: must_be_immutable, iterable_contains_unrelated_type
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/core/components/button.dart';
+import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
 import 'package:petilla_app_project/core/components/textfields/auth_textfield.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_card_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/admin/view/admin_home_view.dart';
-import 'package:petilla_app_project/view/auth/view/register_view.dart';
 import 'package:petilla_app_project/view/auth/viewmodel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
@@ -27,57 +22,87 @@ class LoginView extends StatelessWidget {
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
-  List<String> adminMails = [
-    "DukSrKR6Gxo5KZdYnJZiWeW6",
-  ];
+  String adminMails = "DukSrKR6Gxo5KZdYnJZiWeW6";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      resizeToAvoidBottomInset: false,
       body: _body(context),
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(_ThisPageTexts.title),
-      centerTitle: true,
+  _body(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          _loginDecorationImage(),
+          const SizedBox(height: 24),
+          Expanded(
+            flex: 6,
+            child: SingleChildScrollView(
+              padding: ProjectPaddings.horizontalLargePadding,
+              child: Column(
+                children: [
+                  _mailTextField,
+                  mainSizedBox,
+                  _passwordTextField,
+                  mainSizedBox,
+                  _loginButton(context),
+                  mainSizedBox,
+                  _dontHaveAnAccount(context),
+                  _registerButton(context),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
-  Form _body(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalLargePadding,
-        child: Column(
-          children: [
-            _lottie(),
-            _mailTextField(),
-            mainSizedBox,
-            _passwordTextField(),
-            mainSizedBox,
-            _loginButton(context),
-            mainSizedBox,
-            _dontHaveAnAccount(context),
-            _registerButton(context),
-          ],
+  Expanded _loginDecorationImage() {
+    return Expanded(
+      flex: 4,
+      child: Container(
+        width: double.infinity,
+        height: 300,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(ImageConstants.instance.loginBackgroundImage),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 64, left: 32),
+          child: _welcomeBackText(),
         ),
       ),
     );
   }
 
-  LottieBuilder _lottie() {
-    return Lottie.network(
-      ProjectLottieUrls.loginLottie,
-      width: ProjectCardSizes.bigLottieWidth,
-      height: ProjectCardSizes.bigLottieHeight,
+  Text _welcomeBackText() {
+    return Text(
+      LocaleKeys.welcomeAgain.locale,
+      style: const TextStyle(
+        color: LightThemeColors.white,
+        fontWeight: FontWeight.w700,
+        fontSize: 55,
+      ),
     );
   }
 
-  AuthTextField _mailTextField() {
+  AuthButton _loginButton(BuildContext context) {
+    return AuthButton(
+      onPressed: () {
+        _onLoginButton(context);
+      },
+      text: _ThisPageTexts.title,
+    );
+  }
+
+  AuthTextField get _mailTextField {
     return AuthTextField(
       isNext: true,
       false,
@@ -91,7 +116,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  AuthTextField _passwordTextField() {
+  AuthTextField get _passwordTextField {
     return AuthTextField(
       true,
       controller: _passwordController,
@@ -115,33 +140,18 @@ class LoginView extends StatelessWidget {
   TextButton _registerButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterView()));
+        LoginViewModel().goRegisterView(context);
       },
       child: Text(_ThisPageTexts.registerText),
     );
   }
 
-  Button _loginButton(BuildContext context) {
-    return Button(
-      onPressed: () {
-        _onLoginButton(context);
-      },
-      width: ProjectButtonSizes.mainButtonWidth,
-      height: ProjectButtonSizes.mainButtonHeight,
-      text: _ThisPageTexts.title,
-    );
-  }
-
   void _onLoginButton(context) async {
-    if (adminMails.contains(_emailController.text)) {
+    if (adminMails == _emailController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         _snackBar(),
       );
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => AdminHomeView()),
-        (route) => false,
-      );
+      LoginViewModel().goAdminView(context);
     }
     if (_formKey.currentState!.validate()) {
       LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
@@ -149,8 +159,8 @@ class LoginView extends StatelessWidget {
   }
 
   SnackBar _snackBar() {
-    return const SnackBar(
-      content: Text("Admin hesabı ile giriş yapıldı."),
+    return SnackBar(
+      content: Text(_ThisPageTexts.signInWithAdmin),
       backgroundColor: LightThemeColors.green,
     );
   }
@@ -162,4 +172,5 @@ class _ThisPageTexts {
   static String passwordHintText = LocaleKeys.password.locale;
   static String dontHaveAccount = LocaleKeys.dontHaveAnAccount.locale;
   static String registerText = LocaleKeys.register.locale;
+  static String signInWithAdmin = LocaleKeys.signInWithAdmin.locale;
 }
