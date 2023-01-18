@@ -39,29 +39,48 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      obscureText: _obscureText!,
-      textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
-      textAlign: TextAlign.start,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: LightThemeColors.summerDay,
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.isPassword ? _visibilityIcon() : null,
-        border: OutlineInputBorder(
-          borderRadius: ProjectRadius.mainAllRadius,
-          borderSide: BorderSide.none,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: ProjectRadius.mainAllRadius,
+        boxShadow: const [
+          BoxShadow(
+            color: LightThemeColors.shadowColor,
+            offset: Offset(10, 10),
+            blurRadius: 30,
+            spreadRadius: 1,
+          ),
+          BoxShadow(
+            color: LightThemeColors.white,
+            offset: Offset(-10, -10),
+            blurRadius: 30,
+            spreadRadius: 1,
+          ),
+        ],
       ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return LocaleKeys.fillAllArea.locale;
-        }
-        return null;
-      },
+      child: TextFormField(
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: _obscureText!,
+        textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
+        textAlign: TextAlign.start,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: LightThemeColors.snowbank.withOpacity(0.9),
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.isPassword ? _visibilityIcon() : null,
+          border: OutlineInputBorder(
+            borderRadius: ProjectRadius.mainAllRadius,
+            borderSide: BorderSide.none,
+          ),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return LocaleKeys.fillAllArea.locale;
+          }
+          return null;
+        },
+      ),
     );
   }
 

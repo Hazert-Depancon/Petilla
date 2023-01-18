@@ -104,5 +104,6 @@
     "animal_report_description" : "Zarar gördüğün hayvanları bildir!",
     "help_me_description" : "Sokak hayvanlarına yardım et!",
     "welcome_again" : "Tekrar Hoşgeldin!",
-    "sign_in_with_admin" : "Admin hesabı ile giriş yapıldı."
+    "sign_in_with_admin" : "Admin hesabı ile giriş yapıldı.",
+    "welcome" : "Hoşgeldin!"
 }

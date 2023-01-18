@@ -1,15 +1,12 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:petilla_app_project/core/components/buttons/button.dart';
+import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
 import 'package:petilla_app_project/core/components/textfields/auth_textfield.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_card_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_lottie_urls.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -32,7 +29,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      resizeToAvoidBottomInset: false,
       body: _body(context),
     );
   }
@@ -40,40 +37,63 @@ class RegisterView extends StatelessWidget {
   Form _body(BuildContext context) {
     return Form(
       key: _formKey,
-      child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalLargePadding,
-        child: Column(
-          children: [
-            _lottie(),
-            _nameTextField(),
-            mainSizedBox,
-            _emailTextField(),
-            mainSizedBox,
-            _passwordTextField(),
-            mainSizedBox,
-            _registerButton(context),
-            mainSizedBox,
-            _alreadyHaveAnAccount(context),
-            _logInButton(context),
-          ],
+      child: Column(
+        children: [
+          _loginDecorationImage(),
+          const SizedBox(height: 24),
+          Expanded(
+            flex: 6,
+            child: SingleChildScrollView(
+              padding: ProjectPaddings.horizontalLargePadding,
+              child: Column(
+                children: [
+                  _nameTextField(),
+                  mainSizedBox,
+                  _emailTextField(),
+                  mainSizedBox,
+                  _passwordTextField(),
+                  mainSizedBox,
+                  _registerButton(context),
+                  mainSizedBox,
+                  _alreadyHaveAnAccount(context),
+                  _logInButton(context),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Expanded _loginDecorationImage() {
+    return Expanded(
+      flex: 4,
+      child: Container(
+        width: double.infinity,
+        height: 300,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(ImageConstants.instance.loginBackgroundImage),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 64, left: 32),
+          child: _welcomeText(),
         ),
       ),
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      title: Text(_ThisPageTexts.register),
-      automaticallyImplyLeading: false,
-      centerTitle: true,
-    );
-  }
-
-  LottieBuilder _lottie() {
-    return Lottie.network(
-      ProjectLottieUrls.registerLottie,
-      width: ProjectCardSizes.bigLottieWidth,
-      height: ProjectCardSizes.bigLottieHeight,
+  Text _welcomeText() {
+    return Text(
+      LocaleKeys.welcome.locale,
+      style: const TextStyle(
+        color: LightThemeColors.white,
+        fontWeight: FontWeight.w700,
+        fontSize: 55,
+      ),
     );
   }
 
@@ -110,13 +130,11 @@ class RegisterView extends StatelessWidget {
     );
   }
 
-  Button _registerButton(context) {
-    return Button(
+  AuthButton _registerButton(context) {
+    return AuthButton(
       onPressed: () {
         _onRegister(context);
       },
-      width: ProjectButtonSizes.mainButtonWidth,
-      height: ProjectButtonSizes.mainButtonHeight,
       text: _ThisPageTexts.register,
     );
   }

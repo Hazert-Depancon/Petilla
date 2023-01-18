@@ -32,7 +32,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  _body(BuildContext context) {
+  Form _body(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
