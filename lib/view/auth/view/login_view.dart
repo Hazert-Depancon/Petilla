@@ -108,10 +108,11 @@ class LoginView extends StatelessWidget {
       false,
       controller: _emailController,
       hintText: _ThisPageTexts.mailHintText,
-      prefixIcon: const Icon(
-        AppIcons.emailOutlinedIcon,
-        color: LightThemeColors.cherrywoord,
-      ),
+      prefixIcon:
+          // const Icon(
+          AppIcons.emailOutlinedIcon,
+      // color: LightThemeColors.cherrywoord,
+      // ),
       keyboardType: TextInputType.emailAddress,
     );
   }
@@ -121,10 +122,7 @@ class LoginView extends StatelessWidget {
       true,
       controller: _passwordController,
       hintText: _ThisPageTexts.passwordHintText,
-      prefixIcon: const Icon(
-        AppIcons.lockOutlinedIcon,
-        color: LightThemeColors.cherrywoord,
-      ),
+      prefixIcon: AppIcons.lockOutlinedIcon,
       keyboardType: TextInputType.visiblePassword,
       isNext: false,
     );

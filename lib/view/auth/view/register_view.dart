@@ -104,7 +104,7 @@ class RegisterView extends StatelessWidget {
       hintText: _ThisPageTexts.passwordHint,
       isNext: false,
       keyboardType: TextInputType.visiblePassword,
-      prefixIcon: const Icon(AppIcons.lockOutlinedIcon, color: LightThemeColors.cherrywoord),
+      prefixIcon: AppIcons.lockOutlinedIcon,
     );
   }
 
@@ -115,7 +115,7 @@ class RegisterView extends StatelessWidget {
       hintText: _ThisPageTexts.mailHint,
       isNext: true,
       keyboardType: TextInputType.emailAddress,
-      prefixIcon: const Icon(AppIcons.emailOutlinedIcon, color: LightThemeColors.cherrywoord),
+      prefixIcon: AppIcons.emailOutlinedIcon,
     );
   }
 
@@ -126,7 +126,7 @@ class RegisterView extends StatelessWidget {
       hintText: _ThisPageTexts.nameHint,
       isNext: true,
       keyboardType: TextInputType.name,
-      prefixIcon: const Icon(AppIcons.personOutlineIcon, color: LightThemeColors.cherrywoord),
+      prefixIcon: AppIcons.personOutlineIcon,
     );
   }
 

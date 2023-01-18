@@ -20,7 +20,7 @@ class AuthTextField extends StatefulWidget {
   final String? hintText;
   final TextEditingController? controller;
   final bool isPassword;
-  final Icon? prefixIcon;
+  final prefixIcon;
   final TextInputType? keyboardType;
   final bool? isNext;
 
@@ -67,7 +67,10 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
           filled: true,
           fillColor: LightThemeColors.snowbank.withOpacity(0.9),
           hintText: widget.hintText,
-          prefixIcon: widget.prefixIcon,
+          prefixIcon: Icon(
+            widget.prefixIcon,
+            color: LightThemeColors.black,
+          ),
           suffixIcon: widget.isPassword ? _visibilityIcon() : null,
           border: OutlineInputBorder(
             borderRadius: ProjectRadius.mainAllRadius,
