@@ -42,7 +42,7 @@ class _DetailViewState extends BaseState<DetailView> {
         model.setContext(context);
         viewModel = model;
         widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-        widget.petModel.currentEmail == FirebaseAuth.instance.currentUser!.email ? _isMe = true : _isMe = false;
+        widget.petModel.currentEmail == FirebaseAuth.instance.currentUser?.email ? _isMe = true : _isMe = false;
       },
       viewModel: DetailViewViewModel(),
       onPageBuilder: (context, value) => buildScaffold(headline4),

@@ -11,7 +11,6 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/animal_report/view/main_animal_report.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_control.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
@@ -96,13 +95,6 @@ class SelectAppView extends StatelessWidget {
             description: LocaleKeys.helpMeDescription.locale,
             imagePath: ImageConstants.instance.helpMe,
             onTap: const HelpMeControl(),
-          ),
-          mainSizedBox,
-          SelectAppWidget(
-            title: LocaleKeys.report.locale,
-            description: LocaleKeys.animalReportDescription.locale,
-            imagePath: ImageConstants.instance.animalReport,
-            onTap: const MainAnimalReport(),
           ),
         ],
       ),

@@ -22,8 +22,6 @@ class LoginView extends StatelessWidget {
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
-  String adminMails = "DukSrKR6Gxo5KZdYnJZiWeW6";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,11 +106,7 @@ class LoginView extends StatelessWidget {
       false,
       controller: _emailController,
       hintText: _ThisPageTexts.mailHintText,
-      prefixIcon:
-          // const Icon(
-          AppIcons.emailOutlinedIcon,
-      // color: LightThemeColors.cherrywoord,
-      // ),
+      prefixIcon: AppIcons.emailOutlinedIcon,
       keyboardType: TextInputType.emailAddress,
     );
   }
@@ -145,22 +139,9 @@ class LoginView extends StatelessWidget {
   }
 
   void _onLoginButton(context) async {
-    if (adminMails == _emailController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        _snackBar(),
-      );
-      LoginViewModel().goAdminView(context);
-    }
     if (_formKey.currentState!.validate()) {
       LoginViewModel().onLoginButton(context, _emailController.text, _passwordController.text);
     }
-  }
-
-  SnackBar _snackBar() {
-    return SnackBar(
-      content: Text(_ThisPageTexts.signInWithAdmin),
-      backgroundColor: LightThemeColors.green,
-    );
   }
 }
 
@@ -170,5 +151,4 @@ class _ThisPageTexts {
   static String passwordHintText = LocaleKeys.password.locale;
   static String dontHaveAccount = LocaleKeys.dontHaveAnAccount.locale;
   static String registerText = LocaleKeys.register.locale;
-  static String signInWithAdmin = LocaleKeys.signInWithAdmin.locale;
 }

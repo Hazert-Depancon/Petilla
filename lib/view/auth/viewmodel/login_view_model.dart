@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/main.dart';
-import 'package:petilla_app_project/view/admin/view/admin_home_view.dart';
 import 'package:petilla_app_project/view/auth/service/auth_service.dart';
 import 'package:petilla_app_project/view/auth/view/register_view.dart';
 
@@ -21,14 +20,6 @@ class LoginViewModel {
             (route) => false,
           ),
         );
-  }
-
-  void goAdminView(context) {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => AdminHomeView()),
-      (route) => false,
-    );
   }
 
   void goRegisterView(context) {
