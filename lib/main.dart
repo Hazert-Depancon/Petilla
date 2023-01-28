@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/constants/app/app_constants.dart';
 import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
 import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
@@ -31,7 +31,7 @@ Future<void> main() async {
 
 Future<void> _init() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+  // MobileAds.instance.initialize();
   await EasyLocalization.ensureInitialized();
   await LocaleManager.preferencesInit();
   await Firebase.initializeApp();

@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.dart';
@@ -32,10 +32,10 @@ class ProfileView extends StatelessWidget {
 
   late ProfileViewViewModel viewModel;
 
-  BannerAd? _banner;
+  //BannerAd? _banner;
 
   void _createBannerAd() {
-    _banner = AdmobManager().createBannerAd();
+  //  _banner = AdmobManager().createBannerAd();
   }
 
   @override
@@ -55,15 +55,15 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: _appBar(context),
       body: _streamBodyBuilder(),
-      bottomNavigationBar: _banner == null
-          ? null
-          : Container(
-              margin: const EdgeInsets.only(bottom: 0),
-              height: 52,
-              child: AdWidget(
-                ad: _banner!,
-              ),
-            ),
+      // bottomNavigationBar: _banner == null
+      //     ? null
+      //     : Container(
+      //         margin: const EdgeInsets.only(bottom: 0),
+      //         height: 52,
+      //         child: AdWidget(
+      //           ad: _banner!,
+      //         ),
+      //       ),
     );
   }
 

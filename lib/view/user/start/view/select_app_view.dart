@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
@@ -26,10 +26,10 @@ class SelectAppView extends StatelessWidget {
 
   late SelectAppViewViewModel viewModel;
 
-  BannerAd? _banner;
+  // BannerAd? _banner;
 
   void _createBannerAd() {
-    _banner = AdmobManager().createBannerAd();
+    // _banner = AdmobManager().createBannerAd();
   }
 
   @override
@@ -48,15 +48,15 @@ class SelectAppView extends StatelessWidget {
   Scaffold _buildScaffold(context) => Scaffold(
         appBar: _appBar(context),
         body: _body(context),
-        bottomNavigationBar: _banner == null
-            ? null
-            : Container(
-                margin: const EdgeInsets.only(bottom: 0),
-                height: 52,
-                child: AdWidget(
-                  ad: _banner!,
-                ),
-              ),
+        // bottomNavigationBar: _banner == null
+        //     ? null
+        //     : Container(
+        //         margin: const EdgeInsets.only(bottom: 0),
+        //         height: 52,
+        //         child: AdWidget(
+        //           ad: _banner!,
+        //         ),
+        //       ),
       );
 
   AppBar _appBar(BuildContext context) {

@@ -9,22 +9,6 @@ part of 'add_view_two_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AddViewTwoViewModel on _AddViewTwoViewModelBase, Store {
-  late final _$interstitialAdAtom =
-      Atom(name: '_AddViewTwoViewModelBase.interstitialAd', context: context);
-
-  @override
-  InterstitialAd? get interstitialAd {
-    _$interstitialAdAtom.reportRead();
-    return super.interstitialAd;
-  }
-
-  @override
-  set interstitialAd(InterstitialAd? value) {
-    _$interstitialAdAtom.reportWrite(value, super.interstitialAd, () {
-      super.interstitialAd = value;
-    });
-  }
-
   late final _$_AddViewTwoViewModelBaseActionController =
       ActionController(name: '_AddViewTwoViewModelBase', context: context);
 
@@ -88,7 +72,7 @@ mixin _$AddViewTwoViewModel on _AddViewTwoViewModelBase, Store {
   @override
   String toString() {
     return '''
-interstitialAd: ${interstitialAd}
+
     ''';
   }
 }
