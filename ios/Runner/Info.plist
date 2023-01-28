@@ -56,7 +56,6 @@
 			<string>sms</string>
 			<string>tel</string>
 		</array>
-		<key>NSCameraUsageDescription</key>
 		<string>camera</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string></string>

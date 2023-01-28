@@ -24,6 +24,7 @@ class AuthService {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       _auth.currentUser!.updateDisplayName(name);
+      // _auth.currentUser!.
       await _firestore.collection(AppFirestoreCollectionNames.usersCollection).doc(_auth.currentUser!.uid).set({
         AppFirestoreFieldNames.nameField: name,
         AppFirestoreFieldNames.emailField: email,

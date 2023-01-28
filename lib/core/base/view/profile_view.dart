@@ -149,7 +149,7 @@ class ProfileView extends StatelessWidget {
       ),
       title: Text(
         text.locale,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       onTap: () {
         Navigator.pop(context);

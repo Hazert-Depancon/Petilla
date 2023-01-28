@@ -96,6 +96,13 @@ class SelectAppView extends StatelessWidget {
             imagePath: ImageConstants.instance.helpMe,
             onTap: const HelpMeControl(),
           ),
+          // mainSizedBox,
+          // SelectAppWidget(
+          //   title: "Petcook",
+          //   description: "Hayvanlar için sosyal medya!",
+          //   imagePath: ImageConstants.instance.petcook,
+          //   onTap: const PetCookControlView(),
+          // ),
         ],
       ),
     );

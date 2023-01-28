@@ -150,19 +150,4 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         },
         child: const Icon(AppIcons.addPhoto),
       );
-
-  Builder _filterButton() {
-    return Builder(
-      builder: (BuildContext context) {
-        return GestureDetector(
-          onTap: () {
-            Scaffold.of(context).openEndDrawer();
-          },
-          child: const Icon(
-            AppIcons.filterIcon,
-          ),
-        );
-      },
-    );
-  }
 }

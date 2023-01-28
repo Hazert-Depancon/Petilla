@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/view/group_template_view.dart';

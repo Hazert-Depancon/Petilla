@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
 import 'package:petilla_app_project/core/base/view/profile_view.dart';
+
 part 'select_app_view_view_model.g.dart';
 
 class SelectAppViewViewModel = _SelectAppViewViewModelBase with _$SelectAppViewViewModel;
