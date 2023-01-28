@@ -1,11 +1,10 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
@@ -26,19 +25,12 @@ class SelectAppView extends StatelessWidget {
 
   late SelectAppViewViewModel viewModel;
 
-  BannerAd? _banner;
-
-  void _createBannerAd() {
-    _banner = AdmobManager().createBannerAd();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<SelectAppViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
-        _createBannerAd();
       },
       viewModel: SelectAppViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
@@ -48,15 +40,7 @@ class SelectAppView extends StatelessWidget {
   Scaffold _buildScaffold(context) => Scaffold(
         appBar: _appBar(context),
         body: _body(context),
-        bottomNavigationBar: _banner == null
-            ? null
-            : Container(
-                margin: const EdgeInsets.only(bottom: 0),
-                height: 52,
-                child: AdWidget(
-                  ad: _banner!,
-                ),
-              ),
+        bottomNavigationBar: const AdWidgetBanner(),
       );
 
   AppBar _appBar(BuildContext context) {
@@ -71,39 +55,41 @@ class SelectAppView extends StatelessWidget {
     );
   }
 
-  SingleChildScrollView _body(context) {
-    return SingleChildScrollView(
-      padding: ProjectPaddings.horizontalMainPadding,
-      child: Column(
-        children: [
-          SelectAppWidget(
-            title: LocaleKeys.petilla.locale,
-            description: LocaleKeys.petillaDescription.locale,
-            imagePath: ImageConstants.instance.petilla,
-            onTap: const MainPetilla(),
-          ),
-          mainSizedBox,
-          SelectAppWidget(
-            title: LocaleKeys.petform.locale,
-            description: LocaleKeys.petformDescription.locale,
-            imagePath: ImageConstants.instance.petform,
-            onTap: const MainPetForm(),
-          ),
-          mainSizedBox,
-          SelectAppWidget(
-            title: LocaleKeys.helpMe.locale,
-            description: LocaleKeys.helpMeDescription.locale,
-            imagePath: ImageConstants.instance.helpMe,
-            onTap: const HelpMeControl(),
-          ),
-          // mainSizedBox,
-          // SelectAppWidget(
-          //   title: "Petcook",
-          //   description: "Hayvanlar için sosyal medya!",
-          //   imagePath: ImageConstants.instance.petcook,
-          //   onTap: const PetCookControlView(),
-          // ),
-        ],
+  SafeArea _body(context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: ProjectPaddings.horizontalMainPadding,
+        child: Column(
+          children: [
+            SelectAppWidget(
+              title: LocaleKeys.petilla.locale,
+              description: LocaleKeys.petillaDescription.locale,
+              imagePath: ImageConstants.instance.petilla,
+              onTap: const MainPetilla(),
+            ),
+            mainSizedBox,
+            SelectAppWidget(
+              title: LocaleKeys.petform.locale,
+              description: LocaleKeys.petformDescription.locale,
+              imagePath: ImageConstants.instance.petform,
+              onTap: const MainPetForm(),
+            ),
+            mainSizedBox,
+            SelectAppWidget(
+              title: LocaleKeys.helpMe.locale,
+              description: LocaleKeys.helpMeDescription.locale,
+              imagePath: ImageConstants.instance.helpMe,
+              onTap: const HelpMeControl(),
+            ),
+            // mainSizedBox,
+            // SelectAppWidget(
+            //   title: "Petcook",
+            //   description: "Hayvanlar için sosyal medya!",
+            //   imagePath: ImageConstants.instance.petcook,
+            //   onTap: const PetCookControlView(),
+            // ),
+          ],
+        ),
       ),
     );
   }

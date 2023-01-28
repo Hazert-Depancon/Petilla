@@ -3,12 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
@@ -19,19 +18,12 @@ class PetformHomeView extends StatelessWidget {
 
   late PetformHomeViewViewModel viewModel;
 
-  BannerAd? _banner;
-
-  void _createBannerAd() {
-    _banner = AdmobManager().createBannerAd();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<PetformHomeViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
-        _createBannerAd();
       },
       viewModel: PetformHomeViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
@@ -39,19 +31,10 @@ class PetformHomeView extends StatelessWidget {
   }
 
   Scaffold _buildScaffold(context) => Scaffold(
-        appBar: _appBar(context),
-        body: _body(context),
-        floatingActionButton: _addGroup(context),
-        bottomNavigationBar: _banner == null
-            ? null
-            : Container(
-                margin: const EdgeInsets.only(bottom: 0),
-                height: 52,
-                child: AdWidget(
-                  ad: _banner!,
-                ),
-              ),
-      );
+      appBar: _appBar(context),
+      body: _body(context),
+      floatingActionButton: _addGroup(context),
+      bottomNavigationBar: const AdWidgetBanner());
 
   Column _body(BuildContext context) {
     return Column(
