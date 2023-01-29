@@ -31,10 +31,11 @@ class PetformHomeView extends StatelessWidget {
   }
 
   Scaffold _buildScaffold(context) => Scaffold(
-      appBar: _appBar(context),
-      body: _body(context),
-      floatingActionButton: _addGroup(context),
-      bottomNavigationBar: const AdWidgetBanner());
+        appBar: _appBar(context),
+        body: _body(context),
+        floatingActionButton: _addGroup(context),
+        bottomNavigationBar: const AdWidgetBanner(),
+      );
 
   Column _body(BuildContext context) {
     return Column(

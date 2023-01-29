@@ -57,7 +57,9 @@
 			<string>sms</string>
 			<string>tel</string>
 		</array>
-		<string>camera</string>
+		<key>GADApplicationIdentifier</key>
+		<string>ca-app-pub-6393554220663084~5107314846</string>
+		<string>NSCameraUsageDescription</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string></string>
 		<key>NSPhotoLibraryUsageDescription</key>
