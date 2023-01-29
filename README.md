@@ -32,4 +32,4 @@ Erdinç Güllü (Danışman)
 
 A Eymen Nuhoğlu (Danışman)
 
-M. Said Korkmaz (Yazılım Yardımı, https://github.com/saidkorkmaz)
+M. Said Korkmaz (Yazılım Yardımı, Yatırımcı, Danışman, https://github.com/saidkorkmaz)
