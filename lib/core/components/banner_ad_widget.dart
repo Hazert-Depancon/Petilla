@@ -24,12 +24,12 @@ class _AdWidgetBannerState extends State<AdWidgetBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 0),
-      height: 52,
-      child: AdWidget(
-        ad: _banner!,
-      ),
-    );
+    return _banner == null
+        ? Container()
+        : Container(
+            margin: const EdgeInsets.only(bottom: 0),
+            height: 52,
+            child: AdWidget(ad: _banner!),
+          );
   }
 }

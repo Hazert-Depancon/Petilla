@@ -84,23 +84,25 @@ class HelpMeDetailView extends StatelessWidget {
     );
   }
 
-  SingleChildScrollView _body(context) {
-    return SingleChildScrollView(
-      padding: ProjectPaddings.horizontalMainPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _imageContainer(),
-          mainHeightSizedBox,
-          _titleText(context),
-          mainHeightSizedBox,
-          _descriptionText(context),
-          mainHeightSizedBox,
-          helpMeModel.isFoodHelp ? _footdHelpText(context) : _emptySizedBox(),
-          helpMeModel.isFoodHelp ? mainHeightSizedBox : _emptySizedBox(),
-          helpMeModel.isVetHelp ? _vetHelpText(context) : _emptySizedBox(),
-          _otherNeeds(context),
-        ],
+  SafeArea _body(context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: ProjectPaddings.horizontalMainPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _imageContainer(),
+            mainHeightSizedBox,
+            _titleText(context),
+            mainHeightSizedBox,
+            _descriptionText(context),
+            mainHeightSizedBox,
+            helpMeModel.isFoodHelp ? _footdHelpText(context) : _emptySizedBox(),
+            helpMeModel.isFoodHelp ? mainHeightSizedBox : _emptySizedBox(),
+            helpMeModel.isVetHelp ? _vetHelpText(context) : _emptySizedBox(),
+            _otherNeeds(context),
+          ],
+        ),
       ),
     );
   }

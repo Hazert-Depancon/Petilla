@@ -15,7 +15,6 @@ import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class PetillaHomeView extends StatefulWidget {
   const PetillaHomeView({Key? key}) : super(key: key);
@@ -229,7 +228,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedAgeRangeFilter = title;
         });
       },
-      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyMedium!.copyWith(fontSize: 20)),
     );
   }
 
@@ -249,7 +248,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedTypeFilter = title;
         });
       },
-      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyMedium!.copyWith(fontSize: 20)),
     );
   }
 
@@ -269,7 +268,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           selectedGenderFilter = title;
         });
       },
-      title: Text(title, style: textTheme.bodyText2!.copyWith(fontSize: 20)),
+      title: Text(title, style: textTheme.bodyMedium!.copyWith(fontSize: 20)),
     );
   }
 
@@ -299,32 +298,34 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
     );
   }
 
-  StreamBuilder _streamBuilder() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: isThereAFilter
-          ? FirebaseFirestore.instance
-              .collection(AppFirestoreCollectionNames.petsCollection)
-              .where(AppFirestoreFieldNames.petTypeField, isEqualTo: selectedTypeFilter)
-              .where(AppFirestoreFieldNames.ageRangeField, isEqualTo: selectedAgeRangeFilter)
-              .where(AppFirestoreFieldNames.genderField, isEqualTo: selectedGenderFilter)
-              .snapshots()
-          : FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.petsCollection).snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
-            return _notPetYet(context);
+  SafeArea _streamBuilder() {
+    return SafeArea(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: isThereAFilter
+            ? FirebaseFirestore.instance
+                .collection(AppFirestoreCollectionNames.petsCollection)
+                .where(AppFirestoreFieldNames.petTypeField, isEqualTo: selectedTypeFilter)
+                .where(AppFirestoreFieldNames.ageRangeField, isEqualTo: selectedAgeRangeFilter)
+                .where(AppFirestoreFieldNames.genderField, isEqualTo: selectedGenderFilter)
+                .snapshots()
+            : FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.petsCollection).snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
+              return _notPetYet(context);
+            }
+            return _gridview(snapshot);
           }
-          return _gridview(snapshot);
-        }
-        if (snapshot.hasError) {
-          return _errorLottie();
-        }
-        if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionErrorLottie();
-        }
+          if (snapshot.hasError) {
+            return _errorLottie();
+          }
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionErrorLottie();
+          }
 
-        return _loadingLottie();
-      },
+          return _loadingLottie();
+        },
+      ),
     );
   }
 
@@ -358,7 +359,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   _backSelectApp(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAppView()));
+        Navigator.pop(context);
       },
       child: const Icon(
         AppIcons.arrowBackIcon,

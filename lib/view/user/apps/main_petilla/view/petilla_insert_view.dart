@@ -29,32 +29,34 @@ class PetillaInsertView extends StatelessWidget {
     );
   }
 
-  StreamBuilder<QuerySnapshot<Object?>> _body() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.petsCollection)
-          .where(
-            AppFirestoreFieldNames.currentUidField,
-            isEqualTo: FirebaseAuth.instance.currentUser!.uid,
-          )
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
-            return _notPetYet(context);
+  SafeArea _body() {
+    return SafeArea(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.petsCollection)
+            .where(
+              AppFirestoreFieldNames.currentUidField,
+              isEqualTo: FirebaseAuth.instance.currentUser!.uid,
+            )
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
+              return _notPetYet(context);
+            }
+
+            return _inserts(snapshot);
+          }
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionError();
+          }
+          if (snapshot.hasError) {
+            return _errorLottie();
           }
 
-          return _inserts(snapshot);
-        }
-        if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionError();
-        }
-        if (snapshot.hasError) {
-          return _errorLottie();
-        }
-
-        return _loadingLottie();
-      },
+          return _loadingLottie();
+        },
+      ),
     );
   }
 

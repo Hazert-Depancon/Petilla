@@ -29,10 +29,12 @@ class _OnboardingState extends BaseState<Onboarding> {
     );
   }
 
-  Container _body(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 80),
-      child: _pageView(context),
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 80),
+        child: _pageView(context),
+      ),
     );
   }
 

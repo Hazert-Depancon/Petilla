@@ -24,18 +24,20 @@ class _IlceSecmeSayfasiState extends State<IlceSecmeSayfasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-          itemCount: widget.ilceIsimleri.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(
-                widget.ilceIsimleri[index],
-              ),
-              onTap: () {
-                Navigator.pop(context, index);
-              },
-            );
-          }),
+      body: SafeArea(
+        child: ListView.builder(
+            itemCount: widget.ilceIsimleri.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  widget.ilceIsimleri[index],
+                ),
+                onTap: () {
+                  Navigator.pop(context, index);
+                },
+              );
+            }),
+      ),
     );
   }
 }

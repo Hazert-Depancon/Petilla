@@ -34,34 +34,36 @@ class RegisterView extends StatelessWidget {
     );
   }
 
-  Form _body(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          _loginDecorationImage(),
-          const SizedBox(height: 24),
-          Expanded(
-            flex: 6,
-            child: SingleChildScrollView(
-              padding: ProjectPaddings.horizontalLargePadding,
-              child: Column(
-                children: [
-                  _nameTextField(),
-                  mainSizedBox,
-                  _emailTextField(),
-                  mainSizedBox,
-                  _passwordTextField(),
-                  mainSizedBox,
-                  _registerButton(context),
-                  mainSizedBox,
-                  _alreadyHaveAnAccount(context),
-                  _logInButton(context),
-                ],
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            _loginDecorationImage(),
+            const SizedBox(height: 24),
+            Expanded(
+              flex: 6,
+              child: SingleChildScrollView(
+                padding: ProjectPaddings.horizontalLargePadding,
+                child: Column(
+                  children: [
+                    _nameTextField(),
+                    mainSizedBox,
+                    _emailTextField(),
+                    mainSizedBox,
+                    _passwordTextField(),
+                    mainSizedBox,
+                    _registerButton(context),
+                    mainSizedBox,
+                    _alreadyHaveAnAccount(context),
+                    _logInButton(context),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

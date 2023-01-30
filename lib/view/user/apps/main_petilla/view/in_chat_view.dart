@@ -72,21 +72,23 @@ class _InChatViewState extends BaseState<InChatView> {
         body: _body,
       );
 
-  Column get _body {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
-        Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: Row(
-            children: [
-              Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
-            ],
+  SafeArea get _body {
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
+          Padding(
+            padding: ProjectPaddings.horizontalMainPadding,
+            child: Row(
+              children: [
+                Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
+              ],
+            ),
           ),
-        ),
-        mainSizedBox,
-      ],
+          mainSizedBox,
+        ],
+      ),
     );
   }
 

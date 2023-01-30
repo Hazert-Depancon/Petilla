@@ -50,20 +50,20 @@ class LightTheme {
 
       // Text
       textTheme: const TextTheme(
-        button: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-        bodyText1: TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
-        subtitle2: TextStyle(fontSize: 16),
-        headline4: TextStyle(
+        labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+        bodyLarge: TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
+        titleSmall: TextStyle(fontSize: 16),
+        headlineMedium: TextStyle(
           fontSize: 24,
           color: LightThemeColors.black,
           fontWeight: FontWeight.w500,
         ),
-        headline5: TextStyle(
+        headlineSmall: TextStyle(
           fontSize: 20,
           color: LightThemeColors.black,
           fontWeight: FontWeight.w500,
         ),
-        headline6: TextStyle(color: LightThemeColors.grey, fontSize: 18),
+        titleLarge: TextStyle(color: LightThemeColors.grey, fontSize: 18),
       ),
 
       // FloatingActionButton

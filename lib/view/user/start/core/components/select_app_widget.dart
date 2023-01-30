@@ -20,10 +20,9 @@ class SelectAppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushAndRemoveUntil(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => onTap),
-          (route) => false,
         );
       },
       child: Container(
@@ -59,11 +58,11 @@ class SelectAppWidget extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Text(
                       description,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                       overflow: TextOverflow.clip,
                     ),
                   ],

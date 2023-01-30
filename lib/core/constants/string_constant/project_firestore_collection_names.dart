@@ -9,6 +9,9 @@ class AppFirestoreCollectionNames {
   static String reportAnimalCollection = "report_animal";
   static String reportedInserts = "reported_inserts";
 
+  // Petcook
+  static String petCook = "petcook";
+
   // Other Collections
   static String feedBacks = "feed_backs";
   static String animalHelp = "animal_help";

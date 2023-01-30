@@ -45,11 +45,7 @@ dependencies:
 
   #Admob
   google_mobile_ads: ^2.3.0
-<<<<<<< Updated upstream
   
-=======
-
->>>>>>> Stashed changes
   #Image
   flutter_image_compress: ^1.1.0
   image_picker: ^0.8.5+3

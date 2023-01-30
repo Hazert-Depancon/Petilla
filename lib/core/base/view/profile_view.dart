@@ -22,9 +22,16 @@ import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
 import 'package:petilla_app_project/view/user/other/view/social_connection_view.dart';
 import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
-class ProfileView extends StatelessWidget {
-  ProfileView({Key? key}) : super(key: key);
+class ProfileView extends StatefulWidget {
+  const ProfileView({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
+
   final smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   final _firestore = FirebaseFirestore.instance;
@@ -64,7 +71,7 @@ class ProfileView extends StatelessWidget {
       onTap: () {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => SelectAppView()),
+          MaterialPageRoute(builder: (context) => const SelectAppView()),
           (route) => false,
         );
       },
@@ -142,31 +149,35 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  StreamBuilder<DocumentSnapshot> _streamBodyBuilder() {
-    return StreamBuilder<DocumentSnapshot>(
-      stream: _firestore
-          .collection(AppFirestoreCollectionNames.usersCollection)
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          String name = snapshot.data![AppFirestoreFieldNames.nameField];
-          String email = snapshot.data![AppFirestoreFieldNames.emailField];
-          return _hasDataScreen(snapshot, name, email, context);
-        }
-        if (snapshot.hasError) {
-          return _errorLottie;
-        }
-        if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionErrorLottie;
-        }
-        return _loadingLottie;
-      },
+  SafeArea _streamBodyBuilder() {
+    return SafeArea(
+      child: StreamBuilder<DocumentSnapshot>(
+        stream: _firestore
+            .collection(AppFirestoreCollectionNames.usersCollection)
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            String name = snapshot.data![AppFirestoreFieldNames.nameField];
+            String email = snapshot.data![AppFirestoreFieldNames.emailField];
+            return _hasDataScreen(snapshot, name, email, context);
+          }
+          if (snapshot.hasError) {
+            return _errorLottie;
+          }
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionErrorLottie;
+          }
+          return _loadingLottie;
+        },
+      ),
     );
   }
 
   StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
+
   StatusView get _errorLottie => const StatusView(status: StatusKeysEnum.ERROR);
+
   StatusView get _connectionErrorLottie => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
   SingleChildScrollView _hasDataScreen(snapshot, String name, String email, context) {

@@ -17,7 +17,6 @@ import 'package:petilla_app_project/view/user/apps/help_me/core/components/help_
 import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_view.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_home_view_view_model.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class HelpMeHomeView extends StatefulWidget {
   const HelpMeHomeView({super.key});
@@ -55,31 +54,29 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
             normalWidthSizedBox,
           ],
         ),
-        body: _bodyStreamBuilder(),
+        body: _body(),
       );
 
   GestureDetector _backIcon(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => SelectAppView()),
-          (route) => false,
-        );
+        Navigator.pop(context);
       },
       child: const Icon(AppIcons.arrowBackIcon),
     );
   }
 
-  StreamBuilder<QuerySnapshot<Object?>> _bodyStreamBuilder() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.animalHelp).snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return _listView(snapshot);
-        }
-        return const StatusView(status: StatusKeysEnum.LOADING);
-      },
+  SafeArea _body() {
+    return SafeArea(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.animalHelp).snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _listView(snapshot);
+          }
+          return const StatusView(status: StatusKeysEnum.LOADING);
+        },
+      ),
     );
   }
 

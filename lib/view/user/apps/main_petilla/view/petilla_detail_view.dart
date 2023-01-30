@@ -35,7 +35,7 @@ class _DetailViewState extends BaseState<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    final headline4 = textTheme.headline4;
+    final headline4 = textTheme.headlineMedium;
 
     return BaseView<DetailViewViewModel>(
       onModelReady: (model) {
@@ -120,32 +120,34 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  SingleChildScrollView _body(BuildContext context, TextStyle? headline4) {
-    return SingleChildScrollView(
-      padding: ProjectPaddings.horizontalMainPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _userNameText(context),
-          smallSizedBox,
-          _imageContainer(),
-          smallSizedBox,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _nameText(headline4),
-              _priceText(headline4),
-            ],
-          ),
-          mainSizedBox,
-          _descriptionText(context),
-          const SizedBox(height: 16),
-          _ageListTile(context),
-          _typeListTile(context),
-          _genderListTile(context),
-          _breedListTile(context),
-          _locationListTile(context),
-        ],
+  SafeArea _body(BuildContext context, TextStyle? headline4) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: ProjectPaddings.horizontalMainPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _userNameText(context),
+            smallSizedBox,
+            _imageContainer(),
+            smallSizedBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _nameText(headline4),
+                _priceText(headline4),
+              ],
+            ),
+            mainSizedBox,
+            _descriptionText(context),
+            const SizedBox(height: 16),
+            _ageListTile(context),
+            _typeListTile(context),
+            _genderListTile(context),
+            _breedListTile(context),
+            _locationListTile(context),
+          ],
+        ),
       ),
     );
   }
@@ -162,7 +164,7 @@ class _DetailViewState extends BaseState<DetailView> {
       },
       child: Text(
         widget.petModel.currentUserName,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
     );
   }

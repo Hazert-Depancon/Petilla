@@ -180,26 +180,28 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
         title: Text(_ThisPageTexts.addAPetTwoForTwo),
       );
 
-  ListView _body(BuildContext context) {
-    return ListView(
-      padding: ProjectPaddings.horizontalMainPadding,
-      children: [
-        mainSizedBox,
-        citySelect,
-        mainSizedBox,
-        districtSelect,
-        mainSizedBox,
-        _petTypeDropDown,
-        mainSizedBox,
-        _petGenderDropDown,
-        mainSizedBox,
-        _petAgeRangeDropDown,
-        mainSizedBox,
-        _textField,
-        mainSizedBox,
-        widget.radioValue == 1 ? const SizedBox() : _textField,
-        _submitButton(context),
-      ],
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: ListView(
+        padding: ProjectPaddings.horizontalMainPadding,
+        children: [
+          mainSizedBox,
+          citySelect,
+          mainSizedBox,
+          districtSelect,
+          mainSizedBox,
+          _petTypeDropDown,
+          mainSizedBox,
+          _petGenderDropDown,
+          mainSizedBox,
+          _petAgeRangeDropDown,
+          mainSizedBox,
+          _textField,
+          mainSizedBox,
+          widget.radioValue == 1 ? const SizedBox() : _textField,
+          _submitButton(context),
+        ],
+      ),
     );
   }
 

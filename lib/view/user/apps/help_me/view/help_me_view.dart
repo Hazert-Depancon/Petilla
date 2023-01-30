@@ -72,33 +72,35 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     );
   }
 
-  Form _buildBody(context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: Observer(builder: (_) {
-          return Column(
-            children: [
-              viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
-              mainHeightSizedBox,
-              _titleTextField,
-              mainHeightSizedBox,
-              _descriptionTextField,
-              mainHeightSizedBox,
-              _otherNeedsTextfield,
-              mainHeightSizedBox,
-              vetHelpCheckBoxListTile,
-              mainHeightSizedBox,
-              foodHelpCheckBoxListTile,
-              mainHeightSizedBox,
-              _locationRadioListTile,
-              mainHeightSizedBox,
-              _submitButton,
-              mainHeightSizedBox,
-            ],
-          );
-        }),
+  SafeArea _buildBody(context) {
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: Observer(builder: (_) {
+            return Column(
+              children: [
+                viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+                mainHeightSizedBox,
+                _titleTextField,
+                mainHeightSizedBox,
+                _descriptionTextField,
+                mainHeightSizedBox,
+                _otherNeedsTextfield,
+                mainHeightSizedBox,
+                vetHelpCheckBoxListTile,
+                mainHeightSizedBox,
+                foodHelpCheckBoxListTile,
+                mainHeightSizedBox,
+                _locationRadioListTile,
+                mainHeightSizedBox,
+                _submitButton,
+                mainHeightSizedBox,
+              ],
+            );
+          }),
+        ),
       ),
     );
   }
@@ -124,7 +126,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           currentLocationVal = value;
         });
       },
-      title: Text(title, style: textTheme.bodyText1),
+      title: Text(title, style: textTheme.bodyLarge),
     );
   }
 

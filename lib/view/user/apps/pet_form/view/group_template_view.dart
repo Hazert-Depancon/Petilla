@@ -66,27 +66,29 @@ class _GroupChatState extends BaseState<GroupChat> {
     );
   }
 
-  Column get _body {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          child: ShowMessages(
-            collectionId: widget.collectionId,
-            docId: widget.docId,
+  SafeArea get _body {
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: ShowMessages(
+              collectionId: widget.collectionId,
+              docId: widget.docId,
+            ),
           ),
-        ),
-        Padding(
-          padding: ProjectPaddings.horizontalMainPadding,
-          child: Row(
-            children: [
-              Expanded(child: _textField(msg)),
-            ],
+          Padding(
+            padding: ProjectPaddings.horizontalMainPadding,
+            child: Row(
+              children: [
+                Expanded(child: _textField(msg)),
+              ],
+            ),
           ),
-        ),
-        mainSizedBox
-      ],
+          mainSizedBox
+        ],
+      ),
     );
   }
 

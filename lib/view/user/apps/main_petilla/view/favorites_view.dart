@@ -42,22 +42,24 @@ class FavoritesView extends StatelessWidget {
         automaticallyImplyLeading: false,
       );
 
-  Observer _body() {
-    return Observer(builder: (_) {
-      return FutureBuilder(
-        future: viewModel.getShared(),
-        builder: (context, snapshot) {
-          if (viewModel.myList?.isNotEmpty ?? false) {
-            return _listView();
-          }
-          if (viewModel.myList?.isEmpty ?? true) {
-            return _emptyLottie;
-          }
+  SafeArea _body() {
+    return SafeArea(
+      child: Observer(builder: (_) {
+        return FutureBuilder(
+          future: viewModel.getShared(),
+          builder: (context, snapshot) {
+            if (viewModel.myList?.isNotEmpty ?? false) {
+              return _listView();
+            }
+            if (viewModel.myList?.isEmpty ?? true) {
+              return _emptyLottie;
+            }
 
-          return _loadingLottie;
-        },
-      );
-    });
+            return _loadingLottie;
+          },
+        );
+      }),
+    );
   }
 
   Observer _listView() {

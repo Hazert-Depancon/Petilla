@@ -44,20 +44,22 @@ class FeedBackView extends StatelessWidget {
         title: Text(LocaleKeys.feedBack.locale),
       );
 
-  Form _body(context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: Center(
-          child: Column(
-            children: [
-              _titleTextField(),
-              mainHeightSizedBox,
-              _descriptionTextField(),
-              mainHeightSizedBox,
-              _submitButton(context),
-            ],
+  SafeArea _body(context) {
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: Center(
+            child: Column(
+              children: [
+                _titleTextField(),
+                mainHeightSizedBox,
+                _descriptionTextField(),
+                mainHeightSizedBox,
+                _submitButton(context),
+              ],
+            ),
           ),
         ),
       ),

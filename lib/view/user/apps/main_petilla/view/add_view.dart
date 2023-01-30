@@ -53,26 +53,28 @@ class _AddViewState extends BaseState<AddView> {
         body: _body(context, adoptRadioListTile),
       );
 
-  Form _body(BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
-    return Form(
-      key: _formKey,
-      child: Observer(builder: (_) {
-        return ListView(
-          padding: ProjectPaddings.horizontalMainPadding,
-          children: [
-            viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
-            mainSizedBox,
-            _petNameTextField(),
-            mainSizedBox,
-            _petDescriptionTextField(),
-            adoptRadioListTile,
-            mainSizedBox,
-            Align(
-              child: _nextButton(context),
-            ),
-          ],
-        );
-      }),
+  SafeArea _body(BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Observer(builder: (_) {
+          return ListView(
+            padding: ProjectPaddings.horizontalMainPadding,
+            children: [
+              viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+              mainSizedBox,
+              _petNameTextField(),
+              mainSizedBox,
+              _petDescriptionTextField(),
+              adoptRadioListTile,
+              mainSizedBox,
+              Align(
+                child: _nextButton(context),
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 
@@ -230,7 +232,7 @@ class _AddViewState extends BaseState<AddView> {
           val = value;
         });
       },
-      title: Text(title, style: textTheme.bodyText1),
+      title: Text(title, style: textTheme.bodyLarge),
     );
   }
 

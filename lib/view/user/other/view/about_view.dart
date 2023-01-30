@@ -12,15 +12,17 @@ class AboutView extends StatelessWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.about.locale),
       ),
-      body: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
-        child: Column(
-          children: [
-            Text(
-              LocaleKeys.aboutOne.locale,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: ProjectPaddings.horizontalMainPadding,
+          child: Column(
+            children: [
+              Text(
+                LocaleKeys.aboutOne.locale,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
+          ),
         ),
       ),
     );

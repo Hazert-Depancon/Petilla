@@ -13,16 +13,20 @@ import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colo
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_control.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
+import 'package:petilla_app_project/view/user/apps/petcook/view/petcook_control_view.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';
 
-class SelectAppView extends StatelessWidget {
-  SelectAppView({Key? key}) : super(key: key);
+class SelectAppView extends StatefulWidget {
+  const SelectAppView({Key? key}) : super(key: key);
 
+  @override
+  State<SelectAppView> createState() => _SelectAppViewState();
+}
+
+class _SelectAppViewState extends State<SelectAppView> {
   final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
-
   late SelectAppViewViewModel viewModel;
 
   @override
@@ -81,13 +85,13 @@ class SelectAppView extends StatelessWidget {
               imagePath: ImageConstants.instance.helpMe,
               onTap: const HelpMeControl(),
             ),
-            // mainSizedBox,
-            // SelectAppWidget(
-            //   title: "Petcook",
-            //   description: "Hayvanlar için sosyal medya!",
-            //   imagePath: ImageConstants.instance.petcook,
-            //   onTap: const PetCookControlView(),
-            // ),
+            mainSizedBox,
+            SelectAppWidget(
+              title: "Petcook",
+              description: "Hayvanlar için sosyal medya!",
+              imagePath: ImageConstants.instance.petcook,
+              onTap: const PetCookControlView(),
+            ),
           ],
         ),
       ),

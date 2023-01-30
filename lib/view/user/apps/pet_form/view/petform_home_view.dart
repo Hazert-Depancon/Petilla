@@ -11,7 +11,6 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class PetformHomeView extends StatelessWidget {
   PetformHomeView({Key? key}) : super(key: key);
@@ -37,15 +36,17 @@ class PetformHomeView extends StatelessWidget {
         bottomNavigationBar: const AdWidgetBanner(),
       );
 
-  Column _body(BuildContext context) {
-    return Column(
-      children: [
-        _generalListTile(context),
-        _dogListTile(context),
-        _catListTile(context),
-        _rabbitListTile(context),
-        _fishListTile(context),
-      ],
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        children: [
+          _generalListTile(context),
+          _dogListTile(context),
+          _catListTile(context),
+          _rabbitListTile(context),
+          _fishListTile(context),
+        ],
+      ),
     );
   }
 
@@ -126,11 +127,7 @@ class PetformHomeView extends StatelessWidget {
   GestureDetector _backIcon(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => SelectAppView()),
-          (route) => false,
-        );
+        Navigator.pop(context);
       },
       child: const Icon(AppIcons.arrowBackIcon),
     );

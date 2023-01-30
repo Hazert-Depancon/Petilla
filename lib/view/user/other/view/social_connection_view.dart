@@ -10,22 +10,24 @@ class SocialConnectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String instagramUrl = "https://www.instagram.com/petilla_tr/";
+    const String instagramUrl = "https://www.instagram.com/petilla_turkiye/";
     const String discordUrl = "https://discord.gg/U8GFH5tzw9";
 
     return Scaffold(
       appBar: _appBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _listTile(context, FontAwesomeIcons.instagram, LocaleKeys.instagram.locale, instagramUrl),
-            _listTile(
-              context,
-              FontAwesomeIcons.discord,
-              LocaleKeys.discord.locale,
-              discordUrl,
-            ),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _listTile(context, FontAwesomeIcons.instagram, LocaleKeys.instagram.locale, instagramUrl),
+              _listTile(
+                context,
+                FontAwesomeIcons.discord,
+                LocaleKeys.discord.locale,
+                discordUrl,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -43,7 +45,7 @@ class SocialConnectionView extends StatelessWidget {
       },
       title: Text(
         text,
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
     );
   }

@@ -32,7 +32,7 @@ class ChatSelectView extends StatelessWidget {
 
   Scaffold get buildScaffold => Scaffold(
         appBar: _appBar,
-        body: _customstreamBuilder(),
+        body: _body(),
       );
 
   AppBar get _appBar {
@@ -42,30 +42,32 @@ class ChatSelectView extends StatelessWidget {
     );
   }
 
-  StreamBuilder<QuerySnapshot<Object?>> _customstreamBuilder() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.usersCollection)
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection(AppFirestoreCollectionNames.messages)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data!.docs.isEmpty) {
-            return _notMessagesYetWidget;
+  SafeArea _body() {
+    return SafeArea(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.usersCollection)
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection(AppFirestoreCollectionNames.messages)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.docs.isEmpty) {
+              return _notMessagesYetWidget;
+            }
+            if (snapshot.data!.docs.isNotEmpty) {
+              return _customListView(snapshot);
+            }
           }
-          if (snapshot.data!.docs.isNotEmpty) {
-            return _customListView(snapshot);
+          if (snapshot.hasError) {
+            return _errorWidget;
           }
-        }
-        if (snapshot.hasError) {
-          return _errorWidget;
-        }
-        if (snapshot.connectionState == ConnectionState.none) {
-          return _connectionError;
-        }
-        return _loadingWidget;
-      },
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionError;
+          }
+          return _loadingWidget;
+        },
+      ),
     );
   }
 

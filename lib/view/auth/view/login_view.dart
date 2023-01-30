@@ -30,32 +30,34 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Form _body(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          _loginDecorationImage(),
-          const SizedBox(height: 24),
-          Expanded(
-            flex: 6,
-            child: SingleChildScrollView(
-              padding: ProjectPaddings.horizontalLargePadding,
-              child: Column(
-                children: [
-                  _mailTextField,
-                  mainSizedBox,
-                  _passwordTextField,
-                  mainSizedBox,
-                  _loginButton(context),
-                  mainSizedBox,
-                  _dontHaveAnAccount(context),
-                  _registerButton(context),
-                ],
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            _loginDecorationImage(),
+            const SizedBox(height: 24),
+            Expanded(
+              flex: 6,
+              child: SingleChildScrollView(
+                padding: ProjectPaddings.horizontalLargePadding,
+                child: Column(
+                  children: [
+                    _mailTextField,
+                    mainSizedBox,
+                    _passwordTextField,
+                    mainSizedBox,
+                    _loginButton(context),
+                    mainSizedBox,
+                    _dontHaveAnAccount(context),
+                    _registerButton(context),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

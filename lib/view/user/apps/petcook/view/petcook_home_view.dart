@@ -1,13 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/user/apps/petcook/core/components/photo_widget.dart';
+import 'package:petilla_app_project/view/user/apps/petcook/core/models/post_model.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/view/add_post_view.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/viewmodel/petcook_home_view_view_model.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
 class PetcookHomeView extends StatefulWidget {
   const PetcookHomeView({super.key});
@@ -36,15 +42,7 @@ class _PetcookHomeViewState extends State<PetcookHomeView> {
   Scaffold _buildScaffold(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      // body: StreamBuilder<QuerySnapshot>(
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       return ListView.builder(
-      //         itemBuilder: (context, index) {},
-      //       );
-      //     }
-      //   },
-      // ),
+      body: _body(),
     );
   }
 
@@ -67,15 +65,50 @@ class _PetcookHomeViewState extends State<PetcookHomeView> {
   GestureDetector _backIcon(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => SelectAppView()),
-          (route) => false,
-        );
+        Navigator.pop(context);
       },
       child: const Icon(
         AppIcons.arrowBackIcon,
         color: LightThemeColors.black,
+      ),
+    );
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> _body() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection(AppFirestoreCollectionNames.petCook)
+          .orderBy(AppFirestoreFieldNames.dateField, descending: true)
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data!.docs.isEmpty) {
+            return const StatusView(status: StatusKeysEnum.EMPTY);
+          }
+          return _listview(snapshot);
+        }
+        return const StatusView(status: StatusKeysEnum.LOADING);
+      },
+    );
+  }
+
+  ListView _listview(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return ListView.builder(
+      itemCount: snapshot.data!.docs.length,
+      itemBuilder: (context, index) {
+        return _photoWidget(snapshot, index);
+      },
+    );
+  }
+
+  PhotoWidget _photoWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+    return PhotoWidget(
+      postModel: PostModel(
+        senderUserEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
+        senderUserName: snapshot.data!.docs[index][AppFirestoreFieldNames.currentNameField],
+        senderUserId: snapshot.data!.docs[index][AppFirestoreFieldNames.senderIdField],
+        postDowlandUrl: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
+        description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
       ),
     );
   }
