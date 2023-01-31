@@ -3,12 +3,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.dart';
 import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
@@ -84,10 +86,7 @@ class _ProfileViewState extends State<ProfileView> {
       onTap: () {
         _settingBottomSheet(context);
       },
-      child: const Icon(
-        AppIcons.setting,
-        color: LightThemeColors.black,
-      ),
+      child: SvgPicture.asset(ImageConstants.instance.settings),
     );
   }
 

@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -254,7 +256,10 @@ class _DetailViewState extends BaseState<DetailView> {
           widget.petModel.currentEmail,
         );
       },
-      child: const Icon(AppIcons.chatIcon),
+      child: SvgPicture.asset(
+        ImageConstants.instance.chat,
+        color: LightThemeColors.white,
+      ),
     );
   }
 }

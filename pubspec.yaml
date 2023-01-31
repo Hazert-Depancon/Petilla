@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.5
   firebase_storage: ^11.0.10
+  firebase_messaging: ^14.2.1
 
   #Animation
   lottie: ^2.2.0

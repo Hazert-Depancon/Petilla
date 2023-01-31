@@ -117,7 +117,7 @@ class _PetcookHomeViewState extends State<PetcookHomeView> {
     return GestureDetector(
       child: SvgPicture.asset(
         ImageConstants.instance.profile,
-        height: 24,
+        height: 28,
       ),
     );
   }

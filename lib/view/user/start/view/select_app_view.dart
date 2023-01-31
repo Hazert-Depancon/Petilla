@@ -1,12 +1,12 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -103,9 +103,10 @@ class _SelectAppViewState extends State<SelectAppView> {
       onTap: () {
         viewModel.callProfileView();
       },
-      child: const Icon(
-        AppIcons.personOutlineIcon,
+      child: SvgPicture.asset(
+        ImageConstants.instance.profile,
         color: LightThemeColors.miamiMarmalade,
+        height: 28,
       ),
     );
   }

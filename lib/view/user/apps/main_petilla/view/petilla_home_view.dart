@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -290,9 +292,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           onTap: () {
             Scaffold.of(context).openEndDrawer();
           },
-          child: const Icon(
-            AppIcons.filterIcon,
-          ),
+          child: SvgPicture.asset(ImageConstants.instance.filter),
         );
       },
     );

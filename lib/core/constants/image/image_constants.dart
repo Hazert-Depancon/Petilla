@@ -22,6 +22,12 @@ class ImageConstants {
   String get petcook => toPng("petcook");
   String get add => toSvg("plus");
   String get profile => toSvg("profile");
+  String get settings => toSvg("settings");
+  String get eyeOpen => toSvg("eye_open");
+  String get eyeClose => toSvg("eye_close");
+  String get chat => toSvg("chat");
+  String get send => toSvg("send");
+  String get filter => toSvg("filter");
 
   String toSvg(String imageName) => "assets/svg/$imageName.svg";
   String toPng(String imageName) => "assets/images/$imageName.png";

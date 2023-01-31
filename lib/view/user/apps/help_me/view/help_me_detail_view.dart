@@ -2,8 +2,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/buttons/button.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -59,7 +61,7 @@ class HelpMeDetailView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 12),
       child: FloatingActionButton(
-        child: const Icon(AppIcons.chatIcon),
+        child: SvgPicture.asset(ImageConstants.instance.chat),
         onPressed: () {
           viewModel.callChatPage(
             context,
@@ -110,19 +112,19 @@ class HelpMeDetailView extends StatelessWidget {
   Text _otherNeeds(context) {
     return Text(
       helpMeModel.otherNeeds,
-      style: Theme.of(context).textTheme.subtitle2,
+      style: Theme.of(context).textTheme.titleSmall,
     );
   }
 
   SizedBox _emptySizedBox() => const SizedBox.shrink();
 
-  Text _vetHelpText(context) => Text(LocaleKeys.vetHelp.locale, style: Theme.of(context).textTheme.subtitle2);
+  Text _vetHelpText(context) => Text(LocaleKeys.vetHelp.locale, style: Theme.of(context).textTheme.titleSmall);
 
-  Text _footdHelpText(context) => Text(LocaleKeys.foodHelp.locale, style: Theme.of(context).textTheme.subtitle2);
+  Text _footdHelpText(context) => Text(LocaleKeys.foodHelp.locale, style: Theme.of(context).textTheme.titleSmall);
 
-  Text _descriptionText(context) => Text(helpMeModel.description, style: Theme.of(context).textTheme.headline6);
+  Text _descriptionText(context) => Text(helpMeModel.description, style: Theme.of(context).textTheme.titleLarge);
 
-  Text _titleText(context) => Text(helpMeModel.title, style: Theme.of(context).textTheme.headline4);
+  Text _titleText(context) => Text(helpMeModel.title, style: Theme.of(context).textTheme.headlineMedium);
 
   Container _imageContainer() {
     return Container(

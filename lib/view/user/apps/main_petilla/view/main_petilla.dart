@@ -92,7 +92,9 @@ class _MainPetillaState extends BaseState<MainPetilla> {
       );
 
   BottomNavigationBarItem get _chatsBottomNavigation => BottomNavigationBarItem(
-        icon: _selectedIndex == 3 ? const Icon(AppIcons.chatIcon) : const Icon(AppIcons.chatOutlinedIcon),
+        icon: _selectedIndex == 3
+            ? SvgPicture.asset(ImageConstants.instance.chat, color: LightThemeColors.miamiMarmalade)
+            : SvgPicture.asset(ImageConstants.instance.chat, color: LightThemeColors.grey),
         label: LocaleKeys.myMessages.locale,
       );
 

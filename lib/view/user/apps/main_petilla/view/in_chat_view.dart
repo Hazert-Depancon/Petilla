@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/components/single_message.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
@@ -130,7 +131,10 @@ class _InChatViewState extends BaseState<InChatView> {
                 widget.currentUserName,
               );
             },
-            icon: const Icon(AppIcons.sendIcon),
+            icon: SvgPicture.asset(
+              ImageConstants.instance.send,
+              color: LightThemeColors.white,
+            ),
           ),
         ),
       ),

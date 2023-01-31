@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
@@ -91,10 +92,15 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
 
   IconButton _visibilityIcon() {
     return IconButton(
-      icon: Icon(
-        _obscureText! ? AppIcons.visibilityOutlinedIcon : AppIcons.visibilityOffOutlinedIcon,
-        color: LightThemeColors.black,
-      ),
+      icon: _obscureText == false
+          ? SvgPicture.asset(
+              ImageConstants.instance.eyeOpen,
+              color: LightThemeColors.black,
+            )
+          : SvgPicture.asset(
+              ImageConstants.instance.eyeClose,
+              color: LightThemeColors.black,
+            ),
       onPressed: () {
         _changeVisibility();
       },
