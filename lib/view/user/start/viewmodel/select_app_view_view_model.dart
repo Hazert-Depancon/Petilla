@@ -20,6 +20,6 @@ abstract class _SelectAppViewViewModelBase with Store, BaseViewModel {
 
   @action
   void callProfileView() {
-    Navigator.push(viewModelContext, MaterialPageRoute(builder: (context) => ProfileView()));
+    Navigator.push(viewModelContext, MaterialPageRoute(builder: (context) => const ProfileView()));
   }
 }

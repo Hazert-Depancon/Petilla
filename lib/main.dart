@@ -44,7 +44,7 @@ void _initSystemUi() {
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: LightThemeColors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
     ),
   );
 }
