@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
@@ -44,7 +43,7 @@ class _SelectAppViewState extends State<SelectAppView> {
   Scaffold _buildScaffold(context) => Scaffold(
         appBar: _appBar(context),
         body: _body(context),
-        bottomNavigationBar: const AdWidgetBanner(),
+        // bottomNavigationBar: const AdWidgetBanner(),
       );
 
   AppBar _appBar(BuildContext context) {

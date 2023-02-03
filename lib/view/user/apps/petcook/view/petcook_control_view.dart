@@ -11,6 +11,6 @@ class PetCookControlView extends StatefulWidget {
 class _PetCookControlViewState extends State<PetCookControlView> {
   @override
   Widget build(BuildContext context) {
-    return const PetcookHomeView();
+    return PetcookHomeView();
   }
 }

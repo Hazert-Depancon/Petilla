@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
@@ -33,7 +32,7 @@ class PetformHomeView extends StatelessWidget {
         appBar: _appBar(context),
         body: _body(context),
         floatingActionButton: _addGroup(context),
-        bottomNavigationBar: const AdWidgetBanner(),
+        // bottomNavigationBar: const AdWidgetBanner(),
       );
 
   SafeArea _body(BuildContext context) {

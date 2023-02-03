@@ -73,6 +73,15 @@ mixin _$AddPostViewModel on _AddPostViewModelBase, Store {
     return _$pickImageGalleryAsyncAction.run(() => super.pickImageGallery());
   }
 
+  late final _$onSubmitButtonAsyncAction =
+      AsyncAction('_AddPostViewModelBase.onSubmitButton', context: context);
+
+  @override
+  Future<void> onSubmitButton(TextEditingController descriptionController) {
+    return _$onSubmitButtonAsyncAction
+        .run(() => super.onSubmitButton(descriptionController));
+  }
+
   @override
   String toString() {
     return '''
