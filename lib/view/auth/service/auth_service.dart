@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
@@ -10,21 +11,21 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> login(String email, String password, context) async {
-    showDefaultLoadingDialog(false, context);
     try {
+      showDefaultLoadingDialog(false, context);
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       showErrorDialog(true, e.message!, context);
     }
+
+    Navigator.pop(context);
   }
 
   Future<void> register(String email, String password, String name, context) async {
-    showDefaultLoadingDialog(false, context);
-
     try {
+      showDefaultLoadingDialog(false, context);
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       _auth.currentUser!.updateDisplayName(name);
-      // _auth.currentUser!.
       await _firestore.collection(AppFirestoreCollectionNames.usersCollection).doc(_auth.currentUser!.uid).set({
         AppFirestoreFieldNames.nameField: name,
         AppFirestoreFieldNames.emailField: email,
@@ -33,6 +34,8 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       showErrorDialog(true, e.message!, context);
     }
+
+    Navigator.pop(context);
   }
 
   Future<void> logout(context) async {

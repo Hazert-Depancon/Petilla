@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.dart';
+import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/image/image_constants.dart';
@@ -55,7 +56,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: _appBar(context),
       body: _streamBodyBuilder(),
-      // bottomNavigationBar: const AdWidgetBanner(),
+      bottomNavigationBar: const AdWidgetBanner(),
     );
   }
 

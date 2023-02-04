@@ -22,15 +22,13 @@ abstract class _ProfileViewViewModelBase with Store, BaseViewModel {
   @action
   Future<void> logOut() async {
     AuthService().logout(viewModelContext).then(
-          (value) => AuthService().logout(viewModelContext).then(
-                (value) => Navigator.pushAndRemoveUntil(
-                  viewModelContext,
-                  MaterialPageRoute(
-                    builder: (context) => LoginView(),
-                  ),
-                  (route) => false,
-                ),
-              ),
+          (value) => Navigator.pushAndRemoveUntil(
+            viewModelContext,
+            MaterialPageRoute(
+              builder: (context) => LoginView(),
+            ),
+            (route) => false,
+          ),
         );
   }
 }
