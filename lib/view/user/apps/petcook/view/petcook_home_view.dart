@@ -6,12 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/core/components/photo_widget.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/core/models/post_model.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/viewmodel/petcook_home_view_view_model.dart';
@@ -97,14 +97,20 @@ class PetcookHomeView extends StatelessWidget {
     );
   }
 
-  PhotoWidget _photoWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+  PhotoWidget _photoWidget(
+      AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
     return PhotoWidget(
       postModel: PostModel(
-        senderUserEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
-        senderUserName: snapshot.data!.docs[index][AppFirestoreFieldNames.currentNameField],
-        senderUserId: snapshot.data!.docs[index][AppFirestoreFieldNames.senderIdField],
-        postDowlandUrl: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
-        description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
+        senderUserEmail: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.currentEmailField],
+        senderUserName: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.currentNameField],
+        senderUserId: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.senderIdField],
+        postDowlandUrl: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.imagePathField],
+        description: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.descriptionField],
       ),
     );
   }
@@ -115,7 +121,7 @@ class PetcookHomeView extends StatelessWidget {
         viewModel.callAddPhotoView();
       },
       child: SvgPicture.asset(
-        ImageConstants.instance.add,
+        Assets.svg.plus,
         height: 24,
       ),
     );

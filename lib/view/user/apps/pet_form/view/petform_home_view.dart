@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart';
 
 class PetformHomeView extends StatelessWidget {
@@ -53,7 +53,7 @@ class PetformHomeView extends StatelessWidget {
   _fishListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.fish,
-      ImageConstants.instance.fish,
+      Assets.svg.fish,
       "fish_messages",
       "fish_chat",
       _ThisPageTexts.fishChat,
@@ -64,7 +64,7 @@ class PetformHomeView extends StatelessWidget {
   _rabbitListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.rabbit,
-      ImageConstants.instance.rabbit,
+      Assets.svg.rabbit,
       "rabbit_messages",
       "rabbit_chat",
       _ThisPageTexts.rabbitChat,
@@ -75,7 +75,7 @@ class PetformHomeView extends StatelessWidget {
   _catListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.cat,
-      ImageConstants.instance.cat,
+      Assets.svg.cat,
       "cat_messages",
       "cat_chat",
       _ThisPageTexts.catChat,
@@ -86,7 +86,7 @@ class PetformHomeView extends StatelessWidget {
   _dogListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.dog,
-      ImageConstants.instance.dog,
+      Assets.svg.dog,
       "dog_messages",
       "dog_chat",
       _ThisPageTexts.dogChat,
@@ -97,7 +97,7 @@ class PetformHomeView extends StatelessWidget {
   _generalListTile(BuildContext context) {
     return _listTile(
       _ThisPageTexts.generalChat,
-      ImageConstants.instance.general,
+      Assets.svg.language,
       "general_messages",
       "general_chat",
       _ThisPageTexts.generalChat,
@@ -105,13 +105,15 @@ class PetformHomeView extends StatelessWidget {
     );
   }
 
-  Observer _listTile(String title, String assetName, String collectionId, String docId, String pageTitle, context) {
+  Observer _listTile(String title, String assetName, String collectionId,
+      String docId, String pageTitle, context) {
     return Observer(builder: (_) {
       return ListTile(
         title: Text(title),
         leading: SvgPicture.asset(assetName, height: 32),
         onTap: () {
-          viewModel.callGroupChatView(title, assetName, collectionId, docId, pageTitle, context);
+          viewModel.callGroupChatView(
+              title, assetName, collectionId, docId, pageTitle, context);
         },
       );
     });

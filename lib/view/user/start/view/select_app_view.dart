@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_control.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
 import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
@@ -68,28 +68,28 @@ class _SelectAppViewState extends State<SelectAppView> {
             SelectAppWidget(
               title: LocaleKeys.petilla.locale,
               description: LocaleKeys.petillaDescription.locale,
-              imagePath: ImageConstants.instance.petilla,
+              imagePath: Assets.images.petillaImage.path,
               onTap: const MainPetilla(),
             ),
             mainSizedBox,
             SelectAppWidget(
               title: LocaleKeys.petform.locale,
               description: LocaleKeys.petformDescription.locale,
-              imagePath: ImageConstants.instance.petform,
+              imagePath: Assets.images.petform.path,
               onTap: const MainPetForm(),
             ),
             mainSizedBox,
             SelectAppWidget(
               title: LocaleKeys.helpMe.locale,
               description: LocaleKeys.helpMeDescription.locale,
-              imagePath: ImageConstants.instance.helpMe,
+              imagePath: Assets.images.helpMe.path,
               onTap: const HelpMeControl(),
             ),
             mainSizedBox,
             SelectAppWidget(
               title: "Petcook",
               description: "Hayvanlar için sosyal medya!",
-              imagePath: ImageConstants.instance.petcook,
+              imagePath: Assets.images.petCookImage.path,
               onTap: const PetCookControlView(),
             ),
           ],
@@ -104,7 +104,7 @@ class _SelectAppViewState extends State<SelectAppView> {
         viewModel.callProfileView();
       },
       child: SvgPicture.asset(
-        ImageConstants.instance.profile,
+        Assets.svg.profile,
         color: LightThemeColors.miamiMarmalade,
         height: 28,
       ),
