@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -13,6 +12,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/utility/report_utils/report_service.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/other_profile_view.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/petilla_detail_view_view_model.dart';
@@ -44,7 +44,9 @@ class _DetailViewState extends BaseState<DetailView> {
         model.setContext(context);
         viewModel = model;
         widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-        widget.petModel.currentEmail == FirebaseAuth.instance.currentUser?.email ? _isMe = true : _isMe = false;
+        widget.petModel.currentEmail == FirebaseAuth.instance.currentUser?.email
+            ? _isMe = true
+            : _isMe = false;
       },
       viewModel: DetailViewViewModel(),
       onPageBuilder: (context, value) => buildScaffold(headline4),
@@ -203,7 +205,8 @@ class _DetailViewState extends BaseState<DetailView> {
                 });
               },
               icon: viewModel.isFav ?? false
-                  ? const Icon(AppIcons.favoriteIcon, color: LightThemeColors.red, size: 30)
+                  ? const Icon(AppIcons.favoriteIcon,
+                      color: LightThemeColors.red, size: 30)
                   : const Icon(AppIcons.favoriteBorderIcon, size: 30),
             ),
           );
@@ -212,13 +215,17 @@ class _DetailViewState extends BaseState<DetailView> {
     });
   }
 
-  Text _nameText(TextStyle? headline4) => Text(widget.petModel.name, style: headline4);
+  Text _nameText(TextStyle? headline4) =>
+      Text(widget.petModel.name, style: headline4);
 
   Text _priceText(TextStyle? headline4) {
     return Text(
       _isClaim ? _ThisPageTexts.claim : "${widget.petModel.price}TL",
       style: _isClaim
-          ? headline4?.copyWith(color: LightThemeColors.miamiMarmalade, fontSize: 24, fontWeight: FontWeight.bold)
+          ? headline4?.copyWith(
+              color: LightThemeColors.miamiMarmalade,
+              fontSize: 24,
+              fontWeight: FontWeight.bold)
           : headline4?.copyWith(fontSize: 24),
     );
   }
@@ -226,24 +233,33 @@ class _DetailViewState extends BaseState<DetailView> {
   ListTile _listTile(BuildContext context, title, trailing) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
-      trailing: Text(trailing, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+      title: Text(title,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+      trailing: Text(trailing,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
     );
   }
 
-  ListTile _ageListTile(BuildContext context) => _listTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
+  ListTile _ageListTile(BuildContext context) =>
+      _listTile(context, _ThisPageTexts.ageRange, widget.petModel.ageRange);
 
-  ListTile _genderListTile(BuildContext context) => _listTile(context, _ThisPageTexts.gender, widget.petModel.gender);
+  ListTile _genderListTile(BuildContext context) =>
+      _listTile(context, _ThisPageTexts.gender, widget.petModel.gender);
 
-  ListTile _typeListTile(BuildContext context) => _listTile(context, _ThisPageTexts.type, widget.petModel.petType);
+  ListTile _typeListTile(BuildContext context) =>
+      _listTile(context, _ThisPageTexts.type, widget.petModel.petType);
 
-  ListTile _breedListTile(BuildContext context) => _listTile(context, _ThisPageTexts.race, widget.petModel.petBreed);
+  ListTile _breedListTile(BuildContext context) =>
+      _listTile(context, _ThisPageTexts.race, widget.petModel.petBreed);
 
-  ListTile _locationListTile(BuildContext context) =>
-      _listTile(context, _ThisPageTexts.location, "${widget.petModel.city} " " ${widget.petModel.ilce}");
+  ListTile _locationListTile(BuildContext context) => _listTile(
+      context,
+      _ThisPageTexts.location,
+      "${widget.petModel.city} " " ${widget.petModel.ilce}");
 
   Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description, style: const TextStyle(fontSize: 16));
+    return Text(widget.petModel.description,
+        style: const TextStyle(fontSize: 16));
   }
 
   FloatingActionButton _chatFabButton() {
@@ -257,7 +273,7 @@ class _DetailViewState extends BaseState<DetailView> {
         );
       },
       child: SvgPicture.asset(
-        ImageConstants.instance.chat,
+        Assets.svg.chat,
         color: LightThemeColors.white,
       ),
     );

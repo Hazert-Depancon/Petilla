@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 
 class OnboardingTwoView extends StatelessWidget {
   OnboardingTwoView({super.key});
@@ -40,7 +40,7 @@ Text _textTwo(BuildContext context) {
 
 SvgPicture _svgPicTwo(BuildContext context) {
   return SvgPicture.asset(
-    ImageConstants.instance.onboardingTwo,
+    Assets.svg.onboardingTwo,
     fit: BoxFit.cover,
     height: MediaQuery.of(context).size.height * 0.35,
   );

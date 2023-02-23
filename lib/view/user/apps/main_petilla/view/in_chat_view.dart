@@ -5,7 +5,6 @@ import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/components/single_message.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
@@ -14,6 +13,7 @@ import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/in_chat_view_view_model.dart';
 
 class InChatView extends StatefulWidget {
@@ -83,7 +83,9 @@ class _InChatViewState extends BaseState<InChatView> {
             padding: ProjectPaddings.horizontalMainPadding,
             child: Row(
               children: [
-                Expanded(child: _textField(widget.currentUserId, widget.friendUserId, controller)),
+                Expanded(
+                    child: _textField(
+                        widget.currentUserId, widget.friendUserId, controller)),
               ],
             ),
           ),
@@ -97,7 +99,8 @@ class _InChatViewState extends BaseState<InChatView> {
         title: Text(widget.friendUserName),
       );
 
-  TextField _textField(String currentUserId, String friendUserId, TextEditingController controller) {
+  TextField _textField(String currentUserId, String friendUserId,
+      TextEditingController controller) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -132,7 +135,7 @@ class _InChatViewState extends BaseState<InChatView> {
               );
             },
             icon: SvgPicture.asset(
-              ImageConstants.instance.send,
+              Assets.svg.send,
               color: LightThemeColors.white,
             ),
           ),
@@ -190,9 +193,12 @@ class MyListView extends StatelessWidget {
       reverse: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        bool isMe = snapshot.data.docs[index][AppFirestoreFieldNames.senderIdField] == widget.currentUserId;
+        bool isMe = snapshot.data.docs[index]
+                [AppFirestoreFieldNames.senderIdField] ==
+            widget.currentUserId;
         return SingleMessage(
-          message: snapshot.data.docs[index][AppFirestoreFieldNames.messagesField],
+          message: snapshot.data.docs[index]
+              [AppFirestoreFieldNames.messagesField],
           isMe: isMe,
         );
       },

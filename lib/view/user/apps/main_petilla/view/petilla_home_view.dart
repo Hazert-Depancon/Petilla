@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
@@ -15,6 +14,7 @@ import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
 
@@ -39,18 +39,27 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   Widget build(BuildContext context) {
     var dogRadioListTile = _typeRadioListTile(1, _ThisPageTexts.dog, context);
     var catradioListTile = _typeRadioListTile(2, _ThisPageTexts.cat, context);
-    var rabbitRadioListTile = _typeRadioListTile(3, _ThisPageTexts.rabbit, context);
+    var rabbitRadioListTile =
+        _typeRadioListTile(3, _ThisPageTexts.rabbit, context);
     var fishRadioListTile = _typeRadioListTile(4, _ThisPageTexts.fish, context);
-    var otherRadioListTile = _typeRadioListTile(5, _ThisPageTexts.other, context);
+    var otherRadioListTile =
+        _typeRadioListTile(5, _ThisPageTexts.other, context);
 
-    var zeroThreeMonthsRadioListTile = _ageRangeRadioListTile(1, _ThisPageTexts.zeroThreeMonths, context);
-    var threeSixMonthsRadioListTile = _ageRangeRadioListTile(2, _ThisPageTexts.threeSixMonths, context);
-    var sixMonthsOneYearRadioListTile = _ageRangeRadioListTile(3, _ThisPageTexts.sixMonthsOneYear, context);
-    var oneThreeYearsRadioListTile = _ageRangeRadioListTile(4, _ThisPageTexts.oneThreeYears, context);
-    var moreThanThreeYearsRadioListTile = _ageRangeRadioListTile(5, _ThisPageTexts.moreThreeYears, context);
+    var zeroThreeMonthsRadioListTile =
+        _ageRangeRadioListTile(1, _ThisPageTexts.zeroThreeMonths, context);
+    var threeSixMonthsRadioListTile =
+        _ageRangeRadioListTile(2, _ThisPageTexts.threeSixMonths, context);
+    var sixMonthsOneYearRadioListTile =
+        _ageRangeRadioListTile(3, _ThisPageTexts.sixMonthsOneYear, context);
+    var oneThreeYearsRadioListTile =
+        _ageRangeRadioListTile(4, _ThisPageTexts.oneThreeYears, context);
+    var moreThanThreeYearsRadioListTile =
+        _ageRangeRadioListTile(5, _ThisPageTexts.moreThreeYears, context);
 
-    var maleRadioListTile = _genderRadioListTile(1, _ThisPageTexts.male, context);
-    var femaleRadioListTile = _genderRadioListTile(2, _ThisPageTexts.female, context);
+    var maleRadioListTile =
+        _genderRadioListTile(1, _ThisPageTexts.male, context);
+    var femaleRadioListTile =
+        _genderRadioListTile(2, _ThisPageTexts.female, context);
 
     return Scaffold(
       appBar: _appBar(context),
@@ -92,7 +101,8 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12) + const EdgeInsets.only(left: 16, right: 4),
+            padding: const EdgeInsets.symmetric(vertical: 12) +
+                const EdgeInsets.only(left: 16, right: 4),
             child: Row(
               children: [
                 _drawerTitle(context),
@@ -127,7 +137,8 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
     return IconButton(
       onPressed: _onCloseIcon,
       tooltip: _ThisPageTexts.clear,
-      icon: const Icon(AppIcons.closeIcon, color: LightThemeColors.miamiMarmalade),
+      icon: const Icon(AppIcons.closeIcon,
+          color: LightThemeColors.miamiMarmalade),
     );
   }
 
@@ -193,7 +204,9 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   }
 
   ExpansionTile _genderExpansionTile(
-      BuildContext context, RadioListTile<dynamic> maleRadioListTile, RadioListTile<dynamic> femaleRadioListTile) {
+      BuildContext context,
+      RadioListTile<dynamic> maleRadioListTile,
+      RadioListTile<dynamic> femaleRadioListTile) {
     return _expansionTile(
       context,
       _ThisPageTexts.petGender,
@@ -292,7 +305,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
           onTap: () {
             Scaffold.of(context).openEndDrawer();
           },
-          child: SvgPicture.asset(ImageConstants.instance.filter),
+          child: SvgPicture.asset(Assets.svg.filter),
         );
       },
     );
@@ -304,11 +317,16 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
         stream: isThereAFilter
             ? FirebaseFirestore.instance
                 .collection(AppFirestoreCollectionNames.petsCollection)
-                .where(AppFirestoreFieldNames.petTypeField, isEqualTo: selectedTypeFilter)
-                .where(AppFirestoreFieldNames.ageRangeField, isEqualTo: selectedAgeRangeFilter)
-                .where(AppFirestoreFieldNames.genderField, isEqualTo: selectedGenderFilter)
+                .where(AppFirestoreFieldNames.petTypeField,
+                    isEqualTo: selectedTypeFilter)
+                .where(AppFirestoreFieldNames.ageRangeField,
+                    isEqualTo: selectedAgeRangeFilter)
+                .where(AppFirestoreFieldNames.genderField,
+                    isEqualTo: selectedGenderFilter)
                 .snapshots()
-            : FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.petsCollection).snapshots(),
+            : FirebaseFirestore.instance
+                .collection(AppFirestoreCollectionNames.petsCollection)
+                .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
@@ -370,7 +388,8 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   NormalPetWidget _petWidget(document) {
     return NormalPetWidget(
       petModel: _petModel(document),
-      isFav: _petModel(document).currentUid == FirebaseAuth.instance.currentUser!.uid,
+      isFav: _petModel(document).currentUid ==
+          FirebaseAuth.instance.currentUser!.uid,
     );
   }
 

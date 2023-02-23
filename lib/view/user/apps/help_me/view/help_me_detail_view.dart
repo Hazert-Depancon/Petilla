@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/buttons/button.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_detail_view_view_model.dart';
 
@@ -61,7 +60,7 @@ class HelpMeDetailView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 12),
       child: FloatingActionButton(
-        child: SvgPicture.asset(ImageConstants.instance.chat),
+        child: SvgPicture.asset(Assets.svg.chat),
         onPressed: () {
           viewModel.callChatPage(
             context,
@@ -118,13 +117,17 @@ class HelpMeDetailView extends StatelessWidget {
 
   SizedBox _emptySizedBox() => const SizedBox.shrink();
 
-  Text _vetHelpText(context) => Text(LocaleKeys.vetHelp.locale, style: Theme.of(context).textTheme.titleSmall);
+  Text _vetHelpText(context) => Text(LocaleKeys.vetHelp.locale,
+      style: Theme.of(context).textTheme.titleSmall);
 
-  Text _footdHelpText(context) => Text(LocaleKeys.foodHelp.locale, style: Theme.of(context).textTheme.titleSmall);
+  Text _footdHelpText(context) => Text(LocaleKeys.foodHelp.locale,
+      style: Theme.of(context).textTheme.titleSmall);
 
-  Text _descriptionText(context) => Text(helpMeModel.description, style: Theme.of(context).textTheme.titleLarge);
+  Text _descriptionText(context) => Text(helpMeModel.description,
+      style: Theme.of(context).textTheme.titleLarge);
 
-  Text _titleText(context) => Text(helpMeModel.title, style: Theme.of(context).textTheme.headlineMedium);
+  Text _titleText(context) => Text(helpMeModel.title,
+      style: Theme.of(context).textTheme.headlineMedium);
 
   Container _imageContainer() {
     return Container(

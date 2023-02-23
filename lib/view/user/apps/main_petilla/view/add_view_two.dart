@@ -15,6 +15,7 @@ import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/jsons/city_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/city_select_view.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/ilce_select_view.dart';
@@ -56,7 +57,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
   late int _secilenIlceIndexi;
 
   Future<void> _illeriGetir() async {
-    String jsonString = await rootBundle.loadString('assets/jsons/il-ilce.json');
+    String jsonString = await rootBundle.loadString(Assets.jsons.ilIlce);
 
     final jsonResponse = json.decode(jsonString);
 
@@ -91,7 +92,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       _secilenIlIndexi = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
+            builder: (context) =>
+                IlSecimiSayfasi(ilIsimleri: _ilIsimleriListesi),
           ));
 
       _ilSecilmisMi = true;
@@ -107,7 +109,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       _secilenIlceIndexi = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
+            builder: (context) =>
+                IlceSecmeSayfasi(ilceIsimleri: _ilceIsimleriListesi),
           ));
       _ilceSecilmisMi = true;
       _secilenIlce = _ilceIsimleriListesi[_secilenIlceIndexi];
@@ -210,7 +213,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+          borderSide: const BorderSide(
+              width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
       hint: Text(
@@ -238,7 +242,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+          borderSide: const BorderSide(
+              width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
       hint: Text(_ThisPageTexts.petGender),
@@ -264,7 +269,8 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(width: 3, color: LightThemeColors.miamiMarmalade),
+          borderSide: const BorderSide(
+              width: 3, color: LightThemeColors.miamiMarmalade),
         ),
       ),
       hint: Text(_ThisPageTexts.petType),
@@ -298,7 +304,9 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: _ilceSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
+          backgroundColor: _ilceSecilmisMi
+              ? LightThemeColors.burningOrange
+              : LightThemeColors.grey,
           padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
@@ -326,7 +334,9 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: _ilSecilmisMi ? LightThemeColors.burningOrange : LightThemeColors.grey,
+          backgroundColor: _ilSecilmisMi
+              ? LightThemeColors.burningOrange
+              : LightThemeColors.grey,
           padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),

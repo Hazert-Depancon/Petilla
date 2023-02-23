@@ -10,7 +10,6 @@ import 'package:petilla_app_project/core/base/viewmodel/profile_view_view_model.
 import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
@@ -19,6 +18,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/other/view/about_view.dart';
 import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
 import 'package:petilla_app_project/view/user/other/view/social_connection_view.dart';
@@ -86,7 +86,7 @@ class _ProfileViewState extends State<ProfileView> {
       onTap: () {
         _settingBottomSheet(context);
       },
-      child: SvgPicture.asset(ImageConstants.instance.settings),
+      child: SvgPicture.asset(Assets.svg.settings),
     );
   }
 
@@ -94,7 +94,8 @@ class _ProfileViewState extends State<ProfileView> {
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(36), topRight: Radius.circular(36)),
       ),
       builder: (context) {
         return SingleChildScrollView(
@@ -102,9 +103,12 @@ class _ProfileViewState extends State<ProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _listTile(context, AppIcons.info, LocaleKeys.about, const AboutView()),
-              _listTile(context, AppIcons.feed, LocaleKeys.feedBack, FeedBackView()),
-              _listTile(context, AppIcons.link, LocaleKeys.links, const SocialConnectionView()),
+              _listTile(
+                  context, AppIcons.info, LocaleKeys.about, const AboutView()),
+              _listTile(
+                  context, AppIcons.feed, LocaleKeys.feedBack, FeedBackView()),
+              _listTile(context, AppIcons.link, LocaleKeys.links,
+                  const SocialConnectionView()),
               _logOutButton(),
             ],
           ),
@@ -130,7 +134,8 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  ListTile _listTile(BuildContext context, IconData icon, String text, Widget route) {
+  ListTile _listTile(
+      BuildContext context, IconData icon, String text, Widget route) {
     return ListTile(
       leading: Icon(
         icon,
@@ -173,13 +178,16 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingLottie =>
+      const StatusView(status: StatusKeysEnum.LOADING);
 
   StatusView get _errorLottie => const StatusView(status: StatusKeysEnum.ERROR);
 
-  StatusView get _connectionErrorLottie => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _connectionErrorLottie =>
+      const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  SingleChildScrollView _hasDataScreen(snapshot, String name, String email, context) {
+  SingleChildScrollView _hasDataScreen(
+      snapshot, String name, String email, context) {
     return SingleChildScrollView(
       padding: ProjectPaddings.horizontalMainPadding,
       child: Column(

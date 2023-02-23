@@ -3,13 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
 import 'package:petilla_app_project/core/components/textfields/auth_textfield.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/auth/view/login_view.dart';
 import 'package:petilla_app_project/view/auth/viewmodel/register_view_model.dart';
 
@@ -76,7 +76,7 @@ class RegisterView extends StatelessWidget {
         height: 300,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(ImageConstants.instance.loginBackgroundImage),
+            image: AssetImage(Assets.images.loginBackgroundImage.path),
             fit: BoxFit.fill,
           ),
         ),
@@ -143,8 +143,8 @@ class RegisterView extends StatelessWidget {
 
   void _onRegister(context) {
     if (_formKey.currentState!.validate()) {
-      RegisterViewModel()
-          .onRegisterButton(_emailController.text, _passwordController.text, _nameController.text, context);
+      RegisterViewModel().onRegisterButton(_emailController.text,
+          _passwordController.text, _nameController.text, context);
     }
   }
 
@@ -158,7 +158,8 @@ class RegisterView extends StatelessWidget {
   TextButton _logInButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginView()));
       },
       child: Text(
         _ThisPageTexts.logIn,

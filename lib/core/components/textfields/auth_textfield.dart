@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/core/constants/image/image_constants.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/core/gen/assets.gen.dart';
 
 class AuthTextField extends StatefulWidget {
   const AuthTextField(
@@ -64,7 +64,8 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
         controller: widget.controller,
         keyboardType: widget.keyboardType,
         obscureText: _obscureText!,
-        textInputAction: widget.isNext == true ? TextInputAction.next : TextInputAction.done,
+        textInputAction:
+            widget.isNext == true ? TextInputAction.next : TextInputAction.done,
         textAlign: TextAlign.start,
         decoration: InputDecoration(
           filled: true,
@@ -94,11 +95,11 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
     return IconButton(
       icon: _obscureText == false
           ? SvgPicture.asset(
-              ImageConstants.instance.eyeOpen,
+              Assets.svg.eyeOpen,
               color: LightThemeColors.black,
             )
           : SvgPicture.asset(
-              ImageConstants.instance.eyeClose,
+              Assets.svg.eyeClose,
               color: LightThemeColors.black,
             ),
       onPressed: () {
