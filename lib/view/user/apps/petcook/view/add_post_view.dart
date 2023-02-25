@@ -1,13 +1,14 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
+import 'package:petilla_app_project/core/components/image_component.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -25,6 +26,10 @@ class _AddPostViewState extends State<AddPostView> {
   final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _descriptionController = TextEditingController();
+
+  late bool isImageLoaded;
+  File? imageFile;
+  XFile? image;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +73,11 @@ class _AddPostViewState extends State<AddPostView> {
               padding: ProjectPaddings.horizontalMainPadding,
               child: Column(
                 children: [
-                  viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+                  AddImageComponent(
+                    image: image,
+                    isImageLoaded: isImageLoaded,
+                    imageFile: imageFile,
+                  ),
                   mainHeightSizedBox,
                   MainTextField(
                     controller: _descriptionController,
@@ -78,9 +87,10 @@ class _AddPostViewState extends State<AddPostView> {
                   mainHeightSizedBox,
                   AuthButton(
                     onPressed: () {
-                      if (viewModel.image != null) {
+                      if (image != null) {
                         if (_formKey.currentState!.validate()) {
-                          viewModel.onSubmitButton(_descriptionController);
+                          viewModel.onSubmitButton(
+                              _descriptionController, image);
                         }
                       }
                     },
@@ -102,90 +112,5 @@ class _AddPostViewState extends State<AddPostView> {
       },
       child: const Icon(AppIcons.arrowBackIcon),
     );
-  }
-
-  Observer _photoContainer(context) {
-    return Observer(builder: (_) {
-      return InkWell(
-        onTap: () {
-          _bottomSheet(context);
-        },
-        child: Container(
-          height: 300,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
-            color: LightThemeColors.miamiMarmalade,
-            image: DecorationImage(
-              image: FileImage(viewModel.imageFile!),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  InkWell _addPhotoContainer(context) {
-    return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
-      onTap: () {
-        _bottomSheet(context);
-      },
-      child: Container(
-        height: 300,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
-        ),
-        child: const Icon(
-          AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> _bottomSheet(context) {
-    return showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SafeArea(
-          child: Wrap(
-            children: <Widget>[
-              _pickGalleryButton(context),
-              _pickCameraButton(context),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Observer _pickCameraButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shootFromCamera.locale),
-        onTap: () {
-          viewModel.pickImageCamera();
-          Navigator.of(context).pop();
-        },
-      );
-    });
-  }
-
-  Observer _pickGalleryButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.selectGallery.locale),
-        onTap: () {
-          viewModel.pickImageGallery();
-          Navigator.of(context).pop();
-        },
-      );
-    });
   }
 }

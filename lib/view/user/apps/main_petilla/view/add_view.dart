@@ -3,17 +3,16 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
+import 'package:petilla_app_project/core/components/image_component.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/add_view_view_model.dart';
 
 class AddView extends StatefulWidget {
@@ -32,7 +31,8 @@ class _AddViewState extends BaseState<AddView> {
   Object? val = 1;
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  RadioListTile get adoptRadioListTile => _radioListTile(1, _ThisPageTexts.adopt, context);
+  RadioListTile get adoptRadioListTile =>
+      _radioListTile(1, _ThisPageTexts.adopt, context);
 
   late AddViewViewModel viewModel;
 
@@ -53,7 +53,8 @@ class _AddViewState extends BaseState<AddView> {
         body: _body(context, adoptRadioListTile),
       );
 
-  SafeArea _body(BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
+  SafeArea _body(
+      BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
     return SafeArea(
       child: Form(
         key: _formKey,
@@ -61,7 +62,11 @@ class _AddViewState extends BaseState<AddView> {
           return ListView(
             padding: ProjectPaddings.horizontalMainPadding,
             children: [
-              viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+              AddImageComponent(
+                image: viewModel.image,
+                isImageLoaded: false,
+                imageFile: viewModel.imageFile,
+              ),
               mainSizedBox,
               _petNameTextField(),
               mainSizedBox,
@@ -85,70 +90,6 @@ class _AddViewState extends BaseState<AddView> {
     );
   }
 
-  Observer _photoContainer(context) {
-    return Observer(builder: (_) {
-      return InkWell(
-        onTap: () {
-          _bottomSheet(context);
-        },
-        child: Container(
-          height: 175,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
-            color: LightThemeColors.miamiMarmalade,
-            image: DecorationImage(
-              image: FileImage(viewModel.imageFile!),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  Future<dynamic> _bottomSheet(context) {
-    return showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SafeArea(
-          child: Wrap(
-            children: <Widget>[
-              _pickGalleryButton(context),
-              _pickCameraButton(context),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Observer _pickCameraButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(_ThisPageTexts.camera),
-        onTap: () {
-          viewModel.pickImageCamera();
-          Navigator.of(context).pop();
-        },
-      );
-    });
-  }
-
-  Observer _pickGalleryButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(_ThisPageTexts.gellery),
-        onTap: () {
-          viewModel.pickImageGallery();
-          Navigator.of(context).pop();
-        },
-      );
-    });
-  }
-
   MainTextField _petNameTextField() {
     return _petTextField(
       controller: _nameController,
@@ -169,28 +110,6 @@ class _AddViewState extends BaseState<AddView> {
       minLines: 1,
       maxLines: 5,
       prefixIcon: const Icon(AppIcons.descriptionIcon),
-    );
-  }
-
-  // Add a photo container
-  InkWell _addPhotoContainer(context) {
-    return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
-      onTap: () {
-        _bottomSheet(context);
-      },
-      child: Container(
-        height: 175,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
-        ),
-        child: const Icon(
-          AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
-        ),
-      ),
     );
   }
 
@@ -253,7 +172,8 @@ class _AddViewState extends BaseState<AddView> {
       return showErrorDialog(true, _ThisPageTexts.fillAllArea, context);
     }
     if (_formKey.currentState!.validate()) {
-      viewModel.callAddViewTwo(_nameController, _descriptionController, val, viewModel.image, context);
+      viewModel.callAddViewTwo(_nameController, _descriptionController, val,
+          viewModel.image, context);
     }
   }
 }
