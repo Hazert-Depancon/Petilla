@@ -7,17 +7,15 @@ import 'package:petilla_app_project/core/base/state/base_state.dart';
 import 'package:petilla_app_project/core/base/view/base_view.dart';
 import 'package:petilla_app_project/core/components/buttons/button.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
+import 'package:petilla_app_project/core/components/image_component.dart';
 import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/service/storage_service.dart/storage_crud.dart';
@@ -41,7 +39,8 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   bool isVetHelp = false;
   bool isFoodHelp = false;
 
-  RadioListTile get _locationRadioListTile => _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
+  RadioListTile get _locationRadioListTile =>
+      _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
   Object? currentLocationVal = 1;
 
   final _formKey = GlobalKey<FormState>();
@@ -81,7 +80,11 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           child: Observer(builder: (_) {
             return Column(
               children: [
-                viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+                AddImageComponent(
+                  image: viewModel.image,
+                  isImageLoaded: viewModel.isImageLoaded,
+                  imageFile: viewModel.imageFile,
+                ),
                 mainHeightSizedBox,
                 _titleTextField,
                 mainHeightSizedBox,
@@ -195,7 +198,8 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
                 imageDowlandUrl: dowlandLink,
                 currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
                 currentUserId: FirebaseAuth.instance.currentUser!.uid,
-                currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+                currentUserName:
+                    FirebaseAuth.instance.currentUser!.displayName!,
                 otherNeeds: otherNeedsController.text.trim(),
               ),
             )
@@ -226,89 +230,4 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   }
 
   AppBar get _buildAppBar => AppBar();
-
-  Observer _photoContainer(context) {
-    return Observer(builder: (_) {
-      return InkWell(
-        onTap: () {
-          _bottomSheet(context);
-        },
-        child: Container(
-          height: 175,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
-            color: LightThemeColors.miamiMarmalade,
-            image: DecorationImage(
-              image: FileImage(viewModel.imageFile!),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  InkWell _addPhotoContainer(context) {
-    return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
-      onTap: () {
-        _bottomSheet(context);
-      },
-      child: Container(
-        height: 175,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
-        ),
-        child: const Icon(
-          AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> _bottomSheet(context) {
-    return showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return SafeArea(
-          child: Wrap(
-            children: <Widget>[
-              _pickGalleryButton(context),
-              _pickCameraButton(context),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Observer _pickCameraButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shootFromCamera.locale),
-        onTap: () {
-          viewModel.pickImageCamera();
-          Navigator.of(context).pop();
-        },
-      );
-    });
-  }
-
-  Observer _pickGalleryButton(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.selectGallery.locale),
-        onTap: () {
-          viewModel.pickImageGallery();
-          Navigator.of(context).pop();
-        },
-      );
-    });
-  }
 }
