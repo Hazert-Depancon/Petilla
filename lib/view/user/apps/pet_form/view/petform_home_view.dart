@@ -153,12 +153,12 @@ class _ThisPageTexts {
   static String selectGroup = LocaleKeys.selectAGroup.locale;
   static String groupAddNotYet = LocaleKeys.groupAddNotYet.locale;
   static String generalChat = LocaleKeys.generalChat.locale;
-  static String dog = LocaleKeys.dog.locale;
+  static String dog = LocaleKeys.animalNames_dog.locale;
   static String dogChat = LocaleKeys.dogChat.locale;
-  static String cat = LocaleKeys.cat.locale;
+  static String cat = LocaleKeys.animalNames_cat.locale;
   static String catChat = LocaleKeys.catChat.locale;
-  static String rabbit = LocaleKeys.rabbit.locale;
+  static String rabbit = LocaleKeys.animalNames_rabbit.locale;
   static String rabbitChat = LocaleKeys.rabbitChat.locale;
-  static String fish = LocaleKeys.fish.locale;
+  static String fish = LocaleKeys.fishChat.locale;
   static String fishChat = LocaleKeys.fishChat.locale;
 }

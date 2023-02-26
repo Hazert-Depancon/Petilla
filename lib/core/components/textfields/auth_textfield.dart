@@ -83,7 +83,7 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return LocaleKeys.fillAllArea.locale;
+            return LocaleKeys.validation_emptyValidation.locale;
           }
           return null;
         },

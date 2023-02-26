@@ -28,7 +28,7 @@ class OnboardingOneView extends StatelessWidget {
 }
 
 Text _textOne(BuildContext context) {
-  String msg1 = LocaleKeys.onboardingMsgOne.locale;
+  String msg1 = LocaleKeys.onboardTexts_onboarding_msg_one.locale;
 
   return Text(
     msg1,

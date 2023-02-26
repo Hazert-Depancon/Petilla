@@ -10,6 +10,8 @@ import 'package:petilla_app_project/core/constants/other_constant/icon_names.dar
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
+import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/core/components/photo_widget.dart';
@@ -46,7 +48,7 @@ class PetcookHomeView extends StatelessWidget {
     return AppBar(
       leading: _backIcon(context),
       title: Text(
-        "Anasayfa",
+        LocaleKeys.homePage.locale,
         style: Theme.of(context).textTheme.headlineMedium,
       ),
       actions: [

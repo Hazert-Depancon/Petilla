@@ -392,24 +392,26 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 }
 
 class _ThisPageTexts {
-  static String dog = LocaleKeys.dog.locale;
-  static String cat = LocaleKeys.cat.locale;
-  static String fish = LocaleKeys.fish.locale;
-  static String rabbit = LocaleKeys.rabbit.locale;
+  static String dog = LocaleKeys.animalNames_dog.locale;
+  static String cat = LocaleKeys.animalNames_cat.locale;
+  static String fish = LocaleKeys.animalNames_fish.locale;
+  static String rabbit = LocaleKeys.animalNames_rabbit.locale;
   static String other = LocaleKeys.other.locale;
   static String male = LocaleKeys.male.locale;
   static String female = LocaleKeys.female.locale;
-  static String zeroThreeMonths = LocaleKeys.zeroThreeMonths.locale;
-  static String threeSixMonths = LocaleKeys.threeSixMonths.locale;
-  static String sixMonthsOneYear = LocaleKeys.sixMonthsOneYear.locale;
-  static String oneThreeYears = LocaleKeys.oneThreeYears.locale;
-  static String moreThanThreeYears = LocaleKeys.moreThanThreeYears.locale;
+  static String zeroThreeMonths = LocaleKeys.ageRanges_zeroThreeMonths.locale;
+  static String threeSixMonths = LocaleKeys.ageRanges_threeSixMonths.locale;
+  static String sixMonthsOneYear =
+      LocaleKeys.ageRanges_sixMonths_one_year.locale;
+  static String oneThreeYears = LocaleKeys.ageRanges_one_three_years.locale;
+  static String moreThanThreeYears =
+      LocaleKeys.ageRanges_more_than_three_years.locale;
   static String petAgeRange = LocaleKeys.petAgeRange.locale;
   static String petGender = LocaleKeys.petGender.locale;
   static String petType = LocaleKeys.petType.locale;
   static String petRace = LocaleKeys.petRace.locale;
   static String selectDistrict = LocaleKeys.selectDistrict.locale;
-  static String selectCity = LocaleKeys.selectCity.locale;
-  static String addPet = LocaleKeys.addAPet.locale;
+  static String selectCity = LocaleKeys.citySelect.locale;
+  static String addPet = LocaleKeys.petillaPages_addAPet.locale;
   static String addAPetTwoForTwo = LocaleKeys.addPetTwoForTwo.locale;
 }

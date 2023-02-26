@@ -125,7 +125,7 @@ class _ProfileViewState extends State<ProfileView> {
           viewModel.logOut();
         },
         child: Text(
-          LocaleKeys.logout.locale,
+          LocaleKeys.auth_logout.locale,
           style: const TextStyle(
             color: LightThemeColors.red,
           ),

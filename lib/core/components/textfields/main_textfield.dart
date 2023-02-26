@@ -43,7 +43,8 @@ class MainTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       maxLength: maxLength,
-      textInputAction: isNext == true ? TextInputAction.next : TextInputAction.done,
+      textInputAction:
+          isNext == true ? TextInputAction.next : TextInputAction.done,
       decoration: InputDecoration(
         filled: true,
         fillColor: LightThemeColors.snowbank,
@@ -59,7 +60,7 @@ class MainTextField extends StatelessWidget {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return LocaleKeys.fillAllArea.locale;
+          return LocaleKeys.validation_emptyValidation.locale;
         }
         return null;
       },

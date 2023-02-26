@@ -29,7 +29,7 @@ class OnboardingTwoView extends StatelessWidget {
 }
 
 Text _textTwo(BuildContext context) {
-  var msg2 = LocaleKeys.onboardingMsgTwo.locale;
+  var msg2 = LocaleKeys.onboardTexts_onboarding_msg_two.locale;
 
   return Text(
     msg2,
