@@ -47,7 +47,7 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
   Scaffold _buildScaffold(context) => Scaffold(
         endDrawer: _endDrawer(context),
         appBar: AppBar(
-          title: Text(LocaleKeys.helpMe.locale),
+          title: Text(LocaleKeys.appNames_help_me.locale),
           leading: _backIcon(context),
           actions: [
             _helpMe(),
@@ -69,7 +69,9 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
   SafeArea _body() {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.animalHelp).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.animalHelp)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return _listView(snapshot);
@@ -89,24 +91,33 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
     );
   }
 
-  HelpMeWidget _helpMeWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+  HelpMeWidget _helpMeWidget(
+      AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
     return _helpMeModel(snapshot, index);
   }
 
-  HelpMeWidget _helpMeModel(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
+  HelpMeWidget _helpMeModel(
+      AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index) {
     return HelpMeWidget(
       helpMeModel: HelpMeModel(
         title: snapshot.data!.docs[index][AppFirestoreFieldNames.title],
-        description: snapshot.data!.docs[index][AppFirestoreFieldNames.descriptionField],
+        description: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.descriptionField],
         long: snapshot.data!.docs[index][AppFirestoreFieldNames.long],
         lat: snapshot.data!.docs[index][AppFirestoreFieldNames.lat],
         isVetHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isVetHelp],
-        isFoodHelp: snapshot.data!.docs[index][AppFirestoreFieldNames.isFoodHelp],
-        imageDowlandUrl: snapshot.data!.docs[index][AppFirestoreFieldNames.imagePathField],
-        currentUserEmail: snapshot.data!.docs[index][AppFirestoreFieldNames.currentEmailField],
-        currentUserId: snapshot.data!.docs[index][AppFirestoreFieldNames.uidField],
-        currentUserName: snapshot.data!.docs[index][AppFirestoreFieldNames.nameField],
-        otherNeeds: snapshot.data!.docs[index][AppFirestoreFieldNames.otherNeeds],
+        isFoodHelp: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.isFoodHelp],
+        imageDowlandUrl: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.imagePathField],
+        currentUserEmail: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.currentEmailField],
+        currentUserId: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.uidField],
+        currentUserName: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.nameField],
+        otherNeeds: snapshot.data!.docs[index]
+            [AppFirestoreFieldNames.otherNeeds],
       ),
     );
   }
@@ -115,7 +126,8 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12) + const EdgeInsets.only(left: 16, right: 4),
+              padding: const EdgeInsets.symmetric(vertical: 12) +
+                  const EdgeInsets.only(left: 16, right: 4),
               child: Row(
                 children: [
                   _drawerTitle(context),

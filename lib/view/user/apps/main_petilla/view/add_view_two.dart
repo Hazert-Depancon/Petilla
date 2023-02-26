@@ -392,24 +392,26 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
 }
 
 class _ThisPageTexts {
-  static String dog = LocaleKeys.dog.locale;
-  static String cat = LocaleKeys.cat.locale;
-  static String fish = LocaleKeys.fish.locale;
-  static String rabbit = LocaleKeys.rabbit.locale;
+  static String dog = LocaleKeys.dog_chat.locale;
+  static String cat = LocaleKeys.cat_chat.locale;
+  static String fish = LocaleKeys.fish_chat.locale;
+  static String rabbit = LocaleKeys.rabbit_chat.locale;
   static String other = LocaleKeys.other.locale;
-  static String male = LocaleKeys.male.locale;
-  static String female = LocaleKeys.female.locale;
-  static String zeroThreeMonths = LocaleKeys.zeroThreeMonths.locale;
-  static String threeSixMonths = LocaleKeys.threeSixMonths.locale;
-  static String sixMonthsOneYear = LocaleKeys.sixMonthsOneYear.locale;
-  static String oneThreeYears = LocaleKeys.oneThreeYears.locale;
-  static String moreThanThreeYears = LocaleKeys.moreThanThreeYears.locale;
-  static String petAgeRange = LocaleKeys.petAgeRange.locale;
-  static String petGender = LocaleKeys.petGender.locale;
-  static String petType = LocaleKeys.petType.locale;
-  static String petRace = LocaleKeys.petRace.locale;
-  static String selectDistrict = LocaleKeys.selectDistrict.locale;
-  static String selectCity = LocaleKeys.selectCity.locale;
-  static String addPet = LocaleKeys.addAPet.locale;
-  static String addAPetTwoForTwo = LocaleKeys.addPetTwoForTwo.locale;
+  static String male = LocaleKeys.genders_male.locale;
+  static String female = LocaleKeys.genders_female.locale;
+  static String zeroThreeMonths = LocaleKeys.ageRanges_zero_three_months.locale;
+  static String threeSixMonths = LocaleKeys.ageRanges_three_six_months.locale;
+  static String sixMonthsOneYear =
+      LocaleKeys.ageRanges_six_months_one_year.locale;
+  static String oneThreeYears = LocaleKeys.ageRanges_one_three_years.locale;
+  static String moreThanThreeYears =
+      LocaleKeys.ageRanges_more_than_three_years.locale;
+  static String petAgeRange = LocaleKeys.pet_age_range.locale;
+  static String petGender = LocaleKeys.pet_gender.locale;
+  static String petType = LocaleKeys.pet_type.locale;
+  static String petRace = LocaleKeys.pet_race.locale;
+  static String selectDistrict = LocaleKeys.select_district.locale;
+  static String selectCity = LocaleKeys.city_select.locale;
+  static String addPet = LocaleKeys.petillaPages_add_a_pet.locale;
+  static String addAPetTwoForTwo = LocaleKeys.add_pet_two_for_two.locale;
 }

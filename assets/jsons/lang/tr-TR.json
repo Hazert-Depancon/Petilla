@@ -1,23 +1,62 @@
-{
-    "petform" : "Petform",
-    "petilla" : "Petilla",
-    "my_inserts" : "İlanlarım",
+{   
+    "appNames": {
+        "petform" : "Petform",
+        "petilla" : "Petilla",
+        "petie" : "Petie",
+        "help_me" : "Yardım Et!"
+    },
+    "appDescription": {
+        "petilla_description" : "Hayvan sahiplen ve sahiplendir!",
+        "petform_description" : "Sorunlarını hayvan sahipleri ile çöz!",
+        "animal_report_description" : "Zarar gördüğün hayvanları bildir!",
+        "help_me_description" : "Sokak hayvanlarına yardım et!"    
+    },
+    "auth": {
+        "logout" : "Çıkış Yap",
+        "welcome_again" : "Tekrar Hoşgeldin!",
+        "welcome" : "Hoşgeldin!",
+        "login" : "Giriş Yap",
+        "mail" : "E-posta",
+        "password" : "Şifre",
+        "dont_have_account" : "Hesabın yok mu?",
+        "register" : "Kayıt Ol",
+        "already_have_an_account" : "Zaten hesabın var mı?"
+    },
+    "validation": {
+        "mailValidation" : "Lütfen geçerli bir mail adresi giriniz.",
+        "emptyValidation" : "Bu alan boş bırakılamaz."
+    },
+    "animalNames": {
+        "cat" : "Kedi",
+        "fish" : "Balık",
+        "dog" : "Köpek",
+        "rabbit" : "Tavşan"
+    },
+    "genders": {
+        "male" : "Erkek",
+        "female" : "Dişi"    
+    },
+    "ageRanges": {
+        "zero_three_months" : "0 - 3 Ay",
+        "three_six_months" : "3 - 6 Ay",
+        "six_months_one_year" : "6 Ay - 1 Yıl",
+        "one_three_years" : "1 - 3 Yıl",
+        "more_than_three_years" : "3 Yıldan Fazla"
+    },
+    "onboardTexts": {
+        "onboarding_msg_one" : "Evcil hayvanları en güvenli şekilde sahiplen veya sahiplendir!",
+        "onboarding_msg_two" : "Evcil hayvanlarının sorunları için başka evcil hayvan sahipleriyle konuş!",
+        "onboarding_msg_three" : "Hayvanlarınızı diğer insanlar ile paylaşın ve tatlı hayvanlar görün!"    
+    },
+    "petillaPages": {
+        "animalAdopt" : "Hayvan Sahiplen",
+        "my_favorites" : "Favorilerim",
+        "add_a_pet" : "Hayvan Ekle",
+        "my_messages" : "Mesajlarım",
+        "my_inserts" : "İlanlarım"
+    },
     "profile" : "Profil",
-    "my_messages" : "Mesajlarım",
-    "add_a_pet" : "Hayvan Ekle",
-    "home_page" : "Hayvan Sahiplen",
-    "dog" : "Köpek",
     "other": "Diğer",
-    "cat" : "Kedi",
-    "fish" : "Balık",
-    "male" : "Erkek",
-    "female" : "Dişi",
-    "rabbit" : "Tavşan",
-    "zero_three_months" : "0 - 3 Ay",
-    "three_six_months" : "3 - 6 Ay",
-    "six_months_one_year" : "6 Ay - 1 Yıl",
-    "one_three_years" : "1 - 3 Yıl",
-    "more_than_three_years" : "3 Yıldan Fazla",
     "add_pet_two_for_two" : "Evcil Hayvan Ekle 2/2",
     "pet_age_range" : "Evcil Hayvan Yaş Aralığı",
     "pet_gender" : "Evcil Hayvan Cinsiyeti",
@@ -31,7 +70,6 @@
     "adopt" : "Sahiplendir",
     "sleep" : "Uyut",
     "next" : "Sonraki",
-    "fill_all_area" : "Lütfen tüm alanları doldurunuz",
     "select_gallery" : "Galeriden Seç",
     "shoot_from_camera" : "Kameradan Çek",
     "add_pet_two_in_one" : "Evcil Hayvan Ekle 1/2",
@@ -52,16 +90,7 @@
     "fish_chat" : "Balık Sohbeti",
     "group_add_not_yet" : "Henüz Grup Oluşturma Özelliği Aktif Değil",
     "ok" : "TAMAM",
-    "login" : "Giriş Yap",
-    "mail" : "E-posta",
-    "password" : "Şifre",
-    "dont_have_account" : "Hesabın yok mu?",
-    "register" : "Kayıt Ol",
-    "already_have_an_account" : "Zaten hesabın var mı?",
-    "onboarding_msg_one" : "Evcil hayvanları en güvenli şekilde sahiplen veya sahiplendir!",
-    "onboarding_msg_two" : "Evcil hayvanlarının sorunları için başka evcil hayvan sahipleriyle konuş!",
-    "onboarding_msg_three" : "Hayvanlarınızı diğer insanlar ile paylaşın ve tatlı hayvanlar görün!",
-    "continue" : "Devam",    
+    "continue_text" : "Devam",    
     "back" : "Geri",
     "start" : "BAŞLA",
     "filter_pets" : "Evcil Hayvanları Filtrele",
@@ -70,12 +99,9 @@
     "not_pet_yet" : "Aradığınız Evcil Hayvanı Bulamadık",
     "write_a_message" : "Bir mesaj yaz...",
     "not_insert_yet" : "Henüz hiç ilanınız bulunmamakta",
-    "my_favorites" : "Favorilerim",
     "connection_error_text" : "Bağlantı Hatası",
     "not_fav_yet" : "Favoriler listenizdeki bu ilan kaldırıldı",
     "report" : "Bildir",
-    "report_animal" : "Hayvan Bildir",
-    "report_animal_info":"Hayvan bildir özelliği sayesinde sokakta karşılaştığınız hayvanları belediyenize veya barınaklara bildirerek zararsız hale getirilmesiniz sağlayabilirsiniz!",
     "contact_phone": "İletişim Numarası",
     "get_current_location": "Şuanki konumu al",
     "reported_animals" : "Bildirilen Hayvanlar",
@@ -85,7 +111,6 @@
     "dont_animal_damaged" : "Hayvandan bir zarar görülmemiş",
     "report_insert" : "Bildirinizi aldık. İlan en kısa sürede incelenecektir.",
     "reported_inserts" : "Bildirilen Hayvanlar",
-    "logout" : "Çıkış Yap",
     "about" : "Hakkında",
     "feedBack" : "Geri Bildirim Gönder",
     "links" : "Sosyal Medya Adreslerimiz",
@@ -97,13 +122,5 @@
     "vet_help" : "Hayvanın veteriner yardımına ihtiyacı var",
     "instagram" : "Instagram",
     "discord" : "Discord",
-    "other_needs" : "Hayanın diğer ihtiyaçları",
-    "help_me" : "Yardım Et!",
-    "petilla_description" : "Hayvan sahiplen ve sahiplendir!",
-    "petform_description" : "Sorunlarını hayvan sahipleri ile çöz!",
-    "animal_report_description" : "Zarar gördüğün hayvanları bildir!",
-    "help_me_description" : "Sokak hayvanlarına yardım et!",
-    "welcome_again" : "Tekrar Hoşgeldin!",
-    "sign_in_with_admin" : "Admin hesabı ile giriş yapıldı.",
-    "welcome" : "Hoşgeldin!"
+    "other_needs" : "Hayanın diğer ihtiyaçları"
 }

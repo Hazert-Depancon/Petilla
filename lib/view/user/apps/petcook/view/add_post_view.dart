@@ -68,7 +68,9 @@ class _AddPostViewState extends State<AddPostView> {
               padding: ProjectPaddings.horizontalMainPadding,
               child: Column(
                 children: [
-                  viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+                  viewModel.imageFile == null
+                      ? _addPhotoContainer(context)
+                      : _photoContainer(context),
                   mainHeightSizedBox,
                   MainTextField(
                     controller: _descriptionController,
@@ -167,7 +169,7 @@ class _AddPostViewState extends State<AddPostView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shootFromCamera.locale),
+        title: Text(LocaleKeys.shoot_from_camera.locale),
         onTap: () {
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
@@ -180,7 +182,7 @@ class _AddPostViewState extends State<AddPostView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.selectGallery.locale),
+        title: Text(LocaleKeys.select_gallery.locale),
         onTap: () {
           viewModel.pickImageGallery();
           Navigator.of(context).pop();

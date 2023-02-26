@@ -18,7 +18,7 @@ class AboutView extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                LocaleKeys.aboutOne.locale,
+                LocaleKeys.about_one.locale,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ],

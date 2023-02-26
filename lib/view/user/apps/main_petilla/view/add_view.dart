@@ -32,7 +32,8 @@ class _AddViewState extends BaseState<AddView> {
   Object? val = 1;
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  RadioListTile get adoptRadioListTile => _radioListTile(1, _ThisPageTexts.adopt, context);
+  RadioListTile get adoptRadioListTile =>
+      _radioListTile(1, _ThisPageTexts.adopt, context);
 
   late AddViewViewModel viewModel;
 
@@ -53,7 +54,8 @@ class _AddViewState extends BaseState<AddView> {
         body: _body(context, adoptRadioListTile),
       );
 
-  SafeArea _body(BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
+  SafeArea _body(
+      BuildContext context, RadioListTile<dynamic> adoptRadioListTile) {
     return SafeArea(
       child: Form(
         key: _formKey,
@@ -61,7 +63,9 @@ class _AddViewState extends BaseState<AddView> {
           return ListView(
             padding: ProjectPaddings.horizontalMainPadding,
             children: [
-              viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+              viewModel.imageFile == null
+                  ? _addPhotoContainer(context)
+                  : _photoContainer(context),
               mainSizedBox,
               _petNameTextField(),
               mainSizedBox,
@@ -253,7 +257,8 @@ class _AddViewState extends BaseState<AddView> {
       return showErrorDialog(true, _ThisPageTexts.fillAllArea, context);
     }
     if (_formKey.currentState!.validate()) {
-      viewModel.callAddViewTwo(_nameController, _descriptionController, val, viewModel.image, context);
+      viewModel.callAddViewTwo(_nameController, _descriptionController, val,
+          viewModel.image, context);
     }
   }
 }
@@ -262,9 +267,9 @@ class _ThisPageTexts {
   static String name = LocaleKeys.name.locale;
   static String description = LocaleKeys.description.locale;
   static String adopt = LocaleKeys.adopt.locale;
-  static String next = LocaleKeys.continuePages.locale;
-  static String fillAllArea = LocaleKeys.fillAllArea.locale;
-  static String gellery = LocaleKeys.selectGallery.locale;
-  static String camera = LocaleKeys.shootFromCamera.locale;
-  static String pageTitle = LocaleKeys.addPetOneInTwo.locale;
+  static String next = LocaleKeys.continue_text.locale;
+  static String fillAllArea = LocaleKeys.validation_emptyValidation.locale;
+  static String gellery = LocaleKeys.select_gallery.locale;
+  static String camera = LocaleKeys.shoot_from_camera.locale;
+  static String pageTitle = LocaleKeys.add_pet_two_in_one.locale;
 }

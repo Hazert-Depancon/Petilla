@@ -207,6 +207,6 @@ class MyListView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String writeAMessage = LocaleKeys.writeAMessage.locale;
-  static String sayHi = LocaleKeys.sayHi.locale;
+  static String writeAMessage = LocaleKeys.write_a_message.locale;
+  static String sayHi = LocaleKeys.say_hi.locale;
 }

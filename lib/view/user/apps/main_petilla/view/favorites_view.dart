@@ -38,7 +38,7 @@ class FavoritesView extends StatelessWidget {
       );
 
   AppBar get _appBar => AppBar(
-        title: Text(LocaleKeys.myFavorites.locale),
+        title: Text(LocaleKeys.petillaPages_my_favorites.locale),
         automaticallyImplyLeading: false,
       );
 
@@ -86,7 +86,7 @@ class FavoritesView extends StatelessWidget {
             return _largePetWidget(snapshot);
           }
           if (snapshot.data?.exists == false) {
-            return Text(LocaleKeys.notFavYet.locale);
+            return Text(LocaleKeys.not_fav_yet.locale);
           }
 
           if (snapshot.connectionState == ConnectionState.none) {
@@ -99,13 +99,16 @@ class FavoritesView extends StatelessWidget {
     });
   }
 
-  StatusView get _connectionErrorView => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _connectionErrorView =>
+      const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
   StatusView get _emptyLottie => const StatusView(status: StatusKeysEnum.EMPTY);
 
-  StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingLottie =>
+      const StatusView(status: StatusKeysEnum.LOADING);
 
-  LargePetWidget _largePetWidget(AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+  LargePetWidget _largePetWidget(
+      AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
     return LargePetWidget(
       petModel: _petModel(snapshot.data),
     );

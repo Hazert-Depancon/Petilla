@@ -71,11 +71,14 @@ class ChatSelectView extends StatelessWidget {
     );
   }
 
-  StatusView get _loadingWidget => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingWidget =>
+      const StatusView(status: StatusKeysEnum.LOADING);
 
-  StatusView get _connectionError => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _connectionError =>
+      const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  StatusView get _notMessagesYetWidget => const StatusView(status: StatusKeysEnum.EMPTY);
+  StatusView get _notMessagesYetWidget =>
+      const StatusView(status: StatusKeysEnum.EMPTY);
 
   StatusView get _errorWidget => const StatusView(status: StatusKeysEnum.ERROR);
 
@@ -88,7 +91,8 @@ class ChatSelectView extends StatelessWidget {
     );
   }
 
-  UserChat _userChatWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index, BuildContext context) {
+  UserChat _userChatWidget(AsyncSnapshot<QuerySnapshot<Object?>> snapshot,
+      int index, BuildContext context) {
     return UserChat(
       name: snapshot.data!.docs[index][AppFirestoreFieldNames.nameField],
       lastMsg: snapshot.data!.docs[index][AppFirestoreFieldNames.lastMsgField],
@@ -100,5 +104,5 @@ class ChatSelectView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String myMessages = LocaleKeys.myMessages.locale;
+  static String myMessages = LocaleKeys.petillaPages_my_messages.locale;
 }

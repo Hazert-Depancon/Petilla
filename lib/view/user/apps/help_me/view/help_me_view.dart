@@ -41,7 +41,8 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   bool isVetHelp = false;
   bool isFoodHelp = false;
 
-  RadioListTile get _locationRadioListTile => _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
+  RadioListTile get _locationRadioListTile =>
+      _radioListTile(1, LocaleKeys.get_current_location.locale, context);
   Object? currentLocationVal = 1;
 
   final _formKey = GlobalKey<FormState>();
@@ -81,7 +82,9 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           child: Observer(builder: (_) {
             return Column(
               children: [
-                viewModel.imageFile == null ? _addPhotoContainer(context) : _photoContainer(context),
+                viewModel.imageFile == null
+                    ? _addPhotoContainer(context)
+                    : _photoContainer(context),
                 mainHeightSizedBox,
                 _titleTextField,
                 mainHeightSizedBox,
@@ -107,7 +110,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   MainTextField get _otherNeedsTextfield {
     return MainTextField(
-      hintText: LocaleKeys.otherNeeds.locale,
+      hintText: LocaleKeys.other_needs.locale,
       controller: otherNeedsController,
     );
   }
@@ -139,7 +142,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           isVetHelp = value!;
         });
       },
-      title: Text(LocaleKeys.vetHelp.locale),
+      title: Text(LocaleKeys.vet_help.locale),
     );
   }
 
@@ -152,13 +155,13 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           isFoodHelp = value!;
         });
       },
-      title: Text(LocaleKeys.foodHelp.locale),
+      title: Text(LocaleKeys.food_help.locale),
     );
   }
 
   Button get _submitButton {
     return Button(
-      text: LocaleKeys.addAPet.locale,
+      text: LocaleKeys.petillaPages_add_a_pet.locale,
       height: ProjectButtonSizes.mainButtonHeight,
       width: ProjectButtonSizes.mainButtonWidth,
       onPressed: () {
@@ -195,7 +198,8 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
                 imageDowlandUrl: dowlandLink,
                 currentUserEmail: FirebaseAuth.instance.currentUser!.email!,
                 currentUserId: FirebaseAuth.instance.currentUser!.uid,
-                currentUserName: FirebaseAuth.instance.currentUser!.displayName!,
+                currentUserName:
+                    FirebaseAuth.instance.currentUser!.displayName!,
                 otherNeeds: otherNeedsController.text.trim(),
               ),
             )
@@ -290,7 +294,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shootFromCamera.locale),
+        title: Text(LocaleKeys.shoot_from_camera.locale),
         onTap: () {
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
@@ -303,7 +307,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.selectGallery.locale),
+        title: Text(LocaleKeys.select_gallery.locale),
         onTap: () {
           viewModel.pickImageGallery();
           Navigator.of(context).pop();

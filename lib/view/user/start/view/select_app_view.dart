@@ -66,22 +66,22 @@ class _SelectAppViewState extends State<SelectAppView> {
         child: Column(
           children: [
             SelectAppWidget(
-              title: LocaleKeys.petilla.locale,
-              description: LocaleKeys.petillaDescription.locale,
+              title: LocaleKeys.appNames_petilla.locale,
+              description: LocaleKeys.appDescription_petilla_description.locale,
               imagePath: Assets.images.petillaImage.path,
               onTap: const MainPetilla(),
             ),
             mainSizedBox,
             SelectAppWidget(
-              title: LocaleKeys.petform.locale,
-              description: LocaleKeys.petformDescription.locale,
+              title: LocaleKeys.appNames_petform.locale,
+              description: LocaleKeys.appDescription_petform_description.locale,
               imagePath: Assets.images.petform.path,
               onTap: const MainPetForm(),
             ),
             mainSizedBox,
             SelectAppWidget(
-              title: LocaleKeys.helpMe.locale,
-              description: LocaleKeys.helpMeDescription.locale,
+              title: LocaleKeys.appNames_help_me.locale,
+              description: LocaleKeys.appDescription_help_me_description.locale,
               imagePath: Assets.images.helpMe.path,
               onTap: const HelpMeControl(),
             ),
@@ -113,5 +113,5 @@ class _SelectAppViewState extends State<SelectAppView> {
 }
 
 class _ThisPageTexts {
-  static String petillaTitle = LocaleKeys.petilla.locale;
+  static String petillaTitle = LocaleKeys.appNames_petilla.locale;
 }

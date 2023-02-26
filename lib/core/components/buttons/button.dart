@@ -37,14 +37,15 @@ class Button extends StatelessWidget {
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
       color: LightThemeColors.miamiMarmalade,
-      borderRadius: noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
+      borderRadius:
+          noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
     );
   }
 
   Text _text(BuildContext context) {
     return Text(
       text ?? "",
-      style: Theme.of(context).textTheme.button,
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }

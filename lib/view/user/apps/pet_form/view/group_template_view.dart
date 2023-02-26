@@ -105,7 +105,7 @@ class _GroupChatState extends BaseState<GroupChat> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: LocaleKeys.writeAMessage.locale,
+        hintText: LocaleKeys.write_a_message.locale,
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36),
@@ -125,7 +125,8 @@ class _GroupChatState extends BaseState<GroupChat> {
           foregroundColor: LightThemeColors.white,
           child: IconButton(
             onPressed: () {
-              GroupTemplateViewModel().onSendButton(msg, widget.docId, widget.collectionId);
+              GroupTemplateViewModel()
+                  .onSendButton(msg, widget.docId, widget.collectionId);
             },
             icon: const Icon(AppIcons.sendIcon),
           ),
@@ -136,7 +137,9 @@ class _GroupChatState extends BaseState<GroupChat> {
 }
 
 class ShowMessages extends StatelessWidget {
-  const ShowMessages({Key? key, required this.docId, required this.collectionId}) : super(key: key);
+  const ShowMessages(
+      {Key? key, required this.docId, required this.collectionId})
+      : super(key: key);
   final String docId;
   final String collectionId;
 
@@ -170,9 +173,11 @@ class ShowMessages extends StatelessWidget {
 
   StatusView get _errorWidget => const StatusView(status: StatusKeysEnum.ERROR);
 
-  StatusView get _connectionErrorWidget => const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
+  StatusView get _connectionErrorWidget =>
+      const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  StatusView get _loadingWidget => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingWidget =>
+      const StatusView(status: StatusKeysEnum.LOADING);
 
   ListView _listView(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return ListView.builder(
@@ -181,7 +186,8 @@ class ShowMessages extends StatelessWidget {
       itemBuilder: (context, index) {
         QueryDocumentSnapshot querySnapshot = snapshot.data!.docs[index];
         return Column(
-          crossAxisAlignment: loginUser!.displayName == querySnapshot[AppFirestoreFieldNames.userField]
+          crossAxisAlignment: loginUser!.displayName ==
+                  querySnapshot[AppFirestoreFieldNames.userField]
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
           children: [
@@ -201,7 +207,8 @@ class ShowMessages extends StatelessWidget {
   SingleMessage _singleMessage(QueryDocumentSnapshot<Object?> querySnapshot) {
     return SingleMessage(
       message: querySnapshot[AppFirestoreFieldNames.msgField],
-      isMe: querySnapshot[AppFirestoreFieldNames.userField] == loginUser!.displayName.toString(),
+      isMe: querySnapshot[AppFirestoreFieldNames.userField] ==
+          loginUser!.displayName.toString(),
     );
   }
 }
