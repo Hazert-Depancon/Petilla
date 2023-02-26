@@ -11,7 +11,7 @@ class SocialConnectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const String instagramUrl = "https://www.instagram.com/petilla_turkiye/";
-    const String discordUrl = "https://discord.gg/U8GFH5tzw9";
+    const String discordUrl = "https://discord.gg/QRNyQrnKz2";
 
     return Scaffold(
       appBar: _appBar(),
@@ -19,7 +19,8 @@ class SocialConnectionView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _listTile(context, FontAwesomeIcons.instagram, LocaleKeys.instagram.locale, instagramUrl),
+              _listTile(context, FontAwesomeIcons.instagram,
+                  LocaleKeys.instagram.locale, instagramUrl),
               _listTile(
                 context,
                 FontAwesomeIcons.discord,
@@ -41,7 +42,9 @@ class SocialConnectionView extends StatelessWidget {
         size: 32,
       ),
       onTap: () async {
-        await canLaunchUrlString(url) ? await launchUrlString(url) : throw "ERROR";
+        await canLaunchUrlString(url)
+            ? await launchUrlString(url)
+            : throw "ERROR";
       },
       title: Text(
         text,

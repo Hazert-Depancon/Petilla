@@ -8,7 +8,7 @@
     "appDescription": {
         "petillaDescription" : "Hayvan sahiplen ve sahiplendir!",
         "petformDescription" : "Sorunlarını hayvan sahipleri ile çöz!",
-        "animalReportDescription" : "Zarar gördüğün hayvanları bildir!",
+        "petieDescription": "Hayvanlar için sosyal medya!",
         "helpMeDescription" : "Sokak hayvanlarına yardım et!"    
     },
     "auth": {
@@ -122,5 +122,8 @@
     "vetHelp" : "Hayvanın veteriner yardımına ihtiyacı var",
     "instagram" : "Instagram",
     "discord" : "Discord",
-    "otherNeeds" : "Hayanın diğer ihtiyaçları"
+    "otherNeeds" : "Hayanın diğer ihtiyaçları",
+    "share" : "Paylaş",
+    "sharePhoto" : "Fotoğraf Paylaş",
+    "homePage" : "Anasayfa"
 }

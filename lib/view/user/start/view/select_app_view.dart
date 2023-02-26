@@ -87,8 +87,8 @@ class _SelectAppViewState extends State<SelectAppView> {
             ),
             mainSizedBox,
             SelectAppWidget(
-              title: "Petcook",
-              description: "Hayvanlar için sosyal medya!",
+              title: LocaleKeys.appNames_petie.locale.locale,
+              description: LocaleKeys.appDescription_petieDescription.locale,
               imagePath: Assets.images.petCookImage.path,
               onTap: const PetCookControlView(),
             ),

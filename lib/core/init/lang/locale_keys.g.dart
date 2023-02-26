@@ -10,8 +10,8 @@ abstract class LocaleKeys {
       'appDescription.petillaDescription';
   static const appDescription_petformDescription =
       'appDescription.petformDescription';
-  static const appDescription_animalReportDescription =
-      'appDescription.animalReportDescription';
+  static const appDescription_petieDescription =
+      'appDescription.petieDescription';
   static const appDescription_helpMeDescription =
       'appDescription.helpMeDescription';
   static const appDescription = 'appDescription';
@@ -124,4 +124,7 @@ abstract class LocaleKeys {
   static const female = 'genders.female';
   static const male = 'genders.male';
   static const other = 'other';
+  static const share = 'share';
+  static const sharePhoto = 'sharePhoto';
+  static const homePage = 'homePage';
 }

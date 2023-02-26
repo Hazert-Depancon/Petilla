@@ -57,7 +57,7 @@ class _AddPostViewState extends State<AddPostView> {
       leading: _backIcon(context),
       foregroundColor: LightThemeColors.black,
       title: Text(
-        "Fotoğraf Paylaş",
+        LocaleKeys.sharePhoto.locale,
         style: Theme.of(context).textTheme.headlineMedium,
       ),
     );
@@ -94,7 +94,7 @@ class _AddPostViewState extends State<AddPostView> {
                         }
                       }
                     },
-                    text: "Paylaş",
+                    text: LocaleKeys.share.locale,
                   ),
                 ],
               ),
