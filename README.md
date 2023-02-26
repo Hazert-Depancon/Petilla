@@ -26,10 +26,10 @@ hizmetleri en kısa sürede eklenecektir.
 
 # Emeği Geçenler
 
-Oğuz Kağan Güllü (Petilla Kurucu, Yazılım, https://github.com/hazert-depancon)
+Oğuz Kağan Güllü (Petilla Kurucu, Yazılım, (Github)[https://github.com/kagangullu])
 
 Erdinç Güllü (Danışman)
 
 A Eymen Nuhoğlu (Danışman)
 
-M. Said Korkmaz (Yazılım Yardımı, Yatırımcı, Danışman, https://github.com/saidkorkmaz)
+M. Said Korkmaz (Yazılım Yardımı, Yatırımcı, Danışman, (Github)[https://github.com/saidkorkmaz])
