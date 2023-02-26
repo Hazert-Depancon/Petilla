@@ -92,7 +92,7 @@ class _DetailViewState extends BaseState<DetailView> {
             AppIcons.success,
             color: LightThemeColors.white,
           ),
-          Text(LocaleKeys.report_insert.locale)
+          Text(LocaleKeys.reportInsert.locale)
         ],
       ),
       backgroundColor: LightThemeColors.green,
@@ -282,9 +282,9 @@ class _DetailViewState extends BaseState<DetailView> {
 
 class _ThisPageTexts {
   static String claim = LocaleKeys.claim.locale;
-  static String ageRange = LocaleKeys.pet_age_range.locale;
+  static String ageRange = LocaleKeys.petAgeRange.locale;
   static String gender = LocaleKeys.gender.locale;
-  static String type = LocaleKeys.pet_type.locale;
-  static String race = LocaleKeys.pet_race.locale;
+  static String type = LocaleKeys.petType.locale;
+  static String race = LocaleKeys.petRace.locale;
   static String location = LocaleKeys.location.locale;
 }

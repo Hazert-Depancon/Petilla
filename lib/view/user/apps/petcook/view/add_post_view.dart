@@ -169,7 +169,7 @@ class _AddPostViewState extends State<AddPostView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shoot_from_camera.locale),
+        title: Text(LocaleKeys.shootFromCamera.locale),
         onTap: () {
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
@@ -182,7 +182,7 @@ class _AddPostViewState extends State<AddPostView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.select_gallery.locale),
+        title: Text(LocaleKeys.selectGallery.locale),
         onTap: () {
           viewModel.pickImageGallery();
           Navigator.of(context).pop();

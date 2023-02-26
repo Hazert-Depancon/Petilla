@@ -104,5 +104,5 @@ class ChatSelectView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String myMessages = LocaleKeys.petillaPages_my_messages.locale;
+  static String myMessages = LocaleKeys.petillaPages_myMessages.locale;
 }

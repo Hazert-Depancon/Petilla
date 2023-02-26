@@ -173,7 +173,7 @@ class _ThisPageTexts {
   static String mailHint = LocaleKeys.auth_mail.locale;
   static String passwordHint = LocaleKeys.auth_password.locale;
   static String alreadyHaveAnAccount =
-      LocaleKeys.auth_already_have_an_account.locale;
+      LocaleKeys.auth_alreadyHaveAnAccount.locale;
   static String logIn = LocaleKeys.auth_login.locale;
   static String register = LocaleKeys.auth_register.locale;
 }

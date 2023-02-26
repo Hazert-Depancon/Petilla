@@ -47,7 +47,7 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
   Scaffold _buildScaffold(context) => Scaffold(
         endDrawer: _endDrawer(context),
         appBar: AppBar(
-          title: Text(LocaleKeys.appNames_help_me.locale),
+          title: Text(LocaleKeys.appNames_helpMe.locale),
           leading: _backIcon(context),
           actions: [
             _helpMe(),

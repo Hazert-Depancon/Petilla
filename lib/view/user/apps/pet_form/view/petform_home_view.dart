@@ -150,15 +150,15 @@ class PetformHomeView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String selectGroup = LocaleKeys.select_a_group.locale;
-  static String groupAddNotYet = LocaleKeys.group_add_not_yet.locale;
-  static String generalChat = LocaleKeys.general_chat.locale;
+  static String selectGroup = LocaleKeys.selectAGroup.locale;
+  static String groupAddNotYet = LocaleKeys.groupAddNotYet.locale;
+  static String generalChat = LocaleKeys.generalChat.locale;
   static String dog = LocaleKeys.animalNames_dog.locale;
-  static String dogChat = LocaleKeys.dog_chat.locale;
+  static String dogChat = LocaleKeys.dogChat.locale;
   static String cat = LocaleKeys.animalNames_cat.locale;
-  static String catChat = LocaleKeys.cat_chat.locale;
+  static String catChat = LocaleKeys.catChat.locale;
   static String rabbit = LocaleKeys.animalNames_rabbit.locale;
-  static String rabbitChat = LocaleKeys.rabbit_chat.locale;
+  static String rabbitChat = LocaleKeys.rabbitChat.locale;
   static String fish = LocaleKeys.animalNames_fish.locale;
-  static String fishChat = LocaleKeys.fish_chat.locale;
+  static String fishChat = LocaleKeys.fishChat.locale;
 }

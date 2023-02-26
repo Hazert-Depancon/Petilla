@@ -87,14 +87,14 @@ class _MainPetillaState extends BaseState<MainPetilla> {
         icon: _selectedIndex == 1
             ? const Icon(AppIcons.favoriteIcon)
             : const Icon(AppIcons.favoriteBorderIcon),
-        label: LocaleKeys.petillaPages_my_favorites.locale,
+        label: LocaleKeys.petillaPages_myFavorites.locale,
       );
 
   BottomNavigationBarItem get _addBottomNavigation => BottomNavigationBarItem(
         icon: _selectedIndex == 2
             ? const Icon(AppIcons.addCircleIcon)
             : const Icon(AppIcons.addCircleOutlinedIcon),
-        label: LocaleKeys.petillaPages_add_a_pet.locale,
+        label: LocaleKeys.petillaPages_addAPet.locale,
       );
 
   BottomNavigationBarItem get _chatsBottomNavigation => BottomNavigationBarItem(
@@ -102,7 +102,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
             ? SvgPicture.asset(Assets.svg.chat,
                 color: LightThemeColors.miamiMarmalade)
             : SvgPicture.asset(Assets.svg.chat, color: LightThemeColors.grey),
-        label: LocaleKeys.petillaPages_my_messages.locale,
+        label: LocaleKeys.petillaPages_myMessages.locale,
       );
 
   BottomNavigationBarItem get _insertBottomNavigation =>

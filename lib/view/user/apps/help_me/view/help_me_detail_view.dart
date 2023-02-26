@@ -117,10 +117,10 @@ class HelpMeDetailView extends StatelessWidget {
 
   SizedBox _emptySizedBox() => const SizedBox.shrink();
 
-  Text _vetHelpText(context) => Text(LocaleKeys.vet_help.locale,
+  Text _vetHelpText(context) => Text(LocaleKeys.vetHelp.locale,
       style: Theme.of(context).textTheme.titleSmall);
 
-  Text _footdHelpText(context) => Text(LocaleKeys.food_help.locale,
+  Text _footdHelpText(context) => Text(LocaleKeys.foodHelp.locale,
       style: Theme.of(context).textTheme.titleSmall);
 
   Text _descriptionText(context) => Text(helpMeModel.description,

@@ -42,7 +42,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   bool isFoodHelp = false;
 
   RadioListTile get _locationRadioListTile =>
-      _radioListTile(1, LocaleKeys.get_current_location.locale, context);
+      _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
   Object? currentLocationVal = 1;
 
   final _formKey = GlobalKey<FormState>();
@@ -110,7 +110,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   MainTextField get _otherNeedsTextfield {
     return MainTextField(
-      hintText: LocaleKeys.other_needs.locale,
+      hintText: LocaleKeys.otherNeeds.locale,
       controller: otherNeedsController,
     );
   }
@@ -142,7 +142,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           isVetHelp = value!;
         });
       },
-      title: Text(LocaleKeys.vet_help.locale),
+      title: Text(LocaleKeys.vetHelp.locale),
     );
   }
 
@@ -155,13 +155,13 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           isFoodHelp = value!;
         });
       },
-      title: Text(LocaleKeys.food_help.locale),
+      title: Text(LocaleKeys.foodHelp.locale),
     );
   }
 
   Button get _submitButton {
     return Button(
-      text: LocaleKeys.petillaPages_add_a_pet.locale,
+      text: LocaleKeys.petillaPages_addAPet.locale,
       height: ProjectButtonSizes.mainButtonHeight,
       width: ProjectButtonSizes.mainButtonWidth,
       onPressed: () {
@@ -294,7 +294,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoCameraIcon),
-        title: Text(LocaleKeys.shoot_from_camera.locale),
+        title: Text(LocaleKeys.shootFromCamera.locale),
         onTap: () {
           viewModel.pickImageCamera();
           Navigator.of(context).pop();
@@ -307,7 +307,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     return Observer(builder: (_) {
       return ListTile(
         leading: const Icon(AppIcons.photoLibraryIcon),
-        title: Text(LocaleKeys.select_gallery.locale),
+        title: Text(LocaleKeys.selectGallery.locale),
         onTap: () {
           viewModel.pickImageGallery();
           Navigator.of(context).pop();

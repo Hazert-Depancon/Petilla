@@ -101,7 +101,7 @@ class FeedBackView extends StatelessWidget {
 
   SnackBar _snackBar() {
     return SnackBar(
-      content: Text(LocaleKeys.thanks_feedback.locale),
+      content: Text(LocaleKeys.thanksFeedback.locale),
     );
   }
 }

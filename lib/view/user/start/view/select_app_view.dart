@@ -67,21 +67,21 @@ class _SelectAppViewState extends State<SelectAppView> {
           children: [
             SelectAppWidget(
               title: LocaleKeys.appNames_petilla.locale,
-              description: LocaleKeys.appDescription_petilla_description.locale,
+              description: LocaleKeys.appDescription_petillaDescription.locale,
               imagePath: Assets.images.petillaImage.path,
               onTap: const MainPetilla(),
             ),
             mainSizedBox,
             SelectAppWidget(
               title: LocaleKeys.appNames_petform.locale,
-              description: LocaleKeys.appDescription_petform_description.locale,
+              description: LocaleKeys.appDescription_petformDescription.locale,
               imagePath: Assets.images.petform.path,
               onTap: const MainPetForm(),
             ),
             mainSizedBox,
             SelectAppWidget(
-              title: LocaleKeys.appNames_help_me.locale,
-              description: LocaleKeys.appDescription_help_me_description.locale,
+              title: LocaleKeys.appNames_helpMe.locale,
+              description: LocaleKeys.appDescription_helpMeDescription.locale,
               imagePath: Assets.images.helpMe.path,
               onTap: const HelpMeControl(),
             ),

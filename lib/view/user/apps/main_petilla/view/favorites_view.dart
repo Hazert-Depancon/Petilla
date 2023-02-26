@@ -38,7 +38,7 @@ class FavoritesView extends StatelessWidget {
       );
 
   AppBar get _appBar => AppBar(
-        title: Text(LocaleKeys.petillaPages_my_favorites.locale),
+        title: Text(LocaleKeys.petillaPages_myFavorites.locale),
         automaticallyImplyLeading: false,
       );
 
@@ -86,7 +86,7 @@ class FavoritesView extends StatelessWidget {
             return _largePetWidget(snapshot);
           }
           if (snapshot.data?.exists == false) {
-            return Text(LocaleKeys.not_fav_yet.locale);
+            return Text(LocaleKeys.notFavYet.locale);
           }
 
           if (snapshot.connectionState == ConnectionState.none) {

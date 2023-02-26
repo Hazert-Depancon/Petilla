@@ -84,7 +84,7 @@ class LoginView extends StatelessWidget {
 
   Text _welcomeBackText() {
     return Text(
-      LocaleKeys.auth_welcome_again.locale,
+      LocaleKeys.auth_welcomeAgain.locale,
       style: const TextStyle(
         color: LightThemeColors.white,
         fontWeight: FontWeight.w700,
@@ -152,6 +152,6 @@ class _ThisPageTexts {
   static String title = LocaleKeys.auth_login.locale;
   static String mailHintText = LocaleKeys.auth_mail.locale;
   static String passwordHintText = LocaleKeys.auth_password.locale;
-  static String dontHaveAccount = LocaleKeys.auth_dont_have_account.locale;
+  static String dontHaveAccount = LocaleKeys.auth_dontHaveAccount.locale;
   static String registerText = LocaleKeys.auth_register.locale;
 }

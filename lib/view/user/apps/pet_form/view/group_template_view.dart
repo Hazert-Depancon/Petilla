@@ -105,7 +105,7 @@ class _GroupChatState extends BaseState<GroupChat> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: LocaleKeys.write_a_message.locale,
+        hintText: LocaleKeys.writeAMessage.locale,
         suffixIcon: _sendButton(controller),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(36),

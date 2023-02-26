@@ -431,16 +431,16 @@ class _ThisPageTexts {
   static String rabbit = LocaleKeys.animalNames_rabbit.locale;
   static String fish = LocaleKeys.animalNames_fish.locale;
   static String other = LocaleKeys.other.locale;
-  static String zeroThreeMonths = LocaleKeys.ageRanges_zero_three_months.locale;
-  static String threeSixMonths = LocaleKeys.ageRanges_three_six_months.locale;
+  static String zeroThreeMonths = LocaleKeys.ageRanges_zeroThreeMonths.locale;
+  static String threeSixMonths = LocaleKeys.ageRanges_threeSixMonths.locale;
   static String sixMonthsOneYear =
-      LocaleKeys.ageRanges_six_months_one_year.locale;
+      LocaleKeys.ageRanges_sixMonths_one_year.locale;
   static String oneThreeYears = LocaleKeys.ageRanges_one_three_years.locale;
   static String moreThreeYears =
       LocaleKeys.ageRanges_more_than_three_years.locale;
-  static String male = LocaleKeys.genders_male.locale;
-  static String female = LocaleKeys.genders_female.locale;
-  static String petType = LocaleKeys.pet_type.locale;
-  static String petAgeRange = LocaleKeys.pet_age_range.locale;
-  static String petGender = LocaleKeys.pet_gender.locale;
+  static String male = LocaleKeys.male.locale;
+  static String female = LocaleKeys.female.locale;
+  static String petType = LocaleKeys.petType.locale;
+  static String petAgeRange = LocaleKeys.petAgeRange.locale;
+  static String petGender = LocaleKeys.petGender.locale;
 }

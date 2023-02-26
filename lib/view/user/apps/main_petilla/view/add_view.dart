@@ -269,7 +269,7 @@ class _ThisPageTexts {
   static String adopt = LocaleKeys.adopt.locale;
   static String next = LocaleKeys.continue_text.locale;
   static String fillAllArea = LocaleKeys.validation_emptyValidation.locale;
-  static String gellery = LocaleKeys.select_gallery.locale;
-  static String camera = LocaleKeys.shoot_from_camera.locale;
-  static String pageTitle = LocaleKeys.add_pet_two_in_one.locale;
+  static String gellery = LocaleKeys.selectGallery.locale;
+  static String camera = LocaleKeys.shootFromCamera.locale;
+  static String pageTitle = LocaleKeys.addPetTwoInOne.locale;
 }
