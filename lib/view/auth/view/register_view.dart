@@ -90,7 +90,7 @@ class RegisterView extends StatelessWidget {
 
   Text _welcomeText() {
     return Text(
-      LocaleKeys.welcome.locale,
+      LocaleKeys.auth_welcome.locale,
       style: const TextStyle(
         color: LightThemeColors.white,
         fontWeight: FontWeight.w700,
@@ -170,9 +170,10 @@ class RegisterView extends StatelessWidget {
 
 class _ThisPageTexts {
   static String nameHint = LocaleKeys.name.locale;
-  static String mailHint = LocaleKeys.mail.locale;
-  static String passwordHint = LocaleKeys.password.locale;
-  static String alreadyHaveAnAccount = LocaleKeys.alreadyHaveAnAccount.locale;
-  static String logIn = LocaleKeys.login.locale;
-  static String register = LocaleKeys.register.locale;
+  static String mailHint = LocaleKeys.auth_mail.locale;
+  static String passwordHint = LocaleKeys.auth_password.locale;
+  static String alreadyHaveAnAccount =
+      LocaleKeys.auth_alreadyHaveAnAccount.locale;
+  static String logIn = LocaleKeys.auth_login.locale;
+  static String register = LocaleKeys.auth_register.locale;
 }

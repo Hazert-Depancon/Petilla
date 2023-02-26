@@ -113,5 +113,5 @@ class PetillaInsertView extends StatelessWidget {
 }
 
 class _ThisPageTexts {
-  static String myInserts = LocaleKeys.myInserts.locale;
+  static String myInserts = LocaleKeys.petillaPages_my_inserts.locale;
 }

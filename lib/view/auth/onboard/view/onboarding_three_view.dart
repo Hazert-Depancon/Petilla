@@ -29,7 +29,7 @@ class OnboardingThreeView extends StatelessWidget {
 }
 
 Text _textThree(BuildContext context) {
-  var msg3 = LocaleKeys.onboardingMsgThree.locale;
+  var msg3 = LocaleKeys.onboardTexts_onboarding_msg_three.locale;
 
   return Text(
     msg3,

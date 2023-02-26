@@ -182,9 +182,7 @@ class _ThisPageTexts {
   static String name = LocaleKeys.name.locale;
   static String description = LocaleKeys.description.locale;
   static String adopt = LocaleKeys.adopt.locale;
-  static String next = LocaleKeys.continuePages.locale;
-  static String fillAllArea = LocaleKeys.fillAllArea.locale;
-  static String gellery = LocaleKeys.selectGallery.locale;
-  static String camera = LocaleKeys.shootFromCamera.locale;
-  static String pageTitle = LocaleKeys.addPetOneInTwo.locale;
+  static String next = LocaleKeys.continue_text.locale;
+  static String fillAllArea = LocaleKeys.validation_emptyValidation.locale;
+  static String pageTitle = LocaleKeys.addPetTwoInOne.locale;
 }

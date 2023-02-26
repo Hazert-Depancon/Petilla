@@ -423,19 +423,21 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = LocaleKeys.homePage.locale;
-  static String filterPets = LocaleKeys.filterPets.locale;
+  static String homePage = LocaleKeys.petillaPages_animalAdopt.locale;
+  static String filterPets = LocaleKeys.filter_pets.locale;
   static String clear = LocaleKeys.clear.locale;
-  static String dog = LocaleKeys.dog.locale;
-  static String cat = LocaleKeys.cat.locale;
-  static String rabbit = LocaleKeys.rabbit.locale;
-  static String fish = LocaleKeys.fish.locale;
+  static String dog = LocaleKeys.animalNames_dog.locale;
+  static String cat = LocaleKeys.animalNames_cat.locale;
+  static String rabbit = LocaleKeys.animalNames_rabbit.locale;
+  static String fish = LocaleKeys.animalNames_fish.locale;
   static String other = LocaleKeys.other.locale;
-  static String zeroThreeMonths = LocaleKeys.zeroThreeMonths.locale;
-  static String threeSixMonths = LocaleKeys.threeSixMonths.locale;
-  static String sixMonthsOneYear = LocaleKeys.sixMonthsOneYear.locale;
-  static String oneThreeYears = LocaleKeys.oneThreeYears.locale;
-  static String moreThreeYears = LocaleKeys.moreThanThreeYears.locale;
+  static String zeroThreeMonths = LocaleKeys.ageRanges_zeroThreeMonths.locale;
+  static String threeSixMonths = LocaleKeys.ageRanges_threeSixMonths.locale;
+  static String sixMonthsOneYear =
+      LocaleKeys.ageRanges_sixMonths_one_year.locale;
+  static String oneThreeYears = LocaleKeys.ageRanges_one_three_years.locale;
+  static String moreThreeYears =
+      LocaleKeys.ageRanges_more_than_three_years.locale;
   static String male = LocaleKeys.male.locale;
   static String female = LocaleKeys.female.locale;
   static String petType = LocaleKeys.petType.locale;
