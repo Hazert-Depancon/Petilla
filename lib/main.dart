@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,13 +19,18 @@ Future<void> main() async {
   await _init();
   _initSystemUi();
 
+  final TrackingStatus status =
+      await AppTrackingTransparency.requestTrackingAuthorization();
   final showHome = LocaleManager.instance.getBoolValue(SharedKeys.SHOWHOME);
 
   runApp(
     EasyLocalization(
       supportedLocales: LanguageManager.instance.supportedLocales,
       path: AppConstants.LANG_ASSET_PATH,
-      child: Petilla(showHome: showHome),
+      child: Petilla(
+        showHome: showHome,
+        status: status,
+      ),
     ),
   );
 }
@@ -50,11 +56,29 @@ void _initSystemUi() {
 }
 
 class Petilla extends StatelessWidget {
-  const Petilla({Key? key, required this.showHome}) : super(key: key);
+  const Petilla({Key? key, required this.showHome, this.status})
+      : super(key: key);
   final bool showHome;
+  final TrackingStatus? status;
 
   @override
   Widget build(BuildContext context) {
+    String statusText;
+
+    switch (status) {
+      case TrackingStatus.authorized:
+        break;
+      case TrackingStatus.denied:
+        break;
+      case TrackingStatus.notDetermined:
+        break;
+      case TrackingStatus.notSupported:
+        break;
+      case TrackingStatus.restricted:
+        break;
+      default:
+        break;
+    }
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

@@ -60,6 +60,8 @@
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-6393554220663084~5107314846</string>
 		<key>NSCameraUsageDescription</key>
+		<key>NSUserTrackingUsageDescription</key>
+		<string>Bu tanımlayıcı, size kişiselleştirilmiş reklamlar sunmak için kullanılacaktır.</string>
 		<string>Petilla uygulamasının işlevsellik için kamera iznine ihtiyacı vardır.</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string></string>
