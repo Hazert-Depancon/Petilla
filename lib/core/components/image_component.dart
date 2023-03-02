@@ -26,9 +26,9 @@ class AddImageComponent extends StatefulWidget {
 }
 
 class _AddImageComponentState extends State<AddImageComponent> {
-  // bool isImageLoaded = false;
-  // File? imageFile;
-  // XFile? image;
+  bool isImageLoaded = false;
+  File? imageFile;
+  XFile? image;
 
   @override
   Widget build(BuildContext context) {

@@ -57,6 +57,7 @@ dependencies:
   # Utility
   url_launcher: ^6.1.7
   intl_phone_field: ^3.1.0
+  app_tracking_transparency: ^2.0.3
 
 dev_dependencies:
   flutter_test:
