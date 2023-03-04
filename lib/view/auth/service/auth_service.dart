@@ -5,6 +5,7 @@ import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart'
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:petilla_app_project/view/auth/view/login_view.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,12 +22,17 @@ class AuthService {
     Navigator.pop(context);
   }
 
-  Future<void> register(String email, String password, String name, context) async {
+  Future<void> register(
+      String email, String password, String name, context) async {
     try {
       showDefaultLoadingDialog(false, context);
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       _auth.currentUser!.updateDisplayName(name);
-      await _firestore.collection(AppFirestoreCollectionNames.usersCollection).doc(_auth.currentUser!.uid).set({
+      await _firestore
+          .collection(AppFirestoreCollectionNames.usersCollection)
+          .doc(_auth.currentUser!.uid)
+          .set({
         AppFirestoreFieldNames.nameField: name,
         AppFirestoreFieldNames.emailField: email,
         AppFirestoreFieldNames.uidField: _auth.currentUser!.uid,
@@ -42,6 +48,24 @@ class AuthService {
     showDefaultLoadingDialog(false, context);
     try {
       await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      showErrorDialog(true, e.message!, context);
+    }
+  }
+
+  Future<void> deleteUser(context) async {
+    try {
+      _firestore
+          .collection(AppFirestoreCollectionNames.usersCollection)
+          .doc(_auth.currentUser!.uid)
+          .delete();
+      _auth.currentUser!.delete().whenComplete(
+            () => Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => LoginView()),
+              (route) => false,
+            ),
+          );
     } on FirebaseAuthException catch (e) {
       showErrorDialog(true, e.message!, context);
     }

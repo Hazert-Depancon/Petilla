@@ -20,7 +20,8 @@
         "password" : "Şifre",
         "dontHaveAccount" : "Hesabın yok mu?",
         "register" : "Kayıt Ol",
-        "alreadyHaveAnAccount" : "Zaten hesabın var mı?"
+        "alreadyHaveAnAccount" : "Zaten hesabın var mı?",
+        "deleteAccount" : "Hesabı Sil"
     },
     "validation": {
         "mailValidation" : "Lütfen geçerli bir mail adresi giriniz.",

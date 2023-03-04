@@ -12,13 +12,13 @@ import 'package:petilla_app_project/core/components/textfields/main_textfield.da
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
+import 'package:petilla_app_project/view/auth/view/delete_account_confirm_view.dart';
 import 'package:petilla_app_project/view/user/other/view/about_view.dart';
 import 'package:petilla_app_project/view/user/other/view/feedback_view.dart';
 import 'package:petilla_app_project/view/user/other/view/social_connection_view.dart';
@@ -110,6 +110,7 @@ class _ProfileViewState extends State<ProfileView> {
               _listTile(context, AppIcons.link, LocaleKeys.links,
                   const SocialConnectionView()),
               _logOutButton(),
+              _deleteAccountButton(),
             ],
           ),
         );
@@ -122,10 +123,36 @@ class _ProfileViewState extends State<ProfileView> {
       padding: const EdgeInsets.only(left: 12.0),
       child: TextButton(
         onPressed: () {
-          viewModel.logOut();
+          setState(() {
+            setState(() {
+              viewModel.logOut();
+            });
+          });
         },
         child: Text(
           LocaleKeys.auth_logout.locale,
+          style: const TextStyle(
+            color: LightThemeColors.red,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _deleteAccountButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0),
+      child: TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DeleteAccountConfirmView(),
+            ),
+          );
+        },
+        child: Text(
+          LocaleKeys.auth_deleteAccount.locale,
           style: const TextStyle(
             color: LightThemeColors.red,
           ),
@@ -162,9 +189,7 @@ class _ProfileViewState extends State<ProfileView> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            String name = snapshot.data![AppFirestoreFieldNames.nameField];
-            String email = snapshot.data![AppFirestoreFieldNames.emailField];
-            return _hasDataScreen(snapshot, name, email, context);
+            return _hasDataScreen(snapshot, context);
           }
           if (snapshot.hasError) {
             return _errorLottie;
@@ -186,8 +211,9 @@ class _ProfileViewState extends State<ProfileView> {
   StatusView get _connectionErrorLottie =>
       const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  SingleChildScrollView _hasDataScreen(
-      snapshot, String name, String email, context) {
+  SingleChildScrollView _hasDataScreen(snapshot, context) {
+    String name = FirebaseAuth.instance.currentUser!.displayName!;
+    String email = FirebaseAuth.instance.currentUser!.email!  ;
     return SingleChildScrollView(
       padding: ProjectPaddings.horizontalMainPadding,
       child: Column(

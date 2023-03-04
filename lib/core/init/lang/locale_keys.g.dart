@@ -24,6 +24,7 @@ abstract class LocaleKeys {
   static const auth_dontHaveAccount = 'auth.dontHaveAccount';
   static const auth_register = 'auth.register';
   static const auth_alreadyHaveAnAccount = 'auth.alreadyHaveAnAccount';
+  static const auth_deleteAccount = 'auth.deleteAccount';
   static const auth = 'auth';
   static const validation_mailValidation = 'validation.mailValidation';
   static const validation_emptyValidation = 'validation.emptyValidation';
