@@ -8,7 +8,8 @@ import 'package:petilla_app_project/view/auth/view/login_view.dart';
 
 part 'profile_view_view_model.g.dart';
 
-class ProfileViewViewModel = _ProfileViewViewModelBase with _$ProfileViewViewModel;
+class ProfileViewViewModel = _ProfileViewViewModelBase
+    with _$ProfileViewViewModel;
 
 abstract class _ProfileViewViewModelBase with Store, BaseViewModel {
   @override
@@ -30,5 +31,10 @@ abstract class _ProfileViewViewModelBase with Store, BaseViewModel {
             (route) => false,
           ),
         );
+  }
+
+  @action
+  Future<void> deleteAccount() async {
+    AuthService().deleteUser(viewModelContext);
   }
 }

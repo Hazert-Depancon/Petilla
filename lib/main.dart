@@ -63,8 +63,6 @@ class Petilla extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String statusText;
-
     switch (status) {
       case TrackingStatus.authorized:
         break;

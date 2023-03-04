@@ -10,6 +10,7 @@ class Button extends StatelessWidget {
     this.height,
     this.text,
     this.noBorderRadius,
+    this.color,
   }) : super(key: key);
 
   final VoidCallback onPressed;
@@ -17,6 +18,7 @@ class Button extends StatelessWidget {
   final double? height;
   final String? text;
   final bool? noBorderRadius;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +38,16 @@ class Button extends StatelessWidget {
 
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
-      color: LightThemeColors.miamiMarmalade,
-      borderRadius: noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
+      color: color ?? LightThemeColors.miamiMarmalade,
+      borderRadius:
+          noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
     );
   }
 
   Text _text(BuildContext context) {
     return Text(
       text ?? "",
-      style: Theme.of(context).textTheme.button,
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }
