@@ -17,6 +17,14 @@ mixin _$ProfileViewViewModel on _ProfileViewViewModelBase, Store {
     return _$logOutAsyncAction.run(() => super.logOut());
   }
 
+  late final _$deleteAccountAsyncAction =
+      AsyncAction('_ProfileViewViewModelBase.deleteAccount', context: context);
+
+  @override
+  Future<void> deleteAccount() {
+    return _$deleteAccountAsyncAction.run(() => super.deleteAccount());
+  }
+
   @override
   String toString() {
     return '''
