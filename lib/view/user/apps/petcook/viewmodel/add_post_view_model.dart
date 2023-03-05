@@ -1,7 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
 import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
@@ -21,37 +24,37 @@ abstract class _AddPostViewModelBase with Store, BaseViewModel {
   @override
   void init() {}
 
-  // @observable
-  // XFile? image;
+  @observable
+  XFile? image;
 
-  // @observable
-  // File? imageFile;
+  @observable
+  File? imageFile;
 
-  // @observable
-  // bool isImageLoaded = false;
+  @observable
+  bool isImageLoaded = false;
 
-  // // @action
-  // // Future<void> pickImageCamera() async {
-  // //   image = await ImagePicker().pickImage(source: ImageSource.camera);
-  // //   if (image == null) {
-  // //     return;
-  // //   } else {
-  // //     isImageLoaded = true;
-  // //     imageFile = File(image!.path);
-  // //   }
-  // // }
+  @action
+  Future<void> pickImageCamera() async {
+    image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) {
+      return;
+    } else {
+      isImageLoaded = true;
+      imageFile = File(image!.path);
+    }
+  }
 
-  // // @action
-  // // Future<void> pickImageGallery() async {
-  // //   image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  @action
+  Future<void> pickImageGallery() async {
+    image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-  // //   if (image == null) {
-  // //     return;
-  // //   } else {
-  // //     isImageLoaded = true;
-  // //     imageFile = File(image!.path);
-  // //   }
-  // // }
+    if (image == null) {
+      return;
+    } else {
+      isImageLoaded = true;
+      imageFile = File(image!.path);
+    }
+  }
 
   @action
   Future<void> onSubmitButton(
