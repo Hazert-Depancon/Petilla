@@ -1,80 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 
 class SelectAppWidget extends StatelessWidget {
   const SelectAppWidget({
     Key? key,
+    this.isBig = false,
     required this.title,
-    required this.description,
     required this.imagePath,
     required this.onTap,
   }) : super(key: key);
 
+  final bool isBig;
   final String title;
-  final String description;
   final String imagePath;
   final Widget onTap;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(24),
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => onTap),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => onTap));
       },
       child: Container(
-        height: 120,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: LightThemeColors.white,
-          borderRadius: ProjectRadius.allRadius,
-          boxShadow: const [
-            BoxShadow(
-              color: LightThemeColors.shadowColor,
-              offset: Offset(10, 10),
-              blurRadius: 30,
-              spreadRadius: 1,
-            ),
-            BoxShadow(
-              color: LightThemeColors.white,
-              offset: Offset(-10, -10),
-              blurRadius: 30,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 5,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    Text(
-                      description,
-                      style: Theme.of(context).textTheme.titleLarge,
-                      overflow: TextOverflow.clip,
-                    ),
-                  ],
-                ),
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: isBig ? 220 : 105,
+        decoration: _boxDecoration(),
+        child: _imageContainer(context),
+      ),
+    );
+  }
+
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+      border: Border.all(
+        color: LightThemeColors.grey.withOpacity(0.6),
+        width: 1,
+      ),
+      borderRadius: BorderRadius.circular(24),
+      color: LightThemeColors.white,
+    );
+  }
+
+  Stack _imageContainer(context) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.centerRight,
+          child: Container(
+            width: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
               ),
-              const Spacer(
-                flex: 1,
-              ),
-              Expanded(flex: 4, child: SizedBox(height: 200, width: 200, child: Image.asset(imagePath)))
-            ],
+            ),
           ),
         ),
+        _text(context),
+      ],
+    );
+  }
+
+  Padding _text(context) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }
