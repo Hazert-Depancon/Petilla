@@ -8,7 +8,7 @@ Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali h
 
 *-Hayvanlara dair sohbet etme*
 
-*-Sokakta saldıran hayvanları ilgili kurumlara bildirme*
+*-Hayvanların komik ve tatlı anlarını paylaşmaya yarayan sosyal medya platformu*
 
 *-Sokakta yardıma muhtaç hayvanları çevredeki insanlar ile paylaşma*
 
