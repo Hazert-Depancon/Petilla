@@ -4,6 +4,8 @@ Petilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtl�
 # Linkler
 [Instagram Hesabı](https://www.instagram.com/petilla_turkiye/)
 
+[Web Sitesi](https://petilla.com.tr/)
+
 [Twitter Hesabı](https://twitter.com/Petilla_Turkiye)
 
 [Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.petilla)
