@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 
 class UserChat extends StatelessWidget {
-  UserChat({Key? key, required this.onTap, required this.name, required this.lastMsg}) : super(key: key);
+  UserChat(
+      {Key? key,
+      required this.onTap,
+      required this.name,
+      required this.lastMsg})
+      : super(key: key);
 
   final VoidCallback onTap;
   final String name;
@@ -27,7 +32,7 @@ class UserChat extends StatelessWidget {
               radius: 35,
               child: Text(
                 name[0],
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             const SizedBox(width: 12),
@@ -36,7 +41,7 @@ class UserChat extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: Theme.of(context).textTheme.headline6),
+                  Text(name, style: Theme.of(context).textTheme.headlineSmall),
                   smallSizedBox,
                   Text(lastMsg),
                 ],

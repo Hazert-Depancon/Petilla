@@ -14,7 +14,8 @@ import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/p
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_detail_view.dart';
 
 class NormalPetWidget extends StatefulWidget {
-  const NormalPetWidget({Key? key, required this.petModel, this.isFav}) : super(key: key);
+  const NormalPetWidget({Key? key, required this.petModel, this.isFav})
+      : super(key: key);
 
   final PetModel petModel;
   final bool? isFav;
@@ -66,7 +67,8 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle2 = textTheme.subtitle2;
+    final subtitle2 = textTheme.labelMedium
+        ?.copyWith(fontWeight: FontWeight.w600, fontSize: 14);
     return GestureDetector(
       onTap: () {
         callDetailView();
@@ -120,7 +122,9 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
       _isClaim ? LocaleKeys.claim.locale : "${widget.petModel.price}TL",
       style: _isClaim
           ? subtitle2?.copyWith(
-              color: LightThemeColors.miamiMarmalade, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold)
+              color: LightThemeColors.miamiMarmalade,
+              overflow: TextOverflow.ellipsis,
+              fontWeight: FontWeight.bold)
           : subtitle2?.copyWith(overflow: TextOverflow.ellipsis),
     );
   }

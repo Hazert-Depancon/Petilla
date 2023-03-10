@@ -32,7 +32,7 @@ Text _textOne(BuildContext context) {
 
   return Text(
     msg1,
-    style: Theme.of(context).textTheme.titleLarge,
+    style: Theme.of(context).textTheme.headlineMedium,
     textAlign: TextAlign.center,
   );
 }
