@@ -30,6 +30,6 @@ Oğuz Kağan Güllü: Petilla Kurucu, Yazılım, [Github](https://github.com/kag
 
 Erdinç Güllü (Danışman, Yatırımcı)
 
-A Eymen Nuhoğlu (Danışman)
+A. Eymen Nuhoğlu (Danışman)
 
 M. Said Korkmaz: Yazılım Yardımı, Yatırımcı, Danışman, [Github](https://github.com/saidkorkmaz)
