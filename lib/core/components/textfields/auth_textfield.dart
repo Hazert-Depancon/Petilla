@@ -8,6 +8,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
+import 'package:petilla_app_project/core/validation/regex_validations.dart';
 
 class AuthTextField extends StatefulWidget {
   const AuthTextField(
@@ -84,6 +85,11 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
         validator: (value) {
           if (value == null || value.isEmpty) {
             return LocaleKeys.validation_emptyValidation.locale;
+          }
+          if (widget.keyboardType == TextInputType.emailAddress) {
+            if (!RegexValidations.instance.emailRegex.hasMatch(value)) {
+              return LocaleKeys.validation_mailValidation.locale;
+            }
           }
           return null;
         },
