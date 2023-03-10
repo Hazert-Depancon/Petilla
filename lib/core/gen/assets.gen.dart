@@ -22,6 +22,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/fallow_instagram.png
+  AssetGenImage get fallowInstagram =>
+      const AssetGenImage('assets/images/fallow_instagram.png');
+
   /// File path: assets/images/help_me.png
   AssetGenImage get helpMe => const AssetGenImage('assets/images/help_me.png');
 
@@ -41,8 +45,14 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/petilla_image.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [helpMe, loginBackgroundImage, petCookImage, petform, petillaImage];
+  List<AssetGenImage> get values => [
+        fallowInstagram,
+        helpMe,
+        loginBackgroundImage,
+        petCookImage,
+        petform,
+        petillaImage
+      ];
 }
 
 class $AssetsJsonsGen {

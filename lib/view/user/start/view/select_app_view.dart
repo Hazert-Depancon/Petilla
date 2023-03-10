@@ -88,8 +88,8 @@ class _SelectAppViewState extends State<SelectAppView> {
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.25,
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/fallow_instagram.png"),
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.fallowInstagram.path),
                     fit: BoxFit.cover,
                   ),
                   color: LightThemeColors.white,
