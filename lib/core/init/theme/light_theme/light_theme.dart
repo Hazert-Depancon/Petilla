@@ -50,8 +50,10 @@ class LightTheme {
 
       // Text
       textTheme: const TextTheme(
-        labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-        bodyLarge: TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
+        labelLarge: TextStyle(
+            fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+        bodyLarge:
+            TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
         titleSmall: TextStyle(fontSize: 16),
         headlineMedium: TextStyle(
           fontSize: 24,

@@ -14,7 +14,8 @@ import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/p
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_detail_view.dart';
 
 class LargePetWidget extends StatefulWidget {
-  const LargePetWidget({Key? key, required this.petModel, this.isMe}) : super(key: key);
+  const LargePetWidget({Key? key, required this.petModel, this.isMe})
+      : super(key: key);
 
   final PetModel petModel;
   final bool? isMe;
@@ -52,7 +53,9 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   void initState() {
     super.initState();
     widget.petModel.price == "0" ? _isClaim = true : _isClaim = false;
-    widget.petModel.currentUid == FirebaseAuth.instance.currentUser?.uid ? _isMe = true : _isMe = false;
+    widget.petModel.currentUid == FirebaseAuth.instance.currentUser?.uid
+        ? _isMe = true
+        : _isMe = false;
   }
 
   @override
@@ -103,7 +106,9 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
                   children: [
                     _nameText(context),
                     const Spacer(),
-                    _isMe || (widget.isMe ?? false) ? _deleteIconButton() : const SizedBox.shrink(),
+                    _isMe || (widget.isMe ?? false)
+                        ? _deleteIconButton()
+                        : const SizedBox.shrink(),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -148,13 +153,16 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   }
 
   Text _nameText(BuildContext context) {
-    return Text(widget.petModel.name, style: textTheme.bodyText2?.copyWith(fontSize: 20));
+    return Text(widget.petModel.name, style: textTheme.headlineSmall);
   }
 
   Text _paidText(BuildContext context) {
     return Text(
       _isClaim ? LocaleKeys.adopt.locale : "${widget.petModel.price} TL",
-      style: _isClaim ? textTheme.subtitle2?.copyWith(color: LightThemeColors.miamiMarmalade) : textTheme.subtitle2,
+      style: _isClaim
+          ? textTheme.titleSmall
+              ?.copyWith(color: LightThemeColors.miamiMarmalade)
+          : textTheme.titleSmall,
     );
   }
 
@@ -165,7 +173,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
         widget.petModel.description,
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
-        style: textTheme.subtitle1?.copyWith(color: Colors.grey[600]),
+        style: textTheme.titleMedium?.copyWith(color: Colors.grey[600]),
       ),
     );
   }
@@ -177,7 +185,8 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
       decoration: BoxDecoration(
         color: LightThemeColors.miamiMarmalade,
         borderRadius: ProjectRadius.allRadius,
-        image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(widget.petModel.imagePath)),
+        image: DecorationImage(
+            fit: BoxFit.cover, image: NetworkImage(widget.petModel.imagePath)),
       ),
       child: _isMe || (widget.isMe ?? false) ? null : _favButton(),
     );
@@ -188,7 +197,8 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _placeIcon(),
-        Text(widget.petModel.city, overflow: TextOverflow.clip, style: textTheme.subtitle1),
+        Text(widget.petModel.city,
+            overflow: TextOverflow.clip, style: textTheme.titleMedium),
       ],
     );
   }

@@ -33,7 +33,7 @@ Text _textThree(BuildContext context) {
 
   return Text(
     msg3,
-    style: Theme.of(context).textTheme.titleLarge,
+    style: Theme.of(context).textTheme.headlineMedium,
     textAlign: TextAlign.center,
   );
 }

@@ -19,7 +19,11 @@ class HelpMeWidget extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(24),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HelpMeDetailView(helpMeModel: helpMeModel)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      HelpMeDetailView(helpMeModel: helpMeModel)));
         },
         child: Container(
           height: 150,
@@ -55,14 +59,14 @@ class HelpMeWidget extends StatelessWidget {
     return Text(
       maxLines: 3,
       helpMeModel.description,
-      style: Theme.of(context).textTheme.headline6,
+      style: Theme.of(context).textTheme.titleLarge,
       overflow: TextOverflow.ellipsis,
     );
   }
 
   Text _titleText(context) => Text(
         helpMeModel.title,
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       );
 
   Container _imageContainer() {

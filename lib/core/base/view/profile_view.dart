@@ -171,7 +171,7 @@ class _ProfileViewState extends State<ProfileView> {
       ),
       title: Text(
         text.locale,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       onTap: () {
         Navigator.pop(context);
@@ -213,7 +213,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   SingleChildScrollView _hasDataScreen(snapshot, context) {
     String name = FirebaseAuth.instance.currentUser!.displayName!;
-    String email = FirebaseAuth.instance.currentUser!.email!  ;
+    String email = FirebaseAuth.instance.currentUser!.email!;
     return SingleChildScrollView(
       padding: ProjectPaddings.horizontalMainPadding,
       child: Column(
