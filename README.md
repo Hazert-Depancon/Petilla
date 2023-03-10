@@ -1,6 +1,17 @@
 # Petilla [TR]
 Petilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtlı sayıda mobil uygulama olmasından dolayı yapımına başlanmış ve Aralık 2022 itibari ile sınırlandırılmış sürüm (Beta 1.0) olarak Google Play Store'da ilk kullanıcılarının karşısına çıkmaya hazırlanmaktadır.
 
+# Linkler
+[Instagram Hesabı](https://www.instagram.com/petilla_turkiye/)
+
+[Twitter Hesabı](https://twitter.com/Petilla_Turkiye)
+
+[Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.petilla)
+
+[WhatsApp Etkileşim Grubu](https://chat.whatsapp.com/GTMbSd1htfpGIQz2Dhwns6)
+
+[Discord Sunucusu](https://discord.gg/QRNyQrnKz2)
+
 # İşlevi
 Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali hazırda çalışmakta olan;
 
