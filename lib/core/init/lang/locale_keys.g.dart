@@ -44,6 +44,13 @@ abstract class LocaleKeys {
   static const ageRanges_more_than_three_years =
       'ageRanges.more_than_three_years';
   static const ageRanges = 'ageRanges';
+  static const onboardTitles_onboardingTitleOne =
+      'onboardTitles.onboardingTitleOne';
+  static const onboardTitles_onboardingTitleTwo =
+      'onboardTitles.onboardingTitleTwo';
+  static const onboardTitles_onboardingTitleThree =
+      'onboardTitles.onboardingTitleThree';
+  static const onboardTitles = 'onboardTitles';
   static const onboardTexts_onboarding_msg_one =
       'onboardTexts.onboarding_msg_one';
   static const onboardTexts_onboarding_msg_two =
@@ -124,10 +131,10 @@ abstract class LocaleKeys {
   static const instagram = 'instagram';
   static const discord = 'discord';
   static const otherNeeds = 'otherNeeds';
-  static const female = 'genders.female';
-  static const male = 'genders.male';
-  static const other = 'other';
   static const share = 'share';
   static const sharePhoto = 'sharePhoto';
   static const homePage = 'homePage';
+  static const female = 'genders.female';
+  static const male = 'genders.male';
+  static const other = 'other';
 }
