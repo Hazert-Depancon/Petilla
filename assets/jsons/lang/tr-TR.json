@@ -44,10 +44,15 @@
         "one_three_years" : "1 - 3 Yıl",
         "more_than_three_years" : "3 Yıldan Fazla"
     },
+    "onboardTitles": {
+        "onboardingTitleOne" : "Sahiplen Ve Sahiplendir!",
+        "onboardingTitleTwo" : "Konuş Ve Sorunlarını Çöz!",
+        "onboardingTitleThree" : "Paylaş!"    
+    },
     "onboardTexts": {
         "onboarding_msg_one" : "Evcil hayvanları en güvenli şekilde sahiplen veya sahiplendir!",
         "onboarding_msg_two" : "Evcil hayvanlarının sorunları için başka evcil hayvan sahipleriyle konuş!",
-        "onboarding_msg_three" : "Hayvanlarınızı diğer insanlar ile paylaşın ve tatlı hayvanlar görün!"    
+        "onboarding_msg_three" : "Hayvanlarınızın tatlı ve komik anlarını diğer insanlar ile paylaşın!"    
     },
     "petillaPages": {
         "animalAdopt" : "Hayvan Sahiplen",
