@@ -8,6 +8,6 @@ class ProjectPaddings {
   static const EdgeInsets mainOnlyTopPadding = EdgeInsets.only(top: 20);
   static const EdgeInsets lowOnlyTopPadding = EdgeInsets.only(top: 12);
   static const EdgeInsets minOnlyTopPadding = EdgeInsets.only(top: 6);
-  static const EdgeInsets minAllTopPadding = EdgeInsets.all(8);
+  static const EdgeInsets minAllPadding = EdgeInsets.all(8);
   static const EdgeInsets mainAllPadding = EdgeInsets.all(16);
 }

@@ -9,26 +9,26 @@ part of 'petform_home_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$PetformHomeViewViewModel on PetformHomeViewViewModelBase, Store {
-  late final _$PetformHomeViewViewModelBaseActionController =
-      ActionController(name: 'PetformHomeViewViewModelBase', context: context);
+  late final _$streamAtom =
+      Atom(name: 'PetformHomeViewViewModelBase.stream', context: context);
 
   @override
-  void callGroupChatView(String title, String assetName, String collectionId,
-      String docId, String pageTitle, dynamic context) {
-    final _$actionInfo = _$PetformHomeViewViewModelBaseActionController
-        .startAction(name: 'PetformHomeViewViewModelBase.callGroupChatView');
-    try {
-      return super.callGroupChatView(
-          title, assetName, collectionId, docId, pageTitle, context);
-    } finally {
-      _$PetformHomeViewViewModelBaseActionController.endAction(_$actionInfo);
-    }
+  CollectionReference<Map<String, dynamic>> get stream {
+    _$streamAtom.reportRead();
+    return super.stream;
+  }
+
+  @override
+  set stream(CollectionReference<Map<String, dynamic>> value) {
+    _$streamAtom.reportWrite(value, super.stream, () {
+      super.stream = value;
+    });
   }
 
   @override
   String toString() {
     return '''
-
+stream: ${stream}
     ''';
   }
 }
