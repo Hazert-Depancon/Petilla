@@ -57,7 +57,9 @@ class PetformHomeView extends StatelessWidget {
                       upCount: 1,
                       animalType: AnimalTypes().rabbit,
                       title: "Test",
-                      description: "Test açıklaması",
+                      description:
+                          """Test açıklaması; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in egestas felis. Proin posuere at augue ut placerat. Suspendisse enim turpis, interdum sit amet cursus eget, iaculis eu tortor. Fusce consectetur malesuada sem. Nulla facilisi. Nam ac enim elit. Duis ultrices iaculis magna, sed faucibus elit dictum ut. Suspendisse vulputate tincidunt justo at tempor. Phasellus malesuada, metus vel facilisis molestie, felis risus varius felis, ut iaculis sapien tortor in libero. In ex ligula, euismod et vehicula sed, lacinia eget nibh. Cras tristique condimentum urna, nec sodales eros mattis nec.
+                      """,
                       currentUserName:
                           FirebaseAuth.instance.currentUser!.displayName!,
                       currentUid: FirebaseAuth.instance.currentUser!.uid,
