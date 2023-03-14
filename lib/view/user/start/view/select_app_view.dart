@@ -14,7 +14,7 @@ import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colo
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_home_view.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
-import 'package:petilla_app_project/view/user/apps/pet_form/main_pet_form.dart';
+import 'package:petilla_app_project/view/user/apps/petform/main_pet_form.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/view/petcook_home_view.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';

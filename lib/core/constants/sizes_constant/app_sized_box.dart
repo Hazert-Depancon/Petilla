@@ -6,4 +6,5 @@ class AppSizedBoxs {
   static const xsmallHeightSizedBox = SizedBox(height: 8);
   static const smallWidthSizedBox = SizedBox(width: 12);
   static const normalWidthSizedBox = SizedBox(width: 16);
+  static const xsmallWidthSizedBox = SizedBox(width: 8);
 }
