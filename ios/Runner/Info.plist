@@ -60,13 +60,13 @@
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-6393554220663084~5107314846</string>
 		<key>NSCameraUsageDescription</key>
+		<string>Petilla uygulamasının işlevsellik için kameraya erişim gerektirir.</string>
 		<key>NSUserTrackingUsageDescription</key>
 		<string>Bu tanımlayıcı, size kişiselleştirilmiş reklamlar sunmak için kullanılacaktır.</string>
-		<string>Petilla uygulamasının işlevsellik için kamera iznine ihtiyacı vardır.</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
-		<string></string>
+		<string>Petilla uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Petilla uygulamasının işlevsellik için galeryie erişim gerektirir.</string>
+		<string>Petilla uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>

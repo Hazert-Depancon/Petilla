@@ -6,6 +6,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/petform/view/in_form_view.dart';
 
 class QuestionFormModelMini extends StatefulWidget {
   const QuestionFormModelMini({super.key, required this.formModel});
@@ -46,7 +47,14 @@ class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InFormView(formModel: widget.formModel),
+          ),
+        );
+      },
       title: Row(
         children: [
           _animalIcon(),
@@ -69,6 +77,7 @@ class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
   Text _descriptionText(BuildContext context) {
     return Text(
       widget.formModel.description,
+      overflow: TextOverflow.ellipsis,
       style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16),
     );
   }
