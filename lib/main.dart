@@ -15,6 +15,8 @@ import 'package:petilla_app_project/view/auth/onboard/view/onboard_view.dart';
 import 'package:petilla_app_project/view/auth/view/login_view.dart';
 import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   await _init();
   _initSystemUi();
@@ -40,7 +42,9 @@ Future<void> _init() async {
   MobileAds.instance.initialize();
   await EasyLocalization.ensureInitialized();
   await LocaleManager.preferencesInit();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
 }
 
 void _initSystemUi() {

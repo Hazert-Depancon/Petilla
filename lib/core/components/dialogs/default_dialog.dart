@@ -4,7 +4,7 @@ import 'package:petilla_app_project/core/constants/string_constant/project_lotti
 
 showDefaultLoadingDialog(bool dismissible, context) {
   return showDialog(
-    barrierDismissible: dismissible,
+    barrierDismissible: true,
     context: context,
     builder: (context) {
       return Center(
