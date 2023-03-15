@@ -54,6 +54,54 @@ class _InFormViewState extends State<InFormView> {
     );
   }
 
+  SafeArea _body(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Expanded(
+            child: ListView(
+              padding: ProjectPaddings.horizontalMainPadding,
+              children: [
+                Row(
+                  children: [
+                    _circleAvatar,
+                    normalWidthSizedBox,
+                    _currentUserName(context),
+                  ],
+                ),
+                smallHeightSizedBox,
+                Row(
+                  children: [
+                    _animalIcon,
+                    normalWidthSizedBox,
+                    _title(context),
+                  ],
+                ),
+                smallHeightSizedBox,
+                _description,
+                _date(context),
+              ],
+            ),
+          ),
+          Padding(
+            padding: ProjectPaddings.horizontalMainPadding,
+            child: Row(
+              children: [
+                Expanded(
+                  child: _textField(messageController),
+                ),
+              ],
+            ),
+          ),
+          smallHeightSizedBox,
+        ],
+      ),
+    );
+  }
+
+  AppBar get _appBar => AppBar();
+
   TextField _textField(TextEditingController controller) {
     return TextField(
       controller: controller,
@@ -88,43 +136,18 @@ class _InFormViewState extends State<InFormView> {
     );
   }
 
-  SafeArea _body(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            child: ListView(
-              padding: ProjectPaddings.horizontalMainPadding,
-              children: [
-                Row(
-                  children: [
-                    _animalIcon,
-                    normalWidthSizedBox,
-                    _title(context),
-                  ],
-                ),
-                smallHeightSizedBox,
-                _description,
-                _date(context),
-              ],
-            ),
-          ),
-          Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
-            child: Row(
-              children: [
-                Expanded(
-                  child: _textField(messageController),
-                ),
-              ],
-            ),
-          ),
-          smallHeightSizedBox,
-        ],
-      ),
+  Text _currentUserName(BuildContext context) {
+    return Text(
+      widget.formModel.currentUserName,
+      style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 16),
     );
   }
+
+  CircleAvatar get _circleAvatar => CircleAvatar(
+        child: Text(
+          widget.formModel.currentUserName.characters.first,
+        ),
+      );
 
   Text get _description => Text(widget.formModel.description);
 
@@ -141,10 +164,6 @@ class _InFormViewState extends State<InFormView> {
       style: Theme.of(context).textTheme.titleSmall,
     );
   }
-
-  AppBar get _appBar => AppBar(
-        title: Text(widget.formModel.currentUserName),
-      );
 
   SvgPicture get _animalIcon {
     return SvgPicture.asset(
