@@ -54,7 +54,6 @@ class PetformHomeView extends StatelessWidget {
                 children: [
                   QuestionFormModelMini(
                     formModel: QuestionFormModel(
-                      upCount: 1,
                       animalType: AnimalTypes().rabbit,
                       title: "Test",
                       description:

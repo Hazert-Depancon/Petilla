@@ -5,11 +5,9 @@ class QuestionFormModel {
   final String currentUid;
   final String currentEmail;
   final String animalType;
-  final int upCount;
   final DateTime createdTime;
 
   QuestionFormModel({
-    required this.upCount,
     required this.animalType,
     required this.title,
     required this.description,

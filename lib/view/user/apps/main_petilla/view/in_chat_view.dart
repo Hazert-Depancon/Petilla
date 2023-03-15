@@ -84,8 +84,12 @@ class _InChatViewState extends BaseState<InChatView> {
             child: Row(
               children: [
                 Expanded(
-                    child: _textField(
-                        widget.currentUserId, widget.friendUserId, controller)),
+                  child: _textField(
+                    widget.currentUserId,
+                    widget.friendUserId,
+                    controller,
+                  ),
+                ),
               ],
             ),
           ),
