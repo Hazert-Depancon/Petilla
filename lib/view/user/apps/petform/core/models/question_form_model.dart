@@ -6,8 +6,10 @@ class QuestionFormModel {
   final String currentEmail;
   final String animalType;
   final DateTime createdTime;
+  final String? docId;
 
   QuestionFormModel({
+    this.docId,
     required this.animalType,
     required this.title,
     required this.description,

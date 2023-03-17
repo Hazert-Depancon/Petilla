@@ -8,6 +8,7 @@ import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/service/petform_service.dart';
 
 class InFormView extends StatefulWidget {
   const InFormView({super.key, required this.formModel});
@@ -125,7 +126,12 @@ class _InFormViewState extends State<InFormView> {
           backgroundColor: LightThemeColors.miamiMarmalade,
           foregroundColor: LightThemeColors.white,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              PetformService().addQuestionToForm(
+                widget.formModel.docId ?? "",
+                widget.formModel,
+              );
+            },
             icon: SvgPicture.asset(
               Assets.svg.send,
               color: LightThemeColors.white,

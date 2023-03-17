@@ -25,6 +25,20 @@ mixin _$PetformHomeViewViewModel on PetformHomeViewViewModelBase, Store {
     });
   }
 
+  late final _$PetformHomeViewViewModelBaseActionController =
+      ActionController(name: 'PetformHomeViewViewModelBase', context: context);
+
+  @override
+  void callAddQuestionView() {
+    final _$actionInfo = _$PetformHomeViewViewModelBaseActionController
+        .startAction(name: 'PetformHomeViewViewModelBase.callAddQuestionView');
+    try {
+      return super.callAddQuestionView();
+    } finally {
+      _$PetformHomeViewViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
