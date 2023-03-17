@@ -1,5 +1,6 @@
 class AppFirestoreFieldNames {
   static String senderIdField = "senderId";
+  static String createdTimeField = "createdTime";
   static String userField = "user";
   static String timeField = "time";
   static String receiverIdField = "receiverId";
@@ -35,4 +36,5 @@ class AppFirestoreFieldNames {
   static String isFoodHelp = "isFoodHelp";
   static String otherNeeds = "other_needs";
   static String postType = "post_type";
+  static String animalType = "animalType";
 }
