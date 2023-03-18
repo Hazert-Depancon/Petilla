@@ -14,6 +14,8 @@ Petilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtl�
 
 [Discord Sunucusu](https://discord.gg/QRNyQrnKz2)
 
+[Facebook Hesabı](https://www.facebook.com/profile.php?id=100089740839324)
+
 # İşlevi
 Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali hazırda çalışmakta olan;
 
