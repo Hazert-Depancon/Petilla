@@ -33,39 +33,7 @@
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>DTPlatformVersion</key>
-<string>8.3</string>
-<key>CFBundleIcons</key>
-<dict>
-    <key>CFBundlePrimaryIcon</key>
-    <dict>
-        <key>CFBundleIconFiles</key>
-        <array>
-            <string>Icon.png</string>
-            <string>Icon-60@2x.png</string>
-            <string>Icon-72.png</string>
-            <string>Icon-72@2x.png</string>
-            <string>Icon-76.png</string>
-            <string>Icon-76@2x.png</string>
-            <string>Icon-83.5@2x.png</string>
-        </array>
-    </dict>
-    <key>CFBundleIcons~ipad</key>
-    <dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-            <array>
-                <string>Icon.png</string>
-                <string>Icon-60@2x.png</string>
-                <string>Icon-72.png</string>
-                <string>Icon-72@2x.png</string>
-                <string>Icon-76.png</string>
-                <string>Icon-76@2x.png</string>
-                <string>Icon-83.5@2x.png</string>
-            </array>
-        </dict>
-    </dict>
-</dict>
+		<string>8.3</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
