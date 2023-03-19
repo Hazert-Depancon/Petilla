@@ -28,7 +28,7 @@ class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
     super.initState();
     formattedDate = DateFormat(
       DateFormat.YEAR_MONTH_DAY,
-    ).format(widget.formModel.createdTime);
+    ).format(widget.formModel.createdTime.toDate());
     if (widget.formModel.animalType == LocaleKeys.animalNames_dog.locale) {
       animalIconPath = Assets.svg.dog;
     } else if (widget.formModel.animalType ==

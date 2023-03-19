@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class QuestionFormModel {
   final String title;
   final String description;
@@ -5,7 +7,7 @@ class QuestionFormModel {
   final String currentUid;
   final String currentEmail;
   final String animalType;
-  final DateTime createdTime;
+  final Timestamp createdTime;
   final String? docId;
 
   QuestionFormModel({

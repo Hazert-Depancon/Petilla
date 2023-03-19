@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
@@ -7,6 +8,8 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_paddin
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/service/petform_service.dart';
 
 class AddQuestionView extends StatefulWidget {
   const AddQuestionView({super.key});
@@ -70,17 +73,17 @@ class _AddQuestionViewState extends State<AddQuestionView> {
             AuthButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  // PetformService().addQuestionToForm(
-                  // QuestionFormModel(
-                  //   animalType: petSelectedValue!,
-                  //   title: _titleController.text,
-                  //   description: _descriptionController.text,
-                  //   currentUserName: _firebaseAuth.currentUser!.displayName!,
-                  //   currentUid: _firebaseAuth.currentUser!.uid,
-                  //   currentEmail: _firebaseAuth.currentUser!.email!,
-                  //   createdTime: DateTime.now(),
-                  // ),
-                  // );
+                  PetformService().addQuestionToForm(
+                    QuestionFormModel(
+                      animalType: petSelectedValue!,
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                      currentUserName: _firebaseAuth.currentUser!.displayName!,
+                      currentUid: _firebaseAuth.currentUser!.uid,
+                      currentEmail: _firebaseAuth.currentUser!.email!,
+                      createdTime: Timestamp.now(),
+                    ),
+                  );
                 }
               },
               text: "Soru Oluştur",
