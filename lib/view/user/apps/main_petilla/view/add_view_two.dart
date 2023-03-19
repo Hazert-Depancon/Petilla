@@ -12,6 +12,7 @@ import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.
 import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
 import 'package:petilla_app_project/core/base/state/base_state.dart';
+import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
@@ -212,9 +213,11 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: ProjectRadius.allRadius,
           borderSide: const BorderSide(
-              width: 3, color: LightThemeColors.miamiMarmalade),
+            width: 3,
+            color: LightThemeColors.miamiMarmalade,
+          ),
         ),
       ),
       hint: Text(
@@ -241,7 +244,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: ProjectRadius.allRadius,
           borderSide: const BorderSide(
               width: 3, color: LightThemeColors.miamiMarmalade),
         ),
@@ -268,7 +271,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: ProjectRadius.allRadius,
           borderSide: const BorderSide(
               width: 3, color: LightThemeColors.miamiMarmalade),
         ),
