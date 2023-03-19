@@ -4,12 +4,9 @@ import 'package:petilla_app_project/core/constants/string_constant/project_fires
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
 
 class PetformService {
-  void addQuestionToForm(
-    String docId,
-    QuestionFormModel formModel,
-  ) {
+  void addQuestionToForm(QuestionFormModel formModel) {
     final firestore = FirebaseFirestore.instance;
-    firestore.collection(AppFirestoreCollectionNames.petform).doc(docId).set({
+    firestore.collection(AppFirestoreCollectionNames.petform).add({
       AppFirestoreFieldNames.animalType: formModel.animalType,
       AppFirestoreFieldNames.createdTimeField: formModel.createdTime,
       AppFirestoreFieldNames.currentEmailField: formModel.currentEmail,
