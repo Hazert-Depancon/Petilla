@@ -61,10 +61,13 @@ class $AssetsJsonsGen {
   /// File path: assets/jsons/il-ilce.json
   String get ilIlce => 'assets/jsons/il-ilce.json';
 
+  /// File path: assets/jsons/iller.json
+  String get iller => 'assets/jsons/iller.json';
+
   $AssetsJsonsLangGen get lang => const $AssetsJsonsLangGen();
 
   /// List of all assets
-  List<String> get values => [ilIlce];
+  List<String> get values => [ilIlce, iller];
 }
 
 class $AssetsSvgGen {

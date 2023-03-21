@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petilla_app_project/core/base/view/status_view.dart';
 import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
@@ -29,11 +32,34 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
   Object? val1 = 0;
   Object? val2 = 0;
   Object? val3 = 0;
+  Object? val4 = 0;
+
+  List<dynamic> _iller = [];
 
   bool isThereAFilter = false;
   String? selectedTypeFilter;
   String? selectedAgeRangeFilter;
   String? selectedGenderFilter;
+  String? selectedIl;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIlData();
+  }
+
+  Future<void> _loadIlData() async {
+    String jsonString = await rootBundle.loadString(Assets.jsons.iller);
+    setState(() {
+      _iller = jsonDecode(jsonString);
+    });
+  }
+
+  void _onIlSelected(String il) {
+    setState(() {
+      selectedIl = il;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +137,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
               ],
             ),
           ),
+          _cityExpansionTile(),
           _typeExpansionTile(
             context,
             dogRadioListTile,
@@ -147,6 +174,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
       selectedTypeFilter = null;
       selectedAgeRangeFilter = null;
       selectedGenderFilter = null;
+      selectedIl = null;
       val1 = 0;
       val2 = 0;
       val3 = 0;
@@ -159,6 +187,29 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
       style: textTheme.bodyLarge!.copyWith(
         fontWeight: FontWeight.bold,
       ),
+    );
+  }
+
+  ExpansionTile _cityExpansionTile() {
+    return _expansionTile(
+      context,
+      LocaleKeys.citySelect.locale,
+      _iller
+          .map(
+            (il) => RadioListTile<String>(
+              title: Text(il["il"], style: textTheme.titleSmall!),
+              shape: RoundedRectangleBorder(
+                borderRadius: ProjectRadius.buttonAllRadius,
+              ),
+              contentPadding: EdgeInsets.zero,
+              value: il["il"],
+              groupValue: selectedIl,
+              onChanged: (value) {
+                _onIlSelected(value.toString());
+              },
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -322,6 +373,10 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
                     isEqualTo: selectedAgeRangeFilter)
                 .where(AppFirestoreFieldNames.genderField,
                     isEqualTo: selectedGenderFilter)
+                .where(
+                  AppFirestoreFieldNames.cityField,
+                  isEqualTo: selectedIl,
+                )
                 .snapshots()
             : FirebaseFirestore.instance
                 .collection(AppFirestoreCollectionNames.petsCollection)
