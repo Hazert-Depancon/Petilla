@@ -90,7 +90,9 @@ abstract class LocaleKeys {
   static const type = 'type';
   static const age_range = 'age_range';
   static const claim = 'claim';
-  static const selectAGroup = 'selectAGroup';
+  static const questions = 'questions';
+  static const createQuestion = 'createQuestion';
+  static const addAQuestion = 'addAQuestion';
   static const generalChat = 'generalChat';
   static const dogChat = 'dogChat';
   static const catChat = 'catChat';

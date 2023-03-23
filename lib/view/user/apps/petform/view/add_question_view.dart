@@ -46,7 +46,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
   }
 
   AppBar get _appBar => AppBar(
-        title: const Text("Bir Soru Oluştur"),
+        title: Text(LocaleKeys.addAQuestion.locale),
       );
 
   Form _body() {
@@ -86,7 +86,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
                   );
                 }
               },
-              text: "Soru Oluştur",
+              text: LocaleKeys.createQuestion.locale,
             ),
           ],
         ),

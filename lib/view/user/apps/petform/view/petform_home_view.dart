@@ -12,9 +12,8 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/components/question_form_model_mini.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
 import 'package:petilla_app_project/view/user/apps/petform/viewmodel/petform_home_view_model.dart';
-
-import '../core/models/question_form_model.dart';
 
 class PetformHomeView extends StatelessWidget {
   PetformHomeView({Key? key}) : super(key: key);
@@ -85,7 +84,7 @@ class PetformHomeView extends StatelessWidget {
 
   AppBar _appBar(context) {
     return AppBar(
-      title: Text(_ThisPageTexts.selectGroup),
+      title: Text(LocaleKeys.questions.locale),
       leading: _backIcon(context),
     );
   }
@@ -107,8 +106,4 @@ class PetformHomeView extends StatelessWidget {
       child: const Icon(Icons.question_mark_rounded),
     );
   }
-}
-
-class _ThisPageTexts {
-  static String selectGroup = LocaleKeys.selectAGroup.locale;
 }
