@@ -1,12 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:petilla_app_project/core/base/view/status_view.dart';
+import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
+import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/components/answer_form_widget.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/models/answer_form_model.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
 
 class InFormView extends StatefulWidget {
@@ -84,16 +91,53 @@ class _InFormViewState extends State<InFormView> {
               ],
             ),
           ),
-          Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
-            child: Row(
-              children: [
-                Expanded(
-                  child: _textField(messageController),
-                ),
-              ],
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection(AppFirestoreCollectionNames.petform)
+                  .doc(widget.formModel.docId)
+                  .collection(AppFirestoreCollectionNames.answers)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data != null) {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        return AnswerFormWidget(
+                          answerFormModel: AnswerFormModel(
+                            answeredDocId: widget.formModel.docId!,
+                            createdTime: snapshot.data!.docs[index]
+                                ["createdTime"],
+                            description:
+                                "Lorem ipsum dolor Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolor",
+                            currentUserName:
+                                FirebaseAuth.instance.currentUser!.displayName!,
+                            currentUid: FirebaseAuth.instance.currentUser!.uid,
+                            currentEmail:
+                                FirebaseAuth.instance.currentUser!.email!,
+                          ),
+                        );
+                      },
+                    );
+                  }
+                }
+                return const StatusView(status: StatusKeysEnum.LOADING);
+              },
             ),
           ),
+          FirebaseAuth.instance.currentUser!.uid == widget.formModel.currentUid
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: ProjectPaddings.horizontalMainPadding,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _textField(messageController),
+                      ),
+                    ],
+                  ),
+                ),
           smallHeightSizedBox,
         ],
       ),
