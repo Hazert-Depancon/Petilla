@@ -11,7 +11,7 @@ import 'package:petilla_app_project/core/constants/string_constant/project_fires
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/components/question_form_model_mini.dart';
+import 'package:petilla_app_project/view/user/apps/petform/core/components/question_form_widget_mini.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
 import 'package:petilla_app_project/view/user/apps/petform/viewmodel/petform_home_view_model.dart';
 
@@ -68,6 +68,7 @@ class PetformHomeView extends StatelessWidget {
                           [AppFirestoreFieldNames.currentEmailField],
                       createdTime: snapshot.data!.docs[index]
                           [AppFirestoreFieldNames.createdTimeField],
+                      docId: snapshot.data!.docs[index].id,
                     ),
                   );
                 },
