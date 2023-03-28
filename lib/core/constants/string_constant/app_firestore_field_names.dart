@@ -1,5 +1,6 @@
 class AppFirestoreFieldNames {
   static String senderIdField = "senderId";
+  static String answeredDocId = "answeredDocId";
   static String createdTimeField = "createdTime";
   static String userField = "user";
   static String timeField = "time";
