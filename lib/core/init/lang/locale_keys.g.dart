@@ -5,7 +5,7 @@
 abstract class LocaleKeys {
   static const appNames_petform = 'appNames.petform';
   static const appNames_patilla = 'appNames.patilla';
-  static const appNames_petie = 'appNames.petie';
+  static const appNames_patie = 'appNames.patie';
   static const appNames_helpMe = 'appNames.helpMe';
   static const appNames = 'appNames';
   static const auth_logout = 'auth.logout';

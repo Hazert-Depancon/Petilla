@@ -105,7 +105,7 @@ class _SelectAppViewState extends State<SelectAppView> {
               children: [
                 _selectPetillaGridTile(),
                 _selectPetformGridTile(),
-                _selectPetieGridTile(),
+                _selectPatieGridTile(),
                 _selectHelpMeGridTile(),
               ],
             ),
@@ -123,11 +123,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  StaggeredGridTile _selectPetieGridTile() {
+  StaggeredGridTile _selectPatieGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
-      child: _selectPetie(),
+      child: _selectPatie(),
     );
   }
 
@@ -155,9 +155,9 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  SelectAppWidget _selectPetie() {
+  SelectAppWidget _selectPatie() {
     return SelectAppWidget(
-      title: LocaleKeys.appNames_petie.locale,
+      title: LocaleKeys.appNames_patie.locale,
       imagePath: Assets.images.petCookImage.path,
       onTap: PetcookHomeView(),
     );
