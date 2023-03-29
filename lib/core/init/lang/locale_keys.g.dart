@@ -8,15 +8,6 @@ abstract class LocaleKeys {
   static const appNames_petie = 'appNames.petie';
   static const appNames_helpMe = 'appNames.helpMe';
   static const appNames = 'appNames';
-  static const appDescription_patillaDescription =
-      'appDescription.patillaDescription';
-  static const appDescription_petformDescription =
-      'appDescription.petformDescription';
-  static const appDescription_petieDescription =
-      'appDescription.petieDescription';
-  static const appDescription_helpMeDescription =
-      'appDescription.helpMeDescription';
-  static const appDescription = 'appDescription';
   static const auth_logout = 'auth.logout';
   static const auth_welcomeAgain = 'auth.welcomeAgain';
   static const auth_welcome = 'auth.welcome';
