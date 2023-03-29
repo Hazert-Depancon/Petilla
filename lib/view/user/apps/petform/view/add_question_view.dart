@@ -10,6 +10,7 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
 import 'package:petilla_app_project/view/user/apps/petform/core/service/petform_service.dart';
+import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 
 class AddQuestionView extends StatefulWidget {
   const AddQuestionView({super.key});
@@ -73,16 +74,24 @@ class _AddQuestionViewState extends State<AddQuestionView> {
             AuthButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  PetformService().addQuestionToForm(
-                    QuestionFormModel(
-                      animalType: petSelectedValue!,
-                      title: _titleController.text,
-                      description: _descriptionController.text,
-                      currentUserName: _firebaseAuth.currentUser!.displayName!,
-                      currentUid: _firebaseAuth.currentUser!.uid,
-                      currentEmail: _firebaseAuth.currentUser!.email!,
-                      createdTime: Timestamp.now(),
-                    ),
+                  if (petSelectedValue != null) {
+                    PetformService().addQuestionToForm(
+                      QuestionFormModel(
+                        animalType: petSelectedValue!,
+                        title: _titleController.text,
+                        description: _descriptionController.text,
+                        currentUserName:
+                            _firebaseAuth.currentUser!.displayName!,
+                        currentUid: _firebaseAuth.currentUser!.uid,
+                        currentEmail: _firebaseAuth.currentUser!.email!,
+                        createdTime: Timestamp.now(),
+                      ),
+                    );
+                  }
+                  showErrorDialog(
+                    true,
+                    LocaleKeys.validation_emptyValidation.locale,
+                    context,
                   );
                 }
               },
