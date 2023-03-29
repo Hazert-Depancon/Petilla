@@ -18,17 +18,17 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart';
-import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/normal_pet_widget.dart';
+import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
 
-class PetillaHomeView extends StatefulWidget {
-  const PetillaHomeView({Key? key}) : super(key: key);
+class PatillaHomeView extends StatefulWidget {
+  const PatillaHomeView({Key? key}) : super(key: key);
 
   @override
-  State<PetillaHomeView> createState() => _PetillaHomeViewState();
+  State<PatillaHomeView> createState() => _PatillaHomeViewState();
 }
 
-class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
+class _PatillaHomeViewState extends BaseState<PatillaHomeView> {
   Object? val1 = 0;
   Object? val2 = 0;
   Object? val3 = 0;

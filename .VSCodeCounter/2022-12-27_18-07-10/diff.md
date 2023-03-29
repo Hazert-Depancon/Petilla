@@ -76,11 +76,11 @@ Total : 68 files,  1238 codes, 4 comments, 174 blanks, all 1416 lines
 | lib\\view\\user\\apps\\help_me\\core\\models | 1 | 18 | 0 | 2 | 20 |
 | lib\\view\\user\\apps\\help_me\\view | 3 | 402 | 2 | 51 | 455 |
 | lib\\view\\user\\apps\\help_me\\viewmodel | 4 | 175 | 12 | 48 | 235 |
-| lib\\view\\user\\apps\\main_petilla | 6 | 43 | 0 | 3 | 46 |
-| lib\\view\\user\\apps\\main_petilla\\core | 1 | 1 | 0 | 0 | 1 |
-| lib\\view\\user\\apps\\main_petilla\\core\\components | 1 | 1 | 0 | 0 | 1 |
-| lib\\view\\user\\apps\\main_petilla\\core\\components\\pet_widgets | 1 | 1 | 0 | 0 | 1 |
-| lib\\view\\user\\apps\\main_petilla\\view | 5 | 42 | 0 | 3 | 45 |
+| lib\\view\\user\\apps\\patilla | 6 | 43 | 0 | 3 | 46 |
+| lib\\view\\user\\apps\\patilla\\core | 1 | 1 | 0 | 0 | 1 |
+| lib\\view\\user\\apps\\patilla\\core\\components | 1 | 1 | 0 | 0 | 1 |
+| lib\\view\\user\\apps\\patilla\\core\\components\\pet_widgets | 1 | 1 | 0 | 0 | 1 |
+| lib\\view\\user\\apps\\patilla\\view | 5 | 42 | 0 | 3 | 45 |
 | lib\\view\\user\\apps\\pet_form | 2 | 9 | 0 | 1 | 10 |
 | lib\\view\\user\\apps\\pet_form\\view | 2 | 9 | 0 | 1 | 10 |
 | lib\\view\\user\\auth | 10 | -649 | -9 | -92 | -750 |

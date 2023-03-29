@@ -20,7 +20,7 @@ import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
 import 'package:patily/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart';
-import 'package:patily/view/user/apps/main_petilla/service/storage_service.dart/storage_crud.dart';
+import 'package:patily/view/user/apps/patilla/service/storage_service.dart/storage_crud.dart';
 
 class HelpMeView extends StatefulWidget {
   const HelpMeView({super.key});

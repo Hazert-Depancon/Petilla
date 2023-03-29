@@ -10,8 +10,8 @@ import 'package:patily/core/constants/string_constant/app_firestore_field_names.
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
-import 'package:patily/view/user/apps/main_petilla/core/components/chat_widgets/user_chat.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/chat_select_view_model.dart';
+import 'package:patily/view/user/apps/patilla/core/components/chat_widgets/user_chat.dart';
+import 'package:patily/view/user/apps/patilla/viewmodel/chat_select_view_model.dart';
 
 class ChatSelectView extends StatelessWidget {
   ChatSelectView({Key? key}) : super(key: key);

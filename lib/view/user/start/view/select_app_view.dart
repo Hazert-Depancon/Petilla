@@ -13,7 +13,7 @@ import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/view/user/apps/help_me/view/help_me_home_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/main_petilla.dart';
+import 'package:patily/view/user/apps/patilla/view/patilla.dart';
 import 'package:patily/view/user/apps/patiform/main_patiform.dart';
 import 'package:patily/view/user/apps/petcook/view/petcook_home_view.dart';
 import 'package:patily/view/user/start/core/components/select_app_widget.dart';
@@ -103,7 +103,7 @@ class _SelectAppViewState extends State<SelectAppView> {
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
               children: [
-                _selectPetillaGridTile(),
+                _selectPatillaGridTile(),
                 _selectPatiformGridTile(),
                 _selectPatieGridTile(),
                 _selectHelpMeGridTile(),
@@ -131,11 +131,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  StaggeredGridTile _selectPetillaGridTile() {
+  StaggeredGridTile _selectPatillaGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
-      child: _selectPetilla(),
+      child: _selectPatilla(),
     );
   }
 
@@ -171,12 +171,12 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  SelectAppWidget _selectPetilla() {
+  SelectAppWidget _selectPatilla() {
     return SelectAppWidget(
       isBig: true,
       title: LocaleKeys.appNames_patilla.locale,
-      imagePath: Assets.images.petillaImage.path,
-      onTap: const MainPetilla(),
+      imagePath: Assets.images.patillaImage.path,
+      onTap: const MainPatilla(),
     );
   }
 

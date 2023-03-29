@@ -7,41 +7,41 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/main_petilla/view/add_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/chat_select_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/favorites_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/petilla_home_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/petilla_insert_view.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/main_petilla_view_model.dart';
+import 'package:patily/view/user/apps/patilla/view/add_view.dart';
+import 'package:patily/view/user/apps/patilla/view/chat_select_view.dart';
+import 'package:patily/view/user/apps/patilla/view/favorites_view.dart';
+import 'package:patily/view/user/apps/patilla/view/patilla_home_view.dart';
+import 'package:patily/view/user/apps/patilla/view/patilla_insert_view.dart';
+import 'package:patily/view/user/apps/patilla/viewmodel/patilla_view_model.dart';
 
-class MainPetilla extends StatefulWidget {
-  const MainPetilla({Key? key}) : super(key: key);
+class MainPatilla extends StatefulWidget {
+  const MainPatilla({Key? key}) : super(key: key);
 
   @override
-  State<MainPetilla> createState() => _MainPetillaState();
+  State<MainPatilla> createState() => _MainPatillaState();
 }
 
-class _MainPetillaState extends BaseState<MainPetilla> {
+class _MainPatillaState extends BaseState<MainPatilla> {
   int _selectedIndex = 0;
 
   final List<Widget> pages = [
-    const PetillaHomeView(),
+    const PatillaHomeView(),
     FavoritesView(),
     const AddView(),
     ChatSelectView(),
-    const PetillaInsertView(),
+    const PatillaInsertView(),
   ];
 
-  late MainPetillaViewModel viewModel;
+  late MainPatillaViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<MainPetillaViewModel>(
+    return BaseView<MainPatillaViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
       },
-      viewModel: MainPetillaViewModel(),
+      viewModel: MainPatillaViewModel(),
       onPageBuilder: (context, value) {
         return _buildScaffold;
       },

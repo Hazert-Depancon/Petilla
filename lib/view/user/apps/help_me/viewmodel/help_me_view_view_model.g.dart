@@ -88,7 +88,7 @@ mixin _$HelpMeViewViewModel on _HelpMeViewViewModelBase, Store {
       AsyncAction('_HelpMeViewViewModelBase.loadFirestore', context: context);
 
   @override
-  Future<void> loadFirestore(dynamic helpMeModel) {
+  Future<void> loadFirestore(HelpMeModel helpMeModel) {
     return _$loadFirestoreAsyncAction
         .run(() => super.loadFirestore(helpMeModel));
   }

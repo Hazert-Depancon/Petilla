@@ -17,10 +17,10 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/main_petilla/service/models/jsons/city_model.dart';
-import 'package:patily/view/user/apps/main_petilla/view/city_select_view.dart';
-import 'package:patily/view/user/apps/main_petilla/view/ilce_select_view.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/add_view_two_view_model.dart';
+import 'package:patily/view/user/apps/patilla/service/models/jsons/city_model.dart';
+import 'package:patily/view/user/apps/patilla/view/city_select_view.dart';
+import 'package:patily/view/user/apps/patilla/view/ilce_select_view.dart';
+import 'package:patily/view/user/apps/patilla/viewmodel/add_view_two_view_model.dart';
 
 class AddViewTwo extends StatefulWidget {
   const AddViewTwo({

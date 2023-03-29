@@ -63,8 +63,8 @@ Total : 55 files,  -577 codes, 0 comments, -98 blanks, all -675 lines
 | lib\\view\\user\\apps\\help_me\\core\\models | 1 | 8 | 0 | 0 | 8 |
 | lib\\view\\user\\apps\\help_me\\view | 3 | 112 | -1 | 13 | 124 |
 | lib\\view\\user\\apps\\help_me\\viewmodel | 3 | 0 | 0 | -4 | -4 |
-| lib\\view\\user\\apps\\main_petilla | 1 | -6 | 0 | 0 | -6 |
-| lib\\view\\user\\apps\\main_petilla\\view | 1 | -6 | 0 | 0 | -6 |
+| lib\\view\\user\\apps\\patilla | 1 | -6 | 0 | 0 | -6 |
+| lib\\view\\user\\apps\\patilla\\view | 1 | -6 | 0 | 0 | -6 |
 | lib\\view\\user\\apps\\pet_form | 4 | -64 | 0 | -9 | -73 |
 | lib\\view\\user\\apps\\pet_form\\view | 2 | -2 | 0 | -2 | -4 |
 | lib\\view\\user\\apps\\pet_form\\viewmodel | 2 | -62 | 0 | -7 | -69 |

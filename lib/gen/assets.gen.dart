@@ -37,13 +37,13 @@ class $AssetsImagesGen {
   AssetGenImage get patiform =>
       const AssetGenImage('assets/images/patiform.png');
 
+  /// File path: assets/images/patilla_image.png
+  AssetGenImage get patillaImage =>
+      const AssetGenImage('assets/images/patilla_image.png');
+
   /// File path: assets/images/pet_cook_image.png
   AssetGenImage get petCookImage =>
       const AssetGenImage('assets/images/pet_cook_image.png');
-
-  /// File path: assets/images/petilla_image.png
-  AssetGenImage get petillaImage =>
-      const AssetGenImage('assets/images/petilla_image.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -51,8 +51,8 @@ class $AssetsImagesGen {
         helpMe,
         loginBackgroundImage,
         patiform,
-        petCookImage,
-        petillaImage
+        patillaImage,
+        petCookImage
       ];
 }
 
