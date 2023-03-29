@@ -54,8 +54,6 @@ class PetformHomeView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return QuestionFormModelMini(
                     formModel: QuestionFormModel(
-                      // answers: snapshot.data!.docs[index]
-                      //     [AppFirestoreCollectionNames.answers],
                       animalType: snapshot.data!.docs[index]
                           [AppFirestoreFieldNames.animalType],
                       title: snapshot.data!.docs[index]
