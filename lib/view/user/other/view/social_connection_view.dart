@@ -10,8 +10,8 @@ class SocialConnectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String instagramUrl = "https://www.instagram.com/petilla_turkiye/";
-    const String discordUrl = "https://discord.gg/QRNyQrnKz2";
+    const String instagramUrl = "https://www.instagram.com/patily.turkiye/";
+    const String discordUrl = "https://discord.gg/FEYSuK9sUq";
 
     return Scaffold(
       appBar: _appBar(),
