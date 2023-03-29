@@ -246,7 +246,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   Button get _submitButton {
     return Button(
-      text: LocaleKeys.petillaPages_addAPet.locale,
+      text: LocaleKeys.patillaPages_addAPet.locale,
       height: ProjectButtonSizes.mainButtonHeight,
       width: ProjectButtonSizes.mainButtonWidth,
       onPressed: () {

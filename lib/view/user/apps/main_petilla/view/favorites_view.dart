@@ -38,7 +38,7 @@ class FavoritesView extends StatelessWidget {
       );
 
   AppBar get _appBar => AppBar(
-        title: Text(LocaleKeys.petillaPages_myFavorites.locale),
+        title: Text(LocaleKeys.patillaPages_myFavorites.locale),
         automaticallyImplyLeading: false,
       );
 

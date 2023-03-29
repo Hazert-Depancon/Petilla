@@ -415,6 +415,6 @@ class _ThisPageTexts {
   static String petRace = LocaleKeys.petRace.locale;
   static String selectDistrict = LocaleKeys.selectDistrict.locale;
   static String selectCity = LocaleKeys.citySelect.locale;
-  static String addPet = LocaleKeys.petillaPages_addAPet.locale;
+  static String addPet = LocaleKeys.patillaPages_addAPet.locale;
   static String addAPetTwoForTwo = LocaleKeys.addPetTwoForTwo.locale;
 }

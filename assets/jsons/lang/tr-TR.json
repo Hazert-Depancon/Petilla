@@ -1,12 +1,12 @@
 {   
     "appNames": {
         "petform" : "Petform",
-        "petilla" : "Petilla",
+        "patilla" : "Patilla",
         "petie" : "Petie",
         "helpMe" : "Yardım Et!"
     },
     "appDescription": {
-        "petillaDescription" : "Hayvan sahiplen ve sahiplendir!",
+        "patillaDescription" : "Hayvan sahiplen ve sahiplendir!",
         "petformDescription" : "Sorunlarını hayvan sahipleri ile çöz!",
         "petieDescription": "Hayvanlar için sosyal medya!",
         "helpMeDescription" : "Sokak hayvanlarına yardım et!"    
@@ -54,7 +54,7 @@
         "onboarding_msg_two" : "Evcil hayvanlarının sorunları için başka evcil hayvan sahipleriyle konuş!",
         "onboarding_msg_three" : "Hayvanlarınızın tatlı ve komik anlarını diğer insanlar ile paylaşın!"    
     },
-    "petillaPages": {
+    "patillaPages": {
         "animalAdopt" : "Hayvan Sahiplen",
         "myFavorites" : "Favorilerim",
         "addAPet" : "Hayvan Ekle",

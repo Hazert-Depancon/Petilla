@@ -477,7 +477,7 @@ class _PetillaHomeViewState extends BaseState<PetillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = LocaleKeys.petillaPages_animalAdopt.locale;
+  static String homePage = LocaleKeys.patillaPages_animalAdopt.locale;
   static String filterPets = LocaleKeys.filter_pets.locale;
   static String clear = LocaleKeys.clear.locale;
   static String dog = LocaleKeys.animalNames_dog.locale;

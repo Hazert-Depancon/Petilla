@@ -174,7 +174,7 @@ class _SelectAppViewState extends State<SelectAppView> {
   SelectAppWidget _selectPetilla() {
     return SelectAppWidget(
       isBig: true,
-      title: LocaleKeys.appNames_petilla.locale,
+      title: LocaleKeys.appNames_patilla.locale,
       imagePath: Assets.images.petillaImage.path,
       onTap: const MainPetilla(),
     );
@@ -195,5 +195,5 @@ class _SelectAppViewState extends State<SelectAppView> {
 }
 
 class _ThisPageTexts {
-  static String petillaTitle = LocaleKeys.appNames_petilla.locale;
+  static String petillaTitle = LocaleKeys.appNames_patilla.locale;
 }
