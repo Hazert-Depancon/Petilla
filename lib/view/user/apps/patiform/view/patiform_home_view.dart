@@ -11,23 +11,23 @@ import 'package:petilla_app_project/core/constants/string_constant/project_fires
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/components/question_form_widget_mini.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/petform/viewmodel/petform_home_view_model.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/components/question_form_widget_mini.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/viewmodel/patiform_home_view_model.dart';
 
-class PetformHomeView extends StatelessWidget {
-  PetformHomeView({Key? key}) : super(key: key);
+class PatiformHomeView extends StatelessWidget {
+  PatiformHomeView({Key? key}) : super(key: key);
 
-  late PetformHomeViewViewModel viewModel;
+  late PatiformHomeViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<PetformHomeViewViewModel>(
+    return BaseView<PatiformHomeViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
       },
-      viewModel: PetformHomeViewViewModel(),
+      viewModel: PatiformHomeViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
@@ -44,7 +44,7 @@ class PetformHomeView extends StatelessWidget {
       child: StreamBuilder<QuerySnapshot>(
         // stream: viewModel.stream.snapshots(),
         stream: FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.petform)
+            .collection(AppFirestoreCollectionNames.patiform)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
