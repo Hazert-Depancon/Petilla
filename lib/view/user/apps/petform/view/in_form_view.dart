@@ -89,6 +89,7 @@ class _InFormViewState extends State<InFormView> {
             ),
           ),
           // Expanded(
+          //   flex: 2,
           //   child: StreamBuilder<QuerySnapshot>(
           //     stream: FirebaseFirestore.instance
           //         .collection(AppFirestoreCollectionNames.petform)
@@ -101,19 +102,21 @@ class _InFormViewState extends State<InFormView> {
           //           return ListView.builder(
           //             itemCount: snapshot.data!.docs.length,
           //             itemBuilder: (context, index) {
-          //               return AnswerFormWidget(
-          //                 answerFormModel: AnswerFormModel(
-          //                   answeredDocId: widget.formModel.docId!,
-          //                   createdTime: snapshot.data!.docs[index]
-          //                       [AppFirestoreFieldNames.createdTimeField],
-          //                   description: snapshot.data!.docs[index]
-          //                       [AppFirestoreFieldNames.descriptionField],
-          //                   currentUserName: snapshot.data!.docs[index]
-          //                       [AppFirestoreFieldNames.currentNameField],
-          //                   currentUid: snapshot.data!.docs[index]
-          //                       [AppFirestoreFieldNames.currentUidField],
-          //                   currentEmail: snapshot.data!.docs[index]
-          //                       [AppFirestoreFieldNames.currentEmailField],
+          //               return SizedBox(
+          //                 child: AnswerFormWidget(
+          //                   answerFormModel: AnswerFormModel(
+          //                     answeredDocId: widget.formModel.docId!,
+          //                     createdTime: snapshot.data!.docs[index]
+          //                         [AppFirestoreFieldNames.createdTimeField],
+          //                     description: snapshot.data!.docs[index]
+          //                         [AppFirestoreFieldNames.descriptionField],
+          //                     currentUserName: snapshot.data!.docs[index]
+          //                         [AppFirestoreFieldNames.currentNameField],
+          //                     currentUid: snapshot.data!.docs[index]
+          //                         [AppFirestoreFieldNames.currentUidField],
+          //                     currentEmail: snapshot.data!.docs[index]
+          //                         [AppFirestoreFieldNames.currentEmailField],
+          //                   ),
           //                 ),
           //               );
           //             },
