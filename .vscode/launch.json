@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "petilla_app_project",
+            "name": "patily",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "petilla_app_project (profile mode)",
+            "name": "patily (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

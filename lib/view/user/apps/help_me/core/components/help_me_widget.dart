@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_detail_view.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:patily/view/user/apps/help_me/view/help_me_detail_view.dart';
 
 class HelpMeWidget extends StatelessWidget {
   const HelpMeWidget({super.key, required this.helpMeModel});

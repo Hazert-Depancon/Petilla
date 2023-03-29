@@ -2,21 +2,21 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/base/view/status_view.dart';
-import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/core/components/help_me_widget.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_view.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/viewmodel/help_me_home_view_view_model.dart';
+import 'package:patily/core/base/state/base_state.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/core/constants/enums/status_keys_enum.dart';
+import 'package:patily/core/constants/other_constant/icon_names.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/view/user/apps/help_me/core/components/help_me_widget.dart';
+import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:patily/view/user/apps/help_me/view/help_me_view.dart';
+import 'package:patily/view/user/apps/help_me/viewmodel/help_me_home_view_view_model.dart';
 
 class HelpMeHomeView extends StatefulWidget {
   const HelpMeHomeView({super.key});

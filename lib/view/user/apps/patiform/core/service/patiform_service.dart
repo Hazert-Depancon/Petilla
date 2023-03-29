@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/models/answer_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/view/user/apps/patiform/core/models/answer_form_model.dart';
+import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
 
 class PatiformService {
   void addQuestionToForm(QuestionFormModel formModel) {

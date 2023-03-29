@@ -3,15 +3,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/base/view/status_view.dart';
-import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/chat_widgets/user_chat.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/chat_select_view_model.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/core/constants/enums/status_keys_enum.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/view/user/apps/main_petilla/core/components/chat_widgets/user_chat.dart';
+import 'package:patily/view/user/apps/main_petilla/viewmodel/chat_select_view_model.dart';
 
 class ChatSelectView extends StatelessWidget {
   ChatSelectView({Key? key}) : super(key: key);

@@ -6,10 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
-import 'package:petilla_app_project/view/user/apps/petcook/core/firebase/load_photo_to_firebase.dart';
-import 'package:petilla_app_project/view/user/apps/petcook/core/models/post_model.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/components/dialogs/default_dialog.dart';
+import 'package:patily/view/user/apps/petcook/core/firebase/load_photo_to_firebase.dart';
+import 'package:patily/view/user/apps/petcook/core/models/post_model.dart';
 
 part 'add_post_view_model.g.dart';
 

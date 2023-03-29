@@ -5,15 +5,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:petilla_app_project/core/constants/app/app_constants.dart';
-import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
-import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
-import 'package:petilla_app_project/core/init/lang/language_manager.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/auth/onboard/view/onboard_view.dart';
-import 'package:petilla_app_project/view/auth/view/login_view.dart';
-import 'package:petilla_app_project/view/user/start/view/select_app_view.dart';
+import 'package:patily/core/constants/app/app_constants.dart';
+import 'package:patily/core/constants/enums/locale_keys_enum.dart';
+import 'package:patily/core/init/cache/locale_manager.dart';
+import 'package:patily/core/init/lang/language_manager.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/view/auth/onboard/view/onboard_view.dart';
+import 'package:patily/view/auth/view/login_view.dart';
+import 'package:patily/view/user/start/view/select_app_view.dart';
 
 Future<void> main() async {
   await _init();
@@ -27,7 +27,7 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: LanguageManager.instance.supportedLocales,
       path: AppConstants.LANG_ASSET_PATH,
-      child: Petilla(
+      child: Patily(
         showHome: showHome,
         status: status,
       ),
@@ -55,8 +55,8 @@ void _initSystemUi() {
   );
 }
 
-class Petilla extends StatelessWidget {
-  const Petilla({Key? key, required this.showHome, this.status})
+class Patily extends StatelessWidget {
+  const Patily({Key? key, required this.showHome, this.status})
       : super(key: key);
   final bool showHome;
   final TrackingStatus? status;
@@ -83,7 +83,7 @@ class Petilla extends StatelessWidget {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: LightTheme().theme,
-      title: "Petilla",
+      title: "Patily",
       home: showHome
           ? FirebaseAuth.instance.currentUser != null
               ? const SelectAppView()

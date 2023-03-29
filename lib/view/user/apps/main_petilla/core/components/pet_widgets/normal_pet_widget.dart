@@ -1,17 +1,17 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/core/utility/widget_utility/fav_button_service.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_detail_view.dart';
+import 'package:patily/core/constants/other_constant/icon_names.dart';
+import 'package:patily/core/constants/sizes_constant/project_icon_sizes.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/base/state/base_state.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/utility/widget_utility/fav_button_service.dart';
+import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/main_petilla/view/petilla_detail_view.dart';
 
 class NormalPetWidget extends StatefulWidget {
   const NormalPetWidget({Key? key, required this.petModel, this.isFav})

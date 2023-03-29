@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/core/base/state/base_state.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/core/gen/assets.gen.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/add_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/chat_select_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/favorites_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_home_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/petilla_insert_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/main_petilla_view_model.dart';
+import 'package:patily/core/base/state/base_state.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/constants/other_constant/icon_names.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/gen/assets.gen.dart';
+import 'package:patily/view/user/apps/main_petilla/view/add_view.dart';
+import 'package:patily/view/user/apps/main_petilla/view/chat_select_view.dart';
+import 'package:patily/view/user/apps/main_petilla/view/favorites_view.dart';
+import 'package:patily/view/user/apps/main_petilla/view/petilla_home_view.dart';
+import 'package:patily/view/user/apps/main_petilla/view/petilla_insert_view.dart';
+import 'package:patily/view/user/apps/main_petilla/viewmodel/main_petilla_view_model.dart';
 
 class MainPetilla extends StatefulWidget {
   const MainPetilla({Key? key}) : super(key: key);

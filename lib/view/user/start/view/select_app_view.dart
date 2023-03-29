@@ -3,21 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/core/gen/assets.gen.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_home_view.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/main_patiform.dart';
-import 'package:petilla_app_project/view/user/apps/petcook/view/petcook_home_view.dart';
-import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
-import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/components/banner_ad_widget.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/gen/assets.gen.dart';
+import 'package:patily/view/user/apps/help_me/view/help_me_home_view.dart';
+import 'package:patily/view/user/apps/main_petilla/view/main_petilla.dart';
+import 'package:patily/view/user/apps/patiform/main_patiform.dart';
+import 'package:patily/view/user/apps/petcook/view/petcook_home_view.dart';
+import 'package:patily/view/user/start/core/components/select_app_widget.dart';
+import 'package:patily/view/user/start/viewmodel/select_app_view_view_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SelectAppView extends StatefulWidget {
@@ -65,7 +65,7 @@ class _SelectAppViewState extends State<SelectAppView> {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      title: Text(_ThisPageTexts.petillaTitle),
+      title: const Text("Patily"),
       centerTitle: true,
       automaticallyImplyLeading: false,
       actions: [
@@ -192,8 +192,4 @@ class _SelectAppViewState extends State<SelectAppView> {
       ),
     );
   }
-}
-
-class _ThisPageTexts {
-  static String petillaTitle = LocaleKeys.appNames_patilla.locale;
 }

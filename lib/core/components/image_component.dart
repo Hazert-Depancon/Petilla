@@ -2,12 +2,12 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_mobx/flutter_mobx.dart';
 // import 'package:image_picker/image_picker.dart';
-// import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-// import 'package:petilla_app_project/core/constants/sizes_constant/project_icon_sizes.dart';
-// import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-// import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-// import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-// import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+// import 'package:patily/core/constants/other_constant/icon_names.dart';
+// import 'package:patily/core/constants/sizes_constant/project_icon_sizes.dart';
+// import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+// import 'package:patily/core/extension/string_lang_extension.dart';
+// import 'package:patily/core/init/lang/locale_keys.g.dart';
+// import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 
 // class AddImageComponent extends StatefulWidget {
 //   AddImageComponent({

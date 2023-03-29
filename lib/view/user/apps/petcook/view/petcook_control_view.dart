@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/view/user/apps/petcook/view/petcook_home_view.dart';
+import 'package:patily/view/user/apps/petcook/view/petcook_home_view.dart';
 
 class PetCookControlView extends StatefulWidget {
   const PetCookControlView({super.key});

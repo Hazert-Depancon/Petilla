@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/components/buttons/auth_button.dart';
-import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/service/patiform_service.dart';
-import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
+import 'package:patily/core/components/buttons/auth_button.dart';
+import 'package:patily/core/components/textfields/main_textfield.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patiform/core/service/patiform_service.dart';
+import 'package:patily/core/components/dialogs/error_dialog.dart';
 
 class AddQuestionView extends StatefulWidget {
   const AddQuestionView({super.key});

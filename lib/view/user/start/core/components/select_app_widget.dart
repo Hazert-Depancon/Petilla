@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 
 class SelectAppWidget extends StatelessWidget {
   const SelectAppWidget({

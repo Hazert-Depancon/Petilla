@@ -1,15 +1,15 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/components/buttons/button.dart';
-import 'package:petilla_app_project/core/components/textfields/main_textfield.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/view/user/other/viewmodel/feedback_view_view_model.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/components/buttons/button.dart';
+import 'package:patily/core/components/textfields/main_textfield.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/sizes_constant/project_button_sizes.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/view/user/other/viewmodel/feedback_view_view_model.dart';
 
 class FeedBackView extends StatelessWidget {
   FeedBackView({super.key});

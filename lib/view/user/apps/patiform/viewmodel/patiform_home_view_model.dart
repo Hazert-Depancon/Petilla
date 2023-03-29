@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/view/add_question_view.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/view/user/apps/patiform/view/add_question_view.dart';
 
 part 'patiform_home_view_model.g.dart';
 

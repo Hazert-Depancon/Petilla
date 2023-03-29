@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 
 class SingleMessage extends StatelessWidget {
-  const SingleMessage({Key? key, required this.message, required this.isMe}) : super(key: key);
+  const SingleMessage({Key? key, required this.message, required this.isMe})
+      : super(key: key);
   final String message;
   final bool isMe;
 
@@ -24,7 +25,9 @@ class SingleMessage extends StatelessWidget {
 
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
-      color: isMe ? LightThemeColors.miamiMarmalade.withOpacity(0.6) : Colors.grey[300],
+      color: isMe
+          ? LightThemeColors.miamiMarmalade.withOpacity(0.6)
+          : Colors.grey[300],
       borderRadius: _borderRadius(),
     );
   }

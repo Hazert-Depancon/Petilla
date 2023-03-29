@@ -13,7 +13,7 @@ mixin _$HelpMeDetailViewViewModel on _HelpMeDetailViewViewModelBase, Store {
       AsyncAction('_HelpMeDetailViewViewModelBase.showInMap', context: context);
 
   @override
-  Future<void> showInMap(HelpMeModel helpMeModel) {
+  Future<void> showInMap(dynamic helpMeModel) {
     return _$showInMapAsyncAction.run(() => super.showInMap(helpMeModel));
   }
 

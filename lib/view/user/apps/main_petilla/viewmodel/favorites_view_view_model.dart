@@ -2,13 +2,14 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/constants/enums/locale_keys_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'favorites_view_view_model.g.dart';
 
-class FavoritesViewViewModel = _FavoritesViewViewModelBase with _$FavoritesViewViewModel;
+class FavoritesViewViewModel = _FavoritesViewViewModelBase
+    with _$FavoritesViewViewModel;
 
 abstract class _FavoritesViewViewModelBase with Store, BaseViewModel {
   @override

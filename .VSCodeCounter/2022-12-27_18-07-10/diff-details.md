@@ -2,7 +2,7 @@
 
 Date : 2022-12-27 18:07:10
 
-Directory c:\\Users\\oguzk\\Desktop\\visual studio\\petilla_app_project\\petilla_app_project
+Directory c:\\Users\\oguzk\\Desktop\\visual studio\\patily\\patily
 
 Total : 68 files,  1238 codes, 4 comments, 174 blanks, all 1416 lines
 
