@@ -2,11 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
 
 part 'main_petilla_view_model.g.dart';
 
-class MainPetillaViewModel = _MainPetillaViewModelBase with _$MainPetillaViewModel;
+class MainPetillaViewModel = _MainPetillaViewModelBase
+    with _$MainPetillaViewModel;
 
 abstract class _MainPetillaViewModelBase with Store, BaseViewModel {
   @override

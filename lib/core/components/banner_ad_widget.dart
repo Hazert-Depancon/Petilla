@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
+import 'package:patily/core/init/google_ads/ads_state.dart';
 
 class AdWidgetBanner extends StatefulWidget {
   const AdWidgetBanner({super.key});

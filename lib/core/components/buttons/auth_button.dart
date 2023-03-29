@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/core/constants/sizes_constant/project_button_sizes.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key, required this.onPressed, required this.text});

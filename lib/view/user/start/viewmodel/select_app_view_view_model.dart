@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/base/view/profile_view.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/base/view/profile_view.dart';
 
 part 'select_app_view_view_model.g.dart';
 
-class SelectAppViewViewModel = _SelectAppViewViewModelBase with _$SelectAppViewViewModel;
+class SelectAppViewViewModel = _SelectAppViewViewModelBase
+    with _$SelectAppViewViewModel;
 
 abstract class _SelectAppViewViewModelBase with Store, BaseViewModel {
   @override
@@ -20,6 +21,7 @@ abstract class _SelectAppViewViewModelBase with Store, BaseViewModel {
 
   @action
   void callProfileView() {
-    Navigator.push(viewModelContext, MaterialPageRoute(builder: (context) => const ProfileView()));
+    Navigator.push(viewModelContext,
+        MaterialPageRoute(builder: (context) => const ProfileView()));
   }
 }

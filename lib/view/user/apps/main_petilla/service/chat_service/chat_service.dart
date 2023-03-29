@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
 
 class ChatService {
   static final ChatService _chatService = ChatService._internal();
@@ -10,8 +10,15 @@ class ChatService {
   }
   ChatService._internal();
 
-  void sendMessage(String message, TextEditingController controller, currentUserId, friendUserId, friendUserEmail,
-      currentUserEmail, friendUserName, currentUserName) async {
+  void sendMessage(
+      String message,
+      TextEditingController controller,
+      currentUserId,
+      friendUserId,
+      friendUserEmail,
+      currentUserEmail,
+      friendUserName,
+      currentUserName) async {
     if (message.isEmpty) {
       return;
     } else {

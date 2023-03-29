@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/view/user/apps/petcook/view/add_post_view.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/view/user/apps/petcook/view/add_post_view.dart';
 
 part 'petcook_home_view_view_model.g.dart';
 
-class PetcookHomeViewViewModel = _PetcookHomeViewViewModelBase with _$PetcookHomeViewViewModel;
+class PetcookHomeViewViewModel = _PetcookHomeViewViewModelBase
+    with _$PetcookHomeViewViewModel;
 
 abstract class _PetcookHomeViewViewModelBase with Store, BaseViewModel {
   @override

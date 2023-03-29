@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
 
 part 'help_me_view_view_model.g.dart';
 
@@ -77,7 +77,9 @@ abstract class _HelpMeViewViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> loadFirestore(HelpMeModel helpMeModel) async {
-    FirebaseFirestore.instance.collection(AppFirestoreCollectionNames.animalHelp).add({
+    FirebaseFirestore.instance
+        .collection(AppFirestoreCollectionNames.animalHelp)
+        .add({
       AppFirestoreFieldNames.title: helpMeModel.title.trim(),
       AppFirestoreFieldNames.descriptionField: helpMeModel.description.trim(),
       AppFirestoreFieldNames.isFoodHelp: helpMeModel.isFoodHelp,

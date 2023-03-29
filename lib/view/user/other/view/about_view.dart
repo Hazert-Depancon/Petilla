@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
 
 class AboutView extends StatelessWidget {
   const AboutView({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/components/buttons/button.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_button_sizes.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/auth/service/auth_service.dart';
+import 'package:patily/core/components/buttons/button.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/sizes_constant/project_button_sizes.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/view/auth/service/auth_service.dart';
 
 class DeleteAccountConfirmView extends StatelessWidget {
   const DeleteAccountConfirmView({super.key});

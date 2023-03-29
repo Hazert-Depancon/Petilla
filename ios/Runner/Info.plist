@@ -9,7 +9,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Petilla</string>
+		<string>Patily</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-	<string>Petilla</string>
+	<string>Patily</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -60,13 +60,13 @@
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-6393554220663084~5107314846</string>
 		<key>NSCameraUsageDescription</key>
-		<string>Petilla uygulamasının işlevsellik için kameraya erişim gerektirir.</string>
+		<string>Patily uygulamasının işlevsellik için kameraya erişim gerektirir.</string>
 		<key>NSUserTrackingUsageDescription</key>
 		<string>Bu tanımlayıcı, size kişiselleştirilmiş reklamlar sunmak için kullanılacaktır.</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
-		<string>Petilla uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
+		<string>Patily uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Petilla uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
+		<string>Patily uygulamasının işlevsellik için galeryiye erişim gerektirir.</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>

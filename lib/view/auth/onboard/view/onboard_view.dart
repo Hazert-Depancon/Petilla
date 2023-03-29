@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/app_sized_box.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/gen/assets.gen.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/auth/onboard/viewmodel/onboarding_view_model.dart';
+import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/constants/sizes_constant/project_radius.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/gen/assets.gen.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/view/auth/onboard/viewmodel/onboarding_view_model.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});

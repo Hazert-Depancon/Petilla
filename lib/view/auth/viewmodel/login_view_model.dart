@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/main.dart';
-import 'package:petilla_app_project/view/auth/service/auth_service.dart';
-import 'package:petilla_app_project/view/auth/view/register_view.dart';
+import 'package:patily/main.dart';
+import 'package:patily/view/auth/service/auth_service.dart';
+import 'package:patily/view/auth/view/register_view.dart';
 
 class LoginViewModel {
   Future<void> onLoginButton(context, email, password) async {
@@ -15,7 +15,7 @@ class LoginViewModel {
           (e) => Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const Petilla(showHome: true),
+              builder: (context) => const Patily(showHome: true),
             ),
             (route) => false,
           ),

@@ -3,15 +3,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:petilla_app_project/core/components/dialogs/default_dialog.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/init/google_ads/ads_state.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/components/dialogs/default_dialog.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/core/init/google_ads/ads_state.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/service/firebase_crud/crud_service.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/view/user/apps/main_petilla/service/firebase_crud/crud_service.dart';
+import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/main_petilla/view/main_petilla.dart';
 
 part 'add_view_two_view_model.g.dart';
 

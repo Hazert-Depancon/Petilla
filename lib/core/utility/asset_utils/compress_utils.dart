@@ -5,7 +5,7 @@ import 'dart:math';
 
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:petilla_app_project/core/constants/enums/file_type_enum.dart';
+import 'package:patily/core/constants/enums/file_type_enum.dart';
 
 class CompressUtils {
   static final CompressUtils _compressUtils = CompressUtils._internal();

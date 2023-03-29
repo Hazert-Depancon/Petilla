@@ -3,14 +3,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/view/user/apps/help_me/core/models/help_me_model.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/in_chat_view.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
+import 'package:patily/view/user/apps/main_petilla/view/in_chat_view.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 part 'help_me_detail_view_view_model.g.dart';
 
-class HelpMeDetailViewViewModel = _HelpMeDetailViewViewModelBase with _$HelpMeDetailViewViewModel;
+class HelpMeDetailViewViewModel = _HelpMeDetailViewViewModelBase
+    with _$HelpMeDetailViewViewModel;
 
 abstract class _HelpMeDetailViewViewModelBase with Store, BaseViewModel {
   @override
@@ -39,7 +40,10 @@ abstract class _HelpMeDetailViewViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> showInMap(HelpMeModel helpMeModel) async {
-    String googleURL = "https://www.google.com/maps/search/?api=1&query=${helpMeModel.lat},${helpMeModel.long}";
-    await canLaunchUrlString(googleURL) ? await launchUrlString(googleURL) : throw "ERROR";
+    String googleURL =
+        "https://www.google.com/maps/search/?api=1&query=${helpMeModel.lat},${helpMeModel.long}";
+    await canLaunchUrlString(googleURL)
+        ? await launchUrlString(googleURL)
+        : throw "ERROR";
   }
 }

@@ -1,5 +1,5 @@
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
 
 class AnimalTypes {
   String dog = LocaleKeys.animalNames_dog.locale;

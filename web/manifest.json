@@ -1,6 +1,6 @@
 {
-    "name": "petilla_app_project",
-    "short_name": "petilla_app_project",
+    "name": "patily",
+    "short_name": "patily",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

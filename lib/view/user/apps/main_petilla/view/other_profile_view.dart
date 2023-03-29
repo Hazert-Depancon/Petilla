@@ -2,15 +2,15 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/base/view/status_view.dart';
-import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/sizes_constant/project_padding.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/viewmodel/other_profile_view_view_model.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/core/constants/enums/status_keys_enum.dart';
+import 'package:patily/core/constants/sizes_constant/project_padding.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/main_petilla/viewmodel/other_profile_view_view_model.dart';
 
 class OtherProfileView extends StatelessWidget {
   OtherProfileView({super.key, required this.petModel});
@@ -46,7 +46,8 @@ class OtherProfileView extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection(AppFirestoreCollectionNames.petsCollection)
-          .where(AppFirestoreFieldNames.currentUidField, isEqualTo: petModel.currentUid)
+          .where(AppFirestoreFieldNames.currentUidField,
+              isEqualTo: petModel.currentUid)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -100,7 +101,8 @@ class OtherProfileView extends StatelessWidget {
     );
   }
 
-  StatusView get _loadingLottie => const StatusView(status: StatusKeysEnum.LOADING);
+  StatusView get _loadingLottie =>
+      const StatusView(status: StatusKeysEnum.LOADING);
   StatusView get _errorLottie => const StatusView(status: StatusKeysEnum.ERROR);
   StatusView get _notPetYet => const StatusView(status: StatusKeysEnum.EMPTY);
 }

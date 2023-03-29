@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/constants/enums/locale_keys_enum.dart';
-import 'package:petilla_app_project/core/init/cache/locale_manager.dart';
-import 'package:petilla_app_project/view/auth/view/login_view.dart';
+import 'package:patily/core/constants/enums/locale_keys_enum.dart';
+import 'package:patily/core/init/cache/locale_manager.dart';
+import 'package:patily/view/auth/view/login_view.dart';
 
 class OnboardingViewModel {
   void onGetStartedButton(BuildContext context) async {

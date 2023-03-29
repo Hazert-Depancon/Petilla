@@ -2,18 +2,18 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:petilla_app_project/core/base/view/base_view.dart';
-import 'package:petilla_app_project/core/base/view/status_view.dart';
-import 'package:petilla_app_project/core/components/banner_ad_widget.dart';
-import 'package:petilla_app_project/core/constants/enums/status_keys_enum.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
-import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/core/constants/other_constant/icon_names.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/components/question_form_widget_mini.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/patiform/viewmodel/patiform_home_view_model.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/core/components/banner_ad_widget.dart';
+import 'package:patily/core/constants/enums/status_keys_enum.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/core/constants/other_constant/icon_names.dart';
+import 'package:patily/view/user/apps/patiform/core/components/question_form_widget_mini.dart';
+import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patiform/viewmodel/patiform_home_view_model.dart';
 
 class PatiformHomeView extends StatelessWidget {
   PatiformHomeView({Key? key}) : super(key: key);

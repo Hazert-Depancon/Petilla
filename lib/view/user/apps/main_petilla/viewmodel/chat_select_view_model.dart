@@ -3,9 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:petilla_app_project/core/base/model/base_view_model.dart';
-import 'package:petilla_app_project/core/constants/string_constant/app_firestore_field_names.dart';
-import 'package:petilla_app_project/view/user/apps/main_petilla/view/in_chat_view.dart';
+import 'package:patily/core/base/model/base_view_model.dart';
+import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
+import 'package:patily/view/user/apps/main_petilla/view/in_chat_view.dart';
 
 part 'chat_select_view_model.g.dart';
 
