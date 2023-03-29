@@ -2,19 +2,19 @@
 Patilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtlı sayıda mobil uygulama olmasından dolayı yapımına başlanmış ve Aralık 2022 itibari ile sınırlandırılmış sürüm (Beta 1.0) olarak Google Play Store'da ilk kullanıcılarının karşısına çıkmaya hazırlanmaktadır.
 
 # Linkler
-[Instagram Hesabı](https://www.instagram.com/petilla_turkiye/)
+[Instagram Hesabı](https://www.instagram.com/patily.turkiye/)
 
 [Web Sitesi](https://petilla.com.tr/)
 
 [Twitter Hesabı](https://twitter.com/Petilla_Turkiye)
 
-[Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.patily)
+[Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.petilla)
 
 [WhatsApp Etkileşim Grubu](https://chat.whatsapp.com/GTMbSd1htfpGIQz2Dhwns6)
 
-[Discord Sunucusu](https://discord.gg/QRNyQrnKz2)
+[Discord Sunucusu](https://discord.gg/FEYSuK9sUq)
 
-[Facebook Hesabı](https://www.facebook.com/profile.php?id=100089740839324)
+[Facebook Hesabı](https://www.facebook.com/patily.turkiye)
 
 # İşlevi
 Henüz yapılması planlandandan çok daha az işleve sahip olsa da şuan hali hazırda çalışmakta olan;
