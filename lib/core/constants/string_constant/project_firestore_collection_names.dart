@@ -12,8 +12,8 @@ class AppFirestoreCollectionNames {
   // Petcook
   static String petCook = "petcook";
 
-  // Petform
-  static String petform = "petform";
+  // Patiform
+  static String patiform = "patiform";
   static String answers = "answers";
 
   // Other Collections

@@ -13,10 +13,10 @@ import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
 import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/components/answer_form_widget.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/models/answer_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/service/petform_service.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/components/answer_form_widget.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/models/answer_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/service/patiform_service.dart';
 
 class InFormView extends StatefulWidget {
   const InFormView({super.key, required this.formModel});
@@ -97,7 +97,7 @@ class _InFormViewState extends State<InFormView> {
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection(AppFirestoreCollectionNames.petform)
+                .collection(AppFirestoreCollectionNames.patiform)
                 .doc(widget.formModel.docId)
                 .collection(AppFirestoreCollectionNames.answers)
                 .orderBy(
@@ -182,7 +182,7 @@ class _InFormViewState extends State<InFormView> {
           foregroundColor: LightThemeColors.white,
           child: IconButton(
             onPressed: () {
-              PetformService().reciveQuestion(
+              PatiformService().reciveQuestion(
                 AnswerFormModel(
                   answeredDocId: widget.formModel.docId!,
                   createdTime: Timestamp.now(),

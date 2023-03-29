@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:petilla_app_project/core/base/model/base_view_model.dart';
 import 'package:petilla_app_project/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:petilla_app_project/view/user/apps/petform/view/add_question_view.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/view/add_question_view.dart';
 
-part 'petform_home_view_model.g.dart';
+part 'patiform_home_view_model.g.dart';
 
-class PetformHomeViewViewModel = PetformHomeViewViewModelBase
-    with _$PetformHomeViewViewModel;
+class PatiformHomeViewViewModel = PatiformHomeViewViewModelBase
+    with _$PatiformHomeViewViewModel;
 
-abstract class PetformHomeViewViewModelBase with Store, BaseViewModel {
+abstract class PatiformHomeViewViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) {
     viewModelContext = context;
@@ -21,7 +21,7 @@ abstract class PetformHomeViewViewModelBase with Store, BaseViewModel {
 
   @observable
   CollectionReference<Map<String, dynamic>> stream = FirebaseFirestore.instance
-      .collection(AppFirestoreCollectionNames.petform);
+      .collection(AppFirestoreCollectionNames.patiform);
 
   @action
   void callAddQuestionView() {

@@ -8,8 +8,8 @@ import 'package:petilla_app_project/core/constants/sizes_constant/project_paddin
 import 'package:petilla_app_project/core/constants/sizes_constant/project_radius.dart';
 import 'package:petilla_app_project/core/extension/string_lang_extension.dart';
 import 'package:petilla_app_project/core/init/lang/locale_keys.g.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/models/question_form_model.dart';
-import 'package:petilla_app_project/view/user/apps/petform/core/service/petform_service.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/core/service/patiform_service.dart';
 import 'package:petilla_app_project/core/components/dialogs/error_dialog.dart';
 
 class AddQuestionView extends StatefulWidget {
@@ -75,7 +75,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   if (petSelectedValue != null) {
-                    PetformService().addQuestionToForm(
+                    PatiformService().addQuestionToForm(
                       QuestionFormModel(
                         animalType: petSelectedValue!,
                         title: _titleController.text,

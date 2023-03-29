@@ -14,7 +14,7 @@ import 'package:petilla_app_project/core/init/theme/light_theme/light_theme_colo
 import 'package:petilla_app_project/core/gen/assets.gen.dart';
 import 'package:petilla_app_project/view/user/apps/help_me/view/help_me_home_view.dart';
 import 'package:petilla_app_project/view/user/apps/main_petilla/view/main_petilla.dart';
-import 'package:petilla_app_project/view/user/apps/petform/main_pet_form.dart';
+import 'package:petilla_app_project/view/user/apps/patiform/main_patiform.dart';
 import 'package:petilla_app_project/view/user/apps/petcook/view/petcook_home_view.dart';
 import 'package:petilla_app_project/view/user/start/core/components/select_app_widget.dart';
 import 'package:petilla_app_project/view/user/start/viewmodel/select_app_view_view_model.dart';
@@ -104,7 +104,7 @@ class _SelectAppViewState extends State<SelectAppView> {
               crossAxisSpacing: 12,
               children: [
                 _selectPetillaGridTile(),
-                _selectPetformGridTile(),
+                _selectPatiformGridTile(),
                 _selectPatieGridTile(),
                 _selectHelpMeGridTile(),
               ],
@@ -115,11 +115,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  StaggeredGridTile _selectPetformGridTile() {
+  StaggeredGridTile _selectPatiformGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
-      child: _selectPetform(),
+      child: _selectPatiform(),
     );
   }
 
@@ -147,11 +147,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  SelectAppWidget _selectPetform() {
+  SelectAppWidget _selectPatiform() {
     return SelectAppWidget(
-      title: LocaleKeys.appNames_petform.locale,
-      imagePath: Assets.images.petform.path,
-      onTap: const MainPetForm(),
+      title: LocaleKeys.appNames_patiform.locale,
+      imagePath: Assets.images.patiform.path,
+      onTap: const MainPatiform(),
     );
   }
 
