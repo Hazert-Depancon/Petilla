@@ -72,7 +72,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
 
   BottomNavigationBarItem get _homeBottomNavigation => BottomNavigationBarItem(
         icon: _homeIcon(),
-        label: LocaleKeys.petillaPages_animalAdopt.locale,
+        label: LocaleKeys.patillaPages_animalAdopt.locale,
       );
 
   SvgPicture _homeIcon() => SvgPicture.asset(
@@ -87,14 +87,14 @@ class _MainPetillaState extends BaseState<MainPetilla> {
         icon: _selectedIndex == 1
             ? const Icon(AppIcons.favoriteIcon)
             : const Icon(AppIcons.favoriteBorderIcon),
-        label: LocaleKeys.petillaPages_myFavorites.locale,
+        label: LocaleKeys.patillaPages_myFavorites.locale,
       );
 
   BottomNavigationBarItem get _addBottomNavigation => BottomNavigationBarItem(
         icon: _selectedIndex == 2
             ? const Icon(AppIcons.addCircleIcon)
             : const Icon(AppIcons.addCircleOutlinedIcon),
-        label: LocaleKeys.petillaPages_addAPet.locale,
+        label: LocaleKeys.patillaPages_addAPet.locale,
       );
 
   BottomNavigationBarItem get _chatsBottomNavigation => BottomNavigationBarItem(
@@ -102,7 +102,7 @@ class _MainPetillaState extends BaseState<MainPetilla> {
             ? SvgPicture.asset(Assets.svg.chat,
                 color: LightThemeColors.miamiMarmalade)
             : SvgPicture.asset(Assets.svg.chat, color: LightThemeColors.grey),
-        label: LocaleKeys.petillaPages_myMessages.locale,
+        label: LocaleKeys.patillaPages_myMessages.locale,
       );
 
   BottomNavigationBarItem get _insertBottomNavigation =>
@@ -110,6 +110,6 @@ class _MainPetillaState extends BaseState<MainPetilla> {
         icon: _selectedIndex == 4
             ? const Icon(AppIcons.insertOutlineIcon)
             : const Icon(AppIcons.insertOutlineIcon),
-        label: LocaleKeys.petillaPages_my_inserts.locale,
+        label: LocaleKeys.patillaPages_my_inserts.locale,
       );
 }

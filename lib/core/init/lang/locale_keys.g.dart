@@ -4,12 +4,12 @@
 
 abstract class LocaleKeys {
   static const appNames_petform = 'appNames.petform';
-  static const appNames_petilla = 'appNames.petilla';
+  static const appNames_patilla = 'appNames.patilla';
   static const appNames_petie = 'appNames.petie';
   static const appNames_helpMe = 'appNames.helpMe';
   static const appNames = 'appNames';
-  static const appDescription_petillaDescription =
-      'appDescription.petillaDescription';
+  static const appDescription_patillaDescription =
+      'appDescription.patillaDescription';
   static const appDescription_petformDescription =
       'appDescription.petformDescription';
   static const appDescription_petieDescription =
@@ -58,12 +58,12 @@ abstract class LocaleKeys {
   static const onboardTexts_onboarding_msg_three =
       'onboardTexts.onboarding_msg_three';
   static const onboardTexts = 'onboardTexts';
-  static const petillaPages_animalAdopt = 'petillaPages.animalAdopt';
-  static const petillaPages_myFavorites = 'petillaPages.myFavorites';
-  static const petillaPages_addAPet = 'petillaPages.addAPet';
-  static const petillaPages_myMessages = 'petillaPages.myMessages';
-  static const petillaPages_my_inserts = 'petillaPages.my_inserts';
-  static const petillaPages = 'petillaPages';
+  static const patillaPages_animalAdopt = 'patillaPages.animalAdopt';
+  static const patillaPages_myFavorites = 'patillaPages.myFavorites';
+  static const patillaPages_addAPet = 'patillaPages.addAPet';
+  static const patillaPages_myMessages = 'patillaPages.myMessages';
+  static const patillaPages_my_inserts = 'patillaPages.my_inserts';
+  static const patillaPages = 'patillaPages';
   static const profile = 'profile';
   static const addPetTwoForTwo = 'addPetTwoForTwo';
   static const petAgeRange = 'petAgeRange';
