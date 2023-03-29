@@ -5,12 +5,6 @@
         "petie" : "Petie",
         "helpMe" : "Yardım Et!"
     },
-    "appDescription": {
-        "patillaDescription" : "Hayvan sahiplen ve sahiplendir!",
-        "petformDescription" : "Sorunlarını hayvan sahipleri ile çöz!",
-        "petieDescription": "Hayvanlar için sosyal medya!",
-        "helpMeDescription" : "Sokak hayvanlarına yardım et!"    
-    },
     "auth": {
         "logout" : "Çıkış Yap",
         "welcomeAgain" : "Tekrar Hoşgeldin!",
