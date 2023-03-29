@@ -88,12 +88,13 @@ class _AddQuestionViewState extends State<AddQuestionView> {
                       ),
                     );
                     Navigator.pop(context);
+                  } else {
+                    showErrorDialog(
+                      true,
+                      LocaleKeys.validation_emptyValidation.locale,
+                      context,
+                    );
                   }
-                  showErrorDialog(
-                    true,
-                    LocaleKeys.validation_emptyValidation.locale,
-                    context,
-                  );
                 }
               },
               text: LocaleKeys.createQuestion.locale,
