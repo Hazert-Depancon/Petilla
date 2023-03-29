@@ -50,7 +50,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hazret.petilla"
+        applicationId "com.hazret.patily"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
