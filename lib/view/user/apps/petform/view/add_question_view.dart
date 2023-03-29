@@ -87,6 +87,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
                         createdTime: Timestamp.now(),
                       ),
                     );
+                    Navigator.pop(context);
                   }
                   showErrorDialog(
                     true,
