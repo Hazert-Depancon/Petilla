@@ -109,20 +109,20 @@ Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-
 | lib\\view\\user\\apps\\help_me\\core\\models | 1 | 26 | 0 | 2 | 28 |
 | lib\\view\\user\\apps\\help_me\\view | 4 | 490 | 3 | 66 | 559 |
 | lib\\view\\user\\apps\\help_me\\viewmodel | 6 | 262 | 18 | 69 | 349 |
-| lib\\view\\user\\apps\\main_petilla | 36 | 3,251 | 61 | 477 | 3,789 |
-| lib\\view\\user\\apps\\main_petilla\\core | 3 | 411 | 3 | 50 | 464 |
-| lib\\view\\user\\apps\\main_petilla\\core\\components | 3 | 411 | 3 | 50 | 464 |
-| lib\\view\\user\\apps\\main_petilla\\core\\components\\chat_widgets | 1 | 44 | 1 | 6 | 51 |
-| lib\\view\\user\\apps\\main_petilla\\core\\components\\pet_widgets | 2 | 367 | 2 | 44 | 413 |
-| lib\\view\\user\\apps\\main_petilla\\service | 5 | 191 | 1 | 25 | 217 |
-| lib\\view\\user\\apps\\main_petilla\\service\\chat_service | 1 | 67 | 0 | 4 | 71 |
-| lib\\view\\user\\apps\\main_petilla\\service\\firebase_crud | 1 | 36 | 1 | 4 | 41 |
-| lib\\view\\user\\apps\\main_petilla\\service\\models | 2 | 68 | 0 | 12 | 80 |
-| lib\\view\\user\\apps\\main_petilla\\service\\models (Files) | 1 | 32 | 0 | 2 | 34 |
-| lib\\view\\user\\apps\\main_petilla\\service\\models\\jsons | 1 | 36 | 0 | 10 | 46 |
-| lib\\view\\user\\apps\\main_petilla\\service\\storage_service.dart | 1 | 20 | 0 | 5 | 25 |
-| lib\\view\\user\\apps\\main_petilla\\view | 12 | 1,978 | 9 | 237 | 2,224 |
-| lib\\view\\user\\apps\\main_petilla\\viewmodel | 16 | 671 | 48 | 165 | 884 |
+| lib\\view\\user\\apps\\patilla | 36 | 3,251 | 61 | 477 | 3,789 |
+| lib\\view\\user\\apps\\patilla\\core | 3 | 411 | 3 | 50 | 464 |
+| lib\\view\\user\\apps\\patilla\\core\\components | 3 | 411 | 3 | 50 | 464 |
+| lib\\view\\user\\apps\\patilla\\core\\components\\chat_widgets | 1 | 44 | 1 | 6 | 51 |
+| lib\\view\\user\\apps\\patilla\\core\\components\\pet_widgets | 2 | 367 | 2 | 44 | 413 |
+| lib\\view\\user\\apps\\patilla\\service | 5 | 191 | 1 | 25 | 217 |
+| lib\\view\\user\\apps\\patilla\\service\\chat_service | 1 | 67 | 0 | 4 | 71 |
+| lib\\view\\user\\apps\\patilla\\service\\firebase_crud | 1 | 36 | 1 | 4 | 41 |
+| lib\\view\\user\\apps\\patilla\\service\\models | 2 | 68 | 0 | 12 | 80 |
+| lib\\view\\user\\apps\\patilla\\service\\models (Files) | 1 | 32 | 0 | 2 | 34 |
+| lib\\view\\user\\apps\\patilla\\service\\models\\jsons | 1 | 36 | 0 | 10 | 46 |
+| lib\\view\\user\\apps\\patilla\\service\\storage_service.dart | 1 | 20 | 0 | 5 | 25 |
+| lib\\view\\user\\apps\\patilla\\view | 12 | 1,978 | 9 | 237 | 2,224 |
+| lib\\view\\user\\apps\\patilla\\viewmodel | 16 | 671 | 48 | 165 | 884 |
 | lib\\view\\user\\apps\\pet_form | 8 | 470 | 12 | 77 | 559 |
 | lib\\view\\user\\apps\\pet_form (Files) | 1 | 9 | 0 | 3 | 12 |
 | lib\\view\\user\\apps\\pet_form\\service | 1 | 17 | 0 | 2 | 19 |

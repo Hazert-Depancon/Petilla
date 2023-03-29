@@ -14,7 +14,7 @@ import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/add_view_view_model.dart';
+import 'package:patily/view/user/apps/patilla/viewmodel/add_view_view_model.dart';
 
 class AddView extends StatefulWidget {
   const AddView({Key? key}) : super(key: key);

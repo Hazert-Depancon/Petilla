@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
 
-part 'main_petilla_view_model.g.dart';
+part 'patilla_view_model.g.dart';
 
-class MainPetillaViewModel = _MainPetillaViewModelBase
-    with _$MainPetillaViewModel;
+class MainPatillaViewModel = _MainPatillaViewModelBase
+    with _$MainPatillaViewModel;
 
-abstract class _MainPetillaViewModelBase with Store, BaseViewModel {
+abstract class _MainPatillaViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) {
     viewModelContext = context;

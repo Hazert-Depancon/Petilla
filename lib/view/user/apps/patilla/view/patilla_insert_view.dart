@@ -1,69 +1,67 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/core/constants/enums/status_keys_enum.dart';
 import 'package:patily/core/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:patily/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/other_profile_view_view_model.dart';
+import 'package:patily/core/extension/string_lang_extension.dart';
+import 'package:patily/core/init/lang/locale_keys.g.dart';
+import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
 
-class OtherProfileView extends StatelessWidget {
-  OtherProfileView({super.key, required this.petModel});
-
-  final PetModel petModel;
-
-  late OtherProfileViewViewModel viewModel;
+class PatillaInsertView extends StatelessWidget {
+  const PatillaInsertView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<OtherProfileViewViewModel>(
-      onModelReady: (model) {
-        model.setContext(context);
-        viewModel = model;
-      },
-      viewModel: OtherProfileViewViewModel(),
-      onPageBuilder: (context, value) => _buildScaffold,
+    return Scaffold(
+      appBar: _appBar(),
+      body: _body(),
     );
   }
 
-  Scaffold get _buildScaffold => Scaffold(
-        appBar: _appBar,
-        body: _streamBuilder,
-      );
-
-  AppBar get _appBar {
+  AppBar _appBar() {
     return AppBar(
-      title: Text(petModel.currentUserName),
+      title: Text(_ThisPageTexts.myInserts),
+      automaticallyImplyLeading: false,
     );
   }
 
-  StreamBuilder<QuerySnapshot<Object?>> get _streamBuilder {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.petsCollection)
-          .where(AppFirestoreFieldNames.currentUidField,
-              isEqualTo: petModel.currentUid)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
-            return _notPetYet;
+  SafeArea _body() {
+    return SafeArea(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection(AppFirestoreCollectionNames.petsCollection)
+            .where(
+              AppFirestoreFieldNames.currentUidField,
+              isEqualTo: FirebaseAuth.instance.currentUser!.uid,
+            )
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
+              return _notPetYet(context);
+            }
+
+            return _inserts(snapshot);
+          }
+          if (snapshot.connectionState == ConnectionState.none) {
+            return _connectionError();
+          }
+          if (snapshot.hasError) {
+            return _errorLottie();
           }
 
-          return _inserts(snapshot);
-        }
-        if (snapshot.hasError) {
-          return _errorLottie;
-        }
-
-        return _loadingLottie;
-      },
+          return _loadingLottie();
+        },
+      ),
     );
+  }
+
+  _connectionError() {
+    return const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
   }
 
   ListView _inserts(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
@@ -74,6 +72,18 @@ class OtherProfileView extends StatelessWidget {
         return _petWidget(snapshot.data!.docs[index]);
       },
     );
+  }
+
+  _loadingLottie() {
+    return const StatusView(status: StatusKeysEnum.LOADING);
+  }
+
+  _errorLottie() {
+    return const StatusView(status: StatusKeysEnum.ERROR);
+  }
+
+  _notPetYet(BuildContext context) {
+    return const StatusView(status: StatusKeysEnum.EMPTY);
   }
 
   LargePetWidget _petWidget(document) {
@@ -100,9 +110,8 @@ class OtherProfileView extends StatelessWidget {
       docId: document.id,
     );
   }
+}
 
-  StatusView get _loadingLottie =>
-      const StatusView(status: StatusKeysEnum.LOADING);
-  StatusView get _errorLottie => const StatusView(status: StatusKeysEnum.ERROR);
-  StatusView get _notPetYet => const StatusView(status: StatusKeysEnum.EMPTY);
+class _ThisPageTexts {
+  static String myInserts = LocaleKeys.patillaPages_my_inserts.locale;
 }

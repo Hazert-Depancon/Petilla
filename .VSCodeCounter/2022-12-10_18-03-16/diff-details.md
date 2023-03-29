@@ -22,10 +22,10 @@ Total : 21 files,  202 codes, -3 comments, 26 blanks, all 225 lines
 | [lib/view/user/apps/animal_report/view/animal_report_home_view.dart](/lib/view/user/apps/animal_report/view/animal_report_home_view.dart) | Dart | -7 | 0 | -1 | -8 |
 | [lib/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart](/lib/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.g.dart](/lib/view/user/apps/animal_report/viewmodel/animal_report_home_view_view_model.g.dart) | Dart | 7 | 0 | 0 | 7 |
-| [lib/view/user/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart](/lib/view/user/apps/main_petilla/core/components/pet_widgets/normal_pet_widget.dart) | Dart | 1 | 0 | 0 | 1 |
-| [lib/view/user/apps/main_petilla/view/add_view_two.dart](/lib/view/user/apps/main_petilla/view/add_view_two.dart) | Dart | 8 | 0 | 2 | 10 |
-| [lib/view/user/apps/main_petilla/viewmodel/add_view_two_view_model.dart](/lib/view/user/apps/main_petilla/viewmodel/add_view_two_view_model.dart) | Dart | 25 | 0 | 3 | 28 |
-| [lib/view/user/apps/main_petilla/viewmodel/add_view_two_view_model.g.dart](/lib/view/user/apps/main_petilla/viewmodel/add_view_two_view_model.g.dart) | Dart | 34 | 0 | 4 | 38 |
+| [lib/view/user/apps/patilla/core/components/pet_widgets/normal_pet_widget.dart](/lib/view/user/apps/patilla/core/components/pet_widgets/normal_pet_widget.dart) | Dart | 1 | 0 | 0 | 1 |
+| [lib/view/user/apps/patilla/view/add_view_two.dart](/lib/view/user/apps/patilla/view/add_view_two.dart) | Dart | 8 | 0 | 2 | 10 |
+| [lib/view/user/apps/patilla/viewmodel/add_view_two_view_model.dart](/lib/view/user/apps/patilla/viewmodel/add_view_two_view_model.dart) | Dart | 25 | 0 | 3 | 28 |
+| [lib/view/user/apps/patilla/viewmodel/add_view_two_view_model.g.dart](/lib/view/user/apps/patilla/viewmodel/add_view_two_view_model.g.dart) | Dart | 34 | 0 | 4 | 38 |
 | [lib/view/user/apps/pet_form/view/petform_home_view.dart](/lib/view/user/apps/pet_form/view/petform_home_view.dart) | Dart | 15 | 0 | 3 | 18 |
 | [lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart](/lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart) | Dart | 28 | 0 | 3 | 31 |
 | [lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.g.dart](/lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.g.dart) | Dart | 34 | 0 | 4 | 38 |

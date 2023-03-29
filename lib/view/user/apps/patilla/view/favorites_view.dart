@@ -11,9 +11,9 @@ import 'package:patily/core/constants/string_constant/app_firestore_field_names.
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
-import 'package:patily/view/user/apps/main_petilla/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:patily/view/user/apps/main_petilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/main_petilla/viewmodel/favorites_view_view_model.dart';
+import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patilla/viewmodel/favorites_view_view_model.dart';
 
 class FavoritesView extends StatelessWidget {
   FavoritesView({super.key});

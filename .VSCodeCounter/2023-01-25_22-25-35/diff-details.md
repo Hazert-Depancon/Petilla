@@ -48,7 +48,7 @@ Total : 55 files,  -577 codes, 0 comments, -98 blanks, all -675 lines
 | [lib/view/user/apps/help_me/viewmodel/help_me_detail_view_view_model.dart](/lib/view/user/apps/help_me/viewmodel/help_me_detail_view_view_model.dart) | Dart | 11 | 0 | -1 | 10 |
 | [lib/view/user/apps/help_me/viewmodel/help_me_detail_view_view_model.g.dart](/lib/view/user/apps/help_me/viewmodel/help_me_detail_view_view_model.g.dart) | Dart | -15 | 0 | -3 | -18 |
 | [lib/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart](/lib/view/user/apps/help_me/viewmodel/help_me_view_view_model.dart) | Dart | 4 | 0 | 0 | 4 |
-| [lib/view/user/apps/main_petilla/view/petilla_detail_view.dart](/lib/view/user/apps/main_petilla/view/petilla_detail_view.dart) | Dart | -6 | 0 | 0 | -6 |
+| [lib/view/user/apps/patilla/view/petilla_detail_view.dart](/lib/view/user/apps/patilla/view/petilla_detail_view.dart) | Dart | -6 | 0 | 0 | -6 |
 | [lib/view/user/apps/pet_form/view/group_template_view.dart](/lib/view/user/apps/pet_form/view/group_template_view.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/view/user/apps/pet_form/view/petform_home_view.dart](/lib/view/user/apps/pet_form/view/petform_home_view.dart) | Dart | -3 | 0 | -2 | -5 |
 | [lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart](/lib/view/user/apps/pet_form/viewmodel/petform_home_view_model.dart) | Dart | -28 | 0 | -3 | -31 |
