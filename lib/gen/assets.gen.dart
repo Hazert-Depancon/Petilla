@@ -33,13 +33,13 @@ class $AssetsImagesGen {
   AssetGenImage get loginBackgroundImage =>
       const AssetGenImage('assets/images/login_background_image.png');
 
-  /// File path: assets/images/patilla_image.png
-  AssetGenImage get patillaImage =>
-      const AssetGenImage('assets/images/patilla_image.png');
-
   /// File path: assets/images/patily_form.png
   AssetGenImage get patilyForm =>
       const AssetGenImage('assets/images/patily_form.png');
+
+  /// File path: assets/images/patily_sahipllen_image.png
+  AssetGenImage get patilySahipllenImage =>
+      const AssetGenImage('assets/images/patily_sahipllen_image.png');
 
   /// File path: assets/images/pet_cook_image.png
   AssetGenImage get petCookImage =>
@@ -50,8 +50,8 @@ class $AssetsImagesGen {
         fallowInstagram,
         helpMe,
         loginBackgroundImage,
-        patillaImage,
         patilyForm,
+        patilySahipllenImage,
         petCookImage
       ];
 }

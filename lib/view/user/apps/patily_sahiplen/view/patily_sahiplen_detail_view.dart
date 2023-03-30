@@ -13,9 +13,9 @@ import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/utility/report_utils/report_service.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/patilla/view/other_profile_view.dart';
-import 'package:patily/view/user/apps/patilla/viewmodel/patilla_detail_view_view_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/other_profile_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/viewmodel/patily_sahiplen_detail_view_view_model.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({Key? key, required this.petModel}) : super(key: key);

@@ -8,9 +8,9 @@ import 'package:patily/core/constants/enums/status_keys_enum.dart';
 import 'package:patily/core/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/patilla/viewmodel/other_profile_view_view_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/viewmodel/other_profile_view_view_model.dart';
 
 class OtherProfileView extends StatelessWidget {
   OtherProfileView({super.key, required this.petModel});

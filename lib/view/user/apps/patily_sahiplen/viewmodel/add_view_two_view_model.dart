@@ -9,9 +9,9 @@ import 'package:patily/core/init/google_ads/ads_state.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
-import 'package:patily/view/user/apps/patilla/service/firebase_crud/crud_service.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/patilla/view/patilla.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/firebase_crud/crud_service.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/patily_sahiplen.dart';
 
 part 'add_view_two_view_model.g.dart';
 
@@ -93,7 +93,7 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
     );
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const MainPatilla()),
+      MaterialPageRoute(builder: (context) => const MainPatilySahiplen()),
       (route) => false,
     );
     return true;

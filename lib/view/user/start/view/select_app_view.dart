@@ -13,7 +13,7 @@ import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/view/user/apps/help_me/view/help_me_home_view.dart';
-import 'package:patily/view/user/apps/patilla/view/patilla.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/patily_sahiplen.dart';
 import 'package:patily/view/user/apps/patily_form/main_patily_form.dart';
 import 'package:patily/view/user/apps/petcook/view/petcook_home_view.dart';
 import 'package:patily/view/user/start/core/components/select_app_widget.dart';
@@ -33,7 +33,7 @@ class _SelectAppViewState extends State<SelectAppView> {
   late SelectAppViewViewModel viewModel;
 
   Future<void> instagramLaunch() async {
-    var url = 'https://www.instagram.com/petilla_turkiye/';
+    var url = 'https://www.instagram.com/patily.turkiye/';
 
     if (await canLaunch(url)) {
       await launch(
@@ -103,7 +103,7 @@ class _SelectAppViewState extends State<SelectAppView> {
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
               children: [
-                _selectPatillaGridTile(),
+                _selectPatilySahiplenGridTile(),
                 _selectPatilyFormGridTile(),
                 _selectPatieGridTile(),
                 _selectHelpMeGridTile(),
@@ -131,11 +131,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  StaggeredGridTile _selectPatillaGridTile() {
+  StaggeredGridTile _selectPatilySahiplenGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
-      child: _selectPatilla(),
+      child: _selectPatilySahiplen(),
     );
   }
 
@@ -171,12 +171,12 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  SelectAppWidget _selectPatilla() {
+  SelectAppWidget _selectPatilySahiplen() {
     return SelectAppWidget(
       isBig: true,
-      title: LocaleKeys.appNames_patilla.locale,
-      imagePath: Assets.images.patillaImage.path,
-      onTap: const MainPatilla(),
+      title: LocaleKeys.appNames_patilySahiplen.locale,
+      imagePath: Assets.images.patilySahiplenImage.path,
+      onTap: const MainPatilySahiplen(),
     );
   }
 

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
-import 'package:patily/view/user/apps/patilla/view/add_view_two.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/add_view_two.dart';
 
 part 'add_view_view_model.g.dart';
 
