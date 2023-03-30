@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
 import 'package:patily/core/utility/widget_utility/fav_button_service.dart';
-import 'package:patily/view/user/apps/patilla/view/in_chat_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/in_chat_view.dart';
 
-part 'patilla_detail_view_view_model.g.dart';
+part 'patily_sahiplen_detail_view_view_model.g.dart';
 
 class DetailViewViewModel = _DetailViewViewModelBase with _$DetailViewViewModel;
 

@@ -11,9 +11,9 @@ import 'package:patily/core/constants/string_constant/app_firestore_field_names.
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
-import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/patilla/viewmodel/favorites_view_view_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/core/components/pet_widgets/large_pet_widget.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/viewmodel/favorites_view_view_model.dart';
 
 class FavoritesView extends StatelessWidget {
   FavoritesView({super.key});
@@ -38,7 +38,7 @@ class FavoritesView extends StatelessWidget {
       );
 
   AppBar get _appBar => AppBar(
-        title: Text(LocaleKeys.patillaPages_myFavorites.locale),
+        title: Text(LocaleKeys.patilySahiplenPages_myFavorites.locale),
         automaticallyImplyLeading: false,
       );
 

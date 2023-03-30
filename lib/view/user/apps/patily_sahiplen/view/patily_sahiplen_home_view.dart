@@ -18,17 +18,17 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/patilla/core/components/pet_widgets/normal_pet_widget.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/core/components/pet_widgets/normal_pet_widget.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
 
-class PatillaHomeView extends StatefulWidget {
-  const PatillaHomeView({Key? key}) : super(key: key);
+class PatilySahiplenHomeView extends StatefulWidget {
+  const PatilySahiplenHomeView({Key? key}) : super(key: key);
 
   @override
-  State<PatillaHomeView> createState() => _PatillaHomeViewState();
+  State<PatilySahiplenHomeView> createState() => _PatilySahiplenHomeViewState();
 }
 
-class _PatillaHomeViewState extends BaseState<PatillaHomeView> {
+class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
   Object? val1 = 0;
   Object? val2 = 0;
   Object? val3 = 0;
@@ -477,7 +477,7 @@ class _PatillaHomeViewState extends BaseState<PatillaHomeView> {
 }
 
 class _ThisPageTexts {
-  static String homePage = LocaleKeys.patillaPages_animalAdopt.locale;
+  static String homePage = LocaleKeys.patilySahiplenPages_animalAdopt.locale;
   static String filterPets = LocaleKeys.filter_pets.locale;
   static String clear = LocaleKeys.clear.locale;
   static String dog = LocaleKeys.animalNames_dog.locale;

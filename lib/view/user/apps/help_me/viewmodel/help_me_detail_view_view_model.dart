@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
 import 'package:patily/view/user/apps/help_me/core/models/help_me_model.dart';
-import 'package:patily/view/user/apps/patilla/view/in_chat_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/in_chat_view.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 part 'help_me_detail_view_view_model.g.dart';

@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
-import 'package:patily/view/user/apps/patilla/service/chat_service/chat_service.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/chat_service/chat_service.dart';
 
 part 'in_chat_view_view_model.g.dart';
 

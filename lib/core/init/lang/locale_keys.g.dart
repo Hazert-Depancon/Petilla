@@ -4,7 +4,7 @@
 
 abstract class LocaleKeys {
   static const appNames_patilyForm = 'appNames.patilyForm';
-  static const appNames_patilla = 'appNames.patilla';
+  static const appNames_patilySahiplen = 'appNames.patilySahiplen';
   static const appNames_patie = 'appNames.patie';
   static const appNames_helpMe = 'appNames.helpMe';
   static const appNames = 'appNames';
@@ -49,12 +49,16 @@ abstract class LocaleKeys {
   static const onboardTexts_onboarding_msg_three =
       'onboardTexts.onboarding_msg_three';
   static const onboardTexts = 'onboardTexts';
-  static const patillaPages_animalAdopt = 'patillaPages.animalAdopt';
-  static const patillaPages_myFavorites = 'patillaPages.myFavorites';
-  static const patillaPages_addAPet = 'patillaPages.addAPet';
-  static const patillaPages_myMessages = 'patillaPages.myMessages';
-  static const patillaPages_my_inserts = 'patillaPages.my_inserts';
-  static const patillaPages = 'patillaPages';
+  static const patilySahiplenPages_animalAdopt =
+      'patilySahiplenPages.animalAdopt';
+  static const patilySahiplenPages_myFavorites =
+      'patilySahiplenPages.myFavorites';
+  static const patilySahiplenPages_addAPet = 'patilySahiplenPages.addAPet';
+  static const patilySahiplenPages_myMessages =
+      'patilySahiplenPages.myMessages';
+  static const patilySahiplenPages_my_inserts =
+      'patilySahiplenPages.my_inserts';
+  static const patilySahiplenPages = 'patilySahiplenPages';
   static const profile = 'profile';
   static const addPetTwoForTwo = 'addPetTwoForTwo';
   static const petAgeRange = 'petAgeRange';

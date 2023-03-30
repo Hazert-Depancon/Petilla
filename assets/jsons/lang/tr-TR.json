@@ -1,7 +1,7 @@
 {   
     "appNames": {
         "patilyForm" : "Patily Form",
-        "patilla" : "Patilla",
+        "patilySahiplen" : "Patily Sahiplen",
         "patie" : "Patie",
         "helpMe" : "Patily Yardım"
     },
@@ -48,7 +48,7 @@
         "onboarding_msg_two" : "Evcil hayvanlarının sorunları için başka evcil hayvan sahipleriyle konuş!",
         "onboarding_msg_three" : "Hayvanlarınızın tatlı ve komik anlarını diğer insanlar ile paylaşın!"    
     },
-    "patillaPages": {
+    "patilySahiplenPages": {
         "animalAdopt" : "Hayvan Sahiplen",
         "myFavorites" : "Favorilerim",
         "addAPet" : "Hayvan Ekle",

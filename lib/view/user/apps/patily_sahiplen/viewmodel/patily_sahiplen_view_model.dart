@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
 
-part 'patilla_view_model.g.dart';
+part 'patily_sahiplen_view_model.g.dart';
 
 class MainPatillaViewModel = _MainPatillaViewModelBase
     with _$MainPatillaViewModel;

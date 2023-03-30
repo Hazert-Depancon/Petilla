@@ -1,5 +1,5 @@
-# Patilla [TR]
-Patilla bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtlı sayıda mobil uygulama olmasından dolayı yapımına başlanmış ve Aralık 2022 itibari ile sınırlandırılmış sürüm (Beta 1.0) olarak Google Play Store'da ilk kullanıcılarının karşısına çıkmaya hazırlanmaktadır.
+# PATİLY [TR]
+PATİLY bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtlı sayıda mobil uygulama olmasından dolayı yapımına başlanmış ve Aralık 2022 itibari ile sınırlandırılmış sürüm (Beta 1.0) olarak Google Play Store'da ilk kullanıcılarının karşısına çıkmaya hazırlanmaktadır.
 
 # Linkler
 [Instagram Hesabı](https://www.instagram.com/patily.turkiye/)
@@ -41,7 +41,7 @@ hizmetleri en kısa sürede eklenecektir.
 
 # Emeği Geçenler
 
-Oğuz Kağan Güllü: Patilla Kurucu, Yazılım, [Github](https://github.com/kagangullu)
+Oğuz Kağan Güllü: PATİLY Kurucu, Yazılım, [Github](https://github.com/kagangullu)
 
 Erdinç Güllü (Danışman, Yatırımcı)
 

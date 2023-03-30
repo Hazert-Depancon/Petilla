@@ -10,8 +10,8 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/utility/widget_utility/fav_button_service.dart';
-import 'package:patily/view/user/apps/patilla/service/models/pet_model.dart';
-import 'package:patily/view/user/apps/patilla/view/patilla_detail_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/patily_sahiplen_detail_view.dart';
 
 class LargePetWidget extends StatefulWidget {
   const LargePetWidget({Key? key, required this.petModel, this.isMe})

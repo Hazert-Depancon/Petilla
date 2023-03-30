@@ -7,29 +7,29 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/view/user/apps/patilla/view/add_view.dart';
-import 'package:patily/view/user/apps/patilla/view/chat_select_view.dart';
-import 'package:patily/view/user/apps/patilla/view/favorites_view.dart';
-import 'package:patily/view/user/apps/patilla/view/patilla_home_view.dart';
-import 'package:patily/view/user/apps/patilla/view/patilla_insert_view.dart';
-import 'package:patily/view/user/apps/patilla/viewmodel/patilla_view_model.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/add_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/chat_select_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/favorites_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/patily_sahiplen_home_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/view/patilla_insert_view.dart';
+import 'package:patily/view/user/apps/patily_sahiplen/viewmodel/patily_sahiplen_view_model.dart';
 
-class MainPatilla extends StatefulWidget {
-  const MainPatilla({Key? key}) : super(key: key);
+class MainPatilySahiplen extends StatefulWidget {
+  const MainPatilySahiplen({Key? key}) : super(key: key);
 
   @override
-  State<MainPatilla> createState() => _MainPatillaState();
+  State<MainPatilySahiplen> createState() => _MainPatilySahiplenState();
 }
 
-class _MainPatillaState extends BaseState<MainPatilla> {
+class _MainPatilySahiplenState extends BaseState<MainPatilySahiplen> {
   int _selectedIndex = 0;
 
   final List<Widget> pages = [
-    const PatillaHomeView(),
+    const PatilySahiplenHomeView(),
     FavoritesView(),
     const AddView(),
     ChatSelectView(),
-    const PatillaInsertView(),
+    const PatilySahiplenInsertView(),
   ];
 
   late MainPatillaViewModel viewModel;
@@ -72,7 +72,7 @@ class _MainPatillaState extends BaseState<MainPatilla> {
 
   BottomNavigationBarItem get _homeBottomNavigation => BottomNavigationBarItem(
         icon: _homeIcon(),
-        label: LocaleKeys.patillaPages_animalAdopt.locale,
+        label: LocaleKeys.patilySahiplenPages_animalAdopt.locale,
       );
 
   SvgPicture _homeIcon() => SvgPicture.asset(
@@ -87,14 +87,14 @@ class _MainPatillaState extends BaseState<MainPatilla> {
         icon: _selectedIndex == 1
             ? const Icon(AppIcons.favoriteIcon)
             : const Icon(AppIcons.favoriteBorderIcon),
-        label: LocaleKeys.patillaPages_myFavorites.locale,
+        label: LocaleKeys.patilySahiplenPages_myFavorites.locale,
       );
 
   BottomNavigationBarItem get _addBottomNavigation => BottomNavigationBarItem(
         icon: _selectedIndex == 2
             ? const Icon(AppIcons.addCircleIcon)
             : const Icon(AppIcons.addCircleOutlinedIcon),
-        label: LocaleKeys.patillaPages_addAPet.locale,
+        label: LocaleKeys.patilySahiplenPages_addAPet.locale,
       );
 
   BottomNavigationBarItem get _chatsBottomNavigation => BottomNavigationBarItem(
@@ -102,7 +102,7 @@ class _MainPatillaState extends BaseState<MainPatilla> {
             ? SvgPicture.asset(Assets.svg.chat,
                 color: LightThemeColors.miamiMarmalade)
             : SvgPicture.asset(Assets.svg.chat, color: LightThemeColors.grey),
-        label: LocaleKeys.patillaPages_myMessages.locale,
+        label: LocaleKeys.patilySahiplenPages_myMessages.locale,
       );
 
   BottomNavigationBarItem get _insertBottomNavigation =>
@@ -110,6 +110,6 @@ class _MainPatillaState extends BaseState<MainPatilla> {
         icon: _selectedIndex == 4
             ? const Icon(AppIcons.insertOutlineIcon)
             : const Icon(AppIcons.insertOutlineIcon),
-        label: LocaleKeys.patillaPages_my_inserts.locale,
+        label: LocaleKeys.patilySahiplenPages_my_inserts.locale,
       );
 }

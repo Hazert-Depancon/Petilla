@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'patilla_view_model.dart';
+part of 'patily_sahiplen_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
