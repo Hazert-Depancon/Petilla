@@ -13,10 +13,10 @@ import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/view/user/apps/patiform/core/components/answer_form_widget.dart';
-import 'package:patily/view/user/apps/patiform/core/models/answer_form_model.dart';
-import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:patily/view/user/apps/patiform/core/service/patiform_service.dart';
+import 'package:patily/view/user/apps/patily_form/core/components/answer_form_widget.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/answer_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/service/patiform_service.dart';
 
 class InFormView extends StatefulWidget {
   const InFormView({super.key, required this.formModel});
@@ -97,7 +97,7 @@ class _InFormViewState extends State<InFormView> {
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection(AppFirestoreCollectionNames.patiform)
+                .collection(AppFirestoreCollectionNames.patilyForm)
                 .doc(widget.formModel.docId)
                 .collection(AppFirestoreCollectionNames.answers)
                 .orderBy(
@@ -182,7 +182,7 @@ class _InFormViewState extends State<InFormView> {
           foregroundColor: LightThemeColors.white,
           child: IconButton(
             onPressed: () {
-              PatiformService().reciveQuestion(
+              PatilyFormService().reciveQuestion(
                 AnswerFormModel(
                   answeredDocId: widget.formModel.docId!,
                   createdTime: Timestamp.now(),

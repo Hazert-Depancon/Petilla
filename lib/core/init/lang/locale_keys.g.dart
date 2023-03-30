@@ -3,7 +3,7 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class LocaleKeys {
-  static const appNames_patiform = 'appNames.patiform';
+  static const appNames_patilyForm = 'appNames.patilyForm';
   static const appNames_patilla = 'appNames.patilla';
   static const appNames_patie = 'appNames.patie';
   static const appNames_helpMe = 'appNames.helpMe';

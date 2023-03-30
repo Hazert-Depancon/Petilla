@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:patily/view/user/apps/patiform/core/models/answer_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/answer_form_model.dart';
 
 class AnswerFormWidget extends StatefulWidget {
   const AnswerFormWidget({super.key, required this.answerFormModel});

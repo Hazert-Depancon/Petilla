@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_view_model.dart';
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:patily/view/user/apps/patiform/view/add_question_view.dart';
+import 'package:patily/view/user/apps/patily_form/view/add_question_view.dart';
 
-part 'patiform_home_view_model.g.dart';
+part 'patily_form_home_view_model.g.dart';
 
-class PatiformHomeViewViewModel = PatiformHomeViewViewModelBase
-    with _$PatiformHomeViewViewModel;
+class PatilyFormHomeViewViewModel = PatilyFormHomeViewViewModelBase
+    with _$PatilyFormHomeViewViewModel;
 
-abstract class PatiformHomeViewViewModelBase with Store, BaseViewModel {
+abstract class PatilyFormHomeViewViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) {
     viewModelContext = context;
@@ -21,7 +21,7 @@ abstract class PatiformHomeViewViewModelBase with Store, BaseViewModel {
 
   @observable
   CollectionReference<Map<String, dynamic>> stream = FirebaseFirestore.instance
-      .collection(AppFirestoreCollectionNames.patiform);
+      .collection(AppFirestoreCollectionNames.patilyForm);
 
   @action
   void callAddQuestionView() {

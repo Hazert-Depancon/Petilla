@@ -14,7 +14,7 @@ import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/view/user/apps/help_me/view/help_me_home_view.dart';
 import 'package:patily/view/user/apps/patilla/view/patilla.dart';
-import 'package:patily/view/user/apps/patiform/main_patiform.dart';
+import 'package:patily/view/user/apps/patily_form/main_patily_form.dart';
 import 'package:patily/view/user/apps/petcook/view/petcook_home_view.dart';
 import 'package:patily/view/user/start/core/components/select_app_widget.dart';
 import 'package:patily/view/user/start/viewmodel/select_app_view_view_model.dart';
@@ -104,7 +104,7 @@ class _SelectAppViewState extends State<SelectAppView> {
               crossAxisSpacing: 12,
               children: [
                 _selectPatillaGridTile(),
-                _selectPatiformGridTile(),
+                _selectPatilyFormGridTile(),
                 _selectPatieGridTile(),
                 _selectHelpMeGridTile(),
               ],
@@ -115,11 +115,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  StaggeredGridTile _selectPatiformGridTile() {
+  StaggeredGridTile _selectPatilyFormGridTile() {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
       mainAxisCellCount: 2,
-      child: _selectPatiform(),
+      child: _selectPatilyForm(),
     );
   }
 
@@ -147,11 +147,11 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  SelectAppWidget _selectPatiform() {
+  SelectAppWidget _selectPatilyForm() {
     return SelectAppWidget(
-      title: LocaleKeys.appNames_patiform.locale,
-      imagePath: Assets.images.patiform.path,
-      onTap: const MainPatiform(),
+      title: LocaleKeys.appNames_patilyForm.locale,
+      imagePath: Assets.images.patilyForm.path,
+      onTap: const MainPatilyForm(),
     );
   }
 
