@@ -12,11 +12,11 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/app_icon.png
-  AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
+  /// File path: assets/icons/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appIcon];
+  List<AssetGenImage> get values => [icon];
 }
 
 class $AssetsImagesGen {
@@ -33,10 +33,6 @@ class $AssetsImagesGen {
   AssetGenImage get loginBackgroundImage =>
       const AssetGenImage('assets/images/login_background_image.png');
 
-  /// File path: assets/images/pet_cook_image.png
-  AssetGenImage get petCookImage =>
-      const AssetGenImage('assets/images/pet_cook_image.png');
-
   /// File path: assets/images/patiform.png
   AssetGenImage get patiform =>
       const AssetGenImage('assets/images/patiform.png');
@@ -45,14 +41,18 @@ class $AssetsImagesGen {
   AssetGenImage get patillaImage =>
       const AssetGenImage('assets/images/patilla_image.png');
 
+  /// File path: assets/images/pet_cook_image.png
+  AssetGenImage get petCookImage =>
+      const AssetGenImage('assets/images/pet_cook_image.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         fallowInstagram,
         helpMe,
         loginBackgroundImage,
-        petCookImage,
         patiform,
-        patillaImage
+        patillaImage,
+        petCookImage
       ];
 }
 
