@@ -46,9 +46,10 @@ class SelectAppWidget extends StatelessWidget {
     return Stack(
       children: [
         Align(
-          alignment: Alignment.centerRight,
+          alignment: Alignment.bottomCenter,
           child: Container(
             width: 150,
+            height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
               image: DecorationImage(
