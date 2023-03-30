@@ -5,8 +5,8 @@ import 'package:patily/core/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
-import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:patily/view/user/apps/patiform/view/in_form_view.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/view/in_form_view.dart';
 
 class QuestionFormModelMini extends StatefulWidget {
   const QuestionFormModelMini({super.key, required this.formModel});

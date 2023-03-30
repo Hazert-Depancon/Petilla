@@ -8,8 +8,8 @@ import 'package:patily/core/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/constants/sizes_constant/project_radius.dart';
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
-import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:patily/view/user/apps/patiform/core/service/patiform_service.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/service/patiform_service.dart';
 import 'package:patily/core/components/dialogs/error_dialog.dart';
 
 class AddQuestionView extends StatefulWidget {
@@ -75,7 +75,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   if (petSelectedValue != null) {
-                    PatiformService().addQuestionToForm(
+                    PatilyFormService().addQuestionToForm(
                       QuestionFormModel(
                         animalType: petSelectedValue!,
                         title: _titleController.text,

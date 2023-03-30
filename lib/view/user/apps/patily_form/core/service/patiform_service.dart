@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:patily/core/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/core/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:patily/view/user/apps/patiform/core/models/answer_form_model.dart';
-import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/answer_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/question_form_model.dart';
 
-class PatiformService {
+class PatilyFormService {
   void addQuestionToForm(QuestionFormModel formModel) {
     final firestore = FirebaseFirestore.instance;
-    firestore.collection(AppFirestoreCollectionNames.patiform).add({
+    firestore.collection(AppFirestoreCollectionNames.patilyForm).add({
       AppFirestoreFieldNames.animalType: formModel.animalType,
       AppFirestoreFieldNames.createdTimeField: formModel.createdTime,
       AppFirestoreFieldNames.currentEmailField: formModel.currentEmail,
@@ -21,7 +21,7 @@ class PatiformService {
   void reciveQuestion(AnswerFormModel answerFormModel) {
     final firestore = FirebaseFirestore.instance;
     firestore
-        .collection(AppFirestoreCollectionNames.patiform)
+        .collection(AppFirestoreCollectionNames.patilyForm)
         .doc(answerFormModel.answeredDocId)
         .collection(AppFirestoreCollectionNames.answers)
         .add({

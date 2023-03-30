@@ -11,23 +11,23 @@ import 'package:patily/core/constants/string_constant/project_firestore_collecti
 import 'package:patily/core/extension/string_lang_extension.dart';
 import 'package:patily/core/init/lang/locale_keys.g.dart';
 import 'package:patily/core/constants/other_constant/icon_names.dart';
-import 'package:patily/view/user/apps/patiform/core/components/question_form_widget_mini.dart';
-import 'package:patily/view/user/apps/patiform/core/models/question_form_model.dart';
-import 'package:patily/view/user/apps/patiform/viewmodel/patiform_home_view_model.dart';
+import 'package:patily/view/user/apps/patily_form/core/components/question_form_widget_mini.dart';
+import 'package:patily/view/user/apps/patily_form/core/models/question_form_model.dart';
+import 'package:patily/view/user/apps/patily_form/viewmodel/patily_form_home_view_model.dart';
 
-class PatiformHomeView extends StatelessWidget {
-  PatiformHomeView({Key? key}) : super(key: key);
+class PatilyFormHomeView extends StatelessWidget {
+  PatilyFormHomeView({Key? key}) : super(key: key);
 
-  late PatiformHomeViewViewModel viewModel;
+  late PatilyFormHomeViewViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<PatiformHomeViewViewModel>(
+    return BaseView<PatilyFormHomeViewViewModel>(
       onModelReady: (model) {
         model.setContext(context);
         viewModel = model;
       },
-      viewModel: PatiformHomeViewViewModel(),
+      viewModel: PatilyFormHomeViewViewModel(),
       onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
@@ -44,7 +44,7 @@ class PatiformHomeView extends StatelessWidget {
       child: StreamBuilder<QuerySnapshot>(
         // stream: viewModel.stream.snapshots(),
         stream: FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.patiform)
+            .collection(AppFirestoreCollectionNames.patilyForm)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
