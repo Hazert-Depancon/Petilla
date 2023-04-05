@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/feature/select_app/viewmodel/select_app_view_view_model.dart';
 import 'package:patily/product/widgets/banner_ad_widget.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
@@ -16,8 +17,7 @@ import 'package:patily/feature/patily_help/view/help_me_home_view.dart';
 import 'package:patily/feature/patily_sahiplen/view/patily_sahiplen.dart';
 import 'package:patily/feature/patily_form/view/main_patily_form.dart';
 import 'package:patily/feature/patily_media/view/petcook_home_view.dart';
-import 'package:patily/feature/user/start/core/components/select_app_widget.dart';
-import 'package:patily/feature/user/start/viewmodel/select_app_view_view_model.dart';
+import 'package:patily/product/widgets/select_app_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SelectAppView extends StatefulWidget {
@@ -175,7 +175,7 @@ class _SelectAppViewState extends State<SelectAppView> {
     return SelectAppWidget(
       isBig: true,
       title: LocaleKeys.appNames_patilySahiplen.locale,
-      imagePath: Assets.images.patilySahiplenImage.path,
+      imagePath: Assets.images.patilySahipllenImage.path,
       onTap: const MainPatilySahiplen(),
     );
   }

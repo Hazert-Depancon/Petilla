@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/feature/our/viewmodel/feedback_view_view_model.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
@@ -9,7 +10,6 @@ import 'package:patily/product/constants/sizes_constant/project_button_sizes.dar
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/feature/user/other/viewmodel/feedback_view_view_model.dart';
 
 class FeedBackView extends StatelessWidget {
   FeedBackView({super.key});
