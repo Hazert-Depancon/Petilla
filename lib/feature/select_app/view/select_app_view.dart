@@ -81,22 +81,7 @@ class _SelectAppViewState extends State<SelectAppView> {
         padding: ProjectPaddings.horizontalMainPadding,
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                instagramLaunch();
-              },
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.images.fallowInstagram.path),
-                    fit: BoxFit.cover,
-                  ),
-                  color: LightThemeColors.white,
-                  borderRadius: ProjectRadius.mainAllRadius,
-                ),
-              ),
-            ),
+            _fallowInstagramContainer(context),
             mainSizedBox,
             StaggeredGrid.count(
               crossAxisCount: 4,
@@ -110,6 +95,25 @@ class _SelectAppViewState extends State<SelectAppView> {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  GestureDetector _fallowInstagramContainer(context) {
+    return GestureDetector(
+      onTap: () {
+        instagramLaunch();
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.30,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Assets.images.fallowInstagram.path),
+            fit: BoxFit.cover,
+          ),
+          color: LightThemeColors.white,
+          borderRadius: ProjectRadius.mainAllRadius,
         ),
       ),
     );
