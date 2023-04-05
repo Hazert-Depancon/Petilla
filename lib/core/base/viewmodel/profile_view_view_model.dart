@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:patily/core/base/model/base_view_model.dart';
-import 'package:patily/view/auth/service/auth_service.dart';
-import 'package:patily/view/auth/view/login_view.dart';
+import 'package:patily/core/base/model/base_viewmodel.dart';
+import 'package:patily/feature/auth/service/auth_service.dart';
+import 'package:patily/feature/auth/view/login_view.dart';
 
 part 'profile_view_view_model.g.dart';
 
