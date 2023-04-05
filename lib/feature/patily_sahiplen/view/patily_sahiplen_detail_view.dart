@@ -13,7 +13,7 @@ import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/product/utility/report_utils/report_service.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 import 'package:patily/feature/patily_sahiplen/view/other_profile_view.dart';
 import 'package:patily/feature/patily_sahiplen/viewmodel/patily_sahiplen_detail_view_view_model.dart';
 

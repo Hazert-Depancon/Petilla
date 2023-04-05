@@ -13,10 +13,10 @@ import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/feature/patily_form/core/components/answer_form_widget.dart';
-import 'package:patily/feature/patily_form/core/models/answer_form_model.dart';
-import 'package:patily/feature/patily_form/core/models/question_form_model.dart';
-import 'package:patily/feature/patily_form/core/service/patiform_service.dart';
+import 'package:patily/product/widgets/patily_form/answer_form_widget.dart';
+import 'package:patily/product/models/patily_form/answer_form_model.dart';
+import 'package:patily/product/models/patily_form/question_form_model.dart';
+import 'package:patily/feature/patily_form/service/patiform_service.dart';
 
 class InFormView extends StatefulWidget {
   const InFormView({super.key, required this.formModel});

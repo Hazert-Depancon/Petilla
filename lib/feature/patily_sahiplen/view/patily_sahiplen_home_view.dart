@@ -18,8 +18,8 @@ import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/feature/patily_sahiplen/core/components/pet_widgets/normal_pet_widget.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/product/widgets/patily_sahiplen/pet_widgets/normal_pet_widget.dart';
+import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 
 class PatilySahiplenHomeView extends StatefulWidget {
   const PatilySahiplenHomeView({Key? key}) : super(key: key);

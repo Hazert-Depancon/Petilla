@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 import 'package:patily/feature/patily_sahiplen/service/storage_service.dart/storage_crud.dart';
 
 class CrudService {
