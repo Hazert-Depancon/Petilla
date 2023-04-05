@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable, deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,7 +16,6 @@ import 'package:patily/feature/patily_sahiplen/view/patily_sahiplen.dart';
 import 'package:patily/feature/patily_form/view/main_patily_form.dart';
 import 'package:patily/feature/patily_media/view/petcook_home_view.dart';
 import 'package:patily/product/widgets/select_app_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SelectAppView extends StatefulWidget {
   const SelectAppView({Key? key}) : super(key: key);
@@ -31,19 +28,6 @@ class _SelectAppViewState extends State<SelectAppView> {
   final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
   late SelectAppViewViewModel viewModel;
-
-  Future<void> instagramLaunch() async {
-    var url = 'https://www.instagram.com/patily.turkiye/';
-
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        universalLinksOnly: true,
-      );
-    } else {
-      throw 'There was a problem to open the url: $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +87,7 @@ class _SelectAppViewState extends State<SelectAppView> {
   GestureDetector _fallowInstagramContainer(context) {
     return GestureDetector(
       onTap: () {
-        instagramLaunch();
+        viewModel.instagramLaunch();
       },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.30,
