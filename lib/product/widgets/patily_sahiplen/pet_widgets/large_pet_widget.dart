@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -136,8 +135,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   IconButton _deleteIconButton() {
     return IconButton(
       onPressed: () {
-        FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.petsCollection)
+        FirebaseCollectionEnum.pets.reference
             .doc(widget.petModel.docId)
             .delete();
       },

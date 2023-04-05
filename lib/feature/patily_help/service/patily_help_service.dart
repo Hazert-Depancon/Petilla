@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/models/patily_help/patily_help_model.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -15,9 +14,7 @@ class PatilyHelpService {
   }
 
   Future<void> loadFirestore(HelpMeModel helpMeModel) async {
-    FirebaseFirestore.instance
-        .collection(AppFirestoreCollectionNames.animalHelp)
-        .add({
+    FirebaseCollectionEnum.animalHelp.reference.add({
       AppFirestoreFieldNames.title: helpMeModel.title.trim(),
       AppFirestoreFieldNames.descriptionField: helpMeModel.description.trim(),
       AppFirestoreFieldNames.isFoodHelp: helpMeModel.isFoodHelp,

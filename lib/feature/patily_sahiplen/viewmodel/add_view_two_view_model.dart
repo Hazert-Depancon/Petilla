@@ -3,8 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/dialogs/default_dialog.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/init/google_ads/ads_state.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:mobx/mobx.dart';
@@ -88,7 +88,7 @@ abstract class _AddViewTwoViewModelBase with Store, BaseViewModel {
         price: radioValue == 1 ? "0" : "",
         petType: petSelectedValue ?? LocaleKeys.error,
       ),
-      AppFirestoreCollectionNames.petsCollection,
+      FirebaseCollectionEnum.pets.toString(),
       context,
     );
     Navigator.pushAndRemoveUntil(

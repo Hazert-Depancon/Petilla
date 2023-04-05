@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/dialogs/default_dialog.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
@@ -14,7 +15,6 @@ import 'package:patily/product/constants/sizes_constant/project_button_sizes.dar
 import 'package:patily/product/constants/sizes_constant/project_icon_sizes.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -267,7 +267,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
         viewModel.isImageLoaded || viewModel.image != null
             ? dowlandLink = await StorageCrud().addPhotoToStorage(
                 viewModel.image!,
-                AppFirestoreCollectionNames.animalHelp,
+                FirebaseCollectionEnum.animalHelp.toString(),
               )
             : null;
 

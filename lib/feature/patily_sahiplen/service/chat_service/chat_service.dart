@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 
 class ChatService {
   static final ChatService _chatService = ChatService._internal();
@@ -23,22 +22,20 @@ class ChatService {
       return;
     } else {
       controller.clear();
-      FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.usersCollection)
+      FirebaseCollectionEnum.users.reference
           .doc(currentUserId)
-          .collection(AppFirestoreCollectionNames.messages)
+          .collection(FirebaseCollectionEnum.messages.toString())
           .doc(friendUserId)
-          .collection(AppFirestoreCollectionNames.chatsCollection)
+          .collection(FirebaseCollectionEnum.chats.toString())
           .add({
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
-        AppFirestoreCollectionNames.messages: message,
+        AppFirestoreFieldNames.messagesField: message,
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
-        FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.usersCollection)
+        FirebaseCollectionEnum.users.reference
             .doc(currentUserId)
-            .collection(AppFirestoreCollectionNames.messages)
+            .collection(FirebaseCollectionEnum.messages.toString())
             .doc(friendUserId)
             .set({
           AppFirestoreFieldNames.lastMsgField: message,
@@ -48,22 +45,20 @@ class ChatService {
         });
       });
 
-      await FirebaseFirestore.instance
-          .collection(AppFirestoreCollectionNames.usersCollection)
+      await FirebaseCollectionEnum.users.reference
           .doc(friendUserId)
-          .collection(AppFirestoreCollectionNames.messages)
+          .collection(FirebaseCollectionEnum.messages.toString())
           .doc(currentUserId)
-          .collection(AppFirestoreCollectionNames.chatsCollection)
+          .collection(FirebaseCollectionEnum.chats.toString())
           .add({
         AppFirestoreFieldNames.senderIdField: currentUserId,
         AppFirestoreFieldNames.receiverIdField: friendUserId,
-        AppFirestoreCollectionNames.messages: message,
+        AppFirestoreFieldNames.messagesField: message,
         AppFirestoreFieldNames.dateField: DateTime.now(),
       }).then((value) {
-        FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.usersCollection)
+        FirebaseCollectionEnum.users.reference
             .doc(friendUserId)
-            .collection(AppFirestoreCollectionNames.messages)
+            .collection(FirebaseCollectionEnum.messages.toString())
             .doc(currentUserId)
             .set({
           AppFirestoreFieldNames.lastMsgField: message,

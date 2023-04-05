@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/widgets/patily_sahiplen/pet_widgets/large_pet_widget.dart';
@@ -32,8 +32,7 @@ class PatilySahiplenInsertView extends StatelessWidget {
   SafeArea _body() {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.petsCollection)
+        stream: FirebaseCollectionEnum.pets.reference
             .where(
               AppFirestoreFieldNames.currentUidField,
               isEqualTo: FirebaseAuth.instance.currentUser!.uid,
