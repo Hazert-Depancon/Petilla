@@ -1,11 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -29,7 +29,6 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: _body(context),
     );
   }
@@ -38,28 +37,25 @@ class RegisterView extends StatelessWidget {
     return SafeArea(
       child: Form(
         key: _formKey,
-        child: Column(
+        child: ListView(
           children: [
             _loginDecorationImage(),
             const SizedBox(height: 24),
-            Expanded(
-              flex: 6,
-              child: SingleChildScrollView(
-                padding: ProjectPaddings.horizontalLargePadding,
-                child: Column(
-                  children: [
-                    _nameTextField(),
-                    mainSizedBox,
-                    _emailTextField(),
-                    mainSizedBox,
-                    _passwordTextField(),
-                    mainSizedBox,
-                    _registerButton(context),
-                    mainSizedBox,
-                    _alreadyHaveAnAccount(context),
-                    _logInButton(context),
-                  ],
-                ),
+            Padding(
+              padding: ProjectPaddings.horizontalMainPadding,
+              child: Column(
+                children: [
+                  _nameTextField(),
+                  mainSizedBox,
+                  _emailTextField(),
+                  mainSizedBox,
+                  _passwordTextField(),
+                  mainSizedBox,
+                  _registerButton(context),
+                  mainSizedBox,
+                  _alreadyHaveAnAccount(context),
+                  _logInButton(context),
+                ],
               ),
             )
           ],
@@ -163,6 +159,7 @@ class RegisterView extends StatelessWidget {
       },
       child: Text(
         _ThisPageTexts.logIn,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16),
       ),
     );
   }
