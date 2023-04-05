@@ -13,7 +13,7 @@ import 'package:patily/product/init/theme/light_theme/light_theme.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/feature/onboard/view/onboard_view.dart';
 import 'package:patily/feature/auth/view/login_view.dart';
-import 'package:patily/feature/user/start/view/select_app_view.dart';
+import 'package:patily/feature/select_app/view/select_app_view.dart';
 
 Future<void> main() async {
   await _init();

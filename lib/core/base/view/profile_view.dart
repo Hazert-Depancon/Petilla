@@ -19,10 +19,10 @@ import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/feature/auth/view/delete_account_confirm_view.dart';
-import 'package:patily/feature/user/other/view/about_view.dart';
-import 'package:patily/feature/user/other/view/feedback_view.dart';
-import 'package:patily/feature/user/other/view/social_connection_view.dart';
-import 'package:patily/feature/user/start/view/select_app_view.dart';
+import 'package:patily/feature/our/view/about_view.dart';
+import 'package:patily/feature/our/view/feedback_view.dart';
+import 'package:patily/feature/our/view/social_connection_view.dart';
+import 'package:patily/feature/select_app/view/select_app_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);

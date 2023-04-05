@@ -38,7 +38,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/patily_form.png');
 
   /// File path: assets/images/patily_sahipllen_image.png
-  AssetGenImage get patilySahiplenImage =>
+  AssetGenImage get patilySahipllenImage =>
       const AssetGenImage('assets/images/patily_sahipllen_image.png');
 
   /// File path: assets/images/pet_cook_image.png
@@ -51,7 +51,7 @@ class $AssetsImagesGen {
         helpMe,
         loginBackgroundImage,
         patilyForm,
-        patilySahiplenImage,
+        patilySahipllenImage,
         petCookImage
       ];
 }
