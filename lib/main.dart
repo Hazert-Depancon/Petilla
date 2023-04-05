@@ -5,15 +5,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:patily/core/constants/app/app_constants.dart';
-import 'package:patily/core/constants/enums/locale_keys_enum.dart';
-import 'package:patily/core/init/cache/locale_manager.dart';
-import 'package:patily/core/init/lang/language_manager.dart';
-import 'package:patily/core/init/theme/light_theme/light_theme.dart';
-import 'package:patily/core/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/view/auth/onboard/view/onboard_view.dart';
-import 'package:patily/view/auth/view/login_view.dart';
-import 'package:patily/view/user/start/view/select_app_view.dart';
+import 'package:patily/product/constants/app/app_constants.dart';
+import 'package:patily/product/constants/enums/locale_keys_enum.dart';
+import 'package:patily/product/init/cache/locale_manager.dart';
+import 'package:patily/product/init/lang/language_manager.dart';
+import 'package:patily/product/init/theme/light_theme/light_theme.dart';
+import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
+import 'package:patily/feature/onboard/view/onboard_view.dart';
+import 'package:patily/feature/auth/view/login_view.dart';
+import 'package:patily/feature/user/start/view/select_app_view.dart';
 
 Future<void> main() async {
   await _init();
