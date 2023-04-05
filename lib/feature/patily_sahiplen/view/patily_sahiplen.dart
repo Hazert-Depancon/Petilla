@@ -54,7 +54,7 @@ class _MainPatilySahiplenState extends BaseState<MainPatilySahiplen> {
       );
 
   BottomNavigationBar get _bottomNavBar => BottomNavigationBar(
-        backgroundColor: LightThemeColors.white,
+        backgroundColor: LightThemeColors.scaffoldBackgroundColor,
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {

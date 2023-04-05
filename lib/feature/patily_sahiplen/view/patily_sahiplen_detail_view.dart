@@ -61,7 +61,6 @@ class _DetailViewState extends BaseState<DetailView> {
 
   AppBar _appBar(context) {
     return AppBar(
-      leading: _backIcon(context),
       actions: [
         _popupMenuButton(),
       ],
@@ -115,15 +114,6 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(AppIcons.arrowBackIcon),
-    );
-  }
-
   SafeArea _body(BuildContext context, TextStyle? headline4) {
     return SafeArea(
       child: SingleChildScrollView(
@@ -168,7 +158,7 @@ class _DetailViewState extends BaseState<DetailView> {
       },
       child: Text(
         widget.petModel.currentUserName,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }
@@ -258,8 +248,7 @@ class _DetailViewState extends BaseState<DetailView> {
       "${widget.petModel.city} " " ${widget.petModel.ilce}");
 
   Text _descriptionText(BuildContext context) {
-    return Text(widget.petModel.description,
-        style: const TextStyle(fontSize: 16));
+    return Text(widget.petModel.description, style: textTheme.titleLarge);
   }
 
   FloatingActionButton _chatFabButton() {

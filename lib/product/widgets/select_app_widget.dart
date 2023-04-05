@@ -69,7 +69,7 @@ class SelectAppWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Text(
         title,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }

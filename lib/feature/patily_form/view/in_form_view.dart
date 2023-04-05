@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
@@ -26,7 +27,7 @@ class InFormView extends StatefulWidget {
   State<InFormView> createState() => _InFormViewState();
 }
 
-class _InFormViewState extends State<InFormView> {
+class _InFormViewState extends BaseState<InFormView> {
   final SizedBox smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
   final SizedBox normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
 
@@ -217,7 +218,11 @@ class _InFormViewState extends State<InFormView> {
         ),
       );
 
-  Text get _description => Text(widget.formModel.description);
+  Text get _description => Text(
+        widget.formModel.description,
+        style: textTheme.titleLarge
+            ?.copyWith(color: LightThemeColors.black.withOpacity(.6)),
+      );
 
   Text _date(BuildContext context) {
     return Text(
@@ -229,7 +234,7 @@ class _InFormViewState extends State<InFormView> {
   Text _title(BuildContext context) {
     return Text(
       widget.formModel.title,
-      style: Theme.of(context).textTheme.titleSmall,
+      style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 20),
     );
   }
 

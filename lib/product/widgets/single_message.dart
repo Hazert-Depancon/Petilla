@@ -17,7 +17,10 @@ class SingleMessage extends StatelessWidget {
           margin: const EdgeInsets.all(16),
           constraints: const BoxConstraints(maxWidth: 200),
           decoration: _boxDecoration(),
-          child: Text(message),
+          child: Text(
+            message,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
         ),
       ],
     );

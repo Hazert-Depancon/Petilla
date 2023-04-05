@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
@@ -17,7 +18,7 @@ class QuestionFormModelMini extends StatefulWidget {
   State<QuestionFormModelMini> createState() => _QuestionFormModelMiniState();
 }
 
-class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
+class _QuestionFormModelMiniState extends BaseState<QuestionFormModelMini> {
   late final String animalIconPath;
   late final String formattedDate;
 
@@ -68,7 +69,10 @@ class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
           xsmallWidthSizedBox,
           _descriptionText(context),
           xsmallWidthSizedBox,
-          Text(formattedDate),
+          Text(
+            formattedDate,
+            style: textTheme.titleLarge?.copyWith(fontSize: 12),
+          ),
         ],
       ),
     );
@@ -78,7 +82,7 @@ class _QuestionFormModelMiniState extends State<QuestionFormModelMini> {
     return Text(
       widget.formModel.description,
       overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16),
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20),
     );
   }
 
