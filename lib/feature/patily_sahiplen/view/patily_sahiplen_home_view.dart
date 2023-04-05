@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -365,8 +365,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
         stream: isThereAFilter
-            ? FirebaseFirestore.instance
-                .collection(AppFirestoreCollectionNames.petsCollection)
+            ? FirebaseCollectionEnum.pets.reference
                 .where(AppFirestoreFieldNames.petTypeField,
                     isEqualTo: selectedTypeFilter)
                 .where(AppFirestoreFieldNames.ageRangeField,
@@ -378,9 +377,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
                   isEqualTo: selectedIl,
                 )
                 .snapshots()
-            : FirebaseFirestore.instance
-                .collection(AppFirestoreCollectionNames.petsCollection)
-                .snapshots(),
+            : FirebaseCollectionEnum.pets.reference.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.docs.isEmpty || snapshot.data == null) {

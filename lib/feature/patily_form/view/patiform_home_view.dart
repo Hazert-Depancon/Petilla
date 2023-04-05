@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/banner_ad_widget.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
@@ -43,9 +43,7 @@ class PatilyFormHomeView extends StatelessWidget {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
         // stream: viewModel.stream.snapshots(),
-        stream: FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.patilyForm)
-            .snapshots(),
+        stream: FirebaseCollectionEnum.patilyForm.reference.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {

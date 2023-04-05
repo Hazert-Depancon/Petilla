@@ -1,15 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patily/feature/auth/view/login_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/dialogs/default_dialog.dart';
 import 'package:patily/product/widgets/dialogs/error_dialog.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> login(String email, String password, context) async {
     try {
@@ -29,8 +27,7 @@ class AuthService {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       _auth.currentUser!.updateDisplayName(name);
-      await _firestore
-          .collection(AppFirestoreCollectionNames.usersCollection)
+      await FirebaseCollectionEnum.users.reference
           .doc(_auth.currentUser!.uid)
           .set({
         AppFirestoreFieldNames.nameField: name,
@@ -55,8 +52,7 @@ class AuthService {
 
   Future<void> deleteUser(context) async {
     try {
-      _firestore
-          .collection(AppFirestoreCollectionNames.usersCollection)
+      FirebaseCollectionEnum.users.reference
           .doc(_auth.currentUser!.uid)
           .delete();
       _auth.currentUser!.delete().whenComplete(

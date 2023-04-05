@@ -13,13 +13,13 @@ mixin _$PatilyFormHomeViewViewModel on PatilyFormHomeViewViewModelBase, Store {
       Atom(name: 'PatilyFormHomeViewViewModelBase.stream', context: context);
 
   @override
-  CollectionReference<Map<String, dynamic>> get stream {
+  CollectionReference<Object?> get stream {
     _$streamAtom.reportRead();
     return super.stream;
   }
 
   @override
-  set stream(CollectionReference<Map<String, dynamic>> value) {
+  set stream(CollectionReference<Object?> value) {
     _$streamAtom.reportWrite(value, super.stream, () {
       super.stream = value;
     });

@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/widgets/patily_sahiplen/user_chat.dart';
@@ -45,10 +45,9 @@ class ChatSelectView extends StatelessWidget {
   SafeArea _body() {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection(AppFirestoreCollectionNames.usersCollection)
+        stream: FirebaseCollectionEnum.users.reference
             .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection(AppFirestoreCollectionNames.messages)
+            .collection(FirebaseCollectionEnum.messages.toString())
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

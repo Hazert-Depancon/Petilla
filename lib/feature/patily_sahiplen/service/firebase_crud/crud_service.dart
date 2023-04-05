@@ -1,9 +1,8 @@
 // ignore_for_file: avoid_print, unused_local_variable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 import 'package:patily/feature/patily_sahiplen/service/storage_service.dart/storage_crud.dart';
 
@@ -16,11 +15,10 @@ class CrudService {
 
   Future<void> createPet(
       XFile image, PetModel pet, String collectionName, context) async {
-    FirebaseFirestore db = FirebaseFirestore.instance;
     try {
       var dowlandLink =
           await StorageCrud().addPhotoToStorage(image, collectionName);
-      await db.collection(AppFirestoreCollectionNames.petsCollection).add({
+      await FirebaseCollectionEnum.pets.reference.add({
         AppFirestoreFieldNames.nameField: pet.name,
         AppFirestoreFieldNames.descriptionField: pet.description,
         AppFirestoreFieldNames.imagePathField: dowlandLink,

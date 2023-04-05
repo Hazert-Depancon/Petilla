@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/models/patily_form/answer_form_model.dart';
 import 'package:patily/product/models/patily_form/question_form_model.dart';
 
 class PatilyFormService {
   void addQuestionToForm(QuestionFormModel formModel) {
-    final firestore = FirebaseFirestore.instance;
-    firestore.collection(AppFirestoreCollectionNames.patilyForm).add({
+    FirebaseCollectionEnum.patilyForm.reference.add({
       AppFirestoreFieldNames.animalType: formModel.animalType,
       AppFirestoreFieldNames.createdTimeField: formModel.createdTime,
       AppFirestoreFieldNames.currentEmailField: formModel.currentEmail,
@@ -19,11 +17,9 @@ class PatilyFormService {
   }
 
   void reciveQuestion(AnswerFormModel answerFormModel) {
-    final firestore = FirebaseFirestore.instance;
-    firestore
-        .collection(AppFirestoreCollectionNames.patilyForm)
+    FirebaseCollectionEnum.patilyForm.reference
         .doc(answerFormModel.answeredDocId)
-        .collection(AppFirestoreCollectionNames.answers)
+        .collection(FirebaseCollectionEnum.answers.toString())
         .add({
       AppFirestoreFieldNames.answeredDocId: answerFormModel.answeredDocId,
       AppFirestoreFieldNames.createdTimeField: answerFormModel.createdTime,

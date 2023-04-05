@@ -1,8 +1,7 @@
-import "package:cloud_firestore/cloud_firestore.dart";
 import "package:image_picker/image_picker.dart";
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/models/patily_media/post_model.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/feature/patily_sahiplen/service/storage_service.dart/storage_crud.dart';
 
 class LoadPostToFirebase {
@@ -14,12 +13,10 @@ class LoadPostToFirebase {
 
   LoadPostToFirebase._init();
 
-  final _firebase = FirebaseFirestore.instance;
-
   Future<void> loadPhoto(PostModel postModel, XFile image) async {
     var imageURL =
         await StorageCrud().addPhotoToStorage(image, "petcook_images");
-    _firebase.collection(AppFirestoreCollectionNames.petCook).add({
+    FirebaseCollectionEnum.petcook.reference.add({
       AppFirestoreFieldNames.senderIdField: postModel.senderUserId,
       AppFirestoreFieldNames.currentEmailField: postModel.senderUserEmail,
       AppFirestoreFieldNames.currentNameField: postModel.senderUserName,

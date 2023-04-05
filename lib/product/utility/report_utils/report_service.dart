@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 
 class ReportService {
@@ -13,10 +12,7 @@ class ReportService {
   ReportService._init();
 
   void reportPet(PetModel petModel) async {
-    final db = FirebaseFirestore.instance;
-
-    await db
-        .collection(AppFirestoreCollectionNames.reportedInserts)
+    await FirebaseCollectionEnum.reportedInserts.reference
         .doc(petModel.docId)
         .set({
       AppFirestoreFieldNames.id: petModel.docId,

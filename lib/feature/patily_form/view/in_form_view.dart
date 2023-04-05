@@ -4,11 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patily/core/base/view/status_view.dart';
+import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
-import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -96,10 +96,9 @@ class _InFormViewState extends State<InFormView> {
             ),
           ),
           StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection(AppFirestoreCollectionNames.patilyForm)
+            stream: FirebaseCollectionEnum.patilyForm.reference
                 .doc(widget.formModel.docId)
-                .collection(AppFirestoreCollectionNames.answers)
+                .collection(FirebaseCollectionEnum.answers.toString())
                 .orderBy(
                   AppFirestoreFieldNames.createdTimeField,
                   descending: false,
