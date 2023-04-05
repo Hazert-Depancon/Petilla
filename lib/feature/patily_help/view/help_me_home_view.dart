@@ -48,7 +48,6 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         endDrawer: _endDrawer(context),
         appBar: AppBar(
           title: Text(LocaleKeys.appNames_helpMe.locale),
-          leading: _backIcon(context),
           actions: [
             _helpMe(),
             normalWidthSizedBox,
@@ -56,15 +55,6 @@ class _HelpMeHomeViewState extends BaseState<HelpMeHomeView> {
         ),
         body: _body(),
       );
-
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(AppIcons.arrowBackIcon),
-    );
-  }
 
   SafeArea _body() {
     return SafeArea(

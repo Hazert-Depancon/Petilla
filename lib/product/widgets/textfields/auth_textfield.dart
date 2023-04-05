@@ -103,10 +103,12 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
           ? SvgPicture.asset(
               Assets.svg.eyeOpen,
               color: LightThemeColors.black,
+              height: 25,
             )
           : SvgPicture.asset(
               Assets.svg.eyeClose,
               color: LightThemeColors.black,
+              height: 30,
             ),
       onPressed: () {
         _changeVisibility();

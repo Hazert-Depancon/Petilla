@@ -22,7 +22,6 @@ import 'package:patily/feature/auth/view/delete_account_confirm_view.dart';
 import 'package:patily/feature/our/view/about_view.dart';
 import 'package:patily/feature/our/view/feedback_view.dart';
 import 'package:patily/feature/our/view/social_connection_view.dart';
-import 'package:patily/feature/select_app/view/select_app_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -61,21 +60,7 @@ class _ProfileViewState extends State<ProfileView> {
   AppBar _appBar(context) {
     return AppBar(
       title: Text(_ThisPageTexts.title),
-      leading: _backIcon(context),
       actions: [settingsIcon(context), smallWidthSizedBox],
-    );
-  }
-
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const SelectAppView()),
-          (route) => false,
-        );
-      },
-      child: const Icon(AppIcons.arrowBackIcon),
     );
   }
 

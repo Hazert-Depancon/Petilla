@@ -8,11 +8,24 @@ class LightTheme {
   LightTheme() {
     theme = ThemeData(
       primarySwatch: Colors.orange,
-      primaryColor: LightThemeColors.white,
-
+      primaryColorLight: Colors.white,
+      useMaterial3: true,
       scaffoldBackgroundColor: LightThemeColors.scaffoldBackgroundColor,
       brightness: Brightness.light,
-
+      indicatorColor: LightThemeColors.miamiMarmalade,
+      colorScheme: ColorScheme(
+        brightness: Brightness.light,
+        primary: LightThemeColors.miamiMarmalade.withOpacity(.3),
+        onPrimary: LightThemeColors.white,
+        secondary: LightThemeColors.white,
+        onSecondary: LightThemeColors.white,
+        error: LightThemeColors.red,
+        onError: LightThemeColors.red,
+        background: LightThemeColors.scaffoldBackgroundColor,
+        onBackground: LightThemeColors.white,
+        surface: LightThemeColors.white,
+        onSurface: LightThemeColors.black,
+      ),
       // inputDecoration
       inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(fontSize: 16),
@@ -50,10 +63,14 @@ class LightTheme {
 
       // Text
       textTheme: const TextTheme(
+        bodyMedium: TextStyle(
+          color: LightThemeColors.miamiMarmalade,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+        ),
         labelLarge: TextStyle(
             fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-        bodyLarge:
-            TextStyle(color: LightThemeColors.miamiMarmalade, fontSize: 20),
+        bodyLarge: TextStyle(color: Colors.black, fontSize: 16),
         titleSmall: TextStyle(fontSize: 16),
         headlineMedium: TextStyle(
           fontSize: 24,

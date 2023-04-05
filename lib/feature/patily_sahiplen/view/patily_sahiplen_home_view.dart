@@ -339,7 +339,6 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      leading: _backSelectApp(context),
       title: Text(_ThisPageTexts.homePage),
       actions: [
         _filterButton(),
@@ -422,17 +421,6 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
       itemBuilder: (context, index) {
         return _petWidget(snapshot.data!.docs[index]);
       },
-    );
-  }
-
-  _backSelectApp(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(
-        AppIcons.arrowBackIcon,
-      ),
     );
   }
 

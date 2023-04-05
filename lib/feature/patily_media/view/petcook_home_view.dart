@@ -7,12 +7,10 @@ import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/other_constant/icon_names.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/widgets/patily_media/photo_widget.dart';
 import 'package:patily/product/models/patily_media/post_model.dart';
@@ -46,7 +44,6 @@ class PetcookHomeView extends StatelessWidget {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      leading: _backIcon(context),
       title: Text(
         LocaleKeys.homePage.locale,
         style: Theme.of(context).textTheme.headlineMedium,
@@ -55,18 +52,6 @@ class PetcookHomeView extends StatelessWidget {
         _addPostButton(),
         smallWidthSizedBox,
       ],
-    );
-  }
-
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(
-        AppIcons.arrowBackIcon,
-        color: LightThemeColors.black,
-      ),
     );
   }
 

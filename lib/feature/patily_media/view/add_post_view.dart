@@ -49,7 +49,6 @@ class _AddPostViewState extends State<AddPostView> {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      leading: _backIcon(context),
       foregroundColor: LightThemeColors.black,
       title: Text(
         LocaleKeys.sharePhoto.locale,
@@ -181,14 +180,5 @@ class _AddPostViewState extends State<AddPostView> {
         },
       );
     });
-  }
-
-  GestureDetector _backIcon(context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: const Icon(AppIcons.arrowBackIcon),
-    );
   }
 }

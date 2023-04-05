@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patily/feature/onboard/viewmodel/onboarding_view_model.dart';
 import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
@@ -7,7 +8,6 @@ import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/feature/onboard/viewmodel/onboarding_view_model.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -65,35 +65,26 @@ class _OnboardingState extends State<Onboarding> {
                       child: DotIndicator(isActive: index == _pageIndex),
                     ),
                   ),
-                  const Spacer(),
-                  SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_pageIndex == 2) {
-                          OnboardingViewModel().onGetStartedButton(context);
-                        } else {
-                          _pageController.nextPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.ease,
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        elevation: 0,
-                      ),
-                      child: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: LightThemeColors.scaffoldBackgroundColor,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (_pageIndex == 2) {
+            OnboardingViewModel().onGetStartedButton(context);
+          } else {
+            _pageController.nextPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
+            );
+          }
+        },
+        child: const Icon(
+          Icons.arrow_forward_ios_rounded,
+          color: LightThemeColors.scaffoldBackgroundColor,
         ),
       ),
     );

@@ -39,7 +39,7 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/patily_sahipllen_image.png
   AssetGenImage get patilySahipllenImage =>
-      const AssetGenImage('assets/images/patily_sahipllen_image.png');
+      const AssetGenImage('assets/images/patily_sahiplen_image.png');
 
   /// File path: assets/images/pet_cook_image.png
   AssetGenImage get petCookImage =>
