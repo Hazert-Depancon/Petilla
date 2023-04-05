@@ -10,7 +10,7 @@ import 'package:patily/product/constants/string_constant/app_firestore_field_nam
 import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/feature/patily_sahiplen/core/components/chat_widgets/user_chat.dart';
+import 'package:patily/product/widgets/patily_sahiplen/user_chat.dart';
 import 'package:patily/feature/patily_sahiplen/viewmodel/chat_select_view_model.dart';
 
 class ChatSelectView extends StatelessWidget {

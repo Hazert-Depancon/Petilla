@@ -10,7 +10,7 @@ import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:mobx/mobx.dart';
 import 'package:patily/core/base/model/base_viewmodel.dart';
 import 'package:patily/feature/patily_sahiplen/service/firebase_crud/crud_service.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 import 'package:patily/feature/patily_sahiplen/view/patily_sahiplen.dart';
 
 part 'add_view_two_view_model.g.dart';

@@ -17,7 +17,7 @@ import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/jsons/city_model.dart';
+import 'package:patily/product/models/city_model.dart';
 import 'package:patily/feature/patily_sahiplen/view/city_select_view.dart';
 import 'package:patily/feature/patily_sahiplen/view/ilce_select_view.dart';
 import 'package:patily/feature/patily_sahiplen/viewmodel/add_view_two_view_model.dart';

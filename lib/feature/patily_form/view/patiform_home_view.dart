@@ -11,8 +11,8 @@ import 'package:patily/product/constants/string_constant/project_firestore_colle
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/feature/patily_form/core/components/question_form_widget_mini.dart';
-import 'package:patily/feature/patily_form/core/models/question_form_model.dart';
+import 'package:patily/product/widgets/patily_form/question_form_widget_mini.dart';
+import 'package:patily/product/models/patily_form/question_form_model.dart';
 import 'package:patily/feature/patily_form/viewmodel/patily_form_home_view_model.dart';
 
 class PatilyFormHomeView extends StatelessWidget {

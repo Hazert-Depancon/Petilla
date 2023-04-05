@@ -8,8 +8,8 @@ import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/feature/patily_form/core/models/question_form_model.dart';
-import 'package:patily/feature/patily_form/core/service/patiform_service.dart';
+import 'package:patily/product/models/patily_form/question_form_model.dart';
+import 'package:patily/feature/patily_form/service/patiform_service.dart';
 import 'package:patily/product/widgets/dialogs/error_dialog.dart';
 
 class AddQuestionView extends StatefulWidget {

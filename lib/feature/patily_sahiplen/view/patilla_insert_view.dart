@@ -8,8 +8,8 @@ import 'package:patily/product/constants/string_constant/app_firestore_field_nam
 import 'package:patily/product/constants/string_constant/project_firestore_collection_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/feature/patily_sahiplen/core/components/pet_widgets/large_pet_widget.dart';
-import 'package:patily/feature/patily_sahiplen/service/models/pet_model.dart';
+import 'package:patily/product/widgets/patily_sahiplen/pet_widgets/large_pet_widget.dart';
+import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
 
 class PatilySahiplenInsertView extends StatelessWidget {
   const PatilySahiplenInsertView({super.key});
