@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patily/feature/patily_form/view/patiform_home_view.dart';
+import 'package:patily/feature/patily_form/view/patily_form_home_view.dart';
 
 class MainPatilyForm extends StatelessWidget {
   const MainPatilyForm({super.key});
