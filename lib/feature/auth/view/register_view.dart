@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
@@ -10,7 +11,6 @@ import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
-import 'package:patily/feature/auth/view/login_view.dart';
 import 'package:patily/feature/auth/viewmodel/register_view_model.dart';
 
 class RegisterView extends StatelessWidget {
@@ -19,17 +19,24 @@ class RegisterView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
-
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
+  late RegisterViewModel viewModel;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _body(context),
+    return BaseView<RegisterViewModel>(
+      onModelReady: (model) {
+        model.setContext(context);
+        viewModel = model;
+      },
+      viewModel: RegisterViewModel(),
+      onPageBuilder: (context, value) => Scaffold(
+        body: _body(context),
+      ),
     );
   }
 
@@ -139,8 +146,11 @@ class RegisterView extends StatelessWidget {
 
   void _onRegister(context) {
     if (_formKey.currentState!.validate()) {
-      RegisterViewModel().onRegisterButton(_emailController.text,
-          _passwordController.text, _nameController.text, context);
+      viewModel.onRegisterButton(
+        _emailController,
+        _passwordController,
+        _nameController,
+      );
     }
   }
 
@@ -154,8 +164,7 @@ class RegisterView extends StatelessWidget {
   TextButton _logInButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginView()));
+        viewModel.callLoginView();
       },
       child: Text(
         _ThisPageTexts.logIn,
