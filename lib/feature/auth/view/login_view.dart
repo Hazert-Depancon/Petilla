@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable, iterable_contains_unrelated_type
 
 import 'package:flutter/material.dart';
+import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/feature/auth/viewmodel/login_view_model.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
@@ -11,8 +13,6 @@ import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 
-import '../viewmodel/login_view_model.dart';
-
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
@@ -22,12 +22,19 @@ class LoginView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
+  late LoginViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: _body(context),
+    return BaseView<LoginViewModel>(
+      onModelReady: (model) {
+        model.setContext(context);
+        viewModel = model;
+      },
+      viewModel: LoginViewModel(),
+      onPageBuilder: (context, value) => Scaffold(
+        body: _body(context),
+      ),
     );
   }
 
@@ -132,7 +139,7 @@ class LoginView extends StatelessWidget {
   TextButton _registerButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        LoginViewModel().callRegisterView(context);
+        viewModel.callRegisterView(context);
       },
       child: Text(
         _ThisPageTexts.registerText,
@@ -143,8 +150,11 @@ class LoginView extends StatelessWidget {
 
   void _onLoginButton(context) async {
     if (_formKey.currentState!.validate()) {
-      LoginViewModel().onLoginButton(
-          context, _emailController.text, _passwordController.text);
+      viewModel.onLoginButton(
+        context,
+        _emailController.text,
+        _passwordController.text,
+      );
     }
   }
 }
