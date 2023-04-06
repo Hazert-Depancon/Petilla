@@ -41,6 +41,9 @@ class _QuestionFormModelMiniState extends BaseState<QuestionFormModelMini> {
     } else if (widget.formModel.animalType ==
         LocaleKeys.animalNames_rabbit.locale) {
       animalIconPath = Assets.svg.rabbit;
+    } else if (widget.formModel.animalType ==
+        LocaleKeys.animalNames_bird.locale) {
+      animalIconPath = Assets.svg.bird;
     }
   }
 

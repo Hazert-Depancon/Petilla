@@ -25,7 +25,8 @@
         "cat" : "Kedi",
         "fish" : "Balık",
         "dog" : "Köpek",
-        "rabbit" : "Tavşan"
+        "rabbit" : "Tavşan",
+        "bird" : "Kuş"
     },
     "genders": {
         "male" : "Erkek",
@@ -85,12 +86,6 @@
     "questions" : "Sorular",
     "addAQuestion" : "Bir Soru Oluştur",
     "createQuestion" : "Soru Oluştur",
-    "generalChat" : "Genel Sohbet",
-    "dogChat" : "Köpek Sohbeti",
-    "catChat" : "Kedi Sohbeti",
-    "rabbitChat" : "Tavşan Sohbeti",
-    "fishChat" : "Balık Sohbeti",
-    "groupAddNotYet" : "Henüz Grup Oluşturma Özelliği Aktif Değil",
     "ok" : "TAMAM",
     "continue_text" : "Devam",    
     "back" : "Geri",

@@ -124,6 +124,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     _ThisPageTexts.cat,
     _ThisPageTexts.fish,
     _ThisPageTexts.rabbit,
+    _ThisPageTexts.bird,
     _ThisPageTexts.other,
   ];
 
@@ -399,6 +400,7 @@ class _ThisPageTexts {
   static String cat = LocaleKeys.animalNames_cat.locale;
   static String fish = LocaleKeys.animalNames_fish.locale;
   static String rabbit = LocaleKeys.animalNames_rabbit.locale;
+  static String bird = LocaleKeys.animalNames_bird.locale;
   static String other = LocaleKeys.other.locale;
   static String male = LocaleKeys.male.locale;
   static String female = LocaleKeys.female.locale;

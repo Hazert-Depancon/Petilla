@@ -37,8 +37,8 @@ class $AssetsImagesGen {
   AssetGenImage get patilyForm =>
       const AssetGenImage('assets/images/patily_form.png');
 
-  /// File path: assets/images/patily_sahipllen_image.png
-  AssetGenImage get patilySahipllenImage =>
+  /// File path: assets/images/patily_sahiplen_image.png
+  AssetGenImage get patilySahiplenImage =>
       const AssetGenImage('assets/images/patily_sahiplen_image.png');
 
   /// File path: assets/images/pet_cook_image.png
@@ -51,7 +51,7 @@ class $AssetsImagesGen {
         helpMe,
         loginBackgroundImage,
         patilyForm,
-        patilySahipllenImage,
+        patilySahiplenImage,
         petCookImage
       ];
 }
@@ -73,6 +73,9 @@ class $AssetsJsonsGen {
 
 class $AssetsSvgGen {
   const $AssetsSvgGen();
+
+  /// File path: assets/svg/bird.svg
+  String get bird => 'assets/svg/bird.svg';
 
   /// File path: assets/svg/cat.svg
   String get cat => 'assets/svg/cat.svg';
@@ -133,6 +136,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<String> get values => [
+        bird,
         cat,
         chat,
         dog,
