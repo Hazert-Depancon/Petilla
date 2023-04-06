@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
+import 'package:patily/product/constants/enums/auht_textfield_enum.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
@@ -104,7 +105,7 @@ class RegisterView extends StatelessWidget {
 
   AuthTextField _passwordTextField() {
     return AuthTextField(
-      true,
+      textfieldType: AuthTextfieldEnum.password,
       controller: _passwordController,
       hintText: _ThisPageTexts.passwordHint,
       isNext: false,
@@ -115,7 +116,7 @@ class RegisterView extends StatelessWidget {
 
   AuthTextField _emailTextField() {
     return AuthTextField(
-      false,
+      textfieldType: AuthTextfieldEnum.mail,
       controller: _emailController,
       hintText: _ThisPageTexts.mailHint,
       isNext: true,
@@ -126,7 +127,7 @@ class RegisterView extends StatelessWidget {
 
   AuthTextField _nameTextField() {
     return AuthTextField(
-      false,
+      textfieldType: AuthTextfieldEnum.name,
       controller: _nameController,
       hintText: _ThisPageTexts.nameHint,
       isNext: true,
