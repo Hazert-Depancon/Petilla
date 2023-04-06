@@ -1,60 +1,56 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patily/product/constants/enums/auht_textfield_enum.dart';
 import 'package:patily/product/constants/sizes_constant/project_radius.dart';
-import 'package:patily/core/base/state/base_state.dart';
-import 'package:patily/product/extension/string_lang_extension.dart';
-import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/validation/regex_validations.dart';
 
 class AuthTextField extends StatefulWidget {
-  const AuthTextField(
-    this.isPassword, {
+  const AuthTextField({
     Key? key,
     this.hintText,
     this.controller,
     this.prefixIcon,
     this.keyboardType,
     this.isNext,
+    required this.textfieldType,
   }) : super(key: key);
 
   final String? hintText;
   final TextEditingController? controller;
-  final bool isPassword;
-  final prefixIcon;
+  final IconData? prefixIcon;
   final TextInputType? keyboardType;
   final bool? isNext;
+  final AuthTextfieldEnum textfieldType;
 
   @override
   State<AuthTextField> createState() => _AuthTextFieldState();
 }
 
-class _AuthTextFieldState extends BaseState<AuthTextField> {
+class _AuthTextFieldState extends State<AuthTextField> {
   bool? _obscureText;
 
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.isPassword;
+    _obscureText =
+        widget.textfieldType == AuthTextfieldEnum.password ? true : false;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: ProjectRadius.mainAllRadius,
+        borderRadius: ProjectRadius.allRadius,
         boxShadow: const [
           BoxShadow(
-            color: LightThemeColors.shadowColor,
+            color: Color(0xFFBEBEBE),
             offset: Offset(10, 10),
             blurRadius: 30,
             spreadRadius: 1,
           ),
           BoxShadow(
-            color: LightThemeColors.white,
+            color: Colors.white,
             offset: Offset(-10, -10),
             blurRadius: 30,
             spreadRadius: 1,
@@ -70,25 +66,25 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
         textAlign: TextAlign.start,
         decoration: InputDecoration(
           filled: true,
-          fillColor: LightThemeColors.snowbank.withOpacity(0.9),
+          fillColor: const Color(0xffe9e9e9).withOpacity(0.9),
           hintText: widget.hintText,
           prefixIcon: Icon(
             widget.prefixIcon,
-            color: LightThemeColors.black,
+            color: Colors.black,
           ),
-          suffixIcon: widget.isPassword ? _visibilityIcon() : null,
+          suffixIcon: (_obscureText ?? false) ? _visibilityIcon() : null,
           border: OutlineInputBorder(
-            borderRadius: ProjectRadius.mainAllRadius,
+            borderRadius: ProjectRadius.allRadius,
             borderSide: BorderSide.none,
           ),
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return LocaleKeys.validation_emptyValidation.locale;
+            return _Texts.emptyVal;
           }
-          if (widget.keyboardType == TextInputType.emailAddress) {
+          if (widget.textfieldType == AuthTextfieldEnum.mail) {
             if (!RegexValidations.instance.emailRegex.hasMatch(value)) {
-              return LocaleKeys.validation_mailValidation.locale;
+              return _Texts.mailValidation;
             }
           }
           return null;
@@ -100,16 +96,8 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
   IconButton _visibilityIcon() {
     return IconButton(
       icon: _obscureText == false
-          ? SvgPicture.asset(
-              Assets.svg.eyeOpen,
-              color: LightThemeColors.black,
-              height: 25,
-            )
-          : SvgPicture.asset(
-              Assets.svg.eyeClose,
-              color: LightThemeColors.black,
-              height: 30,
-            ),
+          ? const Icon(Icons.visibility)
+          : const Icon(Icons.visibility_off),
       onPressed: () {
         _changeVisibility();
       },
@@ -117,8 +105,13 @@ class _AuthTextFieldState extends BaseState<AuthTextField> {
   }
 
   void _changeVisibility() {
-    return setState(() {
+    setState(() {
       _obscureText = !_obscureText!;
     });
   }
+}
+
+class _Texts {
+  static const String emptyVal = "Bu alan boş bırakılamaz";
+  static const String mailValidation = "Geçerli bir mail adresi giriniz";
 }

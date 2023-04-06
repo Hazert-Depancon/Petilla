@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/feature/auth/viewmodel/login_view_model.dart';
+import 'package:patily/product/constants/enums/auht_textfield_enum.dart';
 import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
@@ -109,8 +110,8 @@ class LoginView extends StatelessWidget {
 
   AuthTextField get _mailTextField {
     return AuthTextField(
+      textfieldType: AuthTextfieldEnum.mail,
       isNext: true,
-      false,
       controller: _emailController,
       hintText: _ThisPageTexts.mailHintText,
       prefixIcon: AppIcons.emailOutlinedIcon,
@@ -120,7 +121,7 @@ class LoginView extends StatelessWidget {
 
   AuthTextField get _passwordTextField {
     return AuthTextField(
-      true,
+      textfieldType: AuthTextfieldEnum.password,
       controller: _passwordController,
       hintText: _ThisPageTexts.passwordHintText,
       prefixIcon: AppIcons.lockOutlinedIcon,
