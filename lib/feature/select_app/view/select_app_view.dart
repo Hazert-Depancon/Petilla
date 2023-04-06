@@ -163,7 +163,7 @@ class _SelectAppViewState extends State<SelectAppView> {
     return SelectAppWidget(
       isBig: true,
       title: LocaleKeys.appNames_patilySahiplen.locale,
-      imagePath: Assets.images.patilySahipllenImage.path,
+      imagePath: Assets.images.patilySahiplenImage.path,
       onTap: const MainPatilySahiplen(),
     );
   }

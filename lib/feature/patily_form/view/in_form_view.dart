@@ -53,6 +53,9 @@ class _InFormViewState extends BaseState<InFormView> {
     } else if (widget.formModel.animalType ==
         LocaleKeys.animalNames_rabbit.locale) {
       animalIconPath = Assets.svg.rabbit;
+    } else if (widget.formModel.animalType ==
+        LocaleKeys.animalNames_bird.locale) {
+      animalIconPath = Assets.svg.bird;
     }
   }
 

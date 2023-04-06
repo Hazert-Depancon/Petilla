@@ -26,6 +26,7 @@ abstract class LocaleKeys {
   static const animalNames_fish = 'animalNames.fish';
   static const animalNames_dog = 'animalNames.dog';
   static const animalNames_rabbit = 'animalNames.rabbit';
+  static const animalNames_bird = 'animalNames.bird';
   static const animalNames = 'animalNames';
   static const genders = 'genders';
   static const ageRanges_zeroThreeMonths = 'ageRanges.zeroThreeMonths';
@@ -88,12 +89,6 @@ abstract class LocaleKeys {
   static const questions = 'questions';
   static const createQuestion = 'createQuestion';
   static const addAQuestion = 'addAQuestion';
-  static const generalChat = 'generalChat';
-  static const dogChat = 'dogChat';
-  static const catChat = 'catChat';
-  static const rabbitChat = 'rabbitChat';
-  static const fishChat = 'fishChat';
-  static const groupAddNotYet = 'groupAddNotYet';
   static const ok = 'ok';
   static const continue_text = 'continue_text';
   static const back = 'back';

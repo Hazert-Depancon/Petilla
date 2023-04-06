@@ -35,6 +35,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
     LocaleKeys.animalNames_cat.locale,
     LocaleKeys.animalNames_fish.locale,
     LocaleKeys.animalNames_rabbit.locale,
+    LocaleKeys.animalNames_bird.locale,
     LocaleKeys.other.locale,
   ];
 

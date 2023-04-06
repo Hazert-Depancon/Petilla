@@ -68,8 +68,10 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     var rabbitRadioListTile =
         _typeRadioListTile(3, _ThisPageTexts.rabbit, context);
     var fishRadioListTile = _typeRadioListTile(4, _ThisPageTexts.fish, context);
+    var birdRadioListTile = _typeRadioListTile(5, _ThisPageTexts.bird, context);
+
     var otherRadioListTile =
-        _typeRadioListTile(5, _ThisPageTexts.other, context);
+        _typeRadioListTile(6, _ThisPageTexts.other, context);
 
     var zeroThreeMonthsRadioListTile =
         _ageRangeRadioListTile(1, _ThisPageTexts.zeroThreeMonths, context);
@@ -95,6 +97,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
         catradioListTile,
         rabbitRadioListTile,
         fishRadioListTile,
+        birdRadioListTile,
         otherRadioListTile,
         zeroThreeMonthsRadioListTile,
         threeSixMonthsRadioListTile,
@@ -114,6 +117,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     RadioListTile<dynamic> catradioListTile,
     RadioListTile<dynamic> rabbitRadioListTile,
     RadioListTile<dynamic> fishRadioListTile,
+    RadioListTile<dynamic> birdRadioListTile,
     RadioListTile<dynamic> otherRadioListTile,
     RadioListTile<dynamic> zeroThreeMonthsRadioListTile,
     RadioListTile<dynamic> threeSixMonthsRadioListTile,
@@ -144,6 +148,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
             catradioListTile,
             rabbitRadioListTile,
             fishRadioListTile,
+            birdRadioListTile,
             otherRadioListTile,
           ),
           _ageRangeExpansionTile(
@@ -219,6 +224,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
       RadioListTile<dynamic> catradioListTile,
       RadioListTile<dynamic> rabbitRadioListTile,
       RadioListTile<dynamic> fishRadioListTile,
+      RadioListTile<dynamic> birdRadioListTile,
       RadioListTile<dynamic> otherRadioListTile) {
     return _expansionTile(
       context,
@@ -228,6 +234,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
         catradioListTile,
         rabbitRadioListTile,
         fishRadioListTile,
+        birdRadioListTile,
         otherRadioListTile,
       ],
     );
@@ -469,6 +476,7 @@ class _ThisPageTexts {
   static String cat = LocaleKeys.animalNames_cat.locale;
   static String rabbit = LocaleKeys.animalNames_rabbit.locale;
   static String fish = LocaleKeys.animalNames_fish.locale;
+  static String bird = LocaleKeys.animalNames_bird.locale;
   static String other = LocaleKeys.other.locale;
   static String zeroThreeMonths = LocaleKeys.ageRanges_zeroThreeMonths.locale;
   static String threeSixMonths = LocaleKeys.ageRanges_threeSixMonths.locale;
