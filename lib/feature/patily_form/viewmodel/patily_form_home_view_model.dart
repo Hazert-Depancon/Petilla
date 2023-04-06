@@ -19,9 +19,10 @@ abstract class PatilyFormHomeViewViewModelBase with Store, BaseViewModel {
   @override
   void init() {}
 
-  @observable
-  CollectionReference<Object?> stream =
-      FirebaseCollectionEnum.patilyForm.reference;
+  @action
+  CollectionReference<Object?> stream() {
+    return FirebaseCollectionEnum.patilyForm.reference;
+  }
 
   @action
   void callAddQuestionView() {

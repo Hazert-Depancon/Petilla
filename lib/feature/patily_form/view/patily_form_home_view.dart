@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
-import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/banner_ad_widget.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
@@ -41,8 +40,7 @@ class PatilyFormHomeView extends StatelessWidget {
   SafeArea _body(BuildContext context) {
     return SafeArea(
       child: StreamBuilder<QuerySnapshot>(
-        // stream: viewModel.stream.snapshots(),
-        stream: FirebaseCollectionEnum.patilyForm.reference.snapshots(),
+        stream: viewModel.stream().snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
