@@ -72,7 +72,9 @@ class _AuthTextFieldState extends State<AuthTextField> {
             widget.prefixIcon,
             color: Colors.black,
           ),
-          suffixIcon: (_obscureText ?? false) ? _visibilityIcon() : null,
+          suffixIcon: widget.textfieldType == AuthTextfieldEnum.password
+              ? _visibilityIcon()
+              : null,
           border: OutlineInputBorder(
             borderRadius: ProjectRadius.allRadius,
             borderSide: BorderSide.none,
