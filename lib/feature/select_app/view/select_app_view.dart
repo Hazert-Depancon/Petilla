@@ -87,7 +87,7 @@ class _SelectAppViewState extends State<SelectAppView> {
         viewModel.instagramLaunch();
       },
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.30,
+        height: MediaQuery.of(context).size.height * 0.25,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Assets.images.fallowInstagram.path),
