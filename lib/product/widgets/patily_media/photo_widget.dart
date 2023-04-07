@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/product/widgets/patily_media/heart_animation_widget.dart';
 import 'package:patily/product/models/patily_media/post_model.dart';
@@ -26,7 +25,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
+            padding: context.horizontalPaddingNormal,
             child: Row(
               children: [
                 _circleAvatar(),
@@ -53,12 +52,12 @@ class _PhotoWidgetState extends State<PhotoWidget> {
           ),
           const SizedBox(height: 8),
           Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
+            padding: context.horizontalPaddingNormal,
             child: RichText(
               text: _senderName(context),
             ),
           ),
-          AppSizedBoxs.mainHeightSizedBox,
+          context.emptySizedHeightBoxLow,
         ],
       ),
     );

@@ -1,14 +1,13 @@
 // ignore_for_file: must_be_immutable, iterable_contains_unrelated_type
 
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/feature/auth/viewmodel/login_view_model.dart';
 import 'package:patily/product/constants/enums/auht_textfield_enum.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/auth_textfield.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -22,7 +21,6 @@ class LoginView extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   late LoginViewModel viewModel;
 
   @override
@@ -48,15 +46,15 @@ class LoginView extends StatelessWidget {
             _loginDecorationImage(),
             const SizedBox(height: 24),
             Padding(
-              padding: ProjectPaddings.horizontalMainPadding,
+              padding: context.horizontalPaddingNormal,
               child: Column(
                 children: [
                   _mailTextField,
-                  mainSizedBox,
+                  context.emptySizedHeightBoxLow3x,
                   _passwordTextField,
-                  mainSizedBox,
+                  context.emptySizedHeightBoxLow3x,
                   _loginButton(context),
-                  mainSizedBox,
+                  context.emptySizedHeightBoxLow3x,
                   _dontHaveAnAccount(context),
                   _registerButton(context),
                 ],

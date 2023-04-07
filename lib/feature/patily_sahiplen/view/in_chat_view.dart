@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/widgets/single_message.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
@@ -42,7 +41,6 @@ class _InChatViewState extends BaseState<InChatView> {
   final TextEditingController controller = TextEditingController();
   late final Stream<QuerySnapshot<Map<String, dynamic>>> firebaseStream;
 
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   late InChatViewViewModel viewModel;
 
   @override
@@ -76,7 +74,7 @@ class _InChatViewState extends BaseState<InChatView> {
         children: [
           CustomStreamBuilder(firebaseStream: firebaseStream, widget: widget),
           Padding(
-            padding: ProjectPaddings.horizontalMainPadding,
+            padding: context.horizontalPaddingNormal,
             child: Row(
               children: [
                 Expanded(
@@ -89,7 +87,7 @@ class _InChatViewState extends BaseState<InChatView> {
               ],
             ),
           ),
-          mainSizedBox,
+          context.emptySizedHeightBoxLow,
         ],
       ),
     );

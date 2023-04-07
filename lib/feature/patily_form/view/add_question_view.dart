@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/models/patily_form/question_form_model.dart';
@@ -20,7 +19,6 @@ class AddQuestionView extends StatefulWidget {
 }
 
 class _AddQuestionViewState extends State<AddQuestionView> {
-  final SizedBox mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
   String? petSelectedValue;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -43,7 +41,7 @@ class _AddQuestionViewState extends State<AddQuestionView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar,
-      body: _body(),
+      body: _body(context),
     );
   }
 
@@ -51,11 +49,11 @@ class _AddQuestionViewState extends State<AddQuestionView> {
         title: Text(LocaleKeys.addAQuestion.locale),
       );
 
-  Form _body() {
+  Form _body(BuildContext context) {
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         child: Column(
           children: [
             MainTextField(
@@ -63,15 +61,15 @@ class _AddQuestionViewState extends State<AddQuestionView> {
               controller: _titleController,
               isNext: true,
             ),
-            mainHeightSizedBox,
+            context.emptySizedHeightBoxLow3x,
             MainTextField(
               controller: _descriptionController,
               hintText: LocaleKeys.description.locale,
               minLines: 5,
             ),
-            mainHeightSizedBox,
+            context.emptySizedHeightBoxLow3x,
             _petTypeDropDown,
-            mainHeightSizedBox,
+            context.emptySizedHeightBoxLow3x,
             AuthButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
@@ -109,10 +107,10 @@ class _AddQuestionViewState extends State<AddQuestionView> {
   DropdownButtonFormField<String> get _petTypeDropDown {
     return DropdownButtonFormField(
       elevation: 0,
-      borderRadius: ProjectRadius.allRadius,
+      borderRadius: context.normalBorderRadius,
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
         ),
       ),
       hint: Text(LocaleKeys.petType.locale),

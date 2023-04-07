@@ -2,12 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/base/state/base_state.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -29,9 +27,6 @@ class DetailView extends StatefulWidget {
 class _DetailViewState extends BaseState<DetailView> {
   late bool _isClaim;
   late bool _isMe;
-
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   late DetailViewViewModel viewModel;
 
@@ -117,14 +112,14 @@ class _DetailViewState extends BaseState<DetailView> {
   SafeArea _body(BuildContext context, TextStyle? headline4) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _userNameText(context),
-            smallSizedBox,
+            context.emptySizedHeightBoxLow,
             _imageContainer(),
-            smallSizedBox,
+            context.emptySizedHeightBoxLow,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -132,7 +127,7 @@ class _DetailViewState extends BaseState<DetailView> {
                 _priceText(headline4),
               ],
             ),
-            mainSizedBox,
+            context.emptySizedHeightBoxLow,
             _descriptionText(context),
             const SizedBox(height: 16),
             _ageListTile(context),
@@ -167,7 +162,7 @@ class _DetailViewState extends BaseState<DetailView> {
     return Container(
       height: 250,
       decoration: BoxDecoration(
-        borderRadius: ProjectRadius.mainAllRadius,
+        borderRadius: context.normalBorderRadius,
         color: LightThemeColors.miamiMarmalade,
         image: DecorationImage(
           image: NetworkImage(widget.petModel.imagePath),

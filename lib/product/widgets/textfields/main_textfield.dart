@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -49,7 +49,7 @@ class MainTextField extends StatelessWidget {
         filled: true,
         fillColor: LightThemeColors.snowbank,
         border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
           borderSide: BorderSide.none,
         ),
         hintText: hintText,

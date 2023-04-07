@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/dialogs/error_dialog.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_button_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_icon_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -31,7 +27,6 @@ class _AddViewState extends BaseState<AddView> {
 
   Object? val = 1;
 
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
   RadioListTile get adoptRadioListTile =>
       _radioListTile(1, _ThisPageTexts.adopt, context);
 
@@ -61,17 +56,17 @@ class _AddViewState extends BaseState<AddView> {
         key: _formKey,
         child: Observer(builder: (_) {
           return ListView(
-            padding: ProjectPaddings.horizontalMainPadding,
+            padding: context.horizontalPaddingNormal,
             children: [
               viewModel.imageFile == null
                   ? _addPhotoContainer(context)
                   : _photoContainer(context),
-              mainSizedBox,
+              context.emptySizedHeightBoxLow3x,
               _petNameTextField(),
-              mainSizedBox,
+              context.emptySizedHeightBoxLow,
               _petDescriptionTextField(),
               adoptRadioListTile,
-              mainSizedBox,
+              context.emptySizedHeightBoxLow3x,
               Align(
                 child: _nextButton(context),
               ),
@@ -82,7 +77,7 @@ class _AddViewState extends BaseState<AddView> {
     );
   }
 
-  Observer _photoContainer(context) {
+  Observer _photoContainer(BuildContext context) {
     return Observer(builder: (_) {
       return InkWell(
         onTap: () {
@@ -92,7 +87,7 @@ class _AddViewState extends BaseState<AddView> {
           height: 175,
           width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
+            borderRadius: context.normalBorderRadius,
             color: LightThemeColors.miamiMarmalade,
             image: DecorationImage(
               image: FileImage(viewModel.imageFile!),
@@ -104,9 +99,9 @@ class _AddViewState extends BaseState<AddView> {
     });
   }
 
-  InkWell _addPhotoContainer(context) {
+  InkWell _addPhotoContainer(BuildContext context) {
     return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
+      borderRadius: context.normalBorderRadius,
       onTap: () {
         _bottomSheet(context);
       },
@@ -115,17 +110,17 @@ class _AddViewState extends BaseState<AddView> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
+          borderRadius: context.normalBorderRadius,
         ),
         child: const Icon(
           AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
+          size: 36,
         ),
       ),
     );
   }
 
-  Future<dynamic> _bottomSheet(context) {
+  Future<dynamic> _bottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -221,10 +216,11 @@ class _AddViewState extends BaseState<AddView> {
   }
 
   // Radio list tile
-  RadioListTile _radioListTile(int radioNumber, String title, context) {
+  RadioListTile _radioListTile(
+      int radioNumber, String title, BuildContext context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: ProjectRadius.buttonAllRadius,
+        borderRadius: context.normalBorderRadius,
       ),
       contentPadding: EdgeInsets.zero,
       groupValue: val,
@@ -246,8 +242,6 @@ class _AddViewState extends BaseState<AddView> {
         _onNextButton(context);
       },
       text: _ThisPageTexts.next,
-      height: ProjectButtonSizes.mainButtonHeight,
-      width: ProjectButtonSizes.mainButtonWidth,
     );
   }
 

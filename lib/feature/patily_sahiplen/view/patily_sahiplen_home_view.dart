@@ -5,13 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
@@ -204,7 +203,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
             (il) => RadioListTile<String>(
               title: Text(il["il"], style: textTheme.titleSmall!),
               shape: RoundedRectangleBorder(
-                borderRadius: ProjectRadius.buttonAllRadius,
+                borderRadius: context.normalBorderRadius,
               ),
               contentPadding: EdgeInsets.zero,
               value: il["il"],
@@ -274,7 +273,8 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     );
   }
 
-  ExpansionTile _expansionTile(context, String title, List<Widget> children) {
+  ExpansionTile _expansionTile(
+      BuildContext context, String title, List<Widget> children) {
     return ExpansionTile(
       title: Text(
         title,
@@ -284,10 +284,11 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     );
   }
 
-  RadioListTile _ageRangeRadioListTile(int radioNumber, String title, context) {
+  RadioListTile _ageRangeRadioListTile(
+      int radioNumber, String title, BuildContext context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: ProjectRadius.buttonAllRadius,
+        borderRadius: context.normalBorderRadius,
       ),
       contentPadding: EdgeInsets.zero,
       groupValue: val2,
@@ -304,10 +305,11 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     );
   }
 
-  RadioListTile _typeRadioListTile(int radioNumber, String title, context) {
+  RadioListTile _typeRadioListTile(
+      int radioNumber, String title, BuildContext context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: ProjectRadius.buttonAllRadius,
+        borderRadius: context.normalBorderRadius,
       ),
       contentPadding: EdgeInsets.zero,
       groupValue: val1,
@@ -324,10 +326,11 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
     );
   }
 
-  RadioListTile _genderRadioListTile(int radioNumber, String title, context) {
+  RadioListTile _genderRadioListTile(
+      int radioNumber, String title, BuildContext context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: ProjectRadius.buttonAllRadius,
+        borderRadius: context.normalBorderRadius,
       ),
       contentPadding: EdgeInsets.zero,
       groupValue: val3,
@@ -349,7 +352,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
       title: Text(_ThisPageTexts.homePage),
       actions: [
         _filterButton(),
-        AppSizedBoxs.normalWidthSizedBox,
+        context.emptySizedWidthBoxLow,
       ],
     );
   }
@@ -422,7 +425,7 @@ class _PatilySahiplenHomeViewState extends BaseState<PatilySahiplenHomeView> {
 
   GridView _gridview(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
     return GridView.builder(
-      padding: ProjectPaddings.horizontalMainPadding,
+      padding: context.horizontalPaddingNormal,
       itemCount: snapshot.data!.docs.length,
       gridDelegate: _myGridDelegate(),
       itemBuilder: (context, index) {

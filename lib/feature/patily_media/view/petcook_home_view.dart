@@ -3,11 +3,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -18,8 +18,6 @@ import 'package:patily/feature/patily_media/viewmodel/petcook_home_view_view_mod
 
 class PetcookHomeView extends StatelessWidget {
   PetcookHomeView({super.key});
-
-  final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
 
   late PetcookHomeViewViewModel viewModel;
 
@@ -50,7 +48,7 @@ class PetcookHomeView extends StatelessWidget {
       ),
       actions: [
         _addPostButton(),
-        smallWidthSizedBox,
+        context.emptySizedWidthBoxLow3x,
       ],
     );
   }

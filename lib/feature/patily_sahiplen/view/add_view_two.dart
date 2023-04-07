@@ -5,14 +5,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_button_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/base/state/base_state.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -148,7 +146,6 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
   final TextEditingController _typeController = TextEditingController();
 
   String imageUrl = "";
-  var mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   bool _isSubmitButtonClicked = false;
 
@@ -188,21 +185,21 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
   SafeArea _body(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         children: [
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           citySelect,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           districtSelect,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _petTypeDropDown,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _petGenderDropDown,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _petAgeRangeDropDown,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _textField,
-          mainSizedBox,
+          context.emptySizedHeightBoxLow3x,
           widget.radioValue == 1 ? const SizedBox() : _textField,
           _submitButton(context),
         ],
@@ -214,7 +211,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
           borderSide: const BorderSide(
             width: 3,
             color: LightThemeColors.miamiMarmalade,
@@ -245,7 +242,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
           borderSide: const BorderSide(
               width: 3, color: LightThemeColors.miamiMarmalade),
         ),
@@ -272,7 +269,7 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
     return DropdownButtonFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
           borderSide: const BorderSide(
               width: 3, color: LightThemeColors.miamiMarmalade),
         ),
@@ -388,8 +385,6 @@ class _AddViewTwoState extends BaseState<AddViewTwo> {
           }
         },
         text: _ThisPageTexts.addPet,
-        width: ProjectButtonSizes.mainButtonWidth,
-        height: ProjectButtonSizes.mainButtonHeight,
       ),
     );
   }

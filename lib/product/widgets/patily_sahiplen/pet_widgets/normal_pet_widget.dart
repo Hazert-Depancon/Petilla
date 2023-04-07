@@ -1,10 +1,8 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/project_icon_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -81,12 +79,12 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
     return Container(
       decoration: _boxDecoration(),
       child: Padding(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         child: Column(
           children: [
-            const SizedBox(height: 8),
+            context.emptySizedHeightBoxLow,
             _imageContainer(),
-            const SizedBox(height: 8),
+            context.emptySizedHeightBoxLow,
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -103,7 +101,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            context.emptySizedHeightBoxLow
           ],
         ),
       ),
@@ -112,7 +110,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
 
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
-      borderRadius: ProjectRadius.allRadius,
+      borderRadius: context.normalBorderRadius,
       color: LightThemeColors.snowbank,
     );
   }
@@ -136,7 +134,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
         _placeIcon(),
         Text(
           widget.petModel.city,
-          style: const TextStyle(fontSize: 13),
+          style: context.textTheme.bodySmall?.copyWith(fontSize: 14),
         ),
       ],
     );
@@ -145,7 +143,6 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
   Icon _placeIcon() {
     return const Icon(
       AppIcons.locationOnOtlinedIcon,
-      size: ProjectIconSizes.smallIconSize,
       color: LightThemeColors.pastelStrawberry,
     );
   }
@@ -160,7 +157,7 @@ class _NormalPetWidgetState extends BaseState<NormalPetWidget> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: ProjectRadius.allRadius,
+          borderRadius: context.normalBorderRadius,
           color: LightThemeColors.grey,
           image: DecorationImage(
             image: NetworkImage(widget.petModel.imagePath),

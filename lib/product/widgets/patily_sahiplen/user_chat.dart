@@ -1,10 +1,10 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
+import 'package:kartal/kartal.dart';
 
 class UserChat extends StatelessWidget {
-  UserChat(
+  const UserChat(
       {Key? key,
       required this.onTap,
       required this.name,
@@ -14,8 +14,6 @@ class UserChat extends StatelessWidget {
   final VoidCallback onTap;
   final String name;
   final String lastMsg;
-
-  var smallSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class UserChat extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: Theme.of(context).textTheme.headlineSmall),
-                  smallSizedBox,
+                  context.emptySizedHeightBoxLow,
                   Text(lastMsg),
                 ],
               ),

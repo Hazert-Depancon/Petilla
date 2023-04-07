@@ -1,19 +1,16 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/feature/our/viewmodel/feedback_view_view_model.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_button_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 
 class FeedBackView extends StatelessWidget {
   FeedBackView({super.key});
-  final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -44,19 +41,19 @@ class FeedBackView extends StatelessWidget {
         title: Text(LocaleKeys.feedBack.locale),
       );
 
-  SafeArea _body(context) {
+  SafeArea _body(BuildContext context) {
     return SafeArea(
       child: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          padding: ProjectPaddings.horizontalMainPadding,
+          padding: context.horizontalPaddingNormal,
           child: Center(
             child: Column(
               children: [
                 _titleTextField(),
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow3x,
                 _descriptionTextField(),
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow3x,
                 _submitButton(context),
               ],
             ),
@@ -87,8 +84,6 @@ class FeedBackView extends StatelessWidget {
   Button _submitButton(context) {
     return Button(
       text: LocaleKeys.send.locale,
-      height: ProjectButtonSizes.mainButtonHeight,
-      width: ProjectButtonSizes.mainButtonWidth,
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           viewModel.onSubmitButton(titleController, descriptionController);
