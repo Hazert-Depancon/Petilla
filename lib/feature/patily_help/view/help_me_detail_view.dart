@@ -3,11 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/widgets/buttons/button.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -20,9 +18,6 @@ class HelpMeDetailView extends StatelessWidget {
   final HelpMeModel helpMeModel;
 
   late HelpMeDetailViewViewModel viewModel;
-
-  final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  final normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +39,7 @@ class HelpMeDetailView extends StatelessWidget {
 
   Padding _locationAndChatButtons(BuildContext context) {
     return Padding(
-      padding: ProjectPaddings.horizontalMainPadding,
+      padding: context.horizontalPaddingNormal,
       child: Row(
         children: [
           _showInMapButton(),
@@ -80,26 +75,27 @@ class HelpMeDetailView extends StatelessWidget {
         onPressed: () async {
           viewModel.showInMap(helpMeModel);
         },
-        height: 55,
       ),
     );
   }
 
-  SafeArea _body(context) {
+  SafeArea _body(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _imageContainer(),
-            mainHeightSizedBox,
+            _imageContainer(context),
+            context.emptySizedHeightBoxLow,
             _titleText(context),
-            mainHeightSizedBox,
+            context.emptySizedHeightBoxLow,
             _descriptionText(context),
-            mainHeightSizedBox,
+            context.emptySizedHeightBoxLow,
             helpMeModel.isFoodHelp ? _footdHelpText(context) : _emptySizedBox(),
-            helpMeModel.isFoodHelp ? mainHeightSizedBox : _emptySizedBox(),
+            helpMeModel.isFoodHelp
+                ? context.emptySizedHeightBoxLow
+                : _emptySizedBox(),
             helpMeModel.isVetHelp ? _vetHelpText(context) : _emptySizedBox(),
             _otherNeeds(context),
           ],
@@ -129,12 +125,12 @@ class HelpMeDetailView extends StatelessWidget {
   Text _titleText(context) => Text(helpMeModel.title,
       style: Theme.of(context).textTheme.headlineMedium);
 
-  Container _imageContainer() {
+  Container _imageContainer(BuildContext context) {
     return Container(
       height: 200,
       decoration: BoxDecoration(
         color: LightThemeColors.snowbank,
-        borderRadius: ProjectRadius.allRadius,
+        borderRadius: context.normalBorderRadius,
         image: DecorationImage(
           image: NetworkImage(
             helpMeModel.imageDowlandUrl,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/feature/onboard/viewmodel/onboarding_view_model.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -36,7 +34,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: ProjectPaddings.mainAllPadding,
+        padding: context.paddingNormal,
         child: SafeArea(
           child: Column(
             children: [
@@ -109,7 +107,7 @@ class DotIndicator extends StatelessWidget {
         color: isActive
             ? LightThemeColors.miamiMarmalade
             : LightThemeColors.miamiMarmalade.withOpacity(0.4),
-        borderRadius: ProjectRadius.minAllRadius,
+        borderRadius: context.lowBorderRadius,
       ),
     );
   }
@@ -143,7 +141,7 @@ class OnboardContent extends StatelessWidget {
               .titleSmall
               ?.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
         ),
-        AppSizedBoxs.xsmallHeightSizedBox,
+        context.emptySizedHeightBoxLow,
         Text(
           description,
           textAlign: TextAlign.center,

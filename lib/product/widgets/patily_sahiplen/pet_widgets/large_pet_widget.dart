@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -27,9 +26,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   late bool _isClaim;
   late bool _isMe;
   bool? _isFav;
-  var smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
 
-  //* Fav Button Commands
   favButton(docId) async {
     _isFav = await FavButtonService().favButton(docId);
   }
@@ -100,7 +97,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                smallHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 Row(
                   children: [
                     _nameText(context),
@@ -119,11 +116,8 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
                     const SizedBox(width: 12),
                   ],
                 ),
-                smallHeightSizedBox,
-                Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: _descriptionText(context),
-                ),
+                context.emptySizedHeightBoxLow,
+                _descriptionText(context),
               ],
             ),
           ),
@@ -146,7 +140,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
       color: LightThemeColors.snowbank,
-      borderRadius: ProjectRadius.buttonAllRadius,
+      borderRadius: context.normalBorderRadius,
     );
   }
 
@@ -164,15 +158,12 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
     );
   }
 
-  SizedBox _descriptionText(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Text(
-        widget.petModel.description,
-        maxLines: 3,
-        overflow: TextOverflow.ellipsis,
-        style: textTheme.titleMedium?.copyWith(color: Colors.grey[600]),
-      ),
+  _descriptionText(BuildContext context) {
+    return Text(
+      widget.petModel.description,
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+      style: textTheme.labelLarge?.copyWith(color: Colors.grey[600]),
     );
   }
 
@@ -182,7 +173,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
       height: 150,
       decoration: BoxDecoration(
         color: LightThemeColors.miamiMarmalade,
-        borderRadius: ProjectRadius.allRadius,
+        borderRadius: context.normalBorderRadius,
         image: DecorationImage(
             fit: BoxFit.cover, image: NetworkImage(widget.petModel.imagePath)),
       ),
@@ -196,7 +187,7 @@ class _LargePetWidgetState extends BaseState<LargePetWidget> {
       children: [
         _placeIcon(),
         Text(widget.petModel.city,
-            overflow: TextOverflow.clip, style: textTheme.titleMedium),
+            overflow: TextOverflow.clip, style: textTheme.titleLarge),
       ],
     );
   }

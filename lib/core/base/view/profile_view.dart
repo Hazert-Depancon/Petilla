@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/core/base/viewmodel/profile_view_view_model.dart';
@@ -12,11 +13,9 @@ import 'package:patily/product/widgets/banner_ad_widget.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/feature/auth/view/delete_account_confirm_view.dart';
 import 'package:patily/feature/our/view/about_view.dart';
@@ -31,10 +30,6 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
-
-  final smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
-
   late ProfileViewViewModel viewModel;
 
   @override
@@ -57,10 +52,10 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  AppBar _appBar(context) {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
       title: Text(_ThisPageTexts.title),
-      actions: [settingsIcon(context), smallWidthSizedBox],
+      actions: [settingsIcon(context), context.emptySizedWidthBoxLow],
     );
   }
 
@@ -107,9 +102,7 @@ class _ProfileViewState extends State<ProfileView> {
       child: TextButton(
         onPressed: () {
           setState(() {
-            setState(() {
-              viewModel.logOut();
-            });
+            viewModel.logOut();
           });
         },
         child: Text(
@@ -193,19 +186,19 @@ class _ProfileViewState extends State<ProfileView> {
   StatusView get _connectionErrorLottie =>
       const StatusView(status: StatusKeysEnum.CONNECTION_ERROR);
 
-  SingleChildScrollView _hasDataScreen(snapshot, context) {
+  SingleChildScrollView _hasDataScreen(snapshot, BuildContext context) {
     String name = FirebaseAuth.instance.currentUser!.displayName!;
     String email = FirebaseAuth.instance.currentUser!.email!;
     return SingleChildScrollView(
-      padding: ProjectPaddings.horizontalMainPadding,
+      padding: context.horizontalPaddingNormal,
       child: Column(
         children: [
           _circleAvatar(snapshot, name, context),
-          smallHeightSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _nameTextfield(snapshot, name),
-          smallHeightSizedBox,
+          context.emptySizedHeightBoxLow3x,
           _emailTextfield(snapshot, email),
-          smallHeightSizedBox,
+          context.emptySizedHeightBoxLow3x,
         ],
       ),
     );

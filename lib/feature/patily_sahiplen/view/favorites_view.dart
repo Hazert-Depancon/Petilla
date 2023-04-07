@@ -3,11 +3,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
@@ -28,13 +28,13 @@ class FavoritesView extends StatelessWidget {
         viewModel = model;
       },
       viewModel: FavoritesViewViewModel(),
-      onPageBuilder: (context, value) => _buildScaffold,
+      onPageBuilder: (context, value) => _buildScaffold(context),
     );
   }
 
-  Scaffold get _buildScaffold => Scaffold(
+  Scaffold _buildScaffold(BuildContext context) => Scaffold(
         appBar: _appBar,
-        body: _body(),
+        body: _body(context),
       );
 
   AppBar get _appBar => AppBar(
@@ -42,14 +42,14 @@ class FavoritesView extends StatelessWidget {
         automaticallyImplyLeading: false,
       );
 
-  SafeArea _body() {
+  SafeArea _body(BuildContext context) {
     return SafeArea(
       child: Observer(builder: (_) {
         return FutureBuilder(
           future: viewModel.getShared(),
           builder: (context, snapshot) {
             if (viewModel.myList?.isNotEmpty ?? false) {
-              return _listView();
+              return _listView(context);
             }
             if (viewModel.myList?.isEmpty ?? true) {
               return _emptyLottie;
@@ -62,10 +62,10 @@ class FavoritesView extends StatelessWidget {
     );
   }
 
-  Observer _listView() {
+  Observer _listView(BuildContext context) {
     return Observer(builder: (_) {
       return ListView.builder(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         itemCount: viewModel.listLenght!,
         itemBuilder: (context, index) {
           return _streamBuilder(index);

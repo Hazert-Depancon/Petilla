@@ -3,12 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/core/gen/assets.gen.dart';
@@ -28,9 +27,6 @@ class InFormView extends StatefulWidget {
 }
 
 class _InFormViewState extends BaseState<InFormView> {
-  final SizedBox smallHeightSizedBox = AppSizedBoxs.smallHeightSizedBox;
-  final SizedBox normalWidthSizedBox = AppSizedBoxs.normalWidthSizedBox;
-
   final TextEditingController messageController = TextEditingController();
 
   late final String animalIconPath;
@@ -75,27 +71,27 @@ class _InFormViewState extends BaseState<InFormView> {
           Expanded(
             flex: 5,
             child: ListView(
-              padding: ProjectPaddings.horizontalMainPadding,
+              padding: context.horizontalPaddingNormal,
               children: [
                 Row(
                   children: [
                     _circleAvatar,
-                    normalWidthSizedBox,
+                    context.emptySizedWidthBoxLow,
                     _currentUserName(context),
                   ],
                 ),
-                smallHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 Row(
                   children: [
                     _animalIcon,
-                    normalWidthSizedBox,
+                    context.emptySizedWidthBoxLow,
                     _title(context),
                   ],
                 ),
-                smallHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 _description,
                 _date(context),
-                smallHeightSizedBox,
+                context.emptySizedHeightBoxLow,
               ],
             ),
           ),
@@ -144,7 +140,7 @@ class _InFormViewState extends BaseState<InFormView> {
           FirebaseAuth.instance.currentUser!.uid == widget.formModel.currentUid
               ? const SizedBox.shrink()
               : Padding(
-                  padding: ProjectPaddings.horizontalMainPadding,
+                  padding: context.horizontalPaddingNormal,
                   child: Row(
                     children: [
                       Expanded(
@@ -153,7 +149,7 @@ class _InFormViewState extends BaseState<InFormView> {
                     ],
                   ),
                 ),
-          smallHeightSizedBox,
+          context.emptySizedHeightBoxLow,
         ],
       ),
     );

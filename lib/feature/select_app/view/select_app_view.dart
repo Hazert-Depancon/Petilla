@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/feature/select_app/viewmodel/select_app_view_view_model.dart';
 import 'package:patily/product/widgets/banner_ad_widget.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 import 'package:patily/core/gen/assets.gen.dart';
 import 'package:patily/feature/patily_help/view/help_me_home_view.dart';
@@ -25,8 +24,6 @@ class SelectAppView extends StatefulWidget {
 }
 
 class _SelectAppViewState extends State<SelectAppView> {
-  final mainSizedBox = AppSizedBoxs.mainHeightSizedBox;
-  final smallWidthSizedBox = AppSizedBoxs.smallWidthSizedBox;
   late SelectAppViewViewModel viewModel;
 
   @override
@@ -54,19 +51,19 @@ class _SelectAppViewState extends State<SelectAppView> {
       automaticallyImplyLeading: false,
       actions: [
         _profileAction(context),
-        smallWidthSizedBox,
+        context.emptySizedWidthBoxLow,
       ],
     );
   }
 
-  SafeArea _body(context) {
+  SafeArea _body(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: ProjectPaddings.horizontalMainPadding,
+        padding: context.horizontalPaddingNormal,
         child: Column(
           children: [
             _fallowInstagramContainer(context),
-            mainSizedBox,
+            context.emptySizedHeightBoxLow3x,
             StaggeredGrid.count(
               crossAxisCount: 4,
               mainAxisSpacing: 12,
@@ -84,7 +81,7 @@ class _SelectAppViewState extends State<SelectAppView> {
     );
   }
 
-  GestureDetector _fallowInstagramContainer(context) {
+  GestureDetector _fallowInstagramContainer(BuildContext context) {
     return GestureDetector(
       onTap: () {
         viewModel.instagramLaunch();
@@ -97,7 +94,7 @@ class _SelectAppViewState extends State<SelectAppView> {
             fit: BoxFit.cover,
           ),
           color: LightThemeColors.white,
-          borderRadius: ProjectRadius.mainAllRadius,
+          borderRadius: context.normalBorderRadius,
         ),
       ),
     );

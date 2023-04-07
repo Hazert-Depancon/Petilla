@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 
@@ -14,7 +14,7 @@ class AboutView extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: ProjectPaddings.horizontalMainPadding,
+          padding: context.horizontalPaddingNormal,
           child: Column(
             children: [
               Text(

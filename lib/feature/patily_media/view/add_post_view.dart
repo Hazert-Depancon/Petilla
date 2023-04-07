@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/widgets/buttons/auth_button.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_icon_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -22,8 +19,9 @@ class AddPostView extends StatefulWidget {
 
 class _AddPostViewState extends State<AddPostView> {
   late AddPostViewModel viewModel;
-  final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
+
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _descriptionController = TextEditingController();
 
   @override
@@ -57,26 +55,26 @@ class _AddPostViewState extends State<AddPostView> {
     );
   }
 
-  Observer _body(context) {
+  Observer _body(BuildContext context) {
     return Observer(
       builder: (context) {
         return Form(
           key: _formKey,
           child: SafeArea(
             child: SingleChildScrollView(
-              padding: ProjectPaddings.horizontalMainPadding,
+              padding: context.horizontalPaddingNormal,
               child: Column(
                 children: [
                   viewModel.imageFile == null
                       ? _addPhotoContainer(context)
                       : _photoContainer(context),
-                  mainHeightSizedBox,
+                  context.emptySizedHeightBoxLow3x,
                   MainTextField(
                     controller: _descriptionController,
                     hintText: LocaleKeys.description.locale,
                     minLines: 5,
                   ),
-                  mainHeightSizedBox,
+                  context.emptySizedHeightBoxLow3x,
                   AuthButton(
                     onPressed: () {
                       if (viewModel.image != null) {
@@ -107,7 +105,7 @@ class _AddPostViewState extends State<AddPostView> {
           height: 300,
           width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
+            borderRadius: context.normalBorderRadius,
             color: LightThemeColors.miamiMarmalade,
             image: DecorationImage(
               image: FileImage(viewModel.imageFile!),
@@ -119,9 +117,9 @@ class _AddPostViewState extends State<AddPostView> {
     });
   }
 
-  InkWell _addPhotoContainer(context) {
+  InkWell _addPhotoContainer(BuildContext context) {
     return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
+      borderRadius: context.normalBorderRadius,
       onTap: () {
         _bottomSheet(context);
       },
@@ -130,11 +128,11 @@ class _AddPostViewState extends State<AddPostView> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
+          borderRadius: context.normalBorderRadius,
         ),
         child: const Icon(
           AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
+          size: 36,
         ),
       ),
     );

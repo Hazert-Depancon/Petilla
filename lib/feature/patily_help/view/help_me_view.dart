@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/state/base_state.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
@@ -10,11 +11,6 @@ import 'package:patily/product/widgets/buttons/button.dart';
 import 'package:patily/product/widgets/dialogs/default_dialog.dart';
 import 'package:patily/product/widgets/textfields/main_textfield.dart';
 import 'package:patily/product/constants/other_constant/icon_names.dart';
-import 'package:patily/product/constants/sizes_constant/app_sized_box.dart';
-import 'package:patily/product/constants/sizes_constant/project_button_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_icon_sizes.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
 import 'package:patily/product/extension/string_lang_extension.dart';
 import 'package:patily/product/init/lang/locale_keys.g.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
@@ -36,12 +32,10 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController otherNeedsController = TextEditingController();
 
-  final mainHeightSizedBox = AppSizedBoxs.mainHeightSizedBox;
-
   bool isVetHelp = false;
   bool isFoodHelp = false;
 
-  RadioListTile get _locationRadioListTile =>
+  RadioListTile _locationRadioListTile(BuildContext context) =>
       _radioListTile(1, LocaleKeys.getCurrentLocation.locale, context);
   Object? currentLocationVal = 1;
 
@@ -73,33 +67,33 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     );
   }
 
-  SafeArea _buildBody(context) {
+  SafeArea _buildBody(BuildContext context) {
     return SafeArea(
       child: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          padding: ProjectPaddings.horizontalMainPadding,
+          padding: context.horizontalPaddingNormal,
           child: Observer(builder: (_) {
             return Column(
               children: [
                 viewModel.imageFile == null
                     ? _addPhotoContainer(context)
                     : _photoContainer(context),
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow3x,
                 _titleTextField,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 _descriptionTextField,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow3x,
                 _otherNeedsTextfield,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 vetHelpCheckBoxListTile,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow,
                 foodHelpCheckBoxListTile,
-                mainHeightSizedBox,
-                _locationRadioListTile,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow,
+                _locationRadioListTile(context),
+                context.emptySizedHeightBoxLow,
                 _submitButton,
-                mainHeightSizedBox,
+                context.emptySizedHeightBoxLow,
               ],
             );
           }),
@@ -108,7 +102,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     );
   }
 
-  Observer _photoContainer(context) {
+  Observer _photoContainer(BuildContext context) {
     return Observer(builder: (_) {
       return InkWell(
         onTap: () {
@@ -118,7 +112,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
           height: 175,
           width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: ProjectRadius.mainAllRadius,
+            borderRadius: context.normalBorderRadius,
             color: LightThemeColors.miamiMarmalade,
             image: DecorationImage(
               image: FileImage(viewModel.imageFile!),
@@ -130,9 +124,9 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     });
   }
 
-  InkWell _addPhotoContainer(context) {
+  InkWell _addPhotoContainer(BuildContext context) {
     return InkWell(
-      borderRadius: ProjectRadius.mainAllRadius,
+      borderRadius: context.normalBorderRadius,
       onTap: () {
         _bottomSheet(context);
       },
@@ -141,11 +135,11 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: LightThemeColors.snowbank,
-          borderRadius: ProjectRadius.mainAllRadius,
+          borderRadius: context.normalBorderRadius,
         ),
         child: const Icon(
           AppIcons.addPhotoAlternateIcon,
-          size: ProjectIconSizes.bigIconSize,
+          size: 36,
         ),
       ),
     );
@@ -200,10 +194,11 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
     );
   }
 
-  RadioListTile _radioListTile(int radioNumber, String title, context) {
+  RadioListTile _radioListTile(
+      int radioNumber, String title, BuildContext context) {
     return RadioListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: ProjectRadius.buttonAllRadius,
+        borderRadius: context.normalBorderRadius,
       ),
       contentPadding: EdgeInsets.zero,
       groupValue: currentLocationVal,
@@ -220,7 +215,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   CheckboxListTile get vetHelpCheckBoxListTile {
     return CheckboxListTile(
-      shape: RoundedRectangleBorder(borderRadius: ProjectRadius.allRadius),
+      shape: RoundedRectangleBorder(borderRadius: context.normalBorderRadius),
       value: isVetHelp,
       onChanged: (value) {
         setState(() {
@@ -233,7 +228,7 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
 
   CheckboxListTile get foodHelpCheckBoxListTile {
     return CheckboxListTile(
-      shape: RoundedRectangleBorder(borderRadius: ProjectRadius.allRadius),
+      shape: RoundedRectangleBorder(borderRadius: context.normalBorderRadius),
       value: isFoodHelp,
       onChanged: (value) {
         setState(() {
@@ -247,8 +242,6 @@ class _HelpMeViewState extends BaseState<HelpMeView> {
   Button get _submitButton {
     return Button(
       text: LocaleKeys.patilySahiplenPages_addAPet.locale,
-      height: ProjectButtonSizes.mainButtonHeight,
-      width: ProjectButtonSizes.mainButtonWidth,
       onPressed: () {
         onSubmitButtonClicked(context);
       },

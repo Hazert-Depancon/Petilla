@@ -2,11 +2,11 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/core/base/view/base_view.dart';
 import 'package:patily/core/base/view/status_view.dart';
 import 'package:patily/product/constants/enums/firebase_collection_enum.dart';
 import 'package:patily/product/constants/enums/status_keys_enum.dart';
-import 'package:patily/product/constants/sizes_constant/project_padding.dart';
 import 'package:patily/product/constants/string_constant/app_firestore_field_names.dart';
 import 'package:patily/product/widgets/patily_sahiplen/pet_widgets/large_pet_widget.dart';
 import 'package:patily/product/models/patily_sahiplen/pet_model.dart';
@@ -54,7 +54,7 @@ class OtherProfileView extends StatelessWidget {
             return _notPetYet;
           }
 
-          return _inserts(snapshot);
+          return _inserts(snapshot, context);
         }
         if (snapshot.hasError) {
           return _errorLottie;
@@ -65,9 +65,10 @@ class OtherProfileView extends StatelessWidget {
     );
   }
 
-  ListView _inserts(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+  ListView _inserts(
+      AsyncSnapshot<QuerySnapshot<Object?>> snapshot, BuildContext context) {
     return ListView.builder(
-      padding: ProjectPaddings.horizontalMainPadding,
+      padding: context.horizontalPaddingNormal,
       itemCount: snapshot.data!.docs.length,
       itemBuilder: (context, index) {
         return _petWidget(snapshot.data!.docs[index]);

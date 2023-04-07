@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:patily/product/constants/sizes_constant/project_radius.dart';
+import 'package:kartal/kartal.dart';
 import 'package:patily/product/init/theme/light_theme/light_theme_colors.dart';
 
 class Button extends StatelessWidget {
   const Button({
     Key? key,
     required this.onPressed,
-    this.width,
-    this.height,
     this.text,
     this.noBorderRadius,
     this.color,
   }) : super(key: key);
 
   final VoidCallback onPressed;
-  final double? width;
-  final double? height;
   final String? text;
   final bool? noBorderRadius;
   final Color? color;
@@ -23,12 +19,12 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: ProjectRadius.buttonAllRadius,
+      borderRadius: context.normalBorderRadius,
       onTap: onPressed,
       child: Container(
-        width: width,
-        height: height,
-        decoration: _boxDecoration(),
+        width: context.width / 2,
+        height: context.height * 0.08,
+        decoration: _boxDecoration(context),
         child: Center(
           child: _text(context),
         ),
@@ -36,11 +32,10 @@ class Button extends StatelessWidget {
     );
   }
 
-  BoxDecoration _boxDecoration() {
+  BoxDecoration _boxDecoration(BuildContext context) {
     return BoxDecoration(
       color: color ?? LightThemeColors.miamiMarmalade,
-      borderRadius:
-          noBorderRadius == null ? ProjectRadius.buttonAllRadius : null,
+      borderRadius: noBorderRadius == null ? context.normalBorderRadius : null,
     );
   }
 
