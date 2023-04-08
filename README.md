@@ -8,7 +8,7 @@ PATİLY bir girişimdir. 2022 Mayıs ayında sektörde hayvanlara dair kısıtl�
 
 [Twitter Hesabı](https://twitter.com/Petilla_Turkiye)
 
-[Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.patily)
+[Play Store Linki](https://play.google.com/store/apps/details?id=com.hazret.petilla)
 
 [WhatsApp Etkileşim Grubu](https://chat.whatsapp.com/GTMbSd1htfpGIQz2Dhwns6)
 
