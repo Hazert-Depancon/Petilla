@@ -21,7 +21,11 @@ class AuthService {
   }
 
   Future<void> register(
-      String email, String password, String name, context) async {
+    String email,
+    String password,
+    String name,
+    context,
+  ) async {
     try {
       showDefaultLoadingDialog(false, context);
       await _auth.createUserWithEmailAndPassword(

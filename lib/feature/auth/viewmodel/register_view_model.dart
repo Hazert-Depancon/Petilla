@@ -21,12 +21,13 @@ abstract class _RegisterViewModelBase with Store, BaseViewModel {
   void init() {}
 
   @action
-  Future<void> onRegisterButton(email, password, name) async {
+  Future<void> onRegisterButton(TextEditingController email,
+      TextEditingController password, TextEditingController name) async {
     AuthService()
         .register(
-          email.trim(),
-          password.trim(),
-          name.trim(),
+          email.text.trim(),
+          password.text.trim(),
+          name.text.trim(),
           context,
         )
         .whenComplete(
