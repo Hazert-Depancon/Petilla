@@ -59,29 +59,26 @@ class LoginView extends StatelessWidget {
                   _registerButton(context),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Expanded _loginDecorationImage() {
-    return Expanded(
-      flex: 4,
-      child: Container(
-        width: double.infinity,
-        height: 300,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.images.loginBackgroundImage.path),
-            fit: BoxFit.fill,
-          ),
+  Container _loginDecorationImage() {
+    return Container(
+      width: double.infinity,
+      height: 300,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Assets.images.loginBackgroundImage.path),
+          fit: BoxFit.fill,
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 64, left: 32),
-          child: _welcomeBackText(),
-        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 64, left: 32),
+        child: _welcomeBackText(),
       ),
     );
   }
